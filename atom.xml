@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Mj_Xu</title>
+  
+  <subtitle>This is a story of one of mortals</subtitle>
+  <link href="https://macuxavier.github.io/atom.xml" rel="self"/>
+  
+  <link href="https://macuxavier.github.io/"/>
+  <updated>2022-09-22T15:27:26.850Z</updated>
+  <id>https://macuxavier.github.io/</id>
+  
+  <author>
+    <name>Minster</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Memory in HK &amp; CUHK</title>
+    <link href="https://macuxavier.github.io/2022/09/19/memory-hk-cuhk/"/>
+    <id>https://macuxavier.github.io/2022/09/19/memory-hk-cuhk/</id>
+    <published>2022-09-19T12:08:34.000Z</published>
+    <updated>2022-09-22T15:27:26.850Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;08-2021-08-2022&quot;&gt;&lt;a href=&quot;#08-2021-08-2022&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    
+    <category term="memory" scheme="https://macuxavier.github.io/tags/memory/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Curriculum Vitae</title>
+    <link href="https://macuxavier.github.io/2022/09/19/curriculumvitae/"/>
+    <id>https://macuxavier.github.io/2022/09/19/curriculumvitae/</id>
+    <published>2022-09-19T01:56:15.000Z</published>
+    <updated>2022-09-22T15:16:39.524Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;Abstract&quot;&gt;&lt;a href=&quot;#Abstract&quot; class=&quot;headerlink&quot; title=&quot;Abstract&quot;&gt;&lt;/a&gt;Abstract&lt;/h2&gt;&lt;p&gt;I graduated from SHU and have worked at &lt;a</summary>
+        
+      
+    
+    
+    
+    
+    <category term="about_me" scheme="https://macuxavier.github.io/tags/about-me/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Building_blog notes</title>
+    <link href="https://macuxavier.github.io/2022/09/19/building-blog/"/>
+    <id>https://macuxavier.github.io/2022/09/19/building-blog/</id>
+    <published>2022-09-18T16:21:52.000Z</published>
+    <updated>2022-09-19T12:53:54.476Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;References&quot;&gt;&lt;a href=&quot;#References&quot; class=&quot;headerlink&quot; title=&quot;References&quot;&gt;&lt;/a&gt;References&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;HEXO: 安装所需库可以看&lt;a</summary>
+        
+      
+    
+    
+    
+    
+    <category term="study" scheme="https://macuxavier.github.io/tags/study/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Hello World</title>
+    <link href="https://macuxavier.github.io/2022/09/18/hello-world/"/>
+    <id>https://macuxavier.github.io/2022/09/18/hello-world/</id>
+    <published>2022-09-18T14:47:31.271Z</published>
+    <updated>2022-09-22T15:25:09.138Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.io/docs/&quot;&gt;documentation&lt;/a&gt;</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+</feed>
