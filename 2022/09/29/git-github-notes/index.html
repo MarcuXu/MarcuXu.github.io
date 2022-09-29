@@ -4,8 +4,8 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="Git_Github_notes, Mj_Xu">
-    <meta name="description" content="Git &amp;amp; GitHub notes这篇笔记主要记载如何在日常的轻量化开发中使用git和GitHub作为辅助工具提升效率。该笔记主要参考这个视频来进行step by step的操作。当然，我也根据做个笔记重新复习了一下git的基本操">
+    <meta name="keywords" content="Git &amp; GitHub, Mj_Xu">
+    <meta name="description" content="Abstract这篇笔记主要记载如何在日常的轻量化开发中使用git和GitHub作为辅助工具提升效率。该笔记主要参考40 分钟学会 Git | 日常开发全程大放送&amp;amp;搭配Github和git、github 保姆级教程入门来step b">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -17,7 +17,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>Git_Github_notes | Mj_Xu</title>
+    <title>Git &amp; GitHub | Mj_Xu</title>
     <link rel="icon" type="image/png" href="/favicon.png">
     
 
@@ -289,12 +289,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/6.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/13.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Git_Github_notes</h1>
+                    <h1 class="description center-align post-title">Git &amp; GitHub</h1>
                 </div>
             </div>
         </div>
@@ -343,7 +343,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    307
+                    383
                 </div>
                 
 
@@ -373,14 +373,14 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="Git-amp-GitHub-notes"><a href="#Git-amp-GitHub-notes" class="headerlink" title="Git &amp; GitHub notes"></a>Git &amp; GitHub notes</h2><p>这篇笔记主要记载如何在日常的轻量化开发中使用git和GitHub作为辅助工具提升效率。该笔记主要参考<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1db4y1d79C/?spm_id_from=333.999.0.0&vd_source=57cec20aa45aa135ba9fdbb99ed82151">这个视频</a>来进行step by step的操作。当然，我也根据做个笔记重新复习了一下git的基本操作，完成后的repo在<a target="_blank" rel="noopener" href="https://github.com/MacuXavier/OCT_Related_PyCodes">这里</a>。</p>
+                <h2 id="Abstract"><a href="#Abstract" class="headerlink" title="Abstract"></a>Abstract</h2><p>这篇笔记主要记载如何在日常的轻量化开发中使用git和GitHub作为辅助工具提升效率。该笔记主要参考<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1db4y1d79C/?spm_id_from=333.999.0.0&vd_source=57cec20aa45aa135ba9fdbb99ed82151">40 分钟学会 Git | 日常开发全程大放送&amp;搭配Github</a>和<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1s3411g7PS/?spm_id_from=333.999.0.0&vd_source=57cec20aa45aa135ba9fdbb99ed82151">git、github 保姆级教程入门</a>来step by stepの操作。当然，我也根据做个笔记重新复习了一下git的基本操作，新建了一个存储 <em>OCT Related PyCodes</em> 的repo在<a target="_blank" rel="noopener" href="https://github.com/MacuXavier/OCT_Related_PyCodes">这里</a>。</p>
 <h2 id="Git常用的命令"><a href="#Git常用的命令" class="headerlink" title="Git常用的命令"></a>Git常用的命令</h2><h3 id="克隆仓库"><a href="#克隆仓库" class="headerlink" title="克隆仓库"></a>克隆仓库</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> clone <span class="token string">'git地址'</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <h3 id="初始化仓库"><a href="#初始化仓库" class="headerlink" title="初始化仓库"></a>初始化仓库</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> init<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <h3 id="添加文件到暂存区"><a href="#添加文件到暂存区" class="headerlink" title="添加文件到暂存区"></a>添加文件到暂存区</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> <span class="token function">add</span> <span class="token parameter variable">-A</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<h3 id="把暂存区的文件提交到仓库"><a href="#把暂存区的文件提交到仓库" class="headerlink" title="把暂存区的文件提交到仓库"></a>把暂存区的文件提交到仓库</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> commit <span class="token parameter variable">-m</span> <span class="token string">"提交信息"</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h3 id="把暂存区的文件提交到仓库"><a href="#把暂存区的文件提交到仓库" class="headerlink" title="把暂存区的文件提交到仓库"></a>把暂存区的文件提交到仓库</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> commit <span class="token parameter variable">-m</span> <span class="token string">'提交信息'</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <h3 id="查看提交的历史记录"><a href="#查看提交的历史记录" class="headerlink" title="查看提交的历史记录"></a>查看提交的历史记录</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> log <span class="token parameter variable">--stat</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
@@ -405,6 +405,7 @@
 <h2 id="Tips"><a href="#Tips" class="headerlink" title="Tips"></a>Tips</h2><ol>
 <li>为什么尽量使用switch而不是checkout看<a target="_blank" rel="noopener" href="https://blog.csdn.net/wpw2000/article/details/115895848?spm=1001.2101.3001.6661.1&utm_medium=distribute.pc_relevant_t0.none-task-blog-2~default~CTRLIST~Rate-1-115895848-blog-121375881.pc_relevant_multi_platform_whitelistv3&depth_1-utm_source=distribute.pc_relevant_t0.none-task-blog-2~default~CTRLIST~Rate-1-115895848-blog-121375881.pc_relevant_multi_platform_whitelistv3&utm_relevant_index=1">这里</a></li>
 <li>由于网络不稳定（dddd），有时直接使用vscode的图像化操作push不上GitHub，这时候就得记住用 <code>git push</code></li>
+<li><em>first commit</em> 时可以现在GitHub创建新的repo，然后找一个文件夹<code>git clone ...</code>。再将想要upload的代码copy到新生成的文件夹下，按步进行 <em>add_，_commit_，_push</em> 操作即可。</li>
 </ol>
 
                 
@@ -526,9 +527,9 @@
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/6.jpg" class="responsive-img" alt="Git_Github_notes">
+                        <img src="/medias/featureimages/13.jpg" class="responsive-img" alt="Git &amp; GitHub">
                         
-                        <span class="card-title">Git_Github_notes</span>
+                        <span class="card-title">Git &amp; GitHub</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -796,7 +797,7 @@
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;Total Words:&nbsp;<span
-                        class="white-color">1.5k</span>
+                        class="white-color">1.6k</span>
             
             
             
