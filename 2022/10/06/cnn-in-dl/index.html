@@ -4,10 +4,8 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="Building_blog notes, MarcuX">
-    <meta name="description" content="References
-HEXO: 安装所需库可以看博客搭建过程采用hexo框架+部署到github + blinkfox/hexo-theme-materyHexo+github搭建个人博客 + video guide
-最简单的办法: HU">
+    <meta name="keywords" content="Convolutional neural networks in DL, MarcuX">
+    <meta name="description" content="Preface最近在复习ML时看到一篇五年前的关于CNN的文章，作者写的相当深入浅出，所以本人特意准备以此为baseline来描述一下个人对于NN的理解。关 Convolutional Neural Networks,本人有幸在CUHK选修">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -19,7 +17,7 @@ HEXO: 安装所需库可以看博客搭建过程采用hexo框架+部署到github
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>Building_blog notes | MarcuX</title>
+    <title>Convolutional neural networks in DL | MarcuX</title>
     <link rel="icon" type="image/png" href="/favicon.png">
     
 
@@ -315,12 +313,12 @@ HEXO: 安装所需库可以看博客搭建过程采用hexo框架+部署到github
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/14.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/12.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Building_blog notes</h1>
+                    <h1 class="description center-align post-title">Convolutional neural networks in DL</h1>
                 </div>
             </div>
         </div>
@@ -344,8 +342,8 @@ HEXO: 安装所需库可以看博客搭建过程采用hexo框架+部署到github
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/SW-Tricks/">
-                                <span class="chip bg-color">SW_Tricks</span>
+                            <a href="/tags/AI-Tricks/">
+                                <span class="chip bg-color">AI_Tricks</span>
                             </a>
                         
                     </div>
@@ -369,7 +367,7 @@ HEXO: 安装所需库可以看博客搭建过程采用hexo框架+部署到github
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
-                    2022-09-19
+                    2022-10-06
                 </div>
                 
 
@@ -378,7 +376,7 @@ HEXO: 安装所需库可以看博客搭建过程采用hexo框架+部署到github
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    382
+                    435
                 </div>
                 
 
@@ -408,40 +406,9 @@ HEXO: 安装所需库可以看博客搭建过程采用hexo框架+部署到github
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="References"><a href="#References" class="headerlink" title="References"></a>References</h2><ol>
-<li>HEXO: 安装所需库可以看<a target="_blank" rel="noopener" href="https://reclusew.github.io/2021/08/12/blog-setup/#toc-heading-14">博客搭建过程采用hexo框架+部署到github</a> + <a target="_blank" rel="noopener" href="https://github.com/blinkfox/hexo-theme-matery/blob/develop/README_CN.md">blinkfox/hexo-theme-matery</a><br><a target="_blank" rel="noopener" href="https://wushishu.xyz/post/be8880ea.html">Hexo+github搭建个人博客</a> + <a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1NY4y1C7Ng/?spm_id_from=333.788.recommend_more_video.10&amp;vd_source=57cec20aa45aa135ba9fdbb99ed82151">video guide</a></li>
-<li><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Gz4y1f7Qj/?spm_id_from=333.788.recommend_more_video.11&amp;vd_source=57cec20aa45aa135ba9fdbb99ed82151">最简单的办法: HUGO NETLIFY</a></li>
-<li>如果想贴图片，可以参考这个<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/265077468">知乎回答</a>。由于不用Typora，因此使用的是第二个方法，即使用<code>![](image.jpg)</code>进行图片插入（但是会占用repo的存储）.</li>
-</ol>
-<h2 id="Bugs"><a href="#Bugs" class="headerlink" title="Bugs"></a>Bugs</h2><ol>
-<li><a target="_blank" rel="noopener" href="https://www.cnblogs.com/loong1314/p/16352878.html">IdealTree卡住</a><ul>
-<li>npm config set registry <a target="_blank" rel="noopener" href="https://registry.npmmirror.com/">https://registry.npmmirror.com/</a></li>
-</ul>
-</li>
-<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/dajian790626/article/details/78595684">用户名不一样导致的404</a></li>
-<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_43768946/article/details/90411154">Git使用出现git@github.com: Permission denied (publickey)</a>，得先设置好全局git config才可以用keygen<ul>
-<li>git config –global user.name “MXU”</li>
-<li><del>git config –global user.email “<a href="mailto:to***@gmail.com">to***@gmail.com</a>”</del></li>
-<li><del>ssh-keygen -t rsa -C “<a href="mailto:to***@gmail.com">to***@gmail.com</a>“</del></li>
-<li>ssh -T <a href="mailto:git@github.com">git@github.com</a></li>
-</ul>
-</li>
-</ol>
-<h2 id="Cmd"><a href="#Cmd" class="headerlink" title="Cmd"></a>Cmd</h2><ol>
-<li>hexo clean / hexo cl （清理掉上次生成的缓存，每次重新生成时最好第一个执行）</li>
-<li>hexo g （在clean后，用来generate新的配置）</li>
-<li>hexo s （在执行generate后，用来在local预览）</li>
-<li>hexo d （将配置push到repo中）</li>
-<li>hexo cl &amp;&amp; hexo g  &amp;&amp; hexo s （一键生成新的配置后在local打开）</li>
-<li>hexo new <em>(file name)</em></li>
-<li>hexo cl &amp;&amp; hexo g  &amp;&amp; hexo d （一键生成新的配置后push到repo）</li>
-</ol>
-<h2 id="Notes"><a href="#Notes" class="headerlink" title="Notes"></a>Notes</h2><ol>
-<li>md内的标题最好从”##”开始，才会有目录。</li>
-<li>如果使用vscode开发，可以直接在终端执行命令而不需要在文件夹下 <code>git bash</code>。但是在vscode中，注意关闭自动注释插件，否则会与主题style产生冲突。</li>
-<li>已安装表情插件，md使用表情包请参考<a target="_blank" rel="noopener" href="https://gist.github.com/rxaviers/7360908">这里</a>。</li>
-<li>在头部标明 <strong>categories: xxx</strong> 后 <em>categories</em> 才有作用。</li>
-</ol>
+                <h2 id="Preface"><a href="#Preface" class="headerlink" title="Preface"></a>Preface</h2><p>最近在复习ML时看到一篇五年前的关于CNN的<a target="_blank" rel="noopener" href="https://adeshpande3.github.io/A-Beginner's-Guide-To-Understanding-Convolutional-Neural-Networks/">文章</a>，作者写的相当深入浅出，所以本人特意准备以此为baseline来描述一下个人对于NN的理解。关 <em>Convolutional Neural Networks</em>,本人有幸在CUHK选修过<a target="_blank" rel="noopener" href="https://www.ee.cuhk.edu.hk/en-gb/people/academic-staff/professors/prof-hongsheng-li">Prof. Hongsheng</a>（今年爆火的几篇Transfomer都有李老师的参与）的 _ML for SP Applications_。虽然最后‘喜提’B+（别问，问就是人菜瘾大<span class="github-emoji"><span>😧</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f627.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>），但是这门课对于我之后的research thesis相当的helpful。但是因为本人的tech stack偏向于hardware和embedded systems，数学功底不扎实，如有谬论，敬请指正（欢迎通过GitHub的<a target="_blank" rel="noopener" href="https://github.com/MacuXavier/MacuXavier.github.io/issues">issue</a>来提，谢谢！）。</p>
+<h2 id="Disclaimer"><a href="#Disclaimer" class="headerlink" title="Disclaimer"></a>Disclaimer</h2><p>由于该文章主要是用于本人的学习总结和复习，所以行文风格略为洒脱。另外，本人思维较为发散，如果你发现文章中经常乱入其他内容的知识，敬请谅解！<span class="github-emoji"><span>😎</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f60e.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span></p>
+<h2 id="Abstract"><a href="#Abstract" class="headerlink" title="Abstract"></a>Abstract</h2><p><em>Convolutional neural networks</em> 听起来像是神经科学的一个专业名词，但它其实是AI中的一个重要组成部分（即使无较大关联，但是NN对于研究人类的学习模式有很重要的启发作用，可以参考这两个文章：<a target="_blank" rel="noopener" href="https://www.zhihu.com/question/380335971">人脑是怎么防止梯度消失和梯度爆炸的</a>, <a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/33006526">详解深度学习中的梯度</a>）。它可以追溯到上世纪中期（具体时间忘记了），但到了2012年的时候，在ImageNet的比赛中才崭露头角。从此之后，多种魔改的NN网络层出不穷，如ResNet。它们大部分是通过修改网络的结构和组成部分来追求SOTA。因此，如果新人可以先对一个基本的NN了解的话，那么也可以知道DL为什么workable。</p>
 
                 
             </div>
@@ -468,7 +435,7 @@ HEXO: 安装所需库可以看博客搭建过程采用hexo框架+部署到github
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://MacuXavier.github.io/2022/09/19/building-blog/">https://MacuXavier.github.io/2022/09/19/building-blog/</a>
+                    <a href="https://MacuXavier.github.io/2022/10/06/cnn-in-dl/">https://MacuXavier.github.io/2022/10/06/cnn-in-dl/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -506,8 +473,8 @@ HEXO: 安装所需库可以看博客搭建过程采用hexo框架+部署到github
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/SW-Tricks/">
-                                    <span class="chip bg-color">SW_Tricks</span>
+                                <a href="/tags/AI-Tricks/">
+                                    <span class="chip bg-color">AI_Tricks</span>
                                 </a>
                             
                         </div>
@@ -553,17 +520,18 @@ HEXO: 安装所需库可以看博客搭建过程采用hexo框架+部署到github
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
+                <i class="far fa-dot-circle"></i>&nbsp;Current
+            </div>
             <div class="card">
-                <a href="/2022/09/19/curriculumvitae/">
+                <a href="/2022/10/06/cnn-in-dl/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/8.jpg" class="responsive-img" alt="Curriculum Vitae">
+                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="Convolutional neural networks in DL">
                         
-                        <span class="card-title">Curriculum Vitae</span>
+                        <span class="card-title">Convolutional neural networks in DL</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -573,26 +541,27 @@ HEXO: 安装所需库可以看博客搭建过程采用hexo框架+部署到github
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2022-09-19
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-10-06
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/Clutter/" class="post-category">
-                                    Clutter
+                            <a href="/categories/Tech/" class="post-category">
+                                    Tech
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/About-me/">
-                        <span class="chip bg-color">About_me</span>
+                    <a href="/tags/AI-Tricks/">
+                        <span class="chip bg-color">AI_Tricks</span>
                     </a>
                     
                 </div>
@@ -606,13 +575,13 @@ HEXO: 安装所需库可以看博客搭建过程采用hexo框架+部署到github
                 Next&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2022/09/18/hello-world/">
+                <a href="/2022/09/29/git-github-notes/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="Hello World">
+                        <img src="/medias/featureimages/13.jpg" class="responsive-img" alt="Git &amp; GitHub">
                         
-                        <span class="card-title">Hello World</span>
+                        <span class="card-title">Git &amp; GitHub</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -623,19 +592,27 @@ HEXO: 安装所需库可以看博客搭建过程采用hexo框架+部署到github
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-09-18
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-09-29
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/Clutter/" class="post-category">
-                                    Clutter
+                            <a href="/categories/Tech/" class="post-category">
+                                    Tech
                                 </a>
                             
                             
                         </span>
                     </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/SW-Tricks/">
+                        <span class="chip bg-color">SW_Tricks</span>
+                    </a>
+                    
                 </div>
                 
             </div>
