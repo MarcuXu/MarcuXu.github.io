@@ -5,7 +5,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="keywords" content="Convolutional neural networks in DL, MarcuX">
-    <meta name="description" content="Preface最近在复习ML时看到一篇五年前的关于CNN的文章，作者写的相当深入浅出，所以本人特意准备以此为baseline来描述一下个人对于NN的理解。关 Convolutional Neural Networks, 本人有幸在CUHK选">
+    <meta name="description" content="Preface最近在复习ML时看到一篇五年前的关于CNN的文章（这位印度小哥后续的博客也写得相当attractive），作者写的相当深入浅出，所以本人特意准备以此为baseline来描述一下个人对于NN的理解。关于 Convolutiona">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -376,14 +376,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    435
+                    1k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>Read Times:&nbsp;&nbsp;
-                    1 Min
+                    3 Min
                 </div>
                 
 
@@ -406,9 +406,13 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="Preface"><a href="#Preface" class="headerlink" title="Preface"></a>Preface</h2><p>最近在复习ML时看到一篇五年前的关于CNN的<a target="_blank" rel="noopener" href="https://adeshpande3.github.io/A-Beginner's-Guide-To-Understanding-Convolutional-Neural-Networks/">文章</a>，作者写的相当深入浅出，所以本人特意准备以此为baseline来描述一下个人对于NN的理解。关 <em>Convolutional Neural Networks</em>, 本人有幸在CUHK选修过<a target="_blank" rel="noopener" href="https://www.ee.cuhk.edu.hk/en-gb/people/academic-staff/professors/prof-hongsheng-li">Prof. Hongsheng</a>（今年爆火的几篇Transformer也有李老师的参与）的 <em>ML for SP Applications</em> 。虽然最后‘喜提’B+（别问，问就是人菜瘾大<span class="github-emoji"><span>😧</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f627.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>），但是这门课对于我最后的research thesis相当helpful。但是因为本人的tech stack偏向于hardware和embedded systems，数学功底不扎实，如有谬论，敬请指正（欢迎通过GitHub的<a target="_blank" rel="noopener" href="https://github.com/MacuXavier/MacuXavier.github.io/issues">issue</a>来提，谢谢！）。</p>
+                <h2 id="Preface"><a href="#Preface" class="headerlink" title="Preface"></a>Preface</h2><p>最近在复习ML时看到一篇五年前的关于CNN的<a target="_blank" rel="noopener" href="https://adeshpande3.github.io/A-Beginner's-Guide-To-Understanding-Convolutional-Neural-Networks/">文章</a>（这位印度小哥后续的博客也写得相当attractive），作者写的相当深入浅出，所以本人特意准备以此为baseline来描述一下个人对于NN的理解。关于 <em>Convolutional Neural Networks</em>, 本人有幸在CUHK选修过<a target="_blank" rel="noopener" href="https://www.ee.cuhk.edu.hk/en-gb/people/academic-staff/professors/prof-hongsheng-li">Prof. Hongsheng</a>（今年爆火的几篇Transformer也有李老师的参与）的 <em>ML for SP Applications</em> 。虽然最后‘喜提’B+（别问，问就是人菜瘾大<span class="github-emoji"><span>😧</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f627.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>），但是这门课对于我最后的research thesis相当helpful。但是因为本人的tech stack偏向于hardware和embedded systems，数学功底不扎实，如有谬论，敬请指正（欢迎通过GitHub的<a target="_blank" rel="noopener" href="https://github.com/MacuXavier/MacuXavier.github.io/issues">issue</a>来提，谢谢！）。</p>
 <h2 id="Disclaimer"><a href="#Disclaimer" class="headerlink" title="Disclaimer"></a>Disclaimer</h2><p>由于该文章主要是用于本人的学习总结和复习，所以行文风格略为洒脱。另外，本人思维较为发散，如果你发现文章中经常乱入其他内容的知识，敬请谅解！<span class="github-emoji"><span>😎</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f60e.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span></p>
 <h2 id="Abstract"><a href="#Abstract" class="headerlink" title="Abstract"></a>Abstract</h2><p><em>Convolutional neural networks</em> 听起来像是神经科学的一个专业名词，但它其实是AI中的一个重要组成部分（即使无较大关联，但是NN对于研究人类的学习模式有很重要的启发作用，可以参考这两个文章：<a target="_blank" rel="noopener" href="https://www.zhihu.com/question/380335971">人脑是怎么防止梯度消失和梯度爆炸的</a>, <a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/33006526">详解深度学习中的梯度</a>）。它可以追溯到上世纪中期（具体时间忘记了），但到了2012年的时候，在ImageNet的比赛中才崭露头角。从此之后，多种魔改的NN模型层出不穷，如ResNet等。它们大部分是通过修改网络的结构和组成部分来追求SOTA。因此，如果新人可以先对一个基本的NN了解的话，那么也可以知道DL为什么workable。</p>
+<h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>在作者看来，智慧物种本身就是一群掌握了一定的DL技能的生物，包括人类。在亚马逊的丛林中，食肉动物会通过观察猎物的外形特征来判断是否可以将其作为捕猎对象。在繁华的纽约，人们饲养的宠物多数时间可以通过主人的情绪表现出不同的行为。而人类在数千万年间的进化中，凭借出色的 <strong>学习 (或者是be trained)</strong> 能力逐渐成为了万物的领跑者。因此，深度学习理论并未被提出的亿万年间，其雏形便隐隐发挥着不小的作用。而随着对人类神经科学的探索，研究人员们已经逐渐理清人类的学习模式与AI之间的共通之处。</p>
+<h2 id="Methods"><a href="#Methods" class="headerlink" title="Methods"></a>Methods</h2><p>以人类为例，当一个有正常思维能力的人来判断站在他面前的是鸟还是狗时，他可以通过对于被观察对象的特征来进行判断。例如，这个对象是否有爪子，是否有翅膀，是否有尾巴等。事实上，CNN模型在进行这样的分类判断（即classification）时，也可以通过这样的 <em>特征</em> 来进行分类。但在processing中，它会将人眼可见的high-level信息转为low-level再进行判断（<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_30121457/article/details/108918519">图像中语义信息、高层和底层特征</a>）。而由于0和1组成了计算机的底层运算逻辑，所以运行在计算机上的模型所看到的，也是由多个数字矩阵所组成的一张图片。例如对于一张分辨率为 <em>256 x 256</em> 的图片，DL算法会将其当作是 <em>256 * 256 * 3</em> 的一个矩阵（这个3是因为RGB图像由三种颜色组成）。因此，一个CNN模型的初始input其实就是一个类似的矩阵。</p>
+<p>在DL中，一个CNN是由很多layers组成，可以大致分为convolutional, nonlinear, pooling (downsampling，用以缩小feature map。上，下采样可以看<a target="_blank" rel="noopener" href="https://blog.csdn.net/lzw17750614592/article/details/85019761">这里</a>), 和fully connected layers。经过fully connected后，模型通常会输出一个多分类的1*N的矩阵（N为分类数），而该矩阵的每个元素相当于输入对象属于某一分类的possibility。</p>
+<p><img src="/2022/10/06/cnn-in-dl/Proposed-adopted-Convolutional-Neural-Network-CNN-model.png" alt="一个经典的CNN结构"></p>
 
                 
             </div>
@@ -807,7 +811,7 @@
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;Total Words:&nbsp;<span
-                        class="white-color">2.1k</span>
+                        class="white-color">2.6k</span>
             
             
             
