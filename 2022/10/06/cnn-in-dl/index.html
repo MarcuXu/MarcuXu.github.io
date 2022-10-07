@@ -376,14 +376,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    1k
+                    1.3k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>Read Times:&nbsp;&nbsp;
-                    3 Min
+                    4 Min
                 </div>
                 
 
@@ -410,9 +410,11 @@
 <h2 id="Disclaimer"><a href="#Disclaimer" class="headerlink" title="Disclaimer"></a>Disclaimer</h2><p>由于该文章主要是用于本人的学习总结和复习，所以行文风格略为洒脱。另外，本人思维较为发散，如果你发现文章中经常乱入其他内容的知识，敬请谅解！<span class="github-emoji"><span>😎</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f60e.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span></p>
 <h2 id="Abstract"><a href="#Abstract" class="headerlink" title="Abstract"></a>Abstract</h2><p><em>Convolutional neural networks</em> 听起来像是神经科学的一个专业名词，但它其实是AI中的一个重要组成部分（即使无较大关联，但是NN对于研究人类的学习模式有很重要的启发作用，可以参考这两个文章：<a target="_blank" rel="noopener" href="https://www.zhihu.com/question/380335971">人脑是怎么防止梯度消失和梯度爆炸的</a>, <a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/33006526">详解深度学习中的梯度</a>）。它可以追溯到上世纪中期（具体时间忘记了），但到了2012年的时候，在ImageNet的比赛中才崭露头角。从此之后，多种魔改的NN模型层出不穷，如ResNet等。它们大部分是通过修改网络的结构和组成部分来追求SOTA。因此，如果新人可以先对一个基本的NN了解的话，那么也可以知道DL为什么workable。</p>
 <h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>在作者看来，智慧物种本身就是一群掌握了一定的DL技能的生物，包括人类。在亚马逊的丛林中，食肉动物会通过观察猎物的外形特征来判断是否可以将其作为捕猎对象。在繁华的纽约，人们饲养的宠物多数时间可以通过主人的情绪表现出不同的行为。而人类在数千万年间的进化中，凭借出色的 <strong>学习 (或者是be trained)</strong> 能力逐渐成为了万物的领跑者。因此，深度学习理论并未被提出的亿万年间，其雏形便隐隐发挥着不小的作用。而随着对人类神经科学的探索，研究人员们已经逐渐理清人类的学习模式与AI之间的共通之处。</p>
-<h2 id="Methods"><a href="#Methods" class="headerlink" title="Methods"></a>Methods</h2><p>以人类为例，当一个有正常思维能力的人来判断站在他面前的是鸟还是狗时，他可以通过对于被观察对象的特征来进行判断。例如，这个对象是否有爪子，是否有翅膀，是否有尾巴等。事实上，CNN模型在进行这样的分类判断（即classification）时，也可以通过这样的 <em>特征</em> 来进行分类。但在processing中，它会将人眼可见的high-level信息转为low-level再进行判断（<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_30121457/article/details/108918519">图像中语义信息、高层和底层特征</a>）。而由于0和1组成了计算机的底层运算逻辑，所以运行在计算机上的模型所看到的，也是由多个数字矩阵所组成的一张图片。例如对于一张分辨率为 <em>256 x 256</em> 的图片，DL算法会将其当作是 <em>256 * 256 * 3</em> 的一个矩阵（这个3是因为RGB图像由三种颜色组成）。因此，一个CNN模型的初始input其实就是一个类似的矩阵。</p>
+<h2 id="Methods"><a href="#Methods" class="headerlink" title="Methods"></a>Methods</h2><p>以人类为例，当一个可以正常思考的人来判断站在他面前的是鸟还是狗时，他可以通过被观察对象的特征来进行判断。例如，这个对象是否有爪子，是否有翅膀，是否有尾巴等。事实上，CNN模型在进行这样的分类判断（即classification）时，也可以通过这样的 <em>特征</em> 来进行分类。但在processing中，它会将人眼可见的high-level信息转为low-level再进行判断（<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_30121457/article/details/108918519">图像中语义信息、高层和底层特征</a>）。而由于0和1组成了计算机的底层运算逻辑，所以运行在计算机上的模型所看到的，也是由多个数字矩阵所组成的一张图片。例如对于一张分辨率为 <em>256 x 256</em> 的图片，DL算法会将其当作是一个 <em>256 * 256 * 3</em> 的矩阵（这个3是因为RGB图像由三种颜色组成）。因此，一个CNN模型的初始input其实就是一个类似的矩阵。</p>
 <p>在DL中，一个CNN是由很多layers组成，可以大致分为convolutional, nonlinear, pooling (downsampling，用以缩小feature map。上，下采样可以看<a target="_blank" rel="noopener" href="https://blog.csdn.net/lzw17750614592/article/details/85019761">这里</a>), 和fully connected layers。经过fully connected后，模型通常会输出一个多分类的1*N的矩阵（N为分类数），而该矩阵的每个元素相当于输入对象属于某一分类的possibility。</p>
 <p><img src="/2022/10/06/cnn-in-dl/Proposed-adopted-Convolutional-Neural-Network-CNN-model.png" alt="一个经典的CNN结构"></p>
+<h3 id="First-layer-Conv"><a href="#First-layer-Conv" class="headerlink" title="First layer: Conv"></a>First layer: Conv</h3><p>经过预处理的有着规定大小的raw data传入CNN中时，它们要经历的第一道关卡便是 <strong>convolutional layer</strong> 。卷积层（也作filter或kernel）的概念源自于信号处理中的卷积运算，因为研究人员发现了其特征抽取的特性后，将其应用在神经网络中来获得feature map。它的基本运算法则是：在设置好hyperparameters（例如stride，padding等）后，对应的元素相乘后累加，最后获得一个数。事实上，如果将filter具象化，我们可以很轻易地看出，输出的这个数可以表示filter对应的特征采样部分所检测到的图像信息。在上面的例子中，input是一个 <em>256 * 256 * 3</em> 的矩阵，那么我们可以使用一个 <em>5 * 5 * 3</em> 的filter来进行采样，具体的处理过程可以参考下面的动图。而在实际应用时，CNN的conv layer往往有多个filter，以此来获得压缩后的尽可能多的输入信息。</p>
+<p><img src="https://media.giphy.com/media/i4NjAwytgIRDW/giphy.gif" alt="动图测试"></p>
 
                 
             </div>
@@ -811,7 +813,7 @@
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;Total Words:&nbsp;<span
-                        class="white-color">2.6k</span>
+                        class="white-color">3k</span>
             
             
             
