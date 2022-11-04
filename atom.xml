@@ -3,11 +3,11 @@
   <title>MarcuXu</title>
   
   <subtitle>This is a story of one of the mortals</subtitle>
-  <link href="https://marcuxu.com/atom.xml" rel="self"/>
+  <link href="https://macuxavier.github.io/atom.xml" rel="self"/>
   
-  <link href="https://marcuxu.com/"/>
+  <link href="https://macuxavier.github.io/"/>
   <updated>2022-10-21T07:38:16.555Z</updated>
-  <id>https://marcuxu.com/</id>
+  <id>https://macuxavier.github.io/</id>
   
   <author>
     <name>Minster</name>
@@ -18,8 +18,8 @@
   
   <entry>
     <title>Convolutional neural networks in DL</title>
-    <link href="https://marcuxu.com/2022/10/06/cnn-in-dl/"/>
-    <id>https://marcuxu.com/2022/10/06/cnn-in-dl/</id>
+    <link href="https://macuxavier.github.io/2022/10/06/cnn-in-dl/"/>
+    <id>https://macuxavier.github.io/2022/10/06/cnn-in-dl/</id>
     <published>2022-10-06T14:20:52.000Z</published>
     <updated>2022-10-21T07:38:16.555Z</updated>
     
@@ -34,17 +34,17 @@
     
     
     
-    <category term="Tech" scheme="https://marcuxu.com/categories/Tech/"/>
+    <category term="Tech" scheme="https://macuxavier.github.io/categories/Tech/"/>
     
     
-    <category term="AI_Tricks" scheme="https://marcuxu.com/tags/AI-Tricks/"/>
+    <category term="AI_Tricks" scheme="https://macuxavier.github.io/tags/AI-Tricks/"/>
     
   </entry>
   
   <entry>
     <title>Git &amp; GitHub</title>
-    <link href="https://marcuxu.com/2022/09/29/git-github-notes/"/>
-    <id>https://marcuxu.com/2022/09/29/git-github-notes/</id>
+    <link href="https://macuxavier.github.io/2022/09/29/git-github-notes/"/>
+    <id>https://macuxavier.github.io/2022/09/29/git-github-notes/</id>
     <published>2022-09-29T14:45:46.000Z</published>
     <updated>2022-11-04T16:50:22.449Z</updated>
     
@@ -59,17 +59,17 @@
     
     
     
-    <category term="Tech" scheme="https://marcuxu.com/categories/Tech/"/>
+    <category term="Tech" scheme="https://macuxavier.github.io/categories/Tech/"/>
     
     
-    <category term="SW_Tricks" scheme="https://marcuxu.com/tags/SW-Tricks/"/>
+    <category term="SW_Tricks" scheme="https://macuxavier.github.io/tags/SW-Tricks/"/>
     
   </entry>
   
   <entry>
     <title>Memory in HK &amp; CUHK</title>
-    <link href="https://marcuxu.com/2022/09/19/memory-hk-cuhk/"/>
-    <id>https://marcuxu.com/2022/09/19/memory-hk-cuhk/</id>
+    <link href="https://macuxavier.github.io/2022/09/19/memory-hk-cuhk/"/>
+    <id>https://macuxavier.github.io/2022/09/19/memory-hk-cuhk/</id>
     <published>2022-09-19T12:08:34.000Z</published>
     <updated>2022-11-03T10:10:26.067Z</updated>
     
@@ -84,17 +84,17 @@
     
     
     
-    <category term="Life" scheme="https://marcuxu.com/categories/Life/"/>
+    <category term="Life" scheme="https://macuxavier.github.io/categories/Life/"/>
     
     
-    <category term="Memory" scheme="https://marcuxu.com/tags/Memory/"/>
+    <category term="Memory" scheme="https://macuxavier.github.io/tags/Memory/"/>
     
   </entry>
   
   <entry>
     <title>Curriculum Vitae</title>
-    <link href="https://marcuxu.com/2022/09/19/curriculumvitae/"/>
-    <id>https://marcuxu.com/2022/09/19/curriculumvitae/</id>
+    <link href="https://macuxavier.github.io/2022/09/19/curriculumvitae/"/>
+    <id>https://macuxavier.github.io/2022/09/19/curriculumvitae/</id>
     <published>2022-09-19T01:56:15.000Z</published>
     <updated>2022-10-21T07:35:51.961Z</updated>
     
@@ -109,17 +109,17 @@
     
     
     
-    <category term="Clutter" scheme="https://marcuxu.com/categories/Clutter/"/>
+    <category term="Clutter" scheme="https://macuxavier.github.io/categories/Clutter/"/>
     
     
-    <category term="About_me" scheme="https://marcuxu.com/tags/About-me/"/>
+    <category term="About_me" scheme="https://macuxavier.github.io/tags/About-me/"/>
     
   </entry>
   
   <entry>
     <title>How to build your own website</title>
-    <link href="https://marcuxu.com/2022/09/19/building-blog/"/>
-    <id>https://marcuxu.com/2022/09/19/building-blog/</id>
+    <link href="https://macuxavier.github.io/2022/09/19/building-blog/"/>
+    <id>https://macuxavier.github.io/2022/09/19/building-blog/</id>
     <published>2022-09-18T16:21:52.000Z</published>
     <updated>2022-11-04T16:55:40.867Z</updated>
     
@@ -135,17 +135,17 @@
     
     
     
-    <category term="Tech" scheme="https://marcuxu.com/categories/Tech/"/>
+    <category term="Tech" scheme="https://macuxavier.github.io/categories/Tech/"/>
     
     
-    <category term="SW_Tricks" scheme="https://marcuxu.com/tags/SW-Tricks/"/>
+    <category term="SW_Tricks" scheme="https://macuxavier.github.io/tags/SW-Tricks/"/>
     
   </entry>
   
   <entry>
     <title>Hello World</title>
-    <link href="https://marcuxu.com/2022/09/18/hello-world/"/>
-    <id>https://marcuxu.com/2022/09/18/hello-world/</id>
+    <link href="https://macuxavier.github.io/2022/09/18/hello-world/"/>
+    <id>https://macuxavier.github.io/2022/09/18/hello-world/</id>
     <published>2022-09-18T14:47:31.271Z</published>
     <updated>2022-10-04T04:15:44.213Z</updated>
     
@@ -160,7 +160,7 @@
     
     
     
-    <category term="Clutter" scheme="https://marcuxu.com/categories/Clutter/"/>
+    <category term="Clutter" scheme="https://macuxavier.github.io/categories/Clutter/"/>
     
     
   </entry>
