@@ -6,7 +6,7 @@
   <link href="https://marcuxu.github.io/atom.xml" rel="self"/>
   
   <link href="https://marcuxu.github.io/"/>
-  <updated>2022-11-07T16:42:34.682Z</updated>
+  <updated>2022-11-08T15:08:09.326Z</updated>
   <id>https://marcuxu.github.io/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Personal tricks for academic</title>
+    <link href="https://marcuxu.github.io/2022/11/08/paper-tricks/"/>
+    <id>https://marcuxu.github.io/2022/11/08/paper-tricks/</id>
+    <published>2022-11-08T13:39:57.000Z</published>
+    <updated>2022-11-08T15:08:09.326Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;How-to-read-paper-in-a-fast-speed&quot;&gt;&lt;a href=&quot;#How-to-read-paper-in-a-fast-speed&quot; class=&quot;headerlink&quot; title=&quot;How to read paper in a</summary>
+        
+      
+    
+    
+    
+    <category term="Clutter" scheme="https://marcuxu.github.io/categories/Clutter/"/>
+    
+    
+    <category term="Academic" scheme="https://marcuxu.github.io/tags/Academic/"/>
+    
+  </entry>
   
   <entry>
     <title>Convolutional neural networks in DL</title>
@@ -96,7 +121,7 @@
     <link href="https://marcuxu.github.io/2022/09/19/curriculumvitae/"/>
     <id>https://marcuxu.github.io/2022/09/19/curriculumvitae/</id>
     <published>2022-09-19T01:56:15.000Z</published>
-    <updated>2022-11-05T15:26:57.855Z</updated>
+    <updated>2022-11-08T14:14:16.069Z</updated>
     
     
       
@@ -121,7 +146,7 @@
     <link href="https://marcuxu.github.io/2022/09/19/building-blog/"/>
     <id>https://marcuxu.github.io/2022/09/19/building-blog/</id>
     <published>2022-09-18T16:21:52.000Z</published>
-    <updated>2022-11-07T16:30:42.754Z</updated>
+    <updated>2022-11-08T13:35:42.710Z</updated>
     
     
       
