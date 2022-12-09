@@ -6,7 +6,7 @@
   <link href="https://marcuxu.github.io/atom.xml" rel="self"/>
   
   <link href="https://marcuxu.github.io/"/>
-  <updated>2022-11-19T06:22:48.766Z</updated>
+  <updated>2022-12-09T01:03:29.818Z</updated>
   <id>https://marcuxu.github.io/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Tiny_stories_of_AI</title>
+    <link href="https://marcuxu.github.io/2022/12/09/tiny-stories-of-ai/"/>
+    <id>https://marcuxu.github.io/2022/12/09/tiny-stories-of-ai/</id>
+    <published>2022-12-08T23:06:33.000Z</published>
+    <updated>2022-12-09T01:03:29.818Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;这篇文章主要记录笔者作为一个AI菜鸟，在接触有趣或提升生产力的AI工具后的一些体验和感想。那么我们就从 &lt;strong&gt;ChatGPT&lt;/strong&gt; 开始吧！&lt;/p&gt;
+&lt;h2 id=&quot;ChatGPT&quot;&gt;&lt;a href=&quot;#ChatGPT&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="Tech" scheme="https://marcuxu.github.io/categories/Tech/"/>
+    
+    
+    <category term="AI_Tricks" scheme="https://marcuxu.github.io/tags/AI-Tricks/"/>
+    
+  </entry>
   
   <entry>
     <title>Personal thoughts for the academic</title>
