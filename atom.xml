@@ -6,7 +6,7 @@
   <link href="https://marcuxu.github.io/atom.xml" rel="self"/>
   
   <link href="https://marcuxu.github.io/"/>
-  <updated>2023-01-14T12:12:42.027Z</updated>
+  <updated>2023-03-01T19:17:20.591Z</updated>
   <id>https://marcuxu.github.io/</id>
   
   <author>
@@ -17,11 +17,37 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>DL study</title>
+    <link href="https://marcuxu.github.io/2023/03/01/dl-study/"/>
+    <id>https://marcuxu.github.io/2023/03/01/dl-study/</id>
+    <published>2023-03-01T14:48:37.000Z</published>
+    <updated>2023-03-01T19:17:20.591Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;最近因为刚入学，所以有较多的时间可以自主学习，就想着把ML, DL重新过一遍，希望自己在学习理论的时候顺便温习一下代码。&lt;/p&gt;
+&lt;h2 id=&quot;d2l&quot;&gt;&lt;a href=&quot;#d2l&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="Tech" scheme="https://marcuxu.github.io/categories/Tech/"/>
+    
+    
+    <category term="AI_Tricks" scheme="https://marcuxu.github.io/tags/AI-Tricks/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Tiny AI stories</title>
     <link href="https://marcuxu.github.io/2022/12/09/tiny-stories-of-ai/"/>
     <id>https://marcuxu.github.io/2022/12/09/tiny-stories-of-ai/</id>
     <published>2022-12-09T12:06:33.000Z</published>
-    <updated>2023-01-14T12:12:42.027Z</updated>
+    <updated>2023-03-01T14:46:52.270Z</updated>
     
     
       
