@@ -422,7 +422,7 @@
 
                                 </div>
                                 <div class="title">Minster</div>
-                                <div class="career">B.E. in EE @ SHU; M.Sc. in EE @ CUHK; RA/TA in CIS @ TU.</div>
+                                <div class="career">B.E. in EE @ SHU; M.Sc. in EE @ CUHK; RA in CIS @ RIT.</div>
                                 <div class="social-link hide-on-large-only" data-aos="zoom-in-left">
                                     
     <a href="https://github.com/MarcuXu" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
@@ -549,7 +549,7 @@
         },
         xAxis: {
             type: 'category',
-            data: ["2022-12","2023-01","2023-02","2023-03","2023-04","2023-05","2023-06","2023-07","2023-08","2023-09","2023-10","2023-11","2023-12"]
+            data: ["2023-01","2023-02","2023-03","2023-04","2023-05","2023-06","2023-07","2023-08","2023-09","2023-10","2023-11","2023-12","2024-01"]
         },
         yAxis: {
             type: 'value',
@@ -559,7 +559,7 @@
                 name: 'Number of posts',
                 type: 'line',
                 color: ['#6772e5'],
-                data: [1,0,0,1,0,0,0,0,0,0,0,0,0],
+                data: [0,0,1,0,0,0,0,0,0,0,0,0,0],
                 markPoint: {
                     symbolSize: 45,
                     color: ['#fa755a','#3ecf8e','#82d3f4'],
@@ -808,14 +808,14 @@
         <div class="tag-chips center-align">
             
             
-            <a href="/tags/SW-Tricks/">
-                <span class="chip center-align waves-effect waves-light chip-default">SW_Tricks</span>
+            <a href="/tags/AI-Tricks/">
+                <span class="chip center-align waves-effect waves-light chip-default">AI_Tricks</span>
             </a>
             
             
             
-            <a href="/tags/AI-Tricks/">
-                <span class="chip center-align waves-effect waves-light chip-default">AI_Tricks</span>
+            <a href="/tags/SW-Tricks/">
+                <span class="chip center-align waves-effect waves-light chip-default">SW_Tricks</span>
             </a>
             
             
@@ -947,7 +947,7 @@
         <div class="col s12 m8 l8 copy-right">
             Copyright&nbsp;&copy;
             
-                <span id="year">2019-2023</span>
+                <span id="year">2019-2024</span>
             
             <a href="/about" target="_blank">Minster</a>
             |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
@@ -1164,6 +1164,15 @@ $(function () {
     
 
     
+        
+        <script type="text/javascript">
+            // 只在桌面版网页启用特效
+            var windowWidth = $(window).width();
+            if (windowWidth > 768) {
+                document.write('<script type="text/javascript" src="/libs/others/sakura.js"><\/script>');
+            }
+        </script>
+    
 
     <!-- 雪花特效 -->
     
@@ -1195,8 +1204,6 @@ $(function () {
     })();
 </script>
 
-    
-    <script src="/libs/others/clicklove.js" async="async"></script>
     
     
     <script async src="/libs/others/busuanzi.pure.mini.js"></script>
