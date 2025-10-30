@@ -1,0 +1,1484 @@
+<!DOCTYPE HTML>
+<html lang="en">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="Speaking the Language of Probability-From Classifier Evaluation to Generative Classifiers, MarcuXu">
+    <meta name="description" content="IntroductionToday’s talk is structured into four major parts:
+
+How to evaluate how good a classifier is (Section 5.2.5 “">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>Speaking the Language of Probability-From Classifier Evaluation to Generative Classifiers | MarcuXu</title>
+    <link rel="icon" type="image/png" href="/medias/Gemini_Generated_0.png">
+    
+
+
+    <!-- bg-cover style     -->
+
+
+
+<link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
+<link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+<link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+<link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+<link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+<link rel="stylesheet" type="text/css" href="/css/matery.css">
+<link rel="stylesheet" type="text/css" href="/css/my.css">
+<link rel="stylesheet" type="text/css" href="/css/dark.css" media="none" onload="if(media!='all')media='all'">
+
+
+
+
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+    <link rel="stylesheet" href="/css/post.css">
+
+
+
+
+    
+
+
+
+    <script src="/libs/jquery/jquery-3.6.0.min.js"></script>
+
+<meta name="generator" content="Hexo 5.4.2">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="alternate" href="/atom.xml" title="MarcuXu" type="application/atom+xml">
+</head>
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/flower.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">MarcuXu</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>Index</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>Tags</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>Categories</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>Archives</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>About</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>Friends</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="Search" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+  <li>
+    <a href="javascript:;" class="waves-effect waves-light" onclick="switchNightMode()" title="深色/浅色模式" >
+      <i id="sum-moon-icon" class="fas fa-sun" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/flower.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">MarcuXu</div>
+        <div class="logo-desc">
+            
+            Never really desperate, only the lost of the soul.
+            
+        </div>
+    </div>
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			Index
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			Tags
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			Categories
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			Archives
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			About
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			Friends
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/MarcuXu/MarcuXu.github.io" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/MarcuXu/MarcuXu.github.io" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/12.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">Speaking the Language of Probability-From Classifier Evaluation to Generative Classifiers</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/AI-Tricks/">
+                                <span class="chip bg-color">AI_Tricks</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/Tech/" class="post-category">
+                                Tech
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
+                    2025-10-30
+                </div>
+                
+
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-check fa-fw"></i>Update Date:&nbsp;&nbsp;
+                    2025-10-30
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
+                    5k
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-clock fa-fw"></i>Read Times:&nbsp;&nbsp;
+                    31 Min
+                </div>
+                
+
+                
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="far fa-eye fa-fw"></i>Read Count:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.min.css">
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>Today’s talk is structured into four major parts:</p>
+<ol>
+<li><p><strong>How to evaluate how good a classifier is (Section 5.2.5 “Classifier accuracy”)</strong><br>We’ll introduce the confusion matrix, accuracy, precision, recall, FPR, and related metrics, and we’ll explain why focusing on “accuracy” alone is often dangerous.</p>
+</li>
+<li><p><strong>How to interpret these metrics through a decision threshold, and how to compare classifiers globally using the ROC curve</strong><br>We’ll use Figure 5.10 and Figure 5.11 to build a continuous logical chain:<br>“decision threshold ↔ false-positive / false-negative area ↔ ROC curve.”</p>
+</li>
+<li><p><strong>How to derive a classifier from probabilistic modeling (Section 5.3 “Generative classifiers”)</strong><br>We’ll derive posterior probabilities via Bayes’ rule and show how the sigmoid function (Figure 5.12) and the softmax function emerge naturally.</p>
+</li>
+<li><p><strong>Continuous inputs and Gaussian class-conditional distributions (Section 5.3.1 “Continuous inputs”)</strong><br>We’ll explain why, under the assumption that each class generates data from a Gaussian distribution, the posterior probability can be written as a sigmoid / softmax applied to a linear function, which in turn yields a linear decision boundary (Figure 5.13).<br>We’ll also explain how, when class covariances are no longer shared, the boundary becomes quadratic (Figure 5.14).<br>A linear boundary corresponds to Linear Discriminant Analysis (LDA), where all classes share the same covariance matrix. A quadratic boundary corresponds to Quadratic Discriminant Analysis (QDA), where each class is allowed to have its own covariance matrix, making the boundaries more flexible but also easier to overfit, especially when data are limited.</p>
+</li>
+</ol>
+<h2 id="Part-I-5-2-5-“Classifier-accuracy”-—-Classifier-Accuracy-and-the-Confusion-Matrix"><a href="#Part-I-5-2-5-“Classifier-accuracy”-—-Classifier-Accuracy-and-the-Confusion-Matrix" class="headerlink" title="Part I: 5.2.5 “Classifier accuracy” — Classifier Accuracy and the Confusion Matrix"></a>Part I: 5.2.5 “Classifier accuracy” — Classifier Accuracy and the Confusion Matrix</h2><h3 id="1-1-The-four-possible-prediction-outcomes-the-confusion-matrix"><a href="#1-1-The-four-possible-prediction-outcomes-the-confusion-matrix" class="headerlink" title="1.1 The four possible prediction outcomes: the confusion matrix"></a>1.1 The four possible prediction outcomes: the confusion matrix</h3><p>In a binary classification task (for example, “diseased vs. healthy”), every prediction made by the model falls into one of four categories:</p>
+<ul>
+<li><strong>True Positive (TP)</strong>: The true label is positive (e.g. diseased), and the model predicts positive.  </li>
+<li><strong>False Positive (FP)</strong>: The true label is negative (healthy), but the model predicts positive. This is a false alarm, also called a Type I error.  </li>
+<li><strong>True Negative (TN)</strong>: The true label is negative, and the model predicts negative.  </li>
+<li><strong>False Negative (FN)</strong>: The true label is positive, but the model predicts negative. This is a missed detection, also called a Type II error.</li>
+</ul>
+<p>In the book, these counts are denoted $N_{TP}, N_{FP}, N_{TN}, N_{FN}$.<br>The total number of samples in the dataset, $N$, is the sum of all four:</p>
+<p>$$<br>N = N_{TP} + N_{FP} + N_{TN} + N_{FN}.<br>\tag{5.28}<br>$$</p>
+<blockquote>
+<p>This 2×2 table of counts is called the <strong>confusion matrix</strong>. It is the raw material from which essentially all common classification performance metrics are defined.</p>
+</blockquote>
+<h3 id="1-2-The-definition-and-limitation-of-accuracy"><a href="#1-2-The-definition-and-limitation-of-accuracy" class="headerlink" title="1.2 The definition and limitation of accuracy"></a>1.2 The definition and limitation of accuracy</h3><p>The most obvious performance measure is <strong>accuracy</strong>, i.e. “the fraction of predictions that are correct”:</p>
+<p>$$<br>\text{Accuracy} =<br>\frac{N_{TP} + N_{TN}}<br>{N_{TP} + N_{FP} + N_{TN} + N_{FN}}.<br>\tag{5.29}<br>$$</p>
+<p>Accuracy looks perfectly sensible when (i) the two classes are roughly balanced and (ii) the costs of different kinds of mistakes are symmetric.</p>
+<p>But there’s a serious problem: <strong>on highly imbalanced datasets, accuracy can be very misleading.</strong></p>
+<p>For example, suppose in a population of 1,000 people only 1 person is actually ill (positive class) and 999 are healthy (negative class).<br>A “bad” classifier could just always predict “healthy” (always negative):</p>
+<ul>
+<li>It would correctly classify all 999 healthy people (TN is huge).  </li>
+<li>It would only make one mistake (the single sick person is missed, FN = 1).  </li>
+<li>It would produce almost no false positives (FP ≈ 0).</li>
+</ul>
+<p>Then the accuracy would be about 999/1000 = 99.9%.<br>But this system has <strong>zero diagnostic value</strong>: it fails to identify the only truly ill person.<br>This kind of scenario is common in medical screening, fraud detection, and security.</p>
+<p><strong>Conclusion:</strong> relying on accuracy alone is dangerous, especially when the positive class is rare, or when the costs of different errors are very asymmetric (for example, “missing a cancer case” is typically much worse than “unnecessarily flagging a healthy patient for follow-up”).</p>
+<h3 id="1-3-Other-key-metrics-Precision-Recall-FPR-and-FDR"><a href="#1-3-Other-key-metrics-Precision-Recall-FPR-and-FDR" class="headerlink" title="1.3 Other key metrics: Precision, Recall, FPR, and FDR"></a>1.3 Other key metrics: Precision, Recall, FPR, and FDR</h3><p>We now introduce four metrics that reflect real-world costs and benefits more faithfully.</p>
+<p><strong>(1) Precision</strong><br>$$<br>\text{Precision} =<br>\frac{N_{TP}}{N_{TP} + N_{FP}}.<br>\tag{5.30}<br>$$</p>
+<p>Interpretation: “Among all the cases I predicted as positive, how many are actually positive?”<br>This is also known as <strong>positive predictive value</strong>: it answers, “When I tell you ‘you’re positive,’ how trustworthy is that statement?”</p>
+<p><strong>(2) Recall / Sensitivity / True Positive Rate (TPR)</strong><br>$$<br>\text{Recall} =<br>\frac{N_{TP}}{N_{TP} + N_{FN}}.<br>\tag{5.31}<br>$$</p>
+<p>Interpretation: “Out of all truly positive individuals, how many did I successfully catch?”<br>This is also called the <strong>detection rate</strong> or <strong>sensitivity</strong>. In medical diagnosis, recall (a.k.a. TPR) measures how serious your <strong>missed diagnoses</strong> are: a low recall means you are failing to detect many truly sick patients.</p>
+<p><strong>(3) False Positive Rate (FPR)</strong><br>$$<br>\text{False positive rate} =<br>\frac{N_{FP}}{N_{FP} + N_{TN}}.<br>\tag{5.32}<br>$$</p>
+<p>Interpretation: “Out of all the truly negative individuals, how many did I incorrectly label as positive?”<br>This is sometimes called the <strong>false alarm rate</strong> or “$1 -$ specificity.” A low FPR means “don’t frighten healthy people / don’t accuse the innocent.”</p>
+<p><strong>(4) False Discovery Rate (FDR)</strong><br>$$<br>\text{False discovery rate} =<br>\frac{N_{FP}}{N_{FP} + N_{TP}}.<br>\tag{5.33}<br>$$</p>
+<p>Interpretation: “Among all the cases I called positive, what fraction are actually false alarms?”<br>In many screening and retrieval tasks, FDR measures “how much junk is mixed into my positive detections.”<br>You can view FDR as the complement of precision: if precision is ‘how clean are my positives,’ FDR is ‘how contaminated are my positives.’</p>
+<h3 id="1-4-How-the-decision-threshold-affects-these-metrics-Figure-5-10"><a href="#1-4-How-the-decision-threshold-affects-these-metrics-Figure-5-10" class="headerlink" title="1.4 How the decision threshold affects these metrics: Figure 5.10"></a>1.4 How the decision threshold affects these metrics: Figure 5.10</h3><p>To build direct intuition, the book uses a 1D example in Figure 5.10.</p>
+<p><strong>Structure of the figure:</strong></p>
+<ul>
+<li><p>The horizontal axis is some continuous measurement $x$, such as the concentration of a biomarker in the blood.  </p>
+</li>
+<li><p>The figure shows two curves:</p>
+<ul>
+<li>$p(x, C_1)$: the joint density of “$x$ and true class $C_1$” in the overall population; in other words, how frequently we see value $x$ coming from class $C_1$.  </li>
+<li>$p(x, C_2)$: the joint density of “$x$ and true class $C_2$.”</li>
+</ul>
+<p>Visually, you can think of these as two probability “hills,” one for each class.</p>
+</li>
+<li><p>We draw a vertical line at $ \hat{x} $; this is our current <strong>decision threshold</strong>:</p>
+<ul>
+<li>Region $R_1 = { x &lt; \hat{x} }$: predict class $C_1$ (e.g. “healthy”).  </li>
+<li>Region $R_2 = { x \ge \hat{x} }$: predict class $C_2$ (e.g. “diseased”).</li>
+</ul>
+</li>
+</ul>
+<p>That single threshold $\hat{x}$ is literally how the classifier is making its yes/no decision.</p>
+<p><strong>Where errors come from:</strong></p>
+<ul>
+<li><p>In the left region $R_1$, we predict “healthy.” But some truly diseased individuals (true class $C_2$) might still fall there. Those are <strong>false negatives (FN)</strong> — missed detections. In the figure, these are indicated with specific shaded areas (often red + green shading in the book’s convention).</p>
+</li>
+<li><p>In the right region $R_2$, we predict “diseased.” But some truly healthy individuals (true class $C_1$) may fall there. Those are <strong>false positives (FP)</strong> — false alarms. In the figure, these are shown by blue shading.</p>
+</li>
+</ul>
+<p><strong>Area = probability mass = expected count fraction:</strong></p>
+<p>The shaded area under a curve corresponds to the probability mass of “that kind of mistake.”<br>If the population has total size $N$, then (probability mass) × $N$ ≈ (expected count of that error type).  </p>
+<p>The book labels several subregions of area as $A, B, C, D, E,$ etc., and then writes:</p>
+<p>$$<br>\frac{N_{FP}}{N} = E,<br>\tag{5.34}<br>$$</p>
+<p>$$<br>\frac{N_{TP}}{N} = D + E,<br>\tag{5.35}<br>$$</p>
+<p>$$<br>\frac{N_{FN}}{N} = B + C,<br>\tag{5.36}<br>$$</p>
+<p>$$<br>\frac{N_{TN}}{N} = A + C.<br>\tag{5.37}<br>$$</p>
+<p>Here’s how to read these:</p>
+<ul>
+<li>$E$: the area in the “predict positive” region that actually comes from the negative class → FP frequency.  </li>
+<li>$D + E$: the area in the “predict positive” region that actually comes from the positive class → TP frequency.  </li>
+<li>$B + C$: the area in the “predict negative” region that actually comes from the positive class → FN frequency (missed positives).  </li>
+<li>$A + C$: the area in the “predict negative” region that actually comes from the negative class → TN frequency.</li>
+</ul>
+<p><strong>Core intuition:</strong></p>
+<p>Figure 5.10 makes you literally <em>see</em> that:</p>
+<ul>
+<li>The position of the threshold $\hat{x}$ directly determines which parts of the two class distributions are labeled positive vs. negative.</li>
+<li>That, in turn, sets the counts TP / FP / TN / FN.</li>
+<li>Which, in turn, determines all the metrics: Accuracy, Precision, Recall, FPR, FDR, etc.</li>
+</ul>
+<p>If we <strong>move $\hat{x}$ to the left</strong>, the classifier becomes more aggressive about calling “positive”:</p>
+<ul>
+<li>We’ll catch more real positives (Recall↑, TPR↑).</li>
+<li>But we’ll also generate more false alarms among true negatives (FPR↑).</li>
+</ul>
+<p>If we <strong>move $\hat{x}$ to the right</strong>, the classifier becomes conservative:</p>
+<ul>
+<li>FPR goes down (fewer false alarms),</li>
+<li>but Recall/TPR goes down too (more misses, more FN).</li>
+</ul>
+<p>In other words, <strong>tuning the threshold implements an explicit trade-off between detection rate and false alarm rate.</strong><br>This is exactly what the ROC curve will visualize.</p>
+<h3 id="1-5-The-F-score-F1-score-balancing-Precision-and-Recall"><a href="#1-5-The-F-score-F1-score-balancing-Precision-and-Recall" class="headerlink" title="1.5 The F-score (F1 score): balancing Precision and Recall"></a>1.5 The F-score (F1 score): balancing Precision and Recall</h3><p>The book introduces the F-score (often $F_1$) to summarize the balance between Precision and Recall. It is given in equations (5.38)–(5.39):</p>
+<p>$$<br>F =<br>\frac{2 \times \text{Precision} \times \text{Recall}}<br>{\text{Precision} + \text{Recall}}.<br>\tag{5.38}<br>$$</p>
+<p>By expanding Precision and Recall in terms of confusion matrix counts, we can write:</p>
+<p>$$<br>F =<br>\frac{2 N_{TP}}<br>{2N_{TP} + N_{FP} + N_{FN}}.<br>\tag{5.39}<br>$$</p>
+<p>Key property: this is the <strong>harmonic mean</strong> of Precision and Recall, not their simple arithmetic mean.<br>If either Precision or Recall is poor, the F-score will drop sharply.<br>This forces us to care about both “don’t over-alert” (high Precision) and “don’t miss true positives” (high Recall), instead of optimizing just one.</p>
+<h2 id="Part-II-continuing-from-5-2-5-The-ROC-Curve"><a href="#Part-II-continuing-from-5-2-5-The-ROC-Curve" class="headerlink" title="Part II (continuing from 5.2.5): The ROC Curve"></a>Part II (continuing from 5.2.5): The ROC Curve</h2><p>(Receiver Operating Characteristic, Figure 5.11)</p>
+<h3 id="2-1-Axes-of-the-ROC-curve"><a href="#2-1-Axes-of-the-ROC-curve" class="headerlink" title="2.1 Axes of the ROC curve"></a>2.1 Axes of the ROC curve</h3><p>The ROC curve (Figure 5.11) is a global way to evaluate a binary classifier.</p>
+<ul>
+<li><strong>Horizontal axis</strong>: False Positive Rate (FPR), from equation (5.32).  </li>
+<li><strong>Vertical axis</strong>: True Positive Rate (TPR), which is the same as Recall in (5.31).</li>
+</ul>
+<p>So, each point on the ROC curve answers:<br>“At this threshold, what’s my false alarm rate versus how many true positives I’m catching?”</p>
+<p>In signal detection theory and medical diagnosis:</p>
+<ul>
+<li>TPR is also called <strong>sensitivity</strong>,</li>
+<li>FPR is the <strong>false alarm rate</strong>.<br>The ROC curve therefore plots “detection ability vs. false alarm cost” over all thresholds.</li>
+</ul>
+<h3 id="2-2-How-an-ROC-curve-is-constructed"><a href="#2-2-How-an-ROC-curve-is-constructed" class="headerlink" title="2.2 How an ROC curve is constructed"></a>2.2 How an ROC curve is constructed</h3><p>Recall the threshold $\hat{x}$ from Figure 5.10.<br>Now imagine sliding $\hat{x}$ gradually:</p>
+<ul>
+<li>Start extremely strict (almost no one is labeled positive).  </li>
+<li>Move to extremely lenient (almost everyone is labeled positive).</li>
+</ul>
+<p>For each threshold setting, compute:</p>
+<ul>
+<li>$ \text{TPR} = \frac{N_{TP}}{N_{TP} + N_{FN}} $  </li>
+<li>$ \text{FPR} = \frac{N_{FP}}{N_{FP} + N_{TN}} $</li>
+</ul>
+<p>Plot TPR vs. FPR.<br>Connecting those points across all possible thresholds gives the ROC curve.</p>
+<p>In clinical screening language, this asks:<br>“If I lower the bar for calling someone ‘diseased,’ I’ll catch more true disease cases (TPR↑), but I’ll also falsely alarm more healthy people (FPR↑). How does that trade-off evolve as I keep sliding the bar?”</p>
+<h3 id="2-3-Special-positions-on-the-ROC-plot"><a href="#2-3-Special-positions-on-the-ROC-plot" class="headerlink" title="2.3 Special positions on the ROC plot"></a>2.3 Special positions on the ROC plot</h3><ul>
+<li><p>The point $(0, 1)$: FPR = 0, TPR = 1.<br>This corresponds to a perfect classifier at some threshold: zero false alarms and zero misses. In practice, this is nearly unattainable.</p>
+</li>
+<li><p>The diagonal line TPR = FPR:<br>This represents random guessing. For example, flipping a coin to decide “positive vs. negative” gives TPR ≈ FPR for all thresholds. A classifier whose ROC curve hugs this diagonal is basically no better than random guessing.</p>
+</li>
+<li><p>The closer a classifier’s ROC curve is to the <strong>upper left corner</strong>, the better it is overall: at the same FPR, it achieves a higher TPR.<br>If one curve consistently lies above another, we say it “dominates” the other.</p>
+</li>
+</ul>
+<h3 id="2-4-AUC-Area-Under-the-Curve"><a href="#2-4-AUC-Area-Under-the-Curve" class="headerlink" title="2.4 AUC (Area Under the Curve)"></a>2.4 AUC (Area Under the Curve)</h3><p>In practice we often summarize the entire ROC curve using the <strong>AUC</strong> (Area Under Curve):</p>
+<ul>
+<li>AUC = 1 means essentially perfect discrimination.  </li>
+<li>AUC = 0.5 means essentially random guessing.</li>
+</ul>
+<p>A common interpretation is:<br>AUC is the probability that the classifier assigns a higher “score” to a randomly chosen true positive example than to a randomly chosen true negative example.</p>
+<p>Why is this valuable?<br><strong>ROC and AUC let us compare classifiers without first committing to any specific threshold.</strong><br>This is especially important in highly imbalanced or high-stakes domains (rare disease detection, fraud detection, security screening), because different applications may tolerate different trade-offs between “catching positives” and “avoiding false alarms.”</p>
+<h2 id="Part-III-5-3-“Generative-classifiers”-—-The-Generative-Classifier-View"><a href="#Part-III-5-3-“Generative-classifiers”-—-The-Generative-Classifier-View" class="headerlink" title="Part III: 5.3 “Generative classifiers” — The Generative Classifier View"></a>Part III: 5.3 “Generative classifiers” — The Generative Classifier View</h2><p>Now we shift from <strong>evaluation</strong> to <strong>modeling</strong>.</p>
+<p>All the metrics above (Accuracy, Precision, Recall, ROC and AUC, etc.) assumed we already had a classifier that can output some score or probability.</p>
+<p>But where do those probabilities come from?<br>Section 5.3 answers this by introducing the idea of a <strong>generative classifier</strong>.</p>
+<p>The idea is very direct:</p>
+<ol>
+<li>For each class $C_k$, we specify a <strong>class prior</strong> $p(C_k)$.  </li>
+<li>For each class $C_k$, we also specify a <strong>class-conditional density</strong> $p(\mathbf{x} \mid C_k)$, which says, “If a sample truly belongs to class $C_k$, how is the observed feature vector $\mathbf{x}$ generated?”  </li>
+<li>Then we apply Bayes’ rule to “invert” this generative story and obtain a posterior:</li>
+</ol>
+<p>$$<br>p(C_k \mid \mathbf{x})<br>=<br>\frac{p(\mathbf{x} \mid C_k), p(C_k)}<br>{\sum_j p(\mathbf{x} \mid C_j), p(C_j)}.<br>\tag{5.45 structure}<br>$$</p>
+<p>This gives us not just a hard label, but an entire posterior probability distribution ${p(C_k \mid \mathbf{x})}_k$.</p>
+<p>It’s called “generative” because it explicitly models how the data arise in each class.<br>This contrasts with “discriminative” methods, which directly model $p(C_k \mid \mathbf{x})$ or directly learn a decision boundary, without necessarily modeling how each class generates data.</p>
+<h3 id="3-1-The-binary-case-the-emergence-of-the-sigmoid-Equations-5-40-–-5-44-Figure-5-12"><a href="#3-1-The-binary-case-the-emergence-of-the-sigmoid-Equations-5-40-–-5-44-Figure-5-12" class="headerlink" title="3.1 The binary case: the emergence of the sigmoid (Equations (5.40)–(5.44), Figure 5.12)"></a>3.1 The binary case: the emergence of the sigmoid (Equations (5.40)–(5.44), Figure 5.12)</h3><p>Consider two classes $C_1$ and $C_2$.<br>Bayes’ rule gives:</p>
+<p>$$<br>p(C_1 \mid \mathbf{x})<br>=<br>\frac{p(\mathbf{x} \mid C_1), p(C_1)}<br>     {p(\mathbf{x} \mid C_1), p(C_1)<br>     + p(\mathbf{x} \mid C_2), p(C_2)}.<br>\tag{5.40}<br>$$</p>
+<p>Define the <strong>log-odds</strong> (log-likelihood ratio including priors):</p>
+<p>$$<br>a<br>= \ln<br>\frac{p(\mathbf{x} \mid C_1), p(C_1)}<br>     {p(\mathbf{x} \mid C_2), p(C_2)}.<br>\tag{5.41}<br>$$</p>
+<p>Then we can rewrite the posterior as the classic <strong>logistic sigmoid</strong>:</p>
+<p>$$<br>p(C_1 \mid \mathbf{x})<br>=<br>\frac{1}{1+\exp(-a)}<br>=<br>\sigma(a),<br>\tag{5.42}<br>$$</p>
+<p>where<br>$$<br>\sigma(a) = \frac{1}{1+\exp(-a)}<br>$$<br>is the sigmoid function.</p>
+<p>Key properties of $\sigma(a)$:</p>
+<ul>
+<li>As $a \to +\infty$, $\sigma(a) \to 1$: overwhelming evidence for $C_1$.  </li>
+<li>As $a \to -\infty$, $\sigma(a) \to 0$: overwhelming evidence for $C_2$.  </li>
+<li>At $a = 0$, $\sigma(0)=0.5$: the model is exactly undecided between the two classes.<br>(In Figure 5.10, this corresponds to the special threshold $x_0$ where the two class joint densities intersect — the evidence is balanced.)  </li>
+<li>$\sigma(a)$ is strictly increasing: stronger evidence for $C_1$ means higher posterior probability for $C_1$.</li>
+</ul>
+<p>The book then states two important identities:</p>
+<p><strong>Symmetry:</strong><br>$$<br>\sigma(-a) = 1 - \sigma(a).<br>\tag{5.43}<br>$$</p>
+<p>Therefore,<br>$$<br>p(C_2 \mid \mathbf{x})<br>= 1 - p(C_1 \mid \mathbf{x})<br>= \sigma(-a).<br>$$</p>
+<p><strong>Inverse (the logit):</strong><br>$$<br>a<br>=<br>\ln<br>\frac{\sigma}{1-\sigma}<br>=<br>\ln<br>\frac{p(C_1 \mid \mathbf{x})}<br>     {1 - p(C_1 \mid \mathbf{x})}.<br>\tag{5.44}<br>$$</p>
+<p>Figure 5.12 plots $\sigma(a)$ as a red S-shaped curve:  </p>
+<ul>
+<li>The horizontal axis is $a$ (the log-odds).  </li>
+<li>The vertical axis is $p(C_1 \mid \mathbf{x}) = \sigma(a)$.</li>
+</ul>
+<p>The figure also overlays a blue dashed curve based on a (scaled) Gaussian cumulative distribution function, often called the <strong>probit</strong> link.<br>The two curves lie very close to each other.<br>This shows that both logistic regression (with sigmoid) and probit regression (with the Gaussian CDF) are doing essentially the same conceptual job:<br>they take a real-valued “evidence score” and squash it into the $[0,1]$ interval to interpret it as a probability.</p>
+<h3 id="3-2-The-multiclass-case-the-softmax-function-Equations-5-45-–-5-46"><a href="#3-2-The-multiclass-case-the-softmax-function-Equations-5-45-–-5-46" class="headerlink" title="3.2 The multiclass case: the softmax function (Equations (5.45)–(5.46))"></a>3.2 The multiclass case: the softmax function (Equations (5.45)–(5.46))</h3><p>For $K$ classes ${C_1, \dots, C_K}$, the same reasoning yields:</p>
+<p>$$<br>p(C_k \mid \mathbf{x})<br>=<br>\frac{p(\mathbf{x} \mid C_k), p(C_k)}<br>{\sum_j p(\mathbf{x} \mid C_j), p(C_j)}.<br>\tag{5.45}<br>$$</p>
+<p>Define<br>$$<br>a_k<br>=<br>\ln\big(<br>p(\mathbf{x} \mid C_k), p(C_k)<br>\big),<br>\tag{5.46}<br>$$</p>
+<p>then we can write<br>$$<br>p(C_k \mid \mathbf{x})<br>=<br>\frac{\exp(a_k)}<br>{\sum_j \exp(a_j)}.<br>$$</p>
+<p>This normalized exponential form <strong>is the softmax function</strong>.<br>Softmax converts any arbitrary real-valued scores ${a_k}$ into a valid categorical probability distribution ${p(C_k \mid \mathbf{x})}$ that sums to 1 and has nonnegative entries.<br>This is exactly why deep neural networks often end with a linear layer followed by a softmax: it provides a probabilistic interpretation over classes.</p>
+<h2 id="Part-IV-5-3-1-“Continuous-inputs”-—-Continuous-Inputs-Gaussian-Class-Conditional-Models-and-Linear-vs-Quadratic-Decision-Boundaries"><a href="#Part-IV-5-3-1-“Continuous-inputs”-—-Continuous-Inputs-Gaussian-Class-Conditional-Models-and-Linear-vs-Quadratic-Decision-Boundaries" class="headerlink" title="Part IV: 5.3.1 “Continuous inputs” — Continuous Inputs, Gaussian Class-Conditional Models, and Linear vs. Quadratic Decision Boundaries"></a>Part IV: 5.3.1 “Continuous inputs” — Continuous Inputs, Gaussian Class-Conditional Models, and Linear vs. Quadratic Decision Boundaries</h2><p>Now we ground all of the above in a concrete and widely used modeling assumption:</p>
+<blockquote>
+<p><strong>Each class generates feature vectors $\mathbf{x} \in \mathbb{R}^D$ according to a multivariate Gaussian distribution.</strong></p>
+</blockquote>
+<h3 id="4-1-Gaussian-class-conditional-densities-Equation-5-47"><a href="#4-1-Gaussian-class-conditional-densities-Equation-5-47" class="headerlink" title="4.1 Gaussian class-conditional densities (Equation (5.47))"></a>4.1 Gaussian class-conditional densities (Equation (5.47))</h3><p>We assume that for each class $C_k$, the class-conditional density is a $D$-dimensional Gaussian:</p>
+<p>$$<br>p(\mathbf{x} \mid C_k)<br>=<br>\frac{1}{(2\pi)^{D/2} , |\boldsymbol{\Sigma}|^{1/2}}<br>\exp\left(<br>-\frac{1}{2}<br>(\mathbf{x} - \boldsymbol{\mu}_k)^T<br>\boldsymbol{\Sigma}^{-1}<br>(\mathbf{x} - \boldsymbol{\mu}_k)<br>\right),<br>\tag{5.47}<br>$$</p>
+<p>where $\boldsymbol{\mu}_k$ is the mean vector of class $C_k$, and $\boldsymbol{\Sigma}$ is the covariance matrix.</p>
+<p><strong>Crucial assumption:</strong><br>All classes share the <strong>same</strong> covariance matrix $\boldsymbol{\Sigma}$.<br>That is, the “shape” and “orientation” of the Gaussian ellipsoids are the same for every class, and only their centers $\boldsymbol{\mu}_k$ differ.</p>
+<p>In classical statistical learning, this is exactly the assumption behind <strong>Linear Discriminant Analysis (LDA)</strong>:<br>each class is modeled as a Gaussian with its own mean but a common covariance.<br>Visually (as in Figure 5.13’s left panel), each class looks like an elliptical “Gaussian hill” of the same shape/orientation, just shifted to a different center.</p>
+<h3 id="4-2-The-two-class-case-the-posterior-is-a-sigmoid-of-a-linear-function-Equations-5-48-–-5-50"><a href="#4-2-The-two-class-case-the-posterior-is-a-sigmoid-of-a-linear-function-Equations-5-48-–-5-50" class="headerlink" title="4.2 The two-class case: the posterior is a sigmoid of a linear function (Equations (5.48)–(5.50))"></a>4.2 The two-class case: the posterior is a sigmoid of a linear function (Equations (5.48)–(5.50))</h3><p>Let’s focus on two classes, $C_1$ and $C_2$.<br>We already know from (5.40)–(5.42) that</p>
+<p>$$<br>p(C_1 \mid \mathbf{x}) = \sigma(a(\mathbf{x})),<br>$$</p>
+<p>where $a(\mathbf{x})$ is the log-odds in (5.41).</p>
+<p>If we substitute the Gaussian form (5.47) into (5.41), and crucially use the fact that both classes share the <em>same</em> $\boldsymbol{\Sigma}$, something beautiful happens:</p>
+<ul>
+<li>All the quadratic terms in $\mathbf{x}$ cancel out (because they involve the same $\boldsymbol{\Sigma}^{-1}$).  </li>
+<li>What remains is a <strong>linear function</strong> of $\mathbf{x}$.</li>
+</ul>
+<p>Concretely, the book shows:</p>
+<p>$$<br>p(C_1 \mid \mathbf{x})<br>=<br>\sigma(\mathbf{w}^T \mathbf{x} + w_0),<br>\tag{5.48}<br>$$</p>
+<p>with<br>$$<br>\mathbf{w}<br>=<br>\boldsymbol{\Sigma}^{-1}<br>(\boldsymbol{\mu}_1 - \boldsymbol{\mu}_2),<br>\tag{5.49}<br>$$</p>
+<p>and<br>$$<br>w_0<br>=<br>-\frac{1}{2}<br>\boldsymbol{\mu}_1^T<br>\boldsymbol{\Sigma}^{-1}<br>\boldsymbol{\mu}_1<br>+<br>\frac{1}{2}<br>\boldsymbol{\mu}_2^T<br>\boldsymbol{\Sigma}^{-1}<br>\boldsymbol{\mu}_2<br>+<br>\ln \frac{p(C_1)}{p(C_2)}.<br>\tag{5.50}<br>$$</p>
+<p>These formulas reveal several deep facts:</p>
+<ol>
+<li><p><strong>The posterior is sigmoid(linear score).</strong><br>Under the Gaussian + shared-covariance assumption, the posterior probability has exactly the same form as logistic regression: a linear score $\mathbf{w}^T \mathbf{x} + w_0$ pushed through a sigmoid.<br>In other words, the functional form that logistic regression <em>assumes</em> is here <em>derived</em> from a generative story.</p>
+</li>
+<li><p><strong>The decision boundary is a linear hyperplane.</strong><br>A common prediction rule is “predict $C_1$ if $p(C_1 \mid \mathbf{x}) &gt; 0.5$.”<br>Because $\sigma(z) &gt; 0.5 \iff z &gt; 0$, this is equivalent to:<br>$$<br>\mathbf{w}^T \mathbf{x} + w_0 &gt; 0.<br>$$<br>The set of points satisfying $\mathbf{w}^T \mathbf{x} + w_0 = 0$ is a straight line in 2D, a plane in 3D, and more generally a hyperplane in $D$ dimensions.<br>So the decision boundary is <strong>linear</strong>.<br>Geometrically, $\mathbf{w}$ is normal (perpendicular) to that boundary and points toward the region more strongly associated with class $C_1$.</p>
+</li>
+<li><p><strong>The prior affects the bias term $w_0$.</strong><br>The term $\ln \frac{p(C_1)}{p(C_2)}$ inside $w_0$ shifts the boundary.<br>Intuitively, if class $C_1$ is believed to be more common or more important, the boundary moves to favor predicting $C_1$ more often.<br>This ties directly back to the threshold trade-offs we discussed with ROC curves: changing the effective bias changes the balance between catching positives and avoiding false alarms.</p>
+</li>
+</ol>
+<p><strong>Figure 5.13 (right panel)</strong> visualizes this for two classes in 2D:</p>
+<ul>
+<li><p>The surface plotted is $p(C_1 \mid \mathbf{x}) = \sigma(\mathbf{w}^T \mathbf{x} + w_0)$.  </p>
+<ul>
+<li>Regions shaded strongly red correspond to posterior near 1 (the model is highly confident it’s class $C_1$).  </li>
+<li>Regions shaded strongly blue correspond to posterior near 0 (high confidence in class $C_2$).  </li>
+<li>The middle region (a purplish/gray transition band) corresponds to posterior $\approx 0.5$, i.e. uncertainty.</li>
+</ul>
+</li>
+<li><p>This transition band projects down onto the $(x_1, x_2)$ plane as a straight line: $\mathbf{w}^T \mathbf{x} + w_0 = 0$.<br>This is precisely the <strong>linear decision boundary</strong>.</p>
+</li>
+</ul>
+<p>In summary, with two Gaussian classes sharing the same covariance matrix, you get:</p>
+<ul>
+<li>a linear discriminant function,</li>
+<li>a sigmoid posterior,</li>
+<li>and a straight-line boundary in the input space.</li>
+</ul>
+<h3 id="4-3-The-multiclass-case-a-family-of-linear-discriminant-functions-Equations-5-51-–-5-53"><a href="#4-3-The-multiclass-case-a-family-of-linear-discriminant-functions-Equations-5-51-–-5-53" class="headerlink" title="4.3 The multiclass case: a family of linear discriminant functions (Equations (5.51)–(5.53))"></a>4.3 The multiclass case: a family of linear discriminant functions (Equations (5.51)–(5.53))</h3><p>Now suppose we have $K$ classes, still under the assumption that <strong>all classes share the same covariance matrix $\boldsymbol{\Sigma}$</strong>.</p>
+<p>In this case, each class $C_k$ gets its own linear discriminant function:</p>
+<p>$$<br>a_k(\mathbf{x}) = \mathbf{w}<em>k^T \mathbf{x} + w</em>{k0}, \tag{5.51}<br>$$</p>
+<p>with</p>
+<p>$$<br>\mathbf{w}_k<br>=<br>\boldsymbol{\Sigma}^{-1}<br>\boldsymbol{\mu}_k,<br>\tag{5.52}<br>$$</p>
+<p>and</p>
+<p>$$<br>w_{k0}<br>= -\frac{1}{2}<br>\boldsymbol{\mu}_k^T<br>\boldsymbol{\Sigma}^{-1}<br>\boldsymbol{\mu}_k + \ln p(C_k).<br>\tag{5.53}<br>$$</p>
+<p>We then feed these linear scores ${a_k(\mathbf{x})}$ into the softmax from (5.45)–(5.46):</p>
+<p>$$<br>p(C_k \mid \mathbf{x})<br>=<br>\frac{\exp(a_k(\mathbf{x}))}<br>{\sum_j \exp(a_j(\mathbf{x}))}.<br>\quad\text{(same structure as (5.45)–(5.46))}<br>$$</p>
+<p>The geometric meaning is elegant:</p>
+<ul>
+<li>Each class $C_k$ assigns a linear score $a_k(\mathbf{x})$.  </li>
+<li>We can predict the class with the largest score, or use the softmax to interpret the scores as posterior probabilities.  </li>
+<li>The decision boundary between any two classes $C_i$ and $C_j$ is given by</li>
+</ul>
+<p>$$<br>a_i(\mathbf{x}) = a_j(\mathbf{x}),<br>$$</p>
+<p>which expands to</p>
+<p>$$<br>(\mathbf{w}<em>i - \mathbf{w}<em>j)^T \mathbf{x} + (w</em>{i0} - w</em>{j0}) = 0.<br>$$</p>
+<p>This is still a linear hyperplane.</p>
+<p>Therefore, in the multiclass setting <strong>with a shared covariance matrix</strong>, all pairwise decision boundaries are linear.<br>So the input space is split into regions by a collection of flat hyperplanes.<br>This is exactly the multiclass generalization of LDA’s geometric picture.</p>
+<h3 id="4-4-Figure-5-14-When-covariance-matrices-are-not-shared-the-boundary-bends"><a href="#4-4-Figure-5-14-When-covariance-matrices-are-not-shared-the-boundary-bends" class="headerlink" title="4.4 Figure 5.14: When covariance matrices are not shared, the boundary bends"></a>4.4 Figure 5.14: When covariance matrices are not shared, the boundary bends</h3><p>Figure 5.14 pushes us one step further:<br>What happens if we <strong>drop the assumption of a shared covariance matrix</strong>?</p>
+<p><strong>Figure 5.14, left panel:</strong></p>
+<ul>
+<li>The axes are $x_1$ and $x_2$.  </li>
+<li>We see three classes, shown in red, green, and blue.  </li>
+<li>Each class is drawn using a set of elliptical contour lines, illustrating its class-conditional density $p(\mathbf{x} \mid C_k)$.  </li>
+<li>The red and blue classes have contour ellipses with similar shape and orientation. This represents the case where they share the same covariance matrix.  </li>
+<li>The green class, however, has ellipses that are stretched/tilted differently, indicating a different covariance matrix.</li>
+</ul>
+<p>Mathematically, this means we are now allowing<br>$$<br>p(\mathbf{x} \mid C_k)<br>=<br>\mathcal{N}(\mathbf{x} \mid \boldsymbol{\mu}_k, \boldsymbol{\Sigma}_k),<br>$$<br>with <strong>class-specific</strong> covariance matrices $\boldsymbol{\Sigma}_k$, instead of a single shared $\boldsymbol{\Sigma}$.</p>
+<p>This model is known as <strong>Quadratic Discriminant Analysis (QDA)</strong>.<br>QDA keeps the Gaussian assumption but allows each class to have its own covariance.<br>That extra flexibility captures more complex class shapes, but it also increases the number of parameters and can overfit if data are limited.</p>
+<p><strong>Figure 5.14, right panel:</strong></p>
+<ul>
+<li><p>The plane is color-coded by the posterior probabilities of the three classes:</p>
+<ul>
+<li>The intensity of red at a point $\mathbf{x}$ encodes $p(C_{\text{red}} \mid \mathbf{x})$.  </li>
+<li>The intensity of green encodes $p(C_{\text{green}} \mid \mathbf{x})$.  </li>
+<li>The intensity of blue encodes $p(C_{\text{blue}} \mid \mathbf{x})$.</li>
+</ul>
+<p>So each location in $(x_1,x_2)$ space is painted with a blend of red/green/blue proportional to the posterior probabilities of the three classes at that point.</p>
+</li>
+<li><p>Overlaid in white are the <strong>decision boundaries</strong>, i.e. where two classes have equal posterior (or equal discriminant score).  </p>
+<ul>
+<li>The boundary between the <em>red</em> and <em>blue</em> classes is drawn as a straight line. This is because those two classes share the same covariance matrix, so their log-odds difference cancels the quadratic terms and stays linear — just like in LDA.  </li>
+<li>The boundaries between <em>red vs. green</em> or <em>blue vs. green</em>, however, are visibly <strong>curved</strong>. Because green has a different covariance matrix, the quadratic terms in $\mathbf{x}$ no longer cancel. The result is a quadratic (curved) decision boundary.</li>
+</ul>
+</li>
+<li><p>The three regions meet in a sort of Y-shaped junction, showing how the space is partitioned into zones where each class dominates in posterior probability.</p>
+</li>
+</ul>
+<p>This produces two crucial visual lessons:</p>
+<ol>
+<li>If two classes share the same covariance matrix, their mutual boundary is still a linear hyperplane.  </li>
+<li>If two classes have different covariance matrices, their boundary becomes a curved quadratic contour.  </li>
+<li>In a multiclass setting, the input plane is split into multiple colored “territories,” and the borders between these territories can be straight lines or smooth curves depending on whether the classes involved share covariance structure.</li>
+</ol>
+<blockquote>
+<p>Comparing Figure 5.13 and Figure 5.14:  </p>
+<ul>
+<li>In Figure 5.13, with two classes sharing a single covariance, the posterior surface $p(C_1 \mid \mathbf{x})$ transitions smoothly from “mostly blue” to “mostly red,” and that transition projects down as a <strong>straight line</strong> boundary.  </li>
+<li>In Figure 5.14, with classes having <strong>different</strong> covariances, the posterior coloring is divided by <strong>curved</strong> boundaries.<br>This is the essential geometric difference between <strong>Linear Discriminant Analysis (LDA)</strong> — shared covariance, linear boundaries — and <strong>Quadratic Discriminant Analysis (QDA)</strong> — class-specific covariance, curved (quadratic) boundaries.</li>
+</ul>
+</blockquote>
+<h2 id="Conclusion-A-Unified-Chain-from-Evaluation-to-Modeling"><a href="#Conclusion-A-Unified-Chain-from-Evaluation-to-Modeling" class="headerlink" title="Conclusion: A Unified Chain from Evaluation to Modeling"></a>Conclusion: A Unified Chain from Evaluation to Modeling</h2><p>We can now assemble Sections 5.2.5 → 5.3.1 into a single coherent story:</p>
+<ol>
+<li><p><strong>Start with the confusion matrix (Section 5.2.5).</strong>  </p>
+<ul>
+<li>The four counts $N_{TP}, N_{FP}, N_{TN}, N_{FN}$ define the confusion matrix (5.28).  </li>
+<li>Accuracy (5.29) can be misleading, especially under severe class imbalance.  </li>
+<li>We therefore introduce Precision (5.30), Recall/TPR (5.31), FPR (5.32), FDR (5.33), and the F-score (5.38)–(5.39), which explicitly encode the costs of false positives vs. false negatives.</li>
+</ul>
+</li>
+<li><p><strong>Understand errors via a threshold (Figure 5.10).</strong>  </p>
+<ul>
+<li>Figure 5.10 draws the joint densities $p(x, C_1)$ and $p(x, C_2)$ as two “probability hills,” and slices them with a threshold $\hat{x}$.  </li>
+<li>The shaded areas (blue/green/red regions) correspond to FP and FN probability mass.  </li>
+<li>Equations (5.34)–(5.37) map these areas to the expected fractions $\frac{N_{TP}}{N}$, $\frac{N_{FP}}{N}$, $\frac{N_{TN}}{N}$, $\frac{N_{FN}}{N}$.  </li>
+<li>Moving $\hat{x}$ shifts those areas and thus changes Precision / Recall / FPR, etc.</li>
+</ul>
+</li>
+<li><p><strong>Move to the ROC curve (Figure 5.11).</strong>  </p>
+<ul>
+<li>By sweeping the threshold across all possible values and computing (FPR, TPR) for each, we get the ROC curve.  </li>
+<li>The ROC curve visualizes the trade-off between “catching positives” and “avoiding false alarms.”  </li>
+<li>The Area Under the Curve (AUC) summarizes this trade-off in a single number; the closer the ROC is to the upper-left corner, the better.</li>
+</ul>
+</li>
+<li><p><strong>Ask: Where do these probabilities come from? (Section 5.3).</strong>  </p>
+<ul>
+<li>Instead of treating the classifier as a black box, we model how each class generates data using $p(\mathbf{x} \mid C_k)$ and a prior $p(C_k)$.  </li>
+<li>Bayes’ rule then yields the posterior $p(C_k \mid \mathbf{x})$.  </li>
+<li>In the binary case, this becomes a sigmoid of the log-odds (5.40)–(5.44), as shown in Figure 5.12; in the multiclass case, it becomes a softmax (5.45)–(5.46).</li>
+</ul>
+</li>
+<li><p><strong>Finally, tie this to geometry in feature space (Section 5.3.1).</strong>  </p>
+<ul>
+<li>Assume each class-conditional is Gaussian with a <strong>shared</strong> covariance matrix (5.47).  </li>
+<li>Then the posterior probabilities become a sigmoid / softmax of a <strong>linear</strong> function of $\mathbf{x}$ (5.48)–(5.53), and the decision boundaries are linear hyperplanes. This is exactly the setting of Linear Discriminant Analysis (LDA), visualized in Figure 5.13.  </li>
+<li>If we allow each class to have its <strong>own</strong> covariance matrix, we get Quadratic Discriminant Analysis (QDA): boundaries between classes with different covariances become smooth <strong>curves</strong> (quadratic surfaces), as shown in Figure 5.14.  </li>
+<li>Thus, the assumption about covariance — shared vs. class-specific — directly controls whether your decision surfaces are linear or quadratic.</li>
+</ul>
+</li>
+</ol>
+<p>In short, from 5.2.5 to 5.3.1 we have traveled the full arc:</p>
+<ul>
+<li><strong>Evaluation layer</strong>: confusion matrix, Precision/Recall, FPR, F-score, ROC, AUC — which tell us how a classifier behaves under different thresholds and different application costs.</li>
+<li><strong>Probabilistic layer</strong>: posterior probabilities $p(C_k \mid \mathbf{x})$ obtained by combining class-conditional models with class priors via Bayes’ rule, producing sigmoid and softmax forms.</li>
+<li><strong>Geometric layer</strong>: under Gaussian assumptions, those posteriors correspond to either linear or quadratic decision boundaries in input space.<br>Shared covariance ⇒ linear (LDA, Figure 5.13).<br>Class-specific covariance ⇒ curved quadratic surfaces (QDA, Figure 5.14).</li>
+</ul>
+<p>This chain connects “how we measure mistakes,” “how we interpret probabilities,” and “what the classifier looks like in the geometry of feature space.”<br>It also provides the conceptual bridge between classical statistical pattern recognition and modern deep learning classifiers, which often end with a linear layer plus a sigmoid or softmax.</p>
+
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        Author:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">Minster</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        Link:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://MarcuXu.github.io/2025/10/30/dl-reading-1029/">https://MarcuXu.github.io/2025/10/30/dl-reading-1029/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        Reprint policy:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    All articles in this blog are used except for special statements
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    reprint policy. If reproduced, please indicate source
+                    <a href="/about" target="_blank">Minster</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>Copied successfully, please follow the reprint policy of this article</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">more</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/AI-Tricks/">
+                                    <span class="chip bg-color">AI_Tricks</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="far fa-dot-circle"></i>&nbsp;Current
+            </div>
+            <div class="card">
+                <a href="/2025/10/30/dl-reading-1029/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="Speaking the Language of Probability-From Classifier Evaluation to Generative Classifiers">
+                        
+                        <span class="card-title">Speaking the Language of Probability-From Classifier Evaluation to Generative Classifiers</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2025-10-30
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/Tech/" class="post-category">
+                                    Tech
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/AI-Tricks/">
+                        <span class="chip bg-color">AI_Tricks</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                Next&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2024/01/26/cisc-896-01/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="Non-academic notes from my PhD journey far from home">
+                        
+                        <span class="card-title">Non-academic notes from my PhD journey far from home</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2024-01-26
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/Clutter/" class="post-category">
+                                    Clutter
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+
+  <!-- 是否加载使用自带的 prismjs. -->
+  <script type="text/javascript" src="/libs/prism/prism.min.js"></script>
+
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;TOC</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+<script src="https://cdn.bootcss.com/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script>
+    MathJax.Hub.Config({
+        tex2jax: {inlineMath: [['$', '$'], ['\\(', '\\)']]}
+    });
+</script>
+
+
+
+    <footer class="page-footer bg-color">
+    
+        <link rel="stylesheet" href="/libs/aplayer/APlayer.min.css">
+<style>
+    .aplayer .aplayer-lrc p {
+        
+        display: none;
+        
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px !important;
+    }
+
+    .aplayer .aplayer-lrc p.aplayer-lrc-current {
+        
+        display: none;
+        
+        font-size: 15px;
+        color: #42b983;
+    }
+
+    
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
+        left: -66px !important;
+    }
+
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
+        left: 0px !important;
+    }
+
+    
+</style>
+<div class="">
+    
+    <div class="row">
+        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
+                   server="netease"
+                   type="playlist"
+                   id="503838841"
+                   fixed='true'
+                   autoplay='false'
+                   theme='#42b983'
+                   loop='all'
+                   order='random'
+                   preload='auto'
+                   volume='0.5'
+                   list-folded='true'
+        >
+        </meting-js>
+    </div>
+</div>
+
+<script src="/libs/aplayer/APlayer.min.js"></script>
+<script src="/libs/aplayer/Meting.min.js"></script>
+
+    
+
+    <div class="container row center-align"
+         style="margin-bottom: 15px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2021-2025</span>
+            
+            <a href="/about" target="_blank">Minster</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+                &nbsp;<i class="fas fa-chart-area"></i>&nbsp;Total Words:&nbsp;<span
+                        class="white-color">16.3k</span>
+            
+            
+            
+                
+            
+            
+                <span id="busuanzi_container_site_pv">
+                &nbsp;|&nbsp;<i class="far fa-eye"></i>&nbsp;Total visits:&nbsp;
+                    <span id="busuanzi_value_site_pv" class="white-color"></span>
+            </span>
+            
+            
+                <span id="busuanzi_container_site_uv">
+                &nbsp;|&nbsp;<i class="fas fa-users"></i>&nbsp;Total visitors:&nbsp;
+                    <span id="busuanzi_value_site_uv" class="white-color"></span>
+            </span>
+            
+            <br>
+
+            <!-- 运行天数提醒. -->
+            
+                <span id="sitetime"> Loading ...</span>
+                <script>
+                    var calcSiteTime = function () {
+                        var seconds = 1000;
+                        var minutes = seconds * 60;
+                        var hours = minutes * 60;
+                        var days = hours * 24;
+                        var years = days * 365;
+                        var today = new Date();
+                        var startYear = "2021";
+                        var startMonth = "6";
+                        var startDate = "28";
+                        var startHour = "0";
+                        var startMinute = "0";
+                        var startSecond = "0";
+                        var todayYear = today.getFullYear();
+                        var todayMonth = today.getMonth() + 1;
+                        var todayDate = today.getDate();
+                        var todayHour = today.getHours();
+                        var todayMinute = today.getMinutes();
+                        var todaySecond = today.getSeconds();
+                        var t1 = Date.UTC(startYear, startMonth, startDate, startHour, startMinute, startSecond);
+                        var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
+                        var diff = t2 - t1;
+                        var diffYears = Math.floor(diff / years);
+                        var diffDays = Math.floor((diff / days) - diffYears * 365);
+
+                        // 区分是否有年份.
+                        var language = 'en';
+                        if (startYear === String(todayYear)) {
+                            document.getElementById("year").innerHTML = todayYear;
+                            var daysTip = 'This site has been running for ' + diffDays + ' days';
+                            if (language === 'zh-CN') {
+                                daysTip = '本站已运行 ' + diffDays + ' 天';
+                            } else if (language === 'zh-HK') {
+                                daysTip = '本站已運行 ' + diffDays + ' 天';
+                            }
+                            document.getElementById("sitetime").innerHTML = daysTip;
+                        } else {
+                            document.getElementById("year").innerHTML = startYear + " - " + todayYear;
+                            var yearsAndDaysTip = 'This site has been running for ' + diffYears + ' years and '
+                                + diffDays + ' days';
+                            if (language === 'zh-CN') {
+                                yearsAndDaysTip = '本站已运行 ' + diffYears + ' 年 ' + diffDays + ' 天';
+                            } else if (language === 'zh-HK') {
+                                yearsAndDaysTip = '本站已運行 ' + diffYears + ' 年 ' + diffDays + ' 天';
+                            }
+                            document.getElementById("sitetime").innerHTML = yearsAndDaysTip;
+                        }
+                    }
+
+                    calcSiteTime();
+                </script>
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/MarcuXu" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:marcuxu@outlook.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+
+
+
+
+    <a href="https://www.zhihu.com/people/guang-ming-zhi-xi" class="tooltipped" target="_blank" data-tooltip="关注我的知乎: https://www.zhihu.com/people/guang-ming-zhi-xi" data-position="top" data-delay="50">
+        <i class="fab fa-zhihu1">知</i>
+    </a>
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;Search</span>
+            <input type="search" id="searchInput" name="s" placeholder="Please enter a search keyword"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 白天和黑夜主题 -->
+<div class="stars-con">
+    <div id="stars"></div>
+    <div id="stars2"></div>
+    <div id="stars3"></div>  
+</div>
+
+<script>
+    function switchNightMode() {
+        $('<div class="Cuteen_DarkSky"><div class="Cuteen_DarkPlanet"></div></div>').appendTo($('body')),
+        setTimeout(function () {
+            $('body').hasClass('DarkMode') 
+            ? ($('body').removeClass('DarkMode'), localStorage.setItem('isDark', '0'), $('#sum-moon-icon').removeClass("fa-sun").addClass('fa-moon')) 
+            : ($('body').addClass('DarkMode'), localStorage.setItem('isDark', '1'), $('#sum-moon-icon').addClass("fa-sun").removeClass('fa-moon')),
+            
+            setTimeout(function () {
+            $('.Cuteen_DarkSky').fadeOut(1e3, function () {
+                $(this).remove()
+            })
+            }, 2e3)
+        })
+    }
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    
+
+    
+
+    <!-- 雪花特效 -->
+    
+
+    <!-- 鼠标星星特效 -->
+     
+        <script type="text/javascript">
+            // 只在桌面版网页启用特效
+            var windowWidth = $(window).width();
+            if (windowWidth > 768) {
+                document.write('<script type="text/javascript" src="/libs/others/star.js"><\/script>');
+            }
+        </script>
+    
+
+     
+        <script src="https://ssl.captcha.qq.com/TCaptcha.js"></script>
+        <script src="/libs/others/TencentCaptcha.js"></script>
+        <button id="TencentCaptcha" data-appid="xxxxxxxxxx" data-cbfn="callback" type="button" hidden></button>
+    
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+    <!--腾讯兔小巢-->
+    
+    
+
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>
