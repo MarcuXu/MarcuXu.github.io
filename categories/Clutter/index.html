@@ -347,7 +347,7 @@
 
 <script>
     // 每天切换 banner 图.  Switch banner image every day.
-    var bannerUrl = "/medias/banner/" + new Date().getDay() + '.png';
+    var bannerUrl = "/medias/banner/" + new Date().getDay() + '.jpg';
     $('.bg-cover').css('background-image', 'url(' + bannerUrl + ')');
 </script>
 
@@ -526,17 +526,15 @@
                         <div class="card-image tag-image">
                             
                             
-                            <img src="/medias/featureimages/8.jpg" class="responsive-img" alt="Curriculum Vitae">
+                            <img src="/medias/featureimages/13.jpg" class="responsive-img" alt="About Mingjing Xu">
                             
-                            <span class="card-title">Curriculum Vitae</span>
+                            <span class="card-title">About Mingjing Xu</span>
                         </div>
                     </a>
                     <div class="card-content article-content">
                         <div class="summary block-with-text">
                             
-                                Bio
-
-Building on my undergraduate degree in Electrical Engineering from SHU, I launched my career as an Embedded Softwar
+                                An informal profile of Mingjing Xu: CS PhD student at Swansea University working on multi-objective optimization, multimodal learning, trustworthy AI, and edge intelligence.
                             
                         </div>
                         <div class="publish-info">
@@ -657,7 +655,7 @@ Building on my undergraduate degree in Electrical Engineering from SHU, I launch
                    theme='#42b983'
                    loop='all'
                    order='random'
-                   preload='auto'
+                   preload='metadata'
                    volume='0.5'
                    list-folded='true'
         >
@@ -675,7 +673,7 @@ Building on my undergraduate degree in Electrical Engineering from SHU, I launch
         <div class="col s12 m8 l8 copy-right">
             Copyright&nbsp;&copy;
             
-                <span id="year">2021-2025</span>
+                <span id="year">2021-2026</span>
             
             <a href="/about" target="_blank">Minster</a>
             |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
@@ -683,7 +681,7 @@ Building on my undergraduate degree in Electrical Engineering from SHU, I launch
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;Total Words:&nbsp;<span
-                        class="white-color">16.3k</span>
+                        class="white-color">16k</span>
             
             
             
@@ -951,20 +949,8 @@ $(function () {
     
 
     <!-- 鼠标星星特效 -->
-     
-        <script type="text/javascript">
-            // 只在桌面版网页启用特效
-            var windowWidth = $(window).width();
-            if (windowWidth > 768) {
-                document.write('<script type="text/javascript" src="/libs/others/star.js"><\/script>');
-            }
-        </script>
     
 
-     
-        <script src="https://ssl.captcha.qq.com/TCaptcha.js"></script>
-        <script src="/libs/others/TencentCaptcha.js"></script>
-        <button id="TencentCaptcha" data-appid="xxxxxxxxxx" data-cbfn="callback" type="button" hidden></button>
     
 
     <!-- Baidu Analytics -->

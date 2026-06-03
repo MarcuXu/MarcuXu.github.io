@@ -3,11 +3,11 @@
   <title>MarcuXu</title>
   
   <subtitle>This is but a single thread in the boundless tapestry woven by mortal hands</subtitle>
-  <link href="https://marcuxu.github.io/atom.xml" rel="self"/>
+  <link href="https://marcuxu.com/atom.xml" rel="self"/>
   
-  <link href="https://marcuxu.github.io/"/>
+  <link href="https://marcuxu.com/"/>
   <updated>2025-10-30T15:41:58.090Z</updated>
-  <id>https://marcuxu.github.io/</id>
+  <id>https://marcuxu.com/</id>
   
   <author>
     <name>Minster</name>
@@ -18,9 +18,9 @@
   
   <entry>
     <title>Speaking the Language of Probability-From Classifier Evaluation to Generative Classifiers</title>
-    <link href="https://marcuxu.github.io/2025/10/30/dl-reading-1029/"/>
-    <id>https://marcuxu.github.io/2025/10/30/dl-reading-1029/</id>
-    <published>2025-10-30T13:01:20.000Z</published>
+    <link href="https://marcuxu.com/2025/10/30/dl-reading-1029/"/>
+    <id>https://marcuxu.com/2025/10/30/dl-reading-1029/</id>
+    <published>2025-10-30T05:01:20.000Z</published>
     <updated>2025-10-30T15:41:58.090Z</updated>
     
     
@@ -34,18 +34,18 @@
     
     
     
-    <category term="Tech" scheme="https://marcuxu.github.io/categories/Tech/"/>
+    <category term="Tech" scheme="https://marcuxu.com/categories/Tech/"/>
     
     
-    <category term="AI_Tricks" scheme="https://marcuxu.github.io/tags/AI-Tricks/"/>
+    <category term="AI_Tricks" scheme="https://marcuxu.com/tags/AI-Tricks/"/>
     
   </entry>
   
   <entry>
     <title>Non-academic notes from my PhD journey far from home</title>
-    <link href="https://marcuxu.github.io/2024/01/26/cisc-896-01/"/>
-    <id>https://marcuxu.github.io/2024/01/26/cisc-896-01/</id>
-    <published>2024-01-26T20:18:18.000Z</published>
+    <link href="https://marcuxu.com/2024/01/26/cisc-896-01/"/>
+    <id>https://marcuxu.com/2024/01/26/cisc-896-01/</id>
+    <published>2024-01-26T12:18:18.000Z</published>
     <updated>2025-08-24T12:07:10.920Z</updated>
     
     
@@ -59,16 +59,16 @@
     
     
     
-    <category term="Clutter" scheme="https://marcuxu.github.io/categories/Clutter/"/>
+    <category term="Clutter" scheme="https://marcuxu.com/categories/Clutter/"/>
     
     
   </entry>
   
   <entry>
     <title>DL study</title>
-    <link href="https://marcuxu.github.io/2023/03/01/dl-study/"/>
-    <id>https://marcuxu.github.io/2023/03/01/dl-study/</id>
-    <published>2023-03-01T09:48:37.000Z</published>
+    <link href="https://marcuxu.com/2023/03/01/dl-study/"/>
+    <id>https://marcuxu.com/2023/03/01/dl-study/</id>
+    <published>2023-03-01T01:48:37.000Z</published>
     <updated>2023-12-06T21:53:06.485Z</updated>
     
     
@@ -83,18 +83,18 @@
     
     
     
-    <category term="Tech" scheme="https://marcuxu.github.io/categories/Tech/"/>
+    <category term="Tech" scheme="https://marcuxu.com/categories/Tech/"/>
     
     
-    <category term="AI_Tricks" scheme="https://marcuxu.github.io/tags/AI-Tricks/"/>
+    <category term="AI_Tricks" scheme="https://marcuxu.com/tags/AI-Tricks/"/>
     
   </entry>
   
   <entry>
     <title>Tiny AI stories</title>
-    <link href="https://marcuxu.github.io/2022/12/09/tiny-stories-of-ai/"/>
-    <id>https://marcuxu.github.io/2022/12/09/tiny-stories-of-ai/</id>
-    <published>2022-12-09T07:06:33.000Z</published>
+    <link href="https://marcuxu.com/2022/12/09/tiny-stories-of-ai/"/>
+    <id>https://marcuxu.com/2022/12/09/tiny-stories-of-ai/</id>
+    <published>2022-12-08T23:06:33.000Z</published>
     <updated>2025-06-24T05:05:09.404Z</updated>
     
     
@@ -109,18 +109,18 @@
     
     
     
-    <category term="Tech" scheme="https://marcuxu.github.io/categories/Tech/"/>
+    <category term="Tech" scheme="https://marcuxu.com/categories/Tech/"/>
     
     
-    <category term="AI_Tricks" scheme="https://marcuxu.github.io/tags/AI-Tricks/"/>
+    <category term="AI_Tricks" scheme="https://marcuxu.com/tags/AI-Tricks/"/>
     
   </entry>
   
   <entry>
     <title>Personal thoughts of the academic</title>
-    <link href="https://marcuxu.github.io/2022/11/08/paper-tricks/"/>
-    <id>https://marcuxu.github.io/2022/11/08/paper-tricks/</id>
-    <published>2022-11-08T21:39:57.000Z</published>
+    <link href="https://marcuxu.com/2022/11/08/paper-tricks/"/>
+    <id>https://marcuxu.com/2022/11/08/paper-tricks/</id>
+    <published>2022-11-08T13:39:57.000Z</published>
     <updated>2023-10-02T15:51:18.646Z</updated>
     
     
@@ -134,18 +134,18 @@
     
     
     
-    <category term="Clutter" scheme="https://marcuxu.github.io/categories/Clutter/"/>
+    <category term="Clutter" scheme="https://marcuxu.com/categories/Clutter/"/>
     
     
-    <category term="Academic" scheme="https://marcuxu.github.io/tags/Academic/"/>
+    <category term="Academic" scheme="https://marcuxu.com/tags/Academic/"/>
     
   </entry>
   
   <entry>
     <title>Convolutional neural networks in DL</title>
-    <link href="https://marcuxu.github.io/2022/10/06/cnn-in-dl/"/>
-    <id>https://marcuxu.github.io/2022/10/06/cnn-in-dl/</id>
-    <published>2022-10-06T21:20:52.000Z</published>
+    <link href="https://marcuxu.com/2022/10/06/cnn-in-dl/"/>
+    <id>https://marcuxu.com/2022/10/06/cnn-in-dl/</id>
+    <published>2022-10-06T14:20:52.000Z</published>
     <updated>2025-03-13T18:30:40.103Z</updated>
     
     
@@ -159,18 +159,18 @@
     
     
     
-    <category term="Tech" scheme="https://marcuxu.github.io/categories/Tech/"/>
+    <category term="Tech" scheme="https://marcuxu.com/categories/Tech/"/>
     
     
-    <category term="AI_Tricks" scheme="https://marcuxu.github.io/tags/AI-Tricks/"/>
+    <category term="AI_Tricks" scheme="https://marcuxu.com/tags/AI-Tricks/"/>
     
   </entry>
   
   <entry>
     <title>Git &amp; GitHub</title>
-    <link href="https://marcuxu.github.io/2022/09/29/git-github-notes/"/>
-    <id>https://marcuxu.github.io/2022/09/29/git-github-notes/</id>
-    <published>2022-09-29T21:45:46.000Z</published>
+    <link href="https://marcuxu.com/2022/09/29/git-github-notes/"/>
+    <id>https://marcuxu.com/2022/09/29/git-github-notes/</id>
+    <published>2022-09-29T14:45:46.000Z</published>
     <updated>2023-08-01T21:59:59.881Z</updated>
     
     
@@ -184,18 +184,18 @@
     
     
     
-    <category term="Tech" scheme="https://marcuxu.github.io/categories/Tech/"/>
+    <category term="Tech" scheme="https://marcuxu.com/categories/Tech/"/>
     
     
-    <category term="SW_Tricks" scheme="https://marcuxu.github.io/tags/SW-Tricks/"/>
+    <category term="SW_Tricks" scheme="https://marcuxu.com/tags/SW-Tricks/"/>
     
   </entry>
   
   <entry>
     <title>Memory in HK &amp; CUHK</title>
-    <link href="https://marcuxu.github.io/2022/09/19/memory-hk-cuhk/"/>
-    <id>https://marcuxu.github.io/2022/09/19/memory-hk-cuhk/</id>
-    <published>2022-09-19T19:08:34.000Z</published>
+    <link href="https://marcuxu.com/2022/09/19/memory-hk-cuhk/"/>
+    <id>https://marcuxu.com/2022/09/19/memory-hk-cuhk/</id>
+    <published>2022-09-19T12:08:34.000Z</published>
     <updated>2023-03-29T18:51:02.522Z</updated>
     
     
@@ -209,41 +209,41 @@
     
     
     
-    <category term="Clutter" scheme="https://marcuxu.github.io/categories/Clutter/"/>
+    <category term="Clutter" scheme="https://marcuxu.com/categories/Clutter/"/>
     
     
   </entry>
   
   <entry>
-    <title>Curriculum Vitae</title>
-    <link href="https://marcuxu.github.io/2022/09/19/curriculumvitae/"/>
-    <id>https://marcuxu.github.io/2022/09/19/curriculumvitae/</id>
-    <published>2022-09-19T08:56:15.000Z</published>
-    <updated>2025-06-24T05:31:57.209Z</updated>
+    <title>About Mingjing Xu</title>
+    <link href="https://marcuxu.com/2022/09/19/curriculumvitae/"/>
+    <id>https://marcuxu.com/2022/09/19/curriculumvitae/</id>
+    <published>2022-09-19T01:56:15.000Z</published>
+    <updated>2026-06-03T16:41:55.079Z</updated>
     
     
       
       
         
         
-    <summary type="html">&lt;h2 id=&quot;Bio&quot;&gt;&lt;a href=&quot;#Bio&quot; class=&quot;headerlink&quot; title=&quot;Bio&quot;&gt;&lt;/a&gt;Bio&lt;/h2&gt;&lt;!-- Having completed my undergraduate studies at</summary>
+    <summary type="html">&lt;h2 id=&quot;Snapshot&quot;&gt;&lt;a href=&quot;#Snapshot&quot; class=&quot;headerlink&quot; title=&quot;Snapshot&quot;&gt;&lt;/a&gt;Snapshot&lt;/h2&gt;&lt;p&gt;I am &lt;strong&gt;Mingjing Xu&lt;/strong&gt;, a Computer</summary>
         
       
     
     
     
-    <category term="Clutter" scheme="https://marcuxu.github.io/categories/Clutter/"/>
+    <category term="Clutter" scheme="https://marcuxu.com/categories/Clutter/"/>
     
     
-    <category term="Academic" scheme="https://marcuxu.github.io/tags/Academic/"/>
+    <category term="Academic" scheme="https://marcuxu.com/tags/Academic/"/>
     
   </entry>
   
   <entry>
     <title>How to build your own website</title>
-    <link href="https://marcuxu.github.io/2022/09/19/building-blog/"/>
-    <id>https://marcuxu.github.io/2022/09/19/building-blog/</id>
-    <published>2022-09-18T23:21:52.000Z</published>
+    <link href="https://marcuxu.com/2022/09/19/building-blog/"/>
+    <id>https://marcuxu.com/2022/09/19/building-blog/</id>
+    <published>2022-09-18T16:21:52.000Z</published>
     <updated>2025-06-24T11:56:42.898Z</updated>
     
     
@@ -258,17 +258,17 @@
     
     
     
-    <category term="Tech" scheme="https://marcuxu.github.io/categories/Tech/"/>
+    <category term="Tech" scheme="https://marcuxu.com/categories/Tech/"/>
     
     
-    <category term="SW_Tricks" scheme="https://marcuxu.github.io/tags/SW-Tricks/"/>
+    <category term="SW_Tricks" scheme="https://marcuxu.com/tags/SW-Tricks/"/>
     
   </entry>
   
   <entry>
     <title>Hello world</title>
-    <link href="https://marcuxu.github.io/2022/09/18/hello-world/"/>
-    <id>https://marcuxu.github.io/2022/09/18/hello-world/</id>
+    <link href="https://marcuxu.com/2022/09/18/hello-world/"/>
+    <id>https://marcuxu.com/2022/09/18/hello-world/</id>
     <published>2022-09-18T14:47:31.271Z</published>
     <updated>2023-02-20T05:30:05.481Z</updated>
     
@@ -283,7 +283,7 @@
     
     
     
-    <category term="Clutter" scheme="https://marcuxu.github.io/categories/Clutter/"/>
+    <category term="Clutter" scheme="https://marcuxu.com/categories/Clutter/"/>
     
     
   </entry>
