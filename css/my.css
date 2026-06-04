@@ -1,5 +1,89 @@
 /* Custom readability and polish overrides. */
 
+:root {
+    --mx-accent: #2f80ed;
+    --mx-accent-deep: #0f4c81;
+    --mx-accent-cyan: #19a7ce;
+    --mx-ink: #24364b;
+    --mx-muted: #53657d;
+}
+
+.bg-color,
+.progress-bar {
+    background-image: linear-gradient(120deg, #0f2027 0%, #1f4690 48%, #19a7ce 100%) !important;
+}
+
+.text-color {
+    color: var(--mx-accent) !important;
+}
+
+blockquote {
+    border-left-color: var(--mx-accent) !important;
+}
+
+article a:hover,
+#artDetail .tag_share .article-tag .chip,
+#artDetail .post-cate,
+#artDetail .post-cate a,
+#artDetail .post-info .post-category:hover,
+#artDetail .reprint a,
+#articleContent a,
+.post-statis .statis .count a,
+.search-result-list .search-result-title {
+    color: var(--mx-accent) !important;
+}
+
+#artDetail .tag_share .article-tag .chip:hover {
+    color: #fff !important;
+    background: var(--mx-accent) !important;
+}
+
+.chip-container .chip:hover,
+.other-skills .chip:hover {
+    color: #fff !important;
+    border-color: var(--mx-accent) !important;
+    background: linear-gradient(120deg, var(--mx-accent-deep) 0%, var(--mx-accent-cyan) 100%) !important;
+}
+
+.chip-container .chip-active {
+    color: #fff !important;
+    background: linear-gradient(120deg, var(--mx-accent-deep) 0%, var(--mx-accent) 100%) !important;
+}
+
+.chip-default .tag-length {
+    color: var(--mx-accent) !important;
+}
+
+#cd-timeline::before {
+    background: linear-gradient(180deg, var(--mx-accent-deep) 0%, var(--mx-accent-cyan) 100%) !important;
+}
+
+.cd-timeline-img {
+    box-shadow: 0 0 0 4px #ffffff, inset 0 2px 0 rgba(0, 0, 0, 0.08), 0 3px 0 4px rgba(47, 128, 237, 0.24) !important;
+}
+
+article a:hover,
+#articleContent a:hover,
+#artDetail .post-cate a:hover {
+    color: var(--mx-accent-deep) !important;
+}
+
+header nav.bg-color:not(.nav-transparent) {
+    background-color: rgba(15, 32, 39, 0.94) !important;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 10px 30px rgba(15, 32, 39, 0.18);
+}
+
+header .nav-transparent {
+    background-color: transparent !important;
+    background-image: none !important;
+    box-shadow: none !important;
+}
+
+header nav .brand-logo .logo-span {
+    letter-spacing: 0;
+}
+
 #artDetail .article-card-content {
     padding-bottom: 2.2rem;
 }
@@ -29,7 +113,7 @@
 #articleContent h2 {
     margin-top: 2.6rem;
     padding-bottom: 0.35rem;
-    border-bottom: 1px solid rgba(66, 185, 131, 0.2);
+    border-bottom: 1px solid rgba(47, 128, 237, 0.22);
 }
 
 #articleContent h3 {
@@ -46,9 +130,9 @@
 #articleContent blockquote {
     margin: 1.4rem 0;
     padding: 1rem 1.15rem;
-    border-left: 4px solid #42b983;
+    border-left: 4px solid var(--mx-accent);
     border-radius: 0 6px 6px 0;
-    background: rgba(66, 185, 131, 0.08);
+    background: rgba(47, 128, 237, 0.08);
 }
 
 #articleContent blockquote p {
@@ -111,6 +195,55 @@ article .card .card-title,
     overflow: auto;
 }
 
+#aboutme .introduction {
+    max-width: 860px;
+    color: var(--mx-muted);
+    font-size: 1.02rem;
+    line-height: 1.85;
+    text-align: left !important;
+}
+
+#aboutme .profile .author .title {
+    color: var(--mx-ink);
+    font-weight: 600;
+}
+
+#aboutme .profile .author .career {
+    color: var(--mx-muted);
+    font-size: 0.95rem;
+}
+
+#aboutme .social-link a {
+    border-color: rgba(47, 128, 237, 0.55) !important;
+    background: radial-gradient(circle at 30% 20%, var(--mx-accent-cyan), var(--mx-accent-deep)) !important;
+}
+
+.post-statis .statis .count a,
+#articleContent a,
+.my-projects .info .info-title a {
+    color: var(--mx-accent);
+}
+
+.my-projects .info {
+    min-height: 235px;
+    padding: 1.1rem 0.9rem 1rem;
+}
+
+.my-projects .info .icon {
+    box-shadow: 0 12px 28px rgba(15, 32, 39, 0.16);
+}
+
+.my-projects .info .info-desc {
+    color: var(--mx-muted);
+    line-height: 1.65;
+}
+
+.skillbar .skillbar-title span {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
 @media only screen and (max-width: 601px) {
     #artDetail .tag-cate {
         display: flex;
@@ -133,5 +266,14 @@ article .card .card-title,
 
     .toc-widget {
         width: 100%;
+    }
+
+    #aboutme .introduction {
+        font-size: 0.98rem;
+        line-height: 1.75;
+    }
+
+    .my-projects .info {
+        min-height: auto;
     }
 }

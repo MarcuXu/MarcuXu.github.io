@@ -4,10 +4,8 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="Speaking the Language of Probability-From Classifier Evaluation to Generative Classifiers, MarcuXu">
-    <meta name="description" content="IntroductionToday’s talk is structured into four major parts:
-
-How to evaluate how good a classifier is (Section 5.2.5 “">
+    <meta name="keywords" content="Speaking the Language of Probability-From Classifier Evaluation to Generative Classifiers, Mingjing Xu,MarcuXu,multi-objective optimization,trustworthy AI,multimodal learning,edge intelligence">
+    <meta name="description" content="Study notes connecting classifier accuracy, confusion matrices, precision, recall, ROC/AUC, generative classifiers, Gaussian class-conditional models, sigmoid/softmax, LDA, and QDA.">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -163,7 +161,7 @@ How to evaluate how good a classifier is (Section 5.2.5 “">
         <div class="logo-name">MarcuXu</div>
         <div class="logo-desc">
             
-            Never really desperate, only the lost of the soul.
+            Personal website of Mingjing Xu, a Swansea University CS PhD student working on efficient optimization, trustworthy AI, multimodal learning, and edge intelligence.
             
         </div>
     </div>
@@ -240,7 +238,7 @@ How to evaluate how good a classifier is (Section 5.2.5 “">
         <li><div class="divider"></div></li>
         <li>
             <a href="https://github.com/MarcuXu/MarcuXu.github.io" class="waves-effect waves-light" target="_blank">
-                <i class="fab fa-github-square fa-fw"></i>Fork Me
+                <i class="fab fa-github-square fa-fw"></i>GitHub
             </a>
         </li>
         
@@ -266,7 +264,7 @@ How to evaluate how good a classifier is (Section 5.2.5 “">
     }
 
     .github-corner svg {
-        color: #0f9d58;
+        color: #0f4c81;
         fill: #fff;
         height: 64px;
         width: 64px;
@@ -297,7 +295,7 @@ How to evaluate how good a classifier is (Section 5.2.5 “">
 </style>
 
 <a href="https://github.com/MarcuXu/MarcuXu.github.io" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
-   data-tooltip="Fork Me" data-position="left" data-delay="50">
+   data-tooltip="GitHub" data-position="left" data-delay="50">
     <svg viewBox="0 0 250 250" aria-hidden="true">
         <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
         <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
@@ -306,6 +304,7 @@ How to evaluate how good a classifier is (Section 5.2.5 “">
               fill="currentColor" class="octo-body"></path>
     </svg>
 </a>
+
         
     </nav>
 
@@ -376,7 +375,7 @@ How to evaluate how good a classifier is (Section 5.2.5 “">
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>Update Date:&nbsp;&nbsp;
-                    2025-10-30
+                    2026-06-04
                 </div>
                 
 
@@ -775,7 +774,7 @@ How to evaluate how good a classifier is (Section 5.2.5 “">
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="/about" rel="external nofollow noreferrer">Minster</a>
+                    <a href="/about" rel="external nofollow noreferrer">Mingjing Xu</a>
                 </span>
             </div>
             <div class="reprint__type">
@@ -798,7 +797,7 @@ How to evaluate how good a classifier is (Section 5.2.5 “">
                     All articles in this blog are used except for special statements
                     <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
                     reprint policy. If reproduced, please indicate source
-                    <a href="/about" target="_blank">Minster</a>
+                    <a href="/about" target="_blank">Mingjing Xu</a>
                     !
                 </span>
             </div>
@@ -870,30 +869,29 @@ How to evaluate how good a classifier is (Section 5.2.5 “">
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="far fa-dot-circle"></i>&nbsp;Current
-            </div>
+                <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
             <div class="card">
-                <a href="/2025/10/30/dl-reading-1029/">
+                <a href="/2026/06/04/psmgd-paper-explanation/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="Speaking the Language of Probability-From Classifier Evaluation to Generative Classifiers" loading="lazy" decoding="async">
+                        <img src="/medias/featureimages/19.jpg" class="responsive-img" alt="Understanding PSMGD: Fast Multi-Objective Optimization with Periodic Gradient Weights" loading="lazy" decoding="async">
                         
-                        <span class="card-title">Speaking the Language of Probability-From Classifier Evaluation to Generative Classifiers</span>
+                        <span class="card-title">Understanding PSMGD: Fast Multi-Objective Optimization with Periodic Gradient Weights</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            
+                            A technical explanation of PSMGD, covering multi-objective optimization, gradient conflict, periodic stochastic multi-gradient descent, convergence intuition, backpropagation complexity, and key empirical findings.
                         
                     </div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2025-10-30
-                            </span>
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2026-06-04
+                        </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -906,7 +904,6 @@ How to evaluate how good a classifier is (Section 5.2.5 “">
                         </span>
                     </div>
                 </div>
-
                 
                 <div class="card-action article-tags">
                     
@@ -937,7 +934,7 @@ How to evaluate how good a classifier is (Section 5.2.5 “">
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            
+                            A brief personal note about the difficult start to 2025, withdrawing from RIT, and keeping perspective during a PhD journey far from home.
                         
                     </div>
                     <div class="publish-info">
@@ -1104,7 +1101,7 @@ How to evaluate how good a classifier is (Section 5.2.5 “">
         display: none;
         
         font-size: 15px;
-        color: #42b983;
+        color: #2f80ed;
     }
 
     
@@ -1127,7 +1124,7 @@ How to evaluate how good a classifier is (Section 5.2.5 “">
                    id="503838841"
                    fixed='true'
                    autoplay='false'
-                   theme='#42b983'
+                   theme='#2f80ed'
                    loop='all'
                    order='random'
                    preload='metadata'
@@ -1150,13 +1147,13 @@ How to evaluate how good a classifier is (Section 5.2.5 “">
             
                 <span id="year">2021-2026</span>
             
-            <a href="/about" target="_blank">Minster</a>
+            <a href="/about" target="_blank">Mingjing Xu</a>
             |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
             |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;Total Words:&nbsp;<span
-                        class="white-color">16k</span>
+                        class="white-color">18.9k</span>
             
             
             

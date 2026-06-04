@@ -4,8 +4,8 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="DL study, Mingjing Xu,MarcuXu,multi-objective optimization,trustworthy AI,multimodal learning,edge intelligence">
-    <meta name="description" content="Notes on revisiting machine learning and deep learning with Dive into Deep Learning, PyTorch and conda setup, GPU environments, and ART/WiFi adversarial robustness tooling.">
+    <meta name="keywords" content="Understanding PSMGD: Fast Multi-Objective Optimization with Periodic Gradient Weights, Mingjing Xu,MarcuXu,multi-objective optimization,trustworthy AI,multimodal learning,edge intelligence">
+    <meta name="description" content="A technical explanation of PSMGD, covering multi-objective optimization, gradient conflict, periodic stochastic multi-gradient descent, convergence intuition, backpropagation complexity, and key empirical findings.">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -17,7 +17,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>DL study | MarcuXu</title>
+    <title>Understanding PSMGD: Fast Multi-Objective Optimization with Periodic Gradient Weights | MarcuXu</title>
     <link rel="icon" type="image/png" href="/medias/Gemini_Generated_0.png">
     
 
@@ -314,12 +314,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/7.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/19.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">DL study</h1>
+                    <h1 class="description center-align post-title">Understanding PSMGD: Fast Multi-Objective Optimization with Periodic Gradient Weights</h1>
                 </div>
             </div>
         </div>
@@ -368,7 +368,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
-                    2023-03-01
+                    2026-06-04
                 </div>
                 
 
@@ -382,14 +382,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    508
+                    2.6k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>Read Times:&nbsp;&nbsp;
-                    1 Min
+                    16 Min
                 </div>
                 
 
@@ -412,10 +412,389 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>最近因为刚入学，所以有较多时间可以自主学习，就想着把ML&amp;DL重新过一遍，希望自己在学习理论的时候顺便温习一下代码。</p>
-<h2 id="d2l"><a href="#d2l" class="headerlink" title="d2l"></a>d2l</h2><p>如果是把代码过一遍的话，直接跟着<a target="_blank" rel="noopener" href="https://zh-v2.d2l.ai/index.html">李沐老师</a>走就行 ( <em>MULI is all you need</em> )。正好也申请到了学校的服务器，直接用vscode远程连接coding。先安装<a target="_blank" rel="noopener" href="https://blog.csdn.net/kkxi123456/article/details/103515422">minicoda</a>, 然后follow d2l的setup安装torch即可。在安装的时候可能会遇到<code>IOError: [Errno 28] No space left on device</code>, 参考<a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/40755610/ioerror-errno-28-no-space-left-on-device-while-installing-tensorflow">这里</a>解决即可。而在vscode里运行ipynote需要注意python版本（右上角）。</p>
-<p>如果是使用自己的PC来跑代码的话会更简单。先在在<a target="_blank" rel="noopener" href="https://repo.anaconda.com/archive/">官网</a>上查找自己需要的版本，然后下载<code>wget https://repo.anaconda.com/archive/Anaconda3-2023.09-0-Linux-x86_64.sh</code>。下载完成后，要先赋权再执行安装程序<code>chmod +x Anaconda3-2023.09-0-Linux-x86_64.sh</code>。在一直按ENTER时要注意，最后一个选项是设置环境变量，最好输入YES。如果输错了也没事，参考<a target="_blank" rel="noopener" href="https://blog.csdn.net/wyf2017/article/details/118676765">这里</a>在 <em>.bashrc</em> 中更改路径即可。注意如果需要使用GPU来运行程序的话，安装好conda后使用<code>conda search cudatoolkit</code>来<a target="_blank" rel="noopener" href="https://blog.csdn.net/LIWEI940638093/article/details/113811563">查找</a>适用的toolkit。例如我的PC上是创建 <em>py3.9</em> 后使用<code>conda install pytorch==1.12.1 torchvision==0.13.1 torchaudio==0.12.1 cudatoolkit=11.6 -c pytorch -c conda-forge</code>来安装相应的库和依赖，当然使用相应的conda安装指令需要参考PyTorch<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_39450145/article/details/130629569">历史版本</a>。然后跟着李沐老师的教程走installation就行（安装好d2l其实也就安装好了大部分DL所需要的库了）。</p>
-<h2 id="WIFI-ART"><a href="#WIFI-ART" class="headerlink" title="WIFI ART"></a>WIFI ART</h2><p>在设置<a target="_blank" rel="noopener" href="https://github.com/Trusted-AI/adversarial-robustness-toolbox">ART</a>工作环境时，一定得注意可运行的库环境，不然总会有乱七八糟的问题，例如tensorflow的<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_33682559/article/details/120310206">版本问题</a>，numpy的<a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/74947992/how-to-remove-the-error-systemerror-initialization-of-internal-failed-without">initialization of _internal failed without raising an exception</a>。而因为长时间没有复习Keras了，导致在debug的时候发现连最基本的<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_43190189/article/details/114090368">step</a>的<a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/54547681/why-is-step-argument-necessary-when-predicting-using-data-tensors-what-does-t">设置</a>都忘记了。看来复习ML是迫在眉睫了 <span class="github-emoji"><span>😱</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f631.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span></p>
+                <h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>Modern machine learning systems rarely optimize only one clean objective. A multi-task perception model may need to segment an image, estimate depth, and predict surface normals at the same time. A graph neural network for molecular property prediction may need to predict many chemical quantities from one shared representation. A ranking system may need to balance relevance, fairness, diversity, and user satisfaction.</p>
+<p>This is the setting of <strong>multi-objective optimization (MOO)</strong>. Instead of minimizing one loss, we optimize a vector of losses:</p>
+<div class="mathjax-display">
+$$
+\min_{\mathbf{x} \in \mathcal{D}}
+\mathbf{F}(\mathbf{x})
+:=
+\left[
+f_1(\mathbf{x}),
+f_2(\mathbf{x}),
+\cdots,
+f_S(\mathbf{x})
+\right],
+$$
+</div>
+
+<p>where $\mathbf{x} \in \mathcal{D} \subseteq \mathbb{R}^d$ denotes the model parameters and $f_s$ is the $s$-th objective. In multi-task learning, each $f_s$ is often the loss of one task.</p>
+<p>The paper <strong>PSMGD: Periodic Stochastic Multi-Gradient Descent for Fast Multi-Objective Optimization</strong> studies a practical bottleneck in this setting. Gradient manipulation methods can produce good update directions by dynamically combining task gradients, but they often pay a high computational cost at every training iteration. PSMGD asks a simple question:</p>
+<blockquote>
+<p>If the dynamic task weights do not change much over short training intervals, do we really need to recompute them at every iteration?</p>
+</blockquote>
+<p>The answer proposed in the paper is no. PSMGD computes dynamic weights periodically, reuses them between recomputation steps, and still preserves strong convergence guarantees.</p>
+<p>Paper links:</p>
+<ul>
+<li>Paper HTML: <a target="_blank" rel="noopener" href="https://ar5iv.labs.arxiv.org/html/2412.10961">ar5iv version</a></li>
+<li>Extended version: <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2412.10961">arXiv:2412.10961</a></li>
+<li>Proceedings version: <a target="_blank" rel="noopener" href="https://ojs.aaai.org/index.php/AAAI/article/view/35482">AAAI 2025</a></li>
+<li>Code: <a target="_blank" rel="noopener" href="https://github.com/MarcuXu/PSMG">MarcuXu/PSMG</a></li>
+</ul>
+<h2 id="Why-Multi-Objective-Optimization-Is-Hard"><a href="#Why-Multi-Objective-Optimization-Is-Hard" class="headerlink" title="Why Multi-Objective Optimization Is Hard"></a>Why Multi-Objective Optimization Is Hard</h2><p>The most direct way to handle multiple losses is <strong>linear scalarization</strong>:</p>
+<div class="mathjax-display">
+$$
+\min_{\mathbf{x}}
+\sum_{s=1}^{S} \lambda_s f_s(\mathbf{x}),
+\quad
+\lambda_s \ge 0,
+\quad
+\sum_{s=1}^{S} \lambda_s = 1.
+$$
+</div>
+
+<p>This converts MOO into a standard single-objective problem. It is computationally cheap because one weighted loss can be backpropagated once.</p>
+<p>The weakness is that fixed weights can behave poorly when task gradients conflict. Let $\nabla f_i(\mathbf{x})$ and $\nabla f_j(\mathbf{x})$ be two objective gradients. If their inner product is negative,</p>
+<div class="mathjax-display">
+$$
+\nabla f_i(\mathbf{x})^\top \nabla f_j(\mathbf{x}) &lt; 0,
+$$
+</div>
+
+<p>then moving in the direction that helps one objective may hurt the other. This is common in multi-task learning: improving one task’s loss can temporarily damage another task’s loss.</p>
+<p>The more principled target is not a single optimum for one scalar loss, but a <strong>Pareto stationary</strong> point. A point $\mathbf{x}$ is Pareto stationary if there is no direction $\mathbf{d}$ that decreases every objective at once:</p>
+<div class="mathjax-display">
+$$
+\nabla f_s(\mathbf{x})^\top \mathbf{d} &lt; 0,
+\quad
+\forall s \in [S].
+$$
+</div>
+
+<p>This condition is important because exact Pareto optimality is generally too hard to seek directly in large non-convex models. Pareto stationarity is a practical first-order goal.</p>
+<h2 id="The-Standard-Gradient-Manipulation-View"><a href="#The-Standard-Gradient-Manipulation-View" class="headerlink" title="The Standard Gradient-Manipulation View"></a>The Standard Gradient-Manipulation View</h2><p>Multiple Gradient Descent Algorithm (MGDA) is a useful reference point. Given the gradients of all objectives, MGDA finds a convex combination with minimum norm:</p>
+<div class="mathjax-display">
+$$
+\boldsymbol{\lambda}^{*}(\mathbf{x})
+=
+\operatorname*{argmin}_{\boldsymbol{\lambda}}
+\left\|
+\sum_{s=1}^{S}
+\lambda_s \nabla f_s(\mathbf{x})
+\right\|^2,
+\quad
+\sum_{s=1}^{S} \lambda_s = 1,
+\quad
+\lambda_s \ge 0.
+$$
+</div>
+
+<p>The update direction is then</p>
+<div class="mathjax-display">
+$$
+\mathbf{d}
+=
+\sum_{s=1}^{S}
+\lambda_s^{*} \nabla f_s(\mathbf{x}).
+$$
+</div>
+
+<p>If $\mathbf{x}$ is not Pareto stationary, this type of direction can serve as a common descent direction. This is the main strength of gradient manipulation methods: they adapt weights according to the current gradient geometry rather than relying on static hand-tuned coefficients.</p>
+<p>The cost is the extra dynamic-weight computation. In many deep-learning systems, one must compute or approximate each task gradient, solve an additional optimization problem, combine the gradients, and then update the model. This can become expensive when:</p>
+<ul>
+<li>the number of objectives $S$ is large,</li>
+<li>the model dimension $d$ is large,</li>
+<li>the method recomputes dynamic weights at every iteration,</li>
+<li>the training loop is already bottlenecked by backpropagation.</li>
+</ul>
+<p>This is the bottleneck PSMGD targets.</p>
+<h2 id="The-Key-Observation-Behind-PSMGD"><a href="#The-Key-Observation-Behind-PSMGD" class="headerlink" title="The Key Observation Behind PSMGD"></a>The Key Observation Behind PSMGD</h2><p>The paper’s core observation is empirical and algorithmic:</p>
+<blockquote>
+<p>Dynamic weights often change slowly over short intervals.</p>
+</blockquote>
+<p>In the pedagogical Fonseca example, MGDA’s dynamic weights converge quickly and then stay stable. In the paper’s multi-task learning studies, the same idea appears at both epoch and iteration scales: the average dynamic weights are stable and show low variability.</p>
+<p>This suggests that recomputing $\boldsymbol{\lambda}_t$ at every iteration may be wasteful. If the current dynamic weights are close to the previous dynamic weights, we can reuse the old weights for several iterations and spend the saved computation on actual model updates.</p>
+<p>This is the central design idea of <strong>Periodic Stochastic Multi-Gradient Descent (PSMGD)</strong>.</p>
+<h2 id="Algorithmic-Architecture"><a href="#Algorithmic-Architecture" class="headerlink" title="Algorithmic Architecture"></a>Algorithmic Architecture</h2><p>PSMGD has three moving parts:</p>
+<ol>
+<li><strong>Periodic weight calculation</strong>: every $R$ iterations, solve the dynamic-weight problem.</li>
+<li><strong>Weight smoothing</strong>: mix the newly computed weights with the previous periodic weights.</li>
+<li><strong>Weight reuse</strong>: between periodic calculation steps, reuse the most recent weights and train with a weighted loss.</li>
+</ol>
+<p>The architecture can be read as:</p>
+<pre class="line-numbers language-text" data-language="text"><code class="language-text">Objective losses f_1, ..., f_S
+        |
+        v
+Compute task gradients when t % R == 0
+        |
+        v
+Solve dynamic-weight QP for lambda_hat_t
+        |
+        v
+Momentum smoothing: lambda_t = alpha_t lambda_{t-R} + (1 - alpha_t) lambda_hat_t
+        |
+        v
+Reuse lambda_t for intermediate iterations
+        |
+        v
+Weighted gradient direction d_t = sum_s lambda_{t,s} grad f_s
+        |
+        v
+Parameter update x_{t+1} = x_t - eta_t d_t<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>More formally, when $t \bmod R = 0$, PSMGD computes:</p>
+<div class="mathjax-display">
+$$
+\hat{\boldsymbol{\lambda}}_t^{*}
+\in
+\operatorname*{argmin}_{\boldsymbol{\lambda}}
+\left\|
+\sum_{s \in [S]}
+\lambda_s \nabla f_s(\mathbf{x}_t, \xi_t)
+\right\|^2,
+\quad
+\text{s.t.}
+\quad
+\sum_{s \in [S]} \lambda_s = 1,
+\quad
+\lambda_s \ge 0.
+$$
+</div>
+
+<p>Here $\xi_t$ denotes the stochastic mini-batch randomness. The computed weights are then smoothed:</p>
+<div class="mathjax-display">
+$$
+\boldsymbol{\lambda}_t
+=
+\alpha_t \boldsymbol{\lambda}_{t-R}
++
+(1-\alpha_t)\hat{\boldsymbol{\lambda}}_t^{*}.
+$$
+</div>
+
+<p>When $t \bmod R \ne 0$, PSMGD simply reuses the previous weights:</p>
+<div class="mathjax-display">
+$$
+\boldsymbol{\lambda}_t
+=
+\boldsymbol{\lambda}_{t-1}.
+$$
+</div>
+
+<p>Finally, it constructs the stochastic common direction:</p>
+<div class="mathjax-display">
+$$
+\mathbf{d}_t
+=
+\sum_{s \in [S]}
+\lambda_{t,s}
+\nabla f_s(\mathbf{x}_t, \xi_t),
+$$
+</div>
+
+<p>and updates the parameters:</p>
+<div class="mathjax-display">
+$$
+\mathbf{x}_{t+1}
+=
+\mathbf{x}_t - \eta_t \mathbf{d}_t.
+$$
+</div>
+
+<p>This is a small change in code structure but a large change in computational behavior. Most iterations no longer need to solve the dynamic-weight problem.</p>
+<h2 id="Pseudocode"><a href="#Pseudocode" class="headerlink" title="Pseudocode"></a>Pseudocode</h2><pre class="line-numbers language-text" data-language="text"><code class="language-text">Input: initial parameter x_0, learning rates eta_t, period R
+Initialize lambda_0
+
+for t = 0, 1, ..., T - 1:
+    if t mod R == 0:
+        compute stochastic gradients grad f_s(x_t, xi_t) for all objectives
+        solve the MGDA-style quadratic problem to obtain lambda_hat_t
+        lambda_t = alpha_t lambda_{t-R} + (1 - alpha_t) lambda_hat_t
+    else:
+        lambda_t = lambda_{t-1}
+
+    d_t = sum_s lambda_{t,s} grad f_s(x_t, xi_t)
+    x_{t+1} = x_t - eta_t d_t<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>The hyperparameter $R$ controls the trade-off:</p>
+<ul>
+<li>$R=1$ resembles standard dynamic gradient manipulation with frequent weight updates.</li>
+<li>Larger $R$ reduces dynamic-weight computation.</li>
+<li>If $R$ is too large, the reused weights may become stale.</li>
+</ul>
+<p>The main symbols are:</p>
+<ul>
+<li>$S$: number of objectives or tasks.</li>
+<li>$R$: period for recomputing the dynamic weights.</li>
+<li>$\eta_t$: learning rate at iteration $t$.</li>
+<li>$\boldsymbol{\lambda}_t$: objective-weight vector used at iteration $t$.</li>
+<li>$\alpha_t$: momentum coefficient for smoothing newly computed weights.</li>
+<li>$\xi_t$: stochastic mini-batch randomness.</li>
+</ul>
+<p>The algorithm is therefore best understood as a principled “lazy update” scheme for multi-objective gradient weights.</p>
+<h2 id="Why-Reusing-Weights-Can-Still-Work"><a href="#Why-Reusing-Weights-Can-Still-Work" class="headerlink" title="Why Reusing Weights Can Still Work"></a>Why Reusing Weights Can Still Work</h2><p>The risk of reusing $\boldsymbol{\lambda}$ is that the training landscape changes while the weights stay fixed. The paper handles this by analyzing two cases:</p>
+<ol>
+<li><strong>Calculation steps</strong>, where the current stochastic gradients influence the newly computed weights.</li>
+<li><strong>Reuse steps</strong>, where the weights are fixed from previous steps and are independent of the current mini-batch sampling.</li>
+</ol>
+<p>This distinction matters because the stochastic analysis is different in the two cases. At calculation steps, the weight vector depends on the same stochastic gradients used in the update. At reuse steps, the weight vector behaves like a fixed coefficient vector for the current stochastic gradient estimate.</p>
+<p>The paper defines the weighted objective:</p>
+<div class="mathjax-display">
+$$
+G(\mathbf{x}_t,\boldsymbol{\lambda}_t)
+=
+\sum_{s \in [S]}
+\lambda_{t,s} f_s(\mathbf{x}_t),
+$$
+</div>
+
+<p>with gradient:</p>
+<div class="mathjax-display">
+$$
+\nabla G(\mathbf{x}_t,\boldsymbol{\lambda}_t)
+=
+\sum_{s \in [S]}
+\lambda_{t,s} \nabla f_s(\mathbf{x}_t).
+$$
+</div>
+
+<p>The convergence analysis then studies progress under common assumptions such as smoothness, bounded stochastic-gradient variance, bounded weights, and bounded gradients.</p>
+<p>At a high level, the theory says:</p>
+<ul>
+<li>For <strong>strongly convex</strong> objectives, PSMGD reaches an $\mathcal{O}(1/T)$ convergence rate.</li>
+<li>For <strong>general convex</strong> objectives, PSMGD reaches an $\mathcal{O}(1/\sqrt{T})$ rate.</li>
+<li>For <strong>non-convex</strong> objectives, PSMGD also reaches an $\mathcal{O}(1/\sqrt{T})$ stationarity-style rate.</li>
+</ul>
+<p>These match state-of-the-art iteration rates for stochastic MOO methods, while reducing the number of expensive dynamic-weight computations.</p>
+<h2 id="Backpropagation-Complexity"><a href="#Backpropagation-Complexity" class="headerlink" title="Backpropagation Complexity"></a>Backpropagation Complexity</h2><p>Iteration complexity alone is not enough for MOO. Two methods can have the same iteration rate but very different per-iteration costs. For deep learning, the more relevant unit is often backpropagation.</p>
+<p>The paper introduces <strong>Backpropagation Complexity (BP complexity)</strong>:</p>
+<blockquote>
+<p>the total number of backpropagation operations required to reach a specified performance threshold $\epsilon$.</p>
+</blockquote>
+<p>This metric captures the practical cost of computing per-objective gradients. PSMGD’s main efficiency result is that periodic weight calculation reduces BP complexity by a factor related to $R$.</p>
+<p>For strongly convex functions, the paper reports:</p>
+<div class="mathjax-display">
+$$
+\mathcal{O}
+\left(
+\frac{S}{\epsilon R}
++
+\frac{R-1}{\epsilon R}
+\right).
+$$
+</div>
+
+<p>For general convex and non-convex functions, it reports:</p>
+<div class="mathjax-display">
+$$
+\mathcal{O}
+\left(
+\frac{S}{\epsilon^2 R}
++
+\frac{R-1}{\epsilon^2 R}
+\right).
+$$
+</div>
+
+<p>The interpretation is direct:</p>
+<ul>
+<li>The term involving $S$ comes from steps where all objective gradients are needed for dynamic-weight calculation.</li>
+<li>The term involving $R-1$ comes from reuse steps, which behave more like a weighted single-objective update.</li>
+<li>Increasing $R$ amortizes the expensive all-objective gradient computation.</li>
+</ul>
+<p>Most importantly, if $R = \Omega(S)$, the BP complexity becomes objective-independent in order:</p>
+<div class="mathjax-display">
+$$
+\mathcal{O}(1/\epsilon)
+\quad
+\text{for strongly convex functions},
+$$
+</div>
+
+<p>and</p>
+<div class="mathjax-display">
+$$
+\mathcal{O}(1/\epsilon^2)
+\quad
+\text{for general convex and non-convex functions}.
+$$
+</div>
+
+<p>This is the most important theoretical message of the paper: with a suitable update period, PSMGD can require the same order of backpropagation operations as classic SGD for single-objective learning.</p>
+<h2 id="Connection-to-Multi-Task-Learning"><a href="#Connection-to-Multi-Task-Learning" class="headerlink" title="Connection to Multi-Task Learning"></a>Connection to Multi-Task Learning</h2><p>In multi-task learning, a common model has shared parameters and task-specific heads. A typical training loss can be written as:</p>
+<div class="mathjax-display">
+$$
+\mathcal{L}(\theta)
+=
+\sum_{s=1}^{S}
+\lambda_s \mathcal{L}_s(\theta_{\mathrm{shared}}, \theta_s),
+$$
+</div>
+
+<p>where $\theta_{\mathrm{shared}}$ denotes shared parameters and $\theta_s$ denotes task-specific parameters.</p>
+<p>The difficult part is choosing $\lambda_s$. Static weights are simple but may ignore conflict. Fully dynamic weights are adaptive but costly. PSMGD sits between them:</p>
+<ul>
+<li>It preserves a gradient-aware dynamic weighting mechanism.</li>
+<li>It avoids recomputing the dynamic weights at every iteration.</li>
+<li>It uses periodic recomputation to keep the weights aligned with the current training state.</li>
+</ul>
+<p>This makes PSMGD especially natural for deep multi-task models where the main bottleneck is repeatedly computing and manipulating multiple task gradients.</p>
+<h2 id="Experimental-Results-in-Brief"><a href="#Experimental-Results-in-Brief" class="headerlink" title="Experimental Results in Brief"></a>Experimental Results in Brief</h2><p>The paper evaluates PSMGD mainly in multi-task learning settings, using datasets with 2 to 40 objectives:</p>
+<ul>
+<li>QM-9 for molecular property regression with 11 tasks.</li>
+<li>Multi-MNIST for two-task image classification.</li>
+<li>CelebA for 40-task facial attribute classification.</li>
+<li>NYU-v2 for dense prediction with segmentation, depth, and surface normal tasks.</li>
+<li>CityScapes for dense prediction with two tasks.</li>
+</ul>
+<p>The experimental section compares PSMGD with linear scalarization and many MOO or multi-task learning baselines, including MGDA, PCGrad, CAGrad, IMTL-G, NashMTL, FAMO, FairGrad, and SDMGrad. The paper reports final task quality using two aggregate metrics:</p>
+<div class="mathjax-display">
+$$
+\Delta m\%
+=
+\frac{1}{N}
+\sum_{n=1}^{N}
+(-1)^{\delta_n}
+\frac{M_{m,n}-M_{B,n}}{M_{B,n}}
+\times 100,
+$$
+</div>
+
+<p>where $M_{B,n}$ is the single-task baseline value for metric $n$, $M_{m,n}$ is method $m$’s value, and $\delta_n$ marks whether higher values are better. Lower $\Delta m%$ is better. The second metric is <strong>Mean Rank (MR)</strong>, the average rank of a method across task metrics; lower MR is also better.</p>
+<p>The main takeaway is not that PSMGD wins every single task metric. Instead, the message is more practical:</p>
+<ol>
+<li>PSMGD is competitive in final task quality and sometimes improves aggregate task metrics.</li>
+<li>It substantially reduces training time compared with classical gradient manipulation methods.</li>
+<li>It often reaches target loss thresholds earlier, especially in early training.</li>
+<li>It gives a strong performance-efficiency trade-off, which is exactly the design goal.</li>
+</ol>
+<p>For example, on QM-9, PSMGD has the shortest total time to reach the reported average-loss thresholds, even though linear scalarization has the cheapest per-epoch cost. On NYU-v2, PSMGD has strong dense-prediction convergence behavior and reaches several task-loss thresholds fastest among the compared methods.</p>
+<h2 id="What-I-Think-Is-the-Core-Principle"><a href="#What-I-Think-Is-the-Core-Principle" class="headerlink" title="What I Think Is the Core Principle"></a>What I Think Is the Core Principle</h2><p>The main principle behind PSMGD is:</p>
+<blockquote>
+<p>Do expensive coordination only when it is likely to matter.</p>
+</blockquote>
+<p>In MOO, gradient manipulation is a coordination mechanism among objectives. It decides how the objectives should negotiate an update direction. But if the negotiation result changes slowly, then renegotiating every iteration is unnecessary.</p>
+<p>PSMGD exploits this temporal structure. It does not discard dynamic weighting; it schedules it. This is why the method is simple but meaningful: it respects the geometry of multi-objective descent while reducing redundant computation.</p>
+<p>There is also a broader lesson for optimization algorithm design. A method can be theoretically elegant but practically slow if it optimizes the wrong unit of cost. PSMGD explicitly shifts attention from iteration count to backpropagation count, which is closer to the real cost in deep learning.</p>
+<h2 id="Limitations-and-Open-Questions"><a href="#Limitations-and-Open-Questions" class="headerlink" title="Limitations and Open Questions"></a>Limitations and Open Questions</h2><p>PSMGD introduces the period hyperparameter $R$, and this choice matters. If $R$ is too small, the method approaches ordinary dynamic gradient manipulation and saves less computation. If $R$ is too large, the reused weights may become stale and less aligned with the current gradients.</p>
+<p>The method also assumes that dynamic weights are sufficiently stable over short intervals. This is often reasonable in the studied settings, but it may be less reliable in highly non-stationary training regimes, rapidly changing curricula, reinforcement learning, or tasks whose losses change at very different speeds.</p>
+<p>Several natural extensions follow:</p>
+<ul>
+<li>Adaptive period selection: update weights when gradient conflict changes enough, not only every fixed $R$ steps.</li>
+<li>Preference-aware PSMGD: combine periodic weighting with user-specified trade-off preferences.</li>
+<li>Pareto set learning: use the efficiency gain to explore multiple trade-off solutions rather than one solution.</li>
+<li>Distributed or federated MOO: reduce communication and backpropagation cost when many objectives or clients are involved.</li>
+</ul>
+<h2 id="Takeaways"><a href="#Takeaways" class="headerlink" title="Takeaways"></a>Takeaways</h2><p>PSMGD is built around a clean observation: dynamic MOO weights are often stable enough to reuse. By periodically computing gradient-aware weights and reusing them between updates, the method preserves the benefits of gradient manipulation while reducing its most painful computational overhead.</p>
+<p>The paper’s central contributions are:</p>
+<ul>
+<li>a periodic stochastic multi-gradient algorithm for fast MOO,</li>
+<li>convergence guarantees for strongly convex, convex, and non-convex objectives,</li>
+<li>a BP complexity metric that better reflects deep-learning training cost,</li>
+<li>objective-independent BP complexity when $R$ scales with the number of objectives,</li>
+<li>empirical evidence that the method improves the performance-time trade-off in multi-task learning.</li>
+</ul>
+<p>In one sentence: <strong>PSMGD makes multi-objective gradient manipulation more practical by realizing that task-weight negotiation does not need to happen at every step.</strong></p>
 
                 
             </div>
@@ -442,7 +821,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://marcuxu.com/2023/03/01/dl-study/">https://marcuxu.com/2023/03/01/dl-study/</a>
+                    <a href="https://marcuxu.com/2026/06/04/psmgd-paper-explanation/">https://marcuxu.com/2026/06/04/psmgd-paper-explanation/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -527,40 +906,50 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
+                <i class="far fa-dot-circle"></i>&nbsp;Current
+            </div>
             <div class="card">
-                <a href="/2024/01/26/cisc-896-01/">
+                <a href="/2026/06/04/psmgd-paper-explanation/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="Non-academic notes from my PhD journey far from home" loading="lazy" decoding="async">
+                        <img src="/medias/featureimages/19.jpg" class="responsive-img" alt="Understanding PSMGD: Fast Multi-Objective Optimization with Periodic Gradient Weights" loading="lazy" decoding="async">
                         
-                        <span class="card-title">Non-academic notes from my PhD journey far from home</span>
+                        <span class="card-title">Understanding PSMGD: Fast Multi-Objective Optimization with Periodic Gradient Weights</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            A brief personal note about the difficult start to 2025, withdrawing from RIT, and keeping perspective during a PhD journey far from home.
+                            A technical explanation of PSMGD, covering multi-objective optimization, gradient conflict, periodic stochastic multi-gradient descent, convergence intuition, backpropagation complexity, and key empirical findings.
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2024-01-26
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2026-06-04
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/Clutter/" class="post-category">
-                                    Clutter
+                            <a href="/categories/Tech/" class="post-category">
+                                    Tech
                                 </a>
                             
                             
                         </span>
                     </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/AI-Tricks/">
+                        <span class="chip bg-color">AI_Tricks</span>
+                    </a>
+                    
                 </div>
                 
             </div>
@@ -572,24 +961,24 @@
                 Next&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2022/12/09/tiny-stories-of-ai/">
+                <a href="/2025/10/30/dl-reading-1029/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/13.jpg" class="responsive-img" alt="Tiny AI stories" loading="lazy" decoding="async">
+                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="Speaking the Language of Probability-From Classifier Evaluation to Generative Classifiers" loading="lazy" decoding="async">
                         
-                        <span class="card-title">Tiny AI stories</span>
+                        <span class="card-title">Speaking the Language of Probability-From Classifier Evaluation to Generative Classifiers</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            Personal notes on early ChatGPT and AI-tool experiences, including learning advice, coding productivity, academic writing, debugging, and end-to-end ML assignment workflows.
+                            Study notes connecting classifier accuracy, confusion matrices, precision, recall, ROC/AUC, generative classifiers, Gaussian class-conditional models, sigmoid/softmax, LDA, and QDA.
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-12-09
+                                <i class="far fa-clock fa-fw icon-date"></i>2025-10-30
                             </span>
                         <span class="publish-author">
                             
@@ -731,6 +1120,13 @@
 
 </main>
 
+
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script>
+    MathJax.Hub.Config({
+        tex2jax: {inlineMath: [['$', '$'], ['\\(', '\\)']]}
+    });
+</script>
 
 
 
