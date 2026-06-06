@@ -146,33 +146,34 @@
 
 .ai-browser-support-card {
   display: grid;
-  grid-template-columns: 68px minmax(0, 1fr);
+  grid-template-columns: 118px minmax(0, 1fr);
   gap: 13px;
   align-items: center;
   min-height: 108px;
   padding: 14px;
   background:
     linear-gradient(135deg, rgba(255, 255, 255, 0.97), rgba(236, 247, 250, 0.96)),
-    radial-gradient(circle at 16% 24%, rgba(178, 55, 55, 0.1), transparent 36%);
+    radial-gradient(circle at 18% 22%, rgba(22, 138, 173, 0.12), transparent 42%);
 }
 
-.ai-browser-emblem-frame {
-  width: 68px;
-  height: 74px;
+.ai-browser-visual-frame {
+  width: 118px;
+  height: 78px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  border: 1px solid rgba(183, 67, 67, 0.2);
+  overflow: hidden;
+  border: 1px solid rgba(22, 138, 173, 0.22);
   border-radius: 8px;
-  background: rgba(255, 255, 255, 0.84);
+  background: #071b2e;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.08);
 }
 
-.ai-browser-emblem-frame img {
-  width: 54px;
-  max-height: 64px;
+.ai-browser-visual-frame img {
+  width: 100%;
+  height: 100%;
   display: block;
-  object-fit: contain;
-  filter: drop-shadow(0 8px 14px rgba(93, 42, 42, 0.18));
+  object-fit: cover;
 }
 
 .ai-browser-support-card strong,
@@ -182,7 +183,7 @@
 }
 
 .ai-browser-support-card strong {
-  color: #8f312d;
+  color: var(--iias-blue);
   font-size: 0.82rem;
   line-height: 1.24;
   font-weight: 850;
@@ -653,17 +654,12 @@
   }
 
   .ai-browser-support-card {
-    grid-template-columns: 54px minmax(0, 1fr);
+    grid-template-columns: 82px minmax(0, 1fr);
   }
 
-  .ai-browser-emblem-frame {
-    width: 54px;
-    height: 60px;
-  }
-
-  .ai-browser-emblem-frame img {
-    width: 43px;
-    max-height: 52px;
+  .ai-browser-visual-frame {
+    width: 82px;
+    height: 58px;
   }
 
   .ai-browser-control-panel,
