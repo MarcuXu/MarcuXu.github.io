@@ -104,6 +104,29 @@ header nav .brand-logo .logo-span {
     margin: 0 auto;
 }
 
+#articleContent .mathjax-display,
+#articleContent .MathJax_Display {
+    max-width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    box-sizing: border-box;
+}
+
+#articleContent .mathjax-display {
+    margin: 1rem 0;
+    padding: 0.25rem 0 0.45rem;
+}
+
+#articleContent .MathJax_Display {
+    margin: 0.55rem 0 !important;
+}
+
+#articleContent .mathjax-display .MathJax,
+#articleContent .MathJax_Display .MathJax {
+    min-width: max-content;
+}
+
 #articleContent p {
     margin: 0.8rem 0 1.05rem;
     line-height: 1.9rem;
@@ -245,6 +268,10 @@ article .card .card-title,
 }
 
 @media only screen and (max-width: 601px) {
+    #artDetail .article-info {
+        padding: 12px 14px 4px;
+    }
+
     #artDetail .tag-cate {
         display: flex;
         flex-direction: column;
@@ -256,12 +283,46 @@ article .card .card-title,
         text-align: left !important;
     }
 
+    #artDetail .post-info {
+        justify-content: flex-start;
+        align-items: flex-start;
+        gap: 0.18rem 0;
+        margin-top: 0.25rem;
+        font-size: 0.88rem;
+        line-height: 1.5;
+        text-align: left;
+    }
+
+    #artDetail .post-info .info-break-policy {
+        float: none !important;
+        width: 100% !important;
+        margin: 0 0 0.16rem;
+        text-align: left;
+    }
+
+    #artDetail .post-info .post-read {
+        margin-left: 0;
+    }
+
+    #artDetail .article-card-content {
+        padding-right: 14px;
+        padding-left: 14px;
+    }
+
     #articleContent {
         max-width: 100%;
+        overflow-wrap: break-word;
     }
 
     #articleContent p {
         line-height: 1.8rem;
+    }
+
+    #articleContent .mathjax-display,
+    #articleContent .MathJax_Display {
+        width: 100%;
+        margin-right: 0 !important;
+        margin-left: 0 !important;
     }
 
     .toc-widget {
