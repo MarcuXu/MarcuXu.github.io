@@ -163,6 +163,52 @@
     }
   }
 
+  function getCitationUrlKey(url) {
+    var safeUrl = getSafeHttpUrl(url);
+    if (!safeUrl) {
+      return '';
+    }
+    try {
+      var parsed = new URL(safeUrl);
+      var removableParams = [];
+      parsed.hash = '';
+      parsed.searchParams.forEach(function (value, key) {
+        if (/^utm_/i.test(key) || /^(fbclid|gclid|mc_cid|mc_eid|igshid)$/i.test(key)) {
+          removableParams.push(key);
+        }
+      });
+      removableParams.forEach(function (key) {
+        parsed.searchParams.delete(key);
+      });
+      if (parsed.pathname.length > 1) {
+        parsed.pathname = parsed.pathname.replace(/\/+$/, '');
+      }
+      return parsed.toString().toLowerCase();
+    } catch (error) {
+      return safeUrl.toLowerCase();
+    }
+  }
+
+  function getDomainOnlyLabel(value) {
+    var text = String(value || '')
+      .trim()
+      .replace(/[，。；：！？,;:!?）\]]+$/g, '')
+      .replace(/^www\./i, '');
+    if (/^[a-z0-9-]+(\.[a-z0-9-]+)+$/i.test(text)) {
+      return text.toLowerCase();
+    }
+    return '';
+  }
+
+  function normalizeLinkLabel(label, url) {
+    var text = String(label || '').trim();
+    var labelUrl = getSafeHttpUrl(text);
+    if (labelUrl) {
+      return getDisplayDomain(labelUrl);
+    }
+    return getDomainOnlyLabel(text) || text || getDisplayDomain(url);
+  }
+
   function renderBasicInline(value) {
     return escapeHtml(value || '')
       .replace(/`([^`]+)`/g, '<code>$1</code>')
@@ -174,21 +220,84 @@
     if (!safeUrl) {
       return renderBasicInline(label || url);
     }
-    var display = (label || getDisplayDomain(safeUrl)).trim() || getDisplayDomain(safeUrl);
+    var display = normalizeLinkLabel(label, safeUrl);
     return '<a class="ai-browser-answer-link" href="' + escapeHtml(safeUrl) +
       '" target="_blank" rel="noopener noreferrer">' + renderBasicInline(display) + '</a>';
   }
 
   function addCitationCandidate(result, seen, title, url) {
     var safeUrl = getSafeHttpUrl(url);
-    if (!safeUrl || seen[safeUrl]) {
+    var displayTitle = normalizeLinkLabel(title, safeUrl);
+    var urlKey = getCitationUrlKey(safeUrl);
+    var titleDomainKey = getDisplayDomain(safeUrl).toLowerCase() + '|' + displayTitle.toLowerCase();
+    if (!safeUrl || seen[urlKey] || seen[titleDomainKey]) {
       return;
     }
-    seen[safeUrl] = true;
+    seen[urlKey] = true;
+    seen[titleDomainKey] = true;
     result.push({
-      title: (title || getDisplayDomain(safeUrl)).trim() || getDisplayDomain(safeUrl),
+      title: displayTitle,
       url: safeUrl
     });
+  }
+
+  function getStandaloneSourceKey(line) {
+    var text = String(line || '').trim()
+      .replace(/^[-*]\s+/, '')
+      .replace(/^\d+[.)]\s+/, '')
+      .trim();
+    var markdownOnly = text.match(/^\[([^\]\n]{1,180})\]\((https?:\/\/[^\s)]+)\)$/i);
+    var safeUrl;
+
+    if (markdownOnly) {
+      return getDisplayDomain(markdownOnly[2]).toLowerCase();
+    }
+
+    safeUrl = getSafeHttpUrl(text);
+    if (safeUrl) {
+      return getDisplayDomain(safeUrl).toLowerCase();
+    }
+
+    return getDomainOnlyLabel(text);
+  }
+
+  function isSourceHeadingLine(line) {
+    return /^(source|sources|reference|references|citations?|来源|参考来源|资料来源)\s*[:：]/i.test(String(line || '').trim());
+  }
+
+  function stripAnswerSourceArtifacts(text) {
+    var lines = String(text || '').replace(/\r\n/g, '\n').split('\n');
+    var result = [];
+    var inSourceBlock = false;
+
+    lines.forEach(function (line) {
+      var trimmed = line.trim();
+      var sourceKey = getStandaloneSourceKey(trimmed);
+
+      if (!trimmed) {
+        inSourceBlock = false;
+        result.push(line);
+        return;
+      }
+
+      if (isSourceHeadingLine(trimmed)) {
+        inSourceBlock = true;
+        return;
+      }
+
+      if (sourceKey) {
+        return;
+      }
+
+      if (inSourceBlock && /^(via|from)\s+/i.test(trimmed)) {
+        return;
+      }
+
+      inSourceBlock = false;
+      result.push(line);
+    });
+
+    return result.join('\n').replace(/\n{3,}/g, '\n\n').trim();
   }
 
   function extractCitationsFromText(text) {
@@ -224,9 +333,11 @@
         addCitationCandidate(result, seen, citation.title || citation.url, citation.url);
       }
     });
-    extractCitationsFromText(answerText).forEach(function (citation) {
-      addCitationCandidate(result, seen, citation.title, citation.url);
-    });
+    if (!result.length) {
+      extractCitationsFromText(answerText).forEach(function (citation) {
+        addCitationCandidate(result, seen, citation.title, citation.url);
+      });
+    }
     return result;
   }
 
@@ -276,6 +387,10 @@
     return /^\s*\|?\s*:?-{3,}:?\s*(\|\s*:?-{3,}:?\s*)+\|?\s*$/.test(line || '');
   }
 
+  function isHorizontalRule(line) {
+    return /^\s*(?:-{3,}|\*{3,}|_{3,})\s*$/.test(line || '');
+  }
+
   function splitTableRow(line) {
     return String(line || '')
       .replace(/^\s*\|/, '')
@@ -288,12 +403,61 @@
 
   function isBlockStart(line) {
     return /^\s*$/.test(line) ||
+      isHorizontalRule(line) ||
       /^#{1,4}\s+/.test(line) ||
       /^[-*]\s+/.test(line) ||
       /^\d+[.)]\s+/.test(line) ||
       /^>\s?/.test(line) ||
       /^```/.test(line) ||
       (line.indexOf('|') !== -1);
+  }
+
+  function canAutoListLine(line) {
+    var trimmed = String(line || '').trim();
+    return Boolean(trimmed) &&
+      !isBlockStart(trimmed) &&
+      !isSourceHeadingLine(trimmed) &&
+      !getStandaloneSourceKey(trimmed);
+  }
+
+  function shouldAutoListAfterIntro(lines, index) {
+    var intro = String(lines[index] || '').trim();
+    var count = 0;
+    var cursor = index + 1;
+
+    if (!/[：:]$/.test(intro)) {
+      return false;
+    }
+
+    while (cursor < lines.length && canAutoListLine(lines[cursor])) {
+      count += 1;
+      if (count >= 2) {
+        return true;
+      }
+      cursor += 1;
+    }
+
+    return false;
+  }
+
+  function renderAutoList(lines, startIndex) {
+    var intro = String(lines[startIndex] || '').trim();
+    var items = [];
+    var index = startIndex + 1;
+
+    while (index < lines.length && canAutoListLine(lines[index])) {
+      items.push(lines[index].trim().replace(/[;；]\s*$/, ''));
+      index += 1;
+    }
+
+    return {
+      html: '<p>' + renderInlineMarkdown(intro) + '</p><ul>' +
+        items.map(function (item) {
+          return '<li>' + renderInlineMarkdown(item) + '</li>';
+        }).join('') +
+        '</ul>',
+      nextIndex: index
+    };
   }
 
   function renderTable(lines, startIndex) {
@@ -325,7 +489,7 @@
   }
 
   function textToHtml(text) {
-    var lines = String(text || '').replace(/\r\n/g, '\n').split('\n');
+    var lines = stripAnswerSourceArtifacts(text).replace(/\r\n/g, '\n').split('\n');
     var html = [];
     var i = 0;
 
@@ -334,6 +498,12 @@
       var trimmed = line.trim();
 
       if (!trimmed) {
+        i += 1;
+        continue;
+      }
+
+      if (isHorizontalRule(trimmed)) {
+        html.push('<hr class="ai-browser-answer-divider">');
         i += 1;
         continue;
       }
@@ -393,6 +563,13 @@
           i += 1;
         }
         html.push('<blockquote>' + quotes.join('<br>') + '</blockquote>');
+        continue;
+      }
+
+      if (shouldAutoListAfterIntro(lines, i)) {
+        var autoList = renderAutoList(lines, i);
+        html.push(autoList.html);
+        i = autoList.nextIndex;
         continue;
       }
 

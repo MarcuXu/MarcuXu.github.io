@@ -21,9 +21,10 @@
   min-height: 100vh;
   padding: 92px 18px 50px;
   background:
-    linear-gradient(180deg, rgba(232, 244, 249, 0.82), rgba(248, 251, 252, 0.94)),
-    linear-gradient(120deg, rgba(5, 39, 58, 0.16), rgba(22, 138, 173, 0.05) 44%, rgba(7, 27, 46, 0.14)),
+    linear-gradient(180deg, rgba(232, 244, 249, 0.58), rgba(248, 251, 252, 0.86) 58%, rgba(248, 251, 252, 0.96)),
+    linear-gradient(120deg, rgba(5, 39, 58, 0.2), rgba(22, 138, 173, 0.08) 44%, rgba(7, 27, 46, 0.18)),
     url('/medias/ai-system/ai-analysis-visual.png') center/cover fixed;
+  background-blend-mode: normal, multiply, normal;
   color: var(--iias-ink);
   font-family: "Microsoft YaHei", "PingFang SC", "Noto Sans SC", Arial, sans-serif;
 }
@@ -34,8 +35,23 @@
   inset: 0;
   pointer-events: none;
   background:
-    linear-gradient(90deg, rgba(248, 251, 252, 0.9) 0%, rgba(248, 251, 252, 0.78) 48%, rgba(235, 246, 250, 0.42) 100%),
-    radial-gradient(circle at 82% 8%, rgba(22, 138, 173, 0.2), transparent 34%);
+    linear-gradient(90deg, rgba(248, 251, 252, 0.76) 0%, rgba(248, 251, 252, 0.55) 46%, rgba(235, 246, 250, 0.14) 100%),
+    radial-gradient(circle at 82% 8%, rgba(22, 138, 173, 0.16), transparent 34%);
+}
+
+.ai-browser-page::after {
+  content: '';
+  position: fixed;
+  top: 74px;
+  right: 0;
+  bottom: 0;
+  width: min(58vw, 880px);
+  pointer-events: none;
+  background: url('/medias/ai-system/ai-analysis-visual.png') center/cover no-repeat;
+  opacity: 0.34;
+  filter: saturate(1.2) contrast(1.08);
+  -webkit-mask-image: linear-gradient(90deg, transparent 0%, rgba(0, 0, 0, 0.78) 34%, #000 100%);
+  mask-image: linear-gradient(90deg, transparent 0%, rgba(0, 0, 0, 0.78) 34%, #000 100%);
 }
 
 .ai-browser-shell {
@@ -638,6 +654,14 @@
   color: var(--iias-muted);
 }
 
+.ai-browser-answer-divider {
+  width: 100%;
+  height: 1px;
+  margin: 2px 0;
+  border: 0;
+  background: linear-gradient(90deg, rgba(11, 95, 131, 0.08), rgba(11, 95, 131, 0.32), rgba(11, 95, 131, 0.08));
+}
+
 .ai-browser-code-block {
   overflow: auto;
   padding: 10px 12px;
@@ -786,6 +810,14 @@
   .ai-browser-page {
     padding-top: 90px;
     background-attachment: scroll;
+  }
+
+  .ai-browser-page::after {
+    top: 70px;
+    width: 100%;
+    opacity: 0.18;
+    -webkit-mask-image: linear-gradient(180deg, #000 0%, transparent 72%);
+    mask-image: linear-gradient(180deg, #000 0%, transparent 72%);
   }
 
   .ai-browser-hero {
