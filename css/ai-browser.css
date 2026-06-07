@@ -19,10 +19,10 @@
   position: relative;
   overflow: hidden;
   min-height: 100vh;
-  padding: 104px 18px 54px;
+  padding: 92px 18px 50px;
   background:
-    linear-gradient(180deg, rgba(235, 246, 250, 0.94), rgba(248, 251, 252, 0.99)),
-    linear-gradient(135deg, rgba(11, 95, 131, 0.1), rgba(22, 138, 173, 0.04)),
+    linear-gradient(180deg, rgba(232, 244, 249, 0.82), rgba(248, 251, 252, 0.94)),
+    linear-gradient(120deg, rgba(5, 39, 58, 0.16), rgba(22, 138, 173, 0.05) 44%, rgba(7, 27, 46, 0.14)),
     url('/medias/ai-system/ai-analysis-visual.png') center/cover fixed;
   color: var(--iias-ink);
   font-family: "Microsoft YaHei", "PingFang SC", "Noto Sans SC", Arial, sans-serif;
@@ -34,8 +34,8 @@
   inset: 0;
   pointer-events: none;
   background:
-    linear-gradient(90deg, rgba(248, 251, 252, 0.98) 0%, rgba(248, 251, 252, 0.88) 48%, rgba(235, 246, 250, 0.72) 100%),
-    radial-gradient(circle at 82% 10%, rgba(22, 138, 173, 0.14), transparent 35%);
+    linear-gradient(90deg, rgba(248, 251, 252, 0.9) 0%, rgba(248, 251, 252, 0.78) 48%, rgba(235, 246, 250, 0.42) 100%),
+    radial-gradient(circle at 82% 8%, rgba(22, 138, 173, 0.2), transparent 34%);
 }
 
 .ai-browser-shell {
@@ -47,10 +47,10 @@
 
 .ai-browser-hero {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 380px;
-  gap: 22px;
+  grid-template-columns: minmax(0, 1fr) 340px;
+  gap: 16px;
   align-items: stretch;
-  margin-bottom: 20px;
+  margin-bottom: 12px;
 }
 
 .ai-browser-hero-copy {
@@ -77,7 +77,7 @@
 .ai-browser-hero h1 {
   margin: 0;
   max-width: 840px;
-  font-size: 2.58rem;
+  font-size: 2.36rem;
   line-height: 1.12;
   font-weight: 850;
   letter-spacing: 0;
@@ -85,17 +85,17 @@
 
 .ai-browser-subtitle {
   max-width: 760px;
-  margin: 12px 0 0;
+  margin: 9px 0 0;
   color: var(--iias-muted);
-  font-size: 1rem;
-  line-height: 1.68;
+  font-size: 0.98rem;
+  line-height: 1.58;
 }
 
 .ai-browser-capability-row {
   display: flex;
   flex-wrap: wrap;
   gap: 9px;
-  margin-top: 16px;
+  margin-top: 11px;
 }
 
 .ai-browser-capability-row span {
@@ -119,23 +119,23 @@
 .ai-browser-credit-row {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
-  margin-top: 16px;
+  gap: 6px;
+  margin-top: 10px;
 }
 
 .ai-browser-credit-chip {
   display: inline-flex;
   align-items: center;
-  gap: 7px;
-  min-height: 34px;
-  padding: 0 10px;
+  gap: 6px;
+  min-height: 28px;
+  padding: 0 8px;
   border: 1px solid rgba(11, 95, 131, 0.16);
   border-radius: 8px;
   background: rgba(255, 255, 255, 0.72);
   color: var(--iias-muted);
-  font-size: 0.82rem;
+  font-size: 0.76rem;
   font-weight: 760;
-  box-shadow: 0 10px 22px rgba(18, 67, 90, 0.07);
+  box-shadow: 0 8px 18px rgba(18, 67, 90, 0.06);
 }
 
 .ai-browser-credit-chip i,
@@ -176,7 +176,7 @@
 
 .ai-browser-visual-frame {
   width: 100%;
-  height: 244px;
+  height: 204px;
   position: relative;
   display: flex;
   align-items: center;
@@ -287,7 +287,7 @@
 .ai-browser-app {
   display: grid;
   grid-template-columns: 280px minmax(560px, 1fr) 280px;
-  gap: 16px;
+  gap: 14px;
   align-items: start;
 }
 
@@ -580,6 +580,103 @@
   color: var(--iias-ink);
   line-height: 1.72;
   word-break: break-word;
+}
+
+.ai-browser-answer-body {
+  display: grid;
+  gap: 10px;
+  color: var(--iias-ink);
+  line-height: 1.72;
+  word-break: break-word;
+}
+
+.ai-browser-answer-body p,
+.ai-browser-answer-body ul,
+.ai-browser-answer-body ol,
+.ai-browser-answer-body blockquote,
+.ai-browser-answer-body pre {
+  margin: 0;
+}
+
+.ai-browser-answer-body h3,
+.ai-browser-answer-body h4 {
+  margin: 8px 0 0;
+  color: var(--iias-deep-blue);
+  font-size: 0.98rem;
+  line-height: 1.36;
+  font-weight: 850;
+  letter-spacing: 0;
+}
+
+.ai-browser-answer-body h4 {
+  font-size: 0.92rem;
+}
+
+.ai-browser-answer-body ul,
+.ai-browser-answer-body ol {
+  padding-left: 1.25rem;
+}
+
+.ai-browser-answer-body li + li {
+  margin-top: 4px;
+}
+
+.ai-browser-answer-body code {
+  padding: 2px 5px;
+  border-radius: 5px;
+  background: rgba(7, 27, 46, 0.08);
+  color: var(--iias-deep-blue);
+  font-size: 0.88em;
+  font-family: Consolas, "SFMono-Regular", Menlo, Monaco, monospace;
+}
+
+.ai-browser-answer-body blockquote {
+  padding: 9px 11px;
+  border-left: 3px solid var(--iias-cyan);
+  border-radius: 6px;
+  background: rgba(22, 138, 173, 0.08);
+  color: var(--iias-muted);
+}
+
+.ai-browser-code-block {
+  overflow: auto;
+  padding: 10px 12px;
+  border-radius: 8px;
+  background: #081f33;
+  color: #dff6ff;
+  font-size: 0.82rem;
+  line-height: 1.55;
+}
+
+.ai-browser-table-wrap {
+  overflow-x: auto;
+  border: 1px solid var(--iias-line);
+  border-radius: 8px;
+  background: #fff;
+}
+
+.ai-browser-answer-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 520px;
+}
+
+.ai-browser-answer-table th,
+.ai-browser-answer-table td {
+  padding: 9px 10px;
+  border-bottom: 1px solid var(--iias-line);
+  text-align: left;
+  vertical-align: top;
+}
+
+.ai-browser-answer-table th {
+  background: rgba(11, 95, 131, 0.08);
+  color: var(--iias-deep-blue);
+  font-weight: 850;
+}
+
+.ai-browser-answer-table tr:last-child td {
+  border-bottom: 0;
 }
 
 .ai-browser-message a.ai-browser-answer-link {

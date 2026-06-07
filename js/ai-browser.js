@@ -70,10 +70,10 @@
 
   function getNetworkErrorMessage(error) {
     if (error && error.name === 'AbortError') {
-      return '请求超时。请稍后重试；如问题较复杂，请在 Worker 中让 AI_BROWSER_CLIENT_TIMEOUT_MS 明显大于 OPENAI_TIMEOUT_MS。';
+      return '本次分析用时较长，系统已自动中止。建议缩小问题范围，或将复杂问题拆分为几个连续追问。';
     }
     if (error && /failed to fetch|networkerror/i.test(error.message || '')) {
-      return '网络请求未能完成。当前部署的 CORS 配置通常可用；若长时间等待后出现此提示，多数情况是浏览器或上游代理中断了请求。请刷新页面、确认 Worker 已部署最新脚本，并检查 AI_BROWSER_CLIENT_TIMEOUT_MS 是否大于 OPENAI_TIMEOUT_MS。';
+      return '网络请求未能完成。请刷新页面后重试；如果问题较复杂，建议降低推理深度或分阶段提问。';
     }
     return (error && error.message) || '请求失败。';
   }
@@ -99,9 +99,9 @@
 
     if (mode === 'research' && depth >= 3) {
       if (runtimeConfig.stabilityMode) {
-        return '深入研究综述会进行更强的证据比较；系统会自动控制检索范围，降低上游代理 524 超时风险。';
+        return '深入研究综述会加强证据比较、观点归纳与结论校验，并自动控制检索范围以保持响应稳定。';
       }
-      return '当前为扩展研判配置，答案更长但更容易触发上游代理超时；如遇 524，建议恢复稳定模式。';
+      return '当前为扩展研判配置，适合更长篇幅的综合分析；如响应较慢，可切换到均衡深度。';
     }
     if (mode === 'research') {
       return '研究综述会优先比较高质量来源，适合政策、技术、论文和行业问题。';
@@ -164,7 +164,9 @@
   }
 
   function renderBasicInline(value) {
-    return escapeHtml(value || '').replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+    return escapeHtml(value || '')
+      .replace(/`([^`]+)`/g, '<code>$1</code>')
+      .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
   }
 
   function buildAnswerLink(url, label) {
@@ -253,7 +255,7 @@
     return result;
   }
 
-  function textToHtml(text) {
+  function renderInlineMarkdown(text) {
     var source = String(text || '');
     var markdownLinkPattern = /\[([^\]\n]{1,160})\]\((https?:\/\/[^\s)]+)\)/gi;
     var result = '';
@@ -267,7 +269,143 @@
     }
 
     result += renderBareLinks(source.slice(lastIndex));
-    return result.replace(/\n/g, '<br>');
+    return result;
+  }
+
+  function isTableSeparator(line) {
+    return /^\s*\|?\s*:?-{3,}:?\s*(\|\s*:?-{3,}:?\s*)+\|?\s*$/.test(line || '');
+  }
+
+  function splitTableRow(line) {
+    return String(line || '')
+      .replace(/^\s*\|/, '')
+      .replace(/\|\s*$/, '')
+      .split('|')
+      .map(function (cell) {
+        return cell.trim();
+      });
+  }
+
+  function isBlockStart(line) {
+    return /^\s*$/.test(line) ||
+      /^#{1,4}\s+/.test(line) ||
+      /^[-*]\s+/.test(line) ||
+      /^\d+[.)]\s+/.test(line) ||
+      /^>\s?/.test(line) ||
+      /^```/.test(line) ||
+      (line.indexOf('|') !== -1);
+  }
+
+  function renderTable(lines, startIndex) {
+    var header = splitTableRow(lines[startIndex]);
+    var rows = [];
+    var index = startIndex + 2;
+
+    while (index < lines.length && lines[index].indexOf('|') !== -1 && lines[index].trim()) {
+      rows.push(splitTableRow(lines[index]));
+      index += 1;
+    }
+
+    return {
+      html: [
+        '<div class="ai-browser-table-wrap"><table class="ai-browser-answer-table"><thead><tr>',
+        header.map(function (cell) {
+          return '<th>' + renderInlineMarkdown(cell) + '</th>';
+        }).join(''),
+        '</tr></thead><tbody>',
+        rows.map(function (row) {
+          return '<tr>' + row.map(function (cell) {
+            return '<td>' + renderInlineMarkdown(cell) + '</td>';
+          }).join('') + '</tr>';
+        }).join(''),
+        '</tbody></table></div>'
+      ].join(''),
+      nextIndex: index
+    };
+  }
+
+  function textToHtml(text) {
+    var lines = String(text || '').replace(/\r\n/g, '\n').split('\n');
+    var html = [];
+    var i = 0;
+
+    while (i < lines.length) {
+      var line = lines[i];
+      var trimmed = line.trim();
+
+      if (!trimmed) {
+        i += 1;
+        continue;
+      }
+
+      if (/^```/.test(trimmed)) {
+        var codeLines = [];
+        i += 1;
+        while (i < lines.length && !/^```/.test(lines[i].trim())) {
+          codeLines.push(lines[i]);
+          i += 1;
+        }
+        if (i < lines.length) {
+          i += 1;
+        }
+        html.push('<pre class="ai-browser-code-block"><code>' + escapeHtml(codeLines.join('\n')) + '</code></pre>');
+        continue;
+      }
+
+      if (/^#{1,4}\s+/.test(trimmed)) {
+        var level = Math.min(4, Math.max(3, (trimmed.match(/^#+/) || ['###'])[0].length + 2));
+        html.push('<h' + level + '>' + renderInlineMarkdown(trimmed.replace(/^#{1,4}\s+/, '')) + '</h' + level + '>');
+        i += 1;
+        continue;
+      }
+
+      if (i + 1 < lines.length && line.indexOf('|') !== -1 && isTableSeparator(lines[i + 1])) {
+        var table = renderTable(lines, i);
+        html.push(table.html);
+        i = table.nextIndex;
+        continue;
+      }
+
+      if (/^[-*]\s+/.test(trimmed)) {
+        var unordered = [];
+        while (i < lines.length && /^[-*]\s+/.test(lines[i].trim())) {
+          unordered.push('<li>' + renderInlineMarkdown(lines[i].trim().replace(/^[-*]\s+/, '')) + '</li>');
+          i += 1;
+        }
+        html.push('<ul>' + unordered.join('') + '</ul>');
+        continue;
+      }
+
+      if (/^\d+[.)]\s+/.test(trimmed)) {
+        var ordered = [];
+        while (i < lines.length && /^\d+[.)]\s+/.test(lines[i].trim())) {
+          ordered.push('<li>' + renderInlineMarkdown(lines[i].trim().replace(/^\d+[.)]\s+/, '')) + '</li>');
+          i += 1;
+        }
+        html.push('<ol>' + ordered.join('') + '</ol>');
+        continue;
+      }
+
+      if (/^>\s?/.test(trimmed)) {
+        var quotes = [];
+        while (i < lines.length && /^>\s?/.test(lines[i].trim())) {
+          quotes.push(renderInlineMarkdown(lines[i].trim().replace(/^>\s?/, '')));
+          i += 1;
+        }
+        html.push('<blockquote>' + quotes.join('<br>') + '</blockquote>');
+        continue;
+      }
+
+      var paragraph = [trimmed];
+      i += 1;
+      while (i < lines.length && lines[i].trim() && !isBlockStart(lines[i])) {
+        paragraph.push(lines[i].trim());
+        i += 1;
+      }
+      html.push('<p>' + renderInlineMarkdown(paragraph.join(' ')) + '</p>');
+    }
+
+    return html.join('');
   }
 
   function renderMessages() {
@@ -303,7 +441,7 @@
         '<div class="ai-browser-message-icon"><i class="' + icon + '"></i></div>',
         '<div class="ai-browser-message-content">',
         '<h2>' + title + '</h2>',
-        '<p>' + textToHtml(message.content) + '</p>',
+        '<div class="ai-browser-answer-body">' + textToHtml(message.content) + '</div>',
         '</div>',
         '</article>'
       ].join('');
