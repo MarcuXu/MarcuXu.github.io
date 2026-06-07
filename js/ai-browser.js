@@ -13,7 +13,7 @@
     maxQueryChars: 2000,
     maxHistoryTurns: 8,
     historyMessageChars: 2200,
-    requestTimeoutMs: 120000
+    requestTimeoutMs: 180000
   };
 
   var tokenStorageKey = 'marcuxu.iias.accessToken';
@@ -47,13 +47,13 @@
   function fetchWithTimeout(url, options, timeoutMs) {
     var controller = window.AbortController ? new AbortController() : null;
     var timer = null;
-    var requestOptions = options || {};
+    var requestOptions = Object.assign({}, options || {});
 
     if (controller) {
       requestOptions.signal = controller.signal;
       timer = window.setTimeout(function () {
         controller.abort();
-      }, timeoutMs || runtimeConfig.requestTimeoutMs || 120000);
+      }, timeoutMs || runtimeConfig.requestTimeoutMs || 180000);
     }
 
     return fetch(url, requestOptions).finally(function () {
@@ -65,10 +65,10 @@
 
   function getNetworkErrorMessage(error) {
     if (error && error.name === 'AbortError') {
-      return '请求超时。请稍后重试，或在 Worker 中适当提高 OPENAI_TIMEOUT_MS / AI_BROWSER_CLIENT_TIMEOUT_MS。';
+      return '请求超时。请稍后重试；如问题较复杂，请在 Worker 中让 AI_BROWSER_CLIENT_TIMEOUT_MS 明显大于 OPENAI_TIMEOUT_MS。';
     }
     if (error && /failed to fetch|networkerror/i.test(error.message || '')) {
-      return '网络请求失败。常见原因是 Worker 尚未部署成功、当前页面域名未加入 ALLOWED_ORIGINS、浏览器本地预览端口未被 CORS 允许，或上游代理超时。请先刷新页面并确认 Worker Dashboard 中的变量已保存。';
+      return '网络请求未能完成。当前部署的 CORS 配置通常可用；若长时间等待后出现此提示，多数情况是浏览器或上游代理中断了请求。请刷新页面、确认 Worker 已部署最新脚本，并检查 AI_BROWSER_CLIENT_TIMEOUT_MS 是否大于 OPENAI_TIMEOUT_MS。';
     }
     return (error && error.message) || '请求失败。';
   }
@@ -127,6 +127,57 @@
     var display = (label || getDisplayDomain(safeUrl)).trim() || getDisplayDomain(safeUrl);
     return '<a class="ai-browser-answer-link" href="' + escapeHtml(safeUrl) +
       '" target="_blank" rel="noopener noreferrer">' + renderBasicInline(display) + '</a>';
+  }
+
+  function addCitationCandidate(result, seen, title, url) {
+    var safeUrl = getSafeHttpUrl(url);
+    if (!safeUrl || seen[safeUrl]) {
+      return;
+    }
+    seen[safeUrl] = true;
+    result.push({
+      title: (title || getDisplayDomain(safeUrl)).trim() || getDisplayDomain(safeUrl),
+      url: safeUrl
+    });
+  }
+
+  function extractCitationsFromText(text) {
+    var source = String(text || '');
+    var result = [];
+    var seen = {};
+    var markdownLinkPattern = /\[([^\]\n]{1,160})\]\((https?:\/\/[^\s)]+)\)/gi;
+    var bareUrlPattern = /https?:\/\/[^\s<>()]+/gi;
+    var withoutMarkdown = source;
+    var match;
+
+    while ((match = markdownLinkPattern.exec(source)) !== null) {
+      addCitationCandidate(result, seen, match[1], match[2]);
+    }
+
+    withoutMarkdown = withoutMarkdown.replace(markdownLinkPattern, ' ');
+    while ((match = bareUrlPattern.exec(withoutMarkdown)) !== null) {
+      var rawUrl = match[0];
+      while (/[.,;:!?，。；：！？）\]]$/.test(rawUrl)) {
+        rawUrl = rawUrl.slice(0, -1);
+      }
+      addCitationCandidate(result, seen, getDisplayDomain(rawUrl), rawUrl);
+    }
+
+    return result;
+  }
+
+  function normalizeCitations(citations, answerText) {
+    var result = [];
+    var seen = {};
+    (citations || []).forEach(function (citation) {
+      if (citation) {
+        addCitationCandidate(result, seen, citation.title || citation.url, citation.url);
+      }
+    });
+    extractCitationsFromText(answerText).forEach(function (citation) {
+      addCitationCandidate(result, seen, citation.title, citation.url);
+    });
+    return result;
   }
 
   function renderBareLinks(value) {
@@ -212,12 +263,17 @@
     updateMetrics();
   }
 
-  function renderCitations(citations) {
+  function renderCitations(citations, answerText) {
     if (!citationsBox) {
       return;
     }
-    latestCitations = citations || [];
-    if (!citationsInput || !citationsInput.checked || !latestCitations.length) {
+    latestCitations = normalizeCitations(citations, answerText || '');
+    if (citationsInput && !citationsInput.checked) {
+      citationsBox.innerHTML = '<p class="ai-browser-muted">来源显示已关闭。</p>';
+      updateMetrics();
+      return;
+    }
+    if (!latestCitations.length) {
       citationsBox.innerHTML = '<p class="ai-browser-muted">最新回答未返回可展示的来源链接。</p>';
       updateMetrics();
       return;
@@ -472,7 +528,7 @@
     setStatus('分析中', 'loading');
     submitButton.disabled = true;
     addAssistantMessage('正在结合联网证据与最近会话上下文进行分析...', false, true);
-    renderCitations([]);
+    renderCitations([], '');
 
     try {
       var requestHeaders = {
@@ -500,13 +556,13 @@
 
       replacePendingAssistant(data.answer || '接口未返回可展示的回答。');
       latestAnswer = data.answer || '';
-      renderCitations(data.citations || []);
+      renderCitations(data.citations || [], latestAnswer);
       saveSession();
       setStatus('已完成', 'idle');
       resetTurnstile();
     } catch (error) {
       replacePendingAssistant(getNetworkErrorMessage(error), true);
-      renderCitations([]);
+      renderCitations([], '');
       saveSession();
       setStatus('出错', 'error');
       resetTurnstile();
@@ -550,7 +606,7 @@
       queryInput.value = '';
     }
     renderMessages();
-    renderCitations([]);
+    renderCitations([], '');
     setStatus('就绪', 'idle');
   }
 
@@ -592,7 +648,7 @@
   }
   if (citationsInput) {
     citationsInput.addEventListener('change', function () {
-      renderCitations(latestCitations);
+      renderCitations(latestCitations, latestAnswer);
     });
   }
 

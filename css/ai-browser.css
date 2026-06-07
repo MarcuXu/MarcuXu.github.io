@@ -145,21 +145,21 @@
 }
 
 .ai-browser-support-card {
-  display: grid;
-  grid-template-columns: 118px minmax(0, 1fr);
-  gap: 13px;
-  align-items: center;
-  min-height: 108px;
-  padding: 14px;
+  min-height: 0;
+  padding: 10px;
   background:
     linear-gradient(135deg, rgba(255, 255, 255, 0.97), rgba(236, 247, 250, 0.96)),
     radial-gradient(circle at 18% 22%, rgba(22, 138, 173, 0.12), transparent 42%);
 }
 
+.ai-browser-visual-card {
+  display: block;
+}
+
 .ai-browser-visual-frame {
-  width: 118px;
-  height: 78px;
-  display: inline-flex;
+  width: 100%;
+  height: 172px;
+  display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
@@ -174,35 +174,6 @@
   height: 100%;
   display: block;
   object-fit: cover;
-}
-
-.ai-browser-support-card strong,
-.ai-browser-support-card span,
-.ai-browser-support-card small {
-  display: block;
-}
-
-.ai-browser-support-card strong {
-  color: var(--iias-blue);
-  font-size: 0.82rem;
-  line-height: 1.24;
-  font-weight: 850;
-}
-
-.ai-browser-support-card span {
-  margin-top: 4px;
-  color: var(--iias-deep-blue);
-  font-size: 1.02rem;
-  line-height: 1.45;
-  font-weight: 850;
-}
-
-.ai-browser-support-card small {
-  margin-top: 5px;
-  color: rgba(92, 113, 128, 0.86);
-  font-size: 0.69rem;
-  line-height: 1.35;
-  font-weight: 720;
 }
 
 .ai-browser-status {
@@ -653,13 +624,8 @@
     justify-content: flex-start;
   }
 
-  .ai-browser-support-card {
-    grid-template-columns: 82px minmax(0, 1fr);
-  }
-
   .ai-browser-visual-frame {
-    width: 82px;
-    height: 58px;
+    height: 126px;
   }
 
   .ai-browser-control-panel,
