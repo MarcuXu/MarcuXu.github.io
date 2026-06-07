@@ -333,12 +333,16 @@
 
 </header>
 
-    <link rel="stylesheet" href="/css/ai-browser.css?v=20260607a">
+    <link rel="stylesheet" href="/css/ai-browser.css?v=20260608a">
 
 <main id="ai-browser-page" class="ai-browser-page">
     <section class="ai-browser-shell">
         <header class="ai-browser-hero">
             <div class="ai-browser-hero-copy">
+                <div class="ai-browser-kicker">
+                    <i class="fas fa-satellite-dish"></i>
+                    <span>AI System / Intelligent Analysis Console</span>
+                </div>
                 <h1>智能信息分析系统</h1>
                 <p class="ai-browser-subtitle">面向全球公开信息研判、跨区域线索梳理与复杂问题分析的智能控制台。系统内置多智能体协同提问、联网证据筛选、来源可信度追踪与答案优化机制，能够在海量信息中快速形成结构化、可追溯、可继续追问的综合研判结果。</p>
                 <div class="ai-browser-capability-row" aria-label="系统能力">
@@ -368,7 +372,12 @@
             <div class="ai-browser-status-panel">
                 <div class="ai-browser-support-card ai-browser-visual-card" aria-label="智能信息分析系统视觉图">
                     <div class="ai-browser-visual-frame">
-                        <img src="/medias/ai-system/ai-analysis-visual.png" alt="智能信息分析系统视觉图">
+                        <img src="/medias/ai-system/ai-analysis-visual.png" alt="智能信息分析系统视觉图" decoding="async">
+                        <div class="ai-browser-visual-overlay" aria-hidden="true">
+                            <span><i class="fas fa-search-location"></i> 全域检索</span>
+                            <span><i class="fas fa-project-diagram"></i> 证据链路</span>
+                            <span><i class="fas fa-shield-alt"></i> 风险校验</span>
+                        </div>
                     </div>
                 </div>
                 <div class="ai-browser-status" data-status="idle">
@@ -422,6 +431,11 @@
                         <span>均衡</span>
                         <span>深入</span>
                     </div>
+                </div>
+
+                <div id="aiBrowserProfileHint" class="ai-browser-profile-hint" aria-live="polite">
+                    <i class="fas fa-tachometer-alt"></i>
+                    <span>均衡研判配置，适合多数复杂问题。</span>
                 </div>
 
                 <div class="ai-browser-field">
@@ -496,7 +510,7 @@
         configEndpoint: 'https://marcuxu-ai-browser-api.2596785.workers.dev/config'
     };
 </script>
-<script src="/js/ai-browser.js?v=20260607a" defer></script>
+<script src="/js/ai-browser.js?v=20260608a" defer></script>
 
 
     <footer class="page-footer bg-color">

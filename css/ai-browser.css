@@ -10,31 +10,47 @@
   --iias-cyan: #168aad;
   --iias-green: #28745d;
   --iias-red: #b74343;
+  --iias-gold: #b98d3f;
+  --iias-dark: #071b2e;
   --iias-shadow: 0 22px 58px rgba(17, 55, 75, 0.14);
 }
 
 .ai-browser-page {
+  position: relative;
+  overflow: hidden;
   min-height: 100vh;
   padding: 104px 18px 54px;
   background:
-    linear-gradient(180deg, rgba(235, 246, 250, 0.97), rgba(248, 251, 252, 0.99)),
-    linear-gradient(135deg, rgba(11, 95, 131, 0.08), rgba(22, 138, 173, 0.04)),
-    url('/medias/banner/0.jpg') center/cover fixed;
+    linear-gradient(180deg, rgba(235, 246, 250, 0.94), rgba(248, 251, 252, 0.99)),
+    linear-gradient(135deg, rgba(11, 95, 131, 0.1), rgba(22, 138, 173, 0.04)),
+    url('/medias/ai-system/ai-analysis-visual.png') center/cover fixed;
   color: var(--iias-ink);
   font-family: "Microsoft YaHei", "PingFang SC", "Noto Sans SC", Arial, sans-serif;
 }
 
+.ai-browser-page::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(90deg, rgba(248, 251, 252, 0.98) 0%, rgba(248, 251, 252, 0.88) 48%, rgba(235, 246, 250, 0.72) 100%),
+    radial-gradient(circle at 82% 10%, rgba(22, 138, 173, 0.14), transparent 35%);
+}
+
 .ai-browser-shell {
+  position: relative;
+  z-index: 1;
   width: min(1280px, 100%);
   margin: 0 auto;
 }
 
 .ai-browser-hero {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 330px;
-  gap: 18px;
+  grid-template-columns: minmax(0, 1fr) 380px;
+  gap: 22px;
   align-items: stretch;
-  margin-bottom: 18px;
+  margin-bottom: 20px;
 }
 
 .ai-browser-hero-copy {
@@ -45,21 +61,23 @@
 .ai-browser-kicker {
   display: inline-flex;
   align-items: center;
+  gap: 8px;
   margin: 0 0 10px;
-  padding: 5px 9px;
+  padding: 6px 10px;
   border: 1px solid rgba(22, 138, 173, 0.22);
   border-radius: 8px;
-  background: rgba(22, 138, 173, 0.09);
+  background: rgba(255, 255, 255, 0.74);
   color: var(--iias-blue);
   font-size: 0.78rem;
   font-weight: 800;
   letter-spacing: 0;
+  box-shadow: 0 10px 24px rgba(18, 67, 90, 0.08);
 }
 
 .ai-browser-hero h1 {
   margin: 0;
   max-width: 840px;
-  font-size: 2.46rem;
+  font-size: 2.58rem;
   line-height: 1.12;
   font-weight: 850;
   letter-spacing: 0;
@@ -158,7 +176,8 @@
 
 .ai-browser-visual-frame {
   width: 100%;
-  height: 172px;
+  height: 244px;
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -174,6 +193,37 @@
   height: 100%;
   display: block;
   object-fit: cover;
+}
+
+.ai-browser-visual-overlay {
+  position: absolute;
+  left: 12px;
+  right: 12px;
+  bottom: 12px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 7px;
+}
+
+.ai-browser-visual-overlay span {
+  min-width: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  min-height: 30px;
+  padding: 0 8px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 8px;
+  background: rgba(7, 27, 46, 0.72);
+  color: rgba(255, 255, 255, 0.92);
+  font-size: 0.72rem;
+  font-weight: 820;
+  white-space: nowrap;
+}
+
+.ai-browser-visual-overlay i {
+  color: #7ed8ef;
 }
 
 .ai-browser-status {
@@ -236,7 +286,7 @@
 
 .ai-browser-app {
   display: grid;
-  grid-template-columns: 300px minmax(0, 1fr) 310px;
+  grid-template-columns: 280px minmax(560px, 1fr) 280px;
   gap: 16px;
   align-items: start;
 }
@@ -351,6 +401,33 @@
   font-weight: 700;
 }
 
+.ai-browser-profile-hint {
+  display: grid;
+  grid-template-columns: 30px minmax(0, 1fr);
+  gap: 9px;
+  align-items: center;
+  margin: -4px 0 17px;
+  padding: 11px;
+  border: 1px solid rgba(22, 138, 173, 0.18);
+  border-radius: 8px;
+  background: linear-gradient(135deg, rgba(238, 248, 251, 0.92), rgba(255, 255, 255, 0.82));
+  color: var(--iias-muted);
+  font-size: 0.8rem;
+  line-height: 1.45;
+  font-weight: 760;
+}
+
+.ai-browser-profile-hint i {
+  width: 30px;
+  height: 30px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  background: rgba(11, 95, 131, 0.1);
+  color: var(--iias-blue);
+}
+
 .ai-browser-toggle {
   display: flex !important;
   align-items: center;
@@ -438,8 +515,14 @@
   transform: none;
 }
 
+.ai-browser-icon-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.48;
+  transform: none;
+}
+
 .ai-browser-messages {
-  height: min(58vh, 620px);
+  height: min(60vh, 660px);
   min-height: 440px;
   overflow: auto;
   display: grid;
@@ -518,6 +601,31 @@
 
 .ai-browser-message-pending {
   opacity: 0.78;
+  position: relative;
+}
+
+.ai-browser-message-pending::after {
+  content: '';
+  width: 34px;
+  height: 3px;
+  position: absolute;
+  left: 59px;
+  bottom: 8px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, rgba(22, 138, 173, 0.12), rgba(22, 138, 173, 0.72), rgba(22, 138, 173, 0.12));
+  animation: aiBrowserPulse 1.25s ease-in-out infinite;
+}
+
+@keyframes aiBrowserPulse {
+  0%,
+  100% {
+    opacity: 0.35;
+    transform: scaleX(0.65);
+  }
+  50% {
+    opacity: 1;
+    transform: scaleX(1);
+  }
 }
 
 .ai-browser-composer {
@@ -566,7 +674,7 @@
   flex: 0 0 auto;
 }
 
-@media only screen and (max-width: 1120px) {
+@media only screen and (max-width: 1280px) {
   .ai-browser-app {
     grid-template-columns: 280px minmax(0, 1fr);
   }
@@ -580,6 +688,7 @@
 @media only screen and (max-width: 900px) {
   .ai-browser-page {
     padding-top: 90px;
+    background-attachment: scroll;
   }
 
   .ai-browser-hero {
@@ -596,8 +705,8 @@
 
   .ai-browser-messages {
     height: auto;
-    min-height: 360px;
-    max-height: 62vh;
+    min-height: 320px;
+    max-height: none;
   }
 }
 
@@ -625,7 +734,26 @@
   }
 
   .ai-browser-visual-frame {
-    height: 126px;
+    height: auto;
+    aspect-ratio: 1693 / 929;
+  }
+
+  .ai-browser-visual-frame img {
+    object-fit: contain;
+  }
+
+  .ai-browser-visual-overlay {
+    left: 8px;
+    right: 8px;
+    bottom: 8px;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 4px;
+  }
+
+  .ai-browser-visual-overlay span {
+    min-height: 26px;
+    padding: 0 5px;
+    font-size: 0.64rem;
   }
 
   .ai-browser-control-panel,

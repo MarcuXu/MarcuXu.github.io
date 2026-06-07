@@ -13,14 +13,18 @@
     maxQueryChars: 2000,
     maxHistoryTurns: 8,
     historyMessageChars: 2200,
-    requestTimeoutMs: 180000
+    requestTimeoutMs: 180000,
+    stabilityMode: true,
+    usePreviousResponseId: false
   };
 
   var tokenStorageKey = 'marcuxu.iias.accessToken';
   var sessionStorageKey = 'marcuxu.iias.session';
+  var responseIdStorageKey = 'marcuxu.iias.previousResponseId';
   var messages = [];
   var latestAnswer = '';
   var latestCitations = [];
+  var latestResponseId = window.sessionStorage.getItem(responseIdStorageKey) || '';
   var turnstileWidgetId = null;
   var turnstileToken = '';
 
@@ -43,6 +47,7 @@
   var turnstileBox = document.getElementById('aiBrowserTurnstile');
   var turnCount = document.getElementById('aiBrowserTurnCount');
   var sourceCount = document.getElementById('aiBrowserSourceCount');
+  var profileHint = document.getElementById('aiBrowserProfileHint');
 
   function fetchWithTimeout(url, options, timeoutMs) {
     var controller = window.AbortController ? new AbortController() : null;
@@ -79,6 +84,49 @@
     }
     if (statusBox) {
       statusBox.setAttribute('data-status', status || 'idle');
+    }
+  }
+
+  function updateCopyState() {
+    if (copyButton) {
+      copyButton.disabled = !latestAnswer;
+    }
+  }
+
+  function getProfileHintText() {
+    var mode = modeInput ? modeInput.value : 'search';
+    var depth = depthInput ? Number(depthInput.value || 2) : 2;
+
+    if (mode === 'research' && depth >= 3) {
+      if (runtimeConfig.stabilityMode) {
+        return '深入研究综述会进行更强的证据比较；系统会自动控制检索范围，降低上游代理 524 超时风险。';
+      }
+      return '当前为扩展研判配置，答案更长但更容易触发上游代理超时；如遇 524，建议恢复稳定模式。';
+    }
+    if (mode === 'research') {
+      return '研究综述会优先比较高质量来源，适合政策、技术、论文和行业问题。';
+    }
+    if (mode === 'explain' && depth >= 3) {
+      return '深入概念解释会强调结构、机制和边界条件，必要时补充最新来源。';
+    }
+    if (mode === 'explain') {
+      return '概念解释会优先给出清晰定义、关键逻辑和必要例子。';
+    }
+    if (depth >= 3) {
+      return '深入快速检索会给出更完整的证据归纳，但仍保持较短检索链路。';
+    }
+    if (depth <= 1) {
+      return '简要快速检索会优先返回直接结论和少量关键来源。';
+    }
+    return '均衡研判配置，适合多数复杂问题。';
+  }
+
+  function updateProfileHint() {
+    if (profileHint) {
+      var textNode = profileHint.querySelector('span');
+      if (textNode) {
+        textNode.textContent = getProfileHintText();
+      }
     }
   }
 
@@ -236,6 +284,7 @@
         '</article>'
       ].join('');
       updateMetrics();
+      updateCopyState();
       return;
     }
 
@@ -261,6 +310,7 @@
     }).join('');
     messagesBox.scrollTop = messagesBox.scrollHeight;
     updateMetrics();
+    updateCopyState();
   }
 
   function renderCitations(citations, answerText) {
@@ -341,6 +391,7 @@
     }
     latestAnswer = messages.length ? messages[messages.length - 1].content : '';
     renderMessages();
+    updateCopyState();
   }
 
   function loadScript(src) {
@@ -427,6 +478,9 @@
     runtimeConfig.maxHistoryTurns = Number(data.maxHistoryTurns || runtimeConfig.maxHistoryTurns);
     runtimeConfig.historyMessageChars = Number(data.historyMessageChars || runtimeConfig.historyMessageChars);
     runtimeConfig.requestTimeoutMs = Number(data.requestTimeoutMs || runtimeConfig.requestTimeoutMs);
+    runtimeConfig.stabilityMode = data.hasOwnProperty('stabilityMode') ? Boolean(data.stabilityMode) : runtimeConfig.stabilityMode;
+    runtimeConfig.usePreviousResponseId = data.hasOwnProperty('usePreviousResponseId') ? Boolean(data.usePreviousResponseId) : runtimeConfig.usePreviousResponseId;
+    updateProfileHint();
 
     if (tokenField) {
       tokenField.classList.toggle('ai-browser-is-hidden', !runtimeConfig.requireAccessToken);
@@ -474,14 +528,18 @@
   }
 
   function buildPayload() {
-    return {
+    var payload = {
       query: queryInput.value.trim(),
-      messages: getOutgoingMessages(),
+      messages: runtimeConfig.usePreviousResponseId ? [] : getOutgoingMessages(),
       mode: modeInput.value,
       depth: Number(depthInput.value || 2),
       citations: Boolean(citationsInput.checked),
       turnstileToken: turnstileToken
     };
+    if (runtimeConfig.usePreviousResponseId && latestResponseId) {
+      payload.previousResponseId = latestResponseId;
+    }
+    return payload;
   }
 
   async function submitQuery(event) {
@@ -556,6 +614,10 @@
 
       replacePendingAssistant(data.answer || '接口未返回可展示的回答。');
       latestAnswer = data.answer || '';
+      latestResponseId = data.responseId || latestResponseId || '';
+      if (latestResponseId) {
+        window.sessionStorage.setItem(responseIdStorageKey, latestResponseId);
+      }
       renderCitations(data.citations || [], latestAnswer);
       saveSession();
       setStatus('已完成', 'idle');
@@ -601,12 +663,15 @@
     messages = [];
     latestAnswer = '';
     latestCitations = [];
+    latestResponseId = '';
     window.sessionStorage.removeItem(sessionStorageKey);
+    window.sessionStorage.removeItem(responseIdStorageKey);
     if (queryInput) {
       queryInput.value = '';
     }
     renderMessages();
     renderCitations([], '');
+    updateCopyState();
     setStatus('就绪', 'idle');
   }
 
@@ -621,6 +686,7 @@
   function copyAnswer() {
     var text = latestAnswer || '';
     if (!text || !window.navigator.clipboard) {
+      setStatus('暂无可复制内容', 'idle');
       return;
     }
     window.navigator.clipboard.writeText(text).then(function () {
@@ -651,7 +717,16 @@
       renderCitations(latestCitations, latestAnswer);
     });
   }
+  if (modeInput) {
+    modeInput.addEventListener('change', updateProfileHint);
+  }
+  if (depthInput) {
+    depthInput.addEventListener('input', updateProfileHint);
+    depthInput.addEventListener('change', updateProfileHint);
+  }
 
   loadSession();
+  updateProfileHint();
+  updateCopyState();
   loadRuntimeConfig();
 }());
