@@ -476,6 +476,35 @@
     };
   }
 
+  function renderListBlock(lines, startIndex, ordered) {
+    var items = [];
+    var index = startIndex;
+    var markerPattern = ordered ? /^\d+[.)]\s+/ : /^[-*]\s+/;
+
+    while (index < lines.length) {
+      var current = String(lines[index] || '');
+      var trimmed = current.trim();
+
+      if (markerPattern.test(trimmed)) {
+        items.push('<li>' + renderInlineMarkdown(trimmed.replace(markerPattern, '')) + '</li>');
+        index += 1;
+        continue;
+      }
+
+      if (!trimmed && index + 1 < lines.length && markerPattern.test(String(lines[index + 1] || '').trim())) {
+        index += 1;
+        continue;
+      }
+
+      break;
+    }
+
+    return {
+      html: (ordered ? '<ol>' : '<ul>') + items.join('') + (ordered ? '</ol>' : '</ul>'),
+      nextIndex: index
+    };
+  }
+
   function renderTable(lines, startIndex) {
     var header = splitTableRow(lines[startIndex]);
     var rows = [];
@@ -553,22 +582,16 @@
       }
 
       if (/^[-*]\s+/.test(trimmed)) {
-        var unordered = [];
-        while (i < lines.length && /^[-*]\s+/.test(lines[i].trim())) {
-          unordered.push('<li>' + renderInlineMarkdown(lines[i].trim().replace(/^[-*]\s+/, '')) + '</li>');
-          i += 1;
-        }
-        html.push('<ul>' + unordered.join('') + '</ul>');
+        var unorderedList = renderListBlock(lines, i, false);
+        html.push(unorderedList.html);
+        i = unorderedList.nextIndex;
         continue;
       }
 
       if (/^\d+[.)]\s+/.test(trimmed)) {
-        var ordered = [];
-        while (i < lines.length && /^\d+[.)]\s+/.test(lines[i].trim())) {
-          ordered.push('<li>' + renderInlineMarkdown(lines[i].trim().replace(/^\d+[.)]\s+/, '')) + '</li>');
-          i += 1;
-        }
-        html.push('<ol>' + ordered.join('') + '</ol>');
+        var orderedList = renderListBlock(lines, i, true);
+        html.push(orderedList.html);
+        i = orderedList.nextIndex;
         continue;
       }
 
@@ -599,6 +622,26 @@
     }
 
     return html.join('');
+  }
+
+  function renderMessageCitationLinks(citations) {
+    var safeCitations = (citations || []).slice(0, 4);
+    if (!safeCitations.length) {
+      return '';
+    }
+
+    return [
+      '<div class="ai-browser-message-sources" aria-label="参考来源">',
+      '<span>参考来源</span>',
+      safeCitations.map(function (citation) {
+        var safeUrl = getSafeHttpUrl(citation.url);
+        if (!safeUrl) {
+          return '';
+        }
+        return buildAnswerLink(safeUrl, citation.title || getDisplayDomain(safeUrl));
+      }).join(''),
+      '</div>'
+    ].join('');
   }
 
   function renderMessages() {
@@ -635,6 +678,7 @@
         '<div class="ai-browser-message-content">',
         '<h2>' + title + '</h2>',
         '<div class="ai-browser-answer-body">' + textToHtml(message.content) + '</div>',
+        message.role === 'assistant' && !message.isError ? renderMessageCitationLinks(message.citations) : '',
         '</div>',
         '</article>'
       ].join('');
@@ -985,13 +1029,14 @@
 
       var data = await sendSearchRequest(payload, requestHeaders);
 
-      replacePendingAssistant(data.answer || '接口未返回可展示的回答。');
       latestAnswer = data.answer || '';
+      var normalizedCitations = normalizeCitations(data.citations || [], latestAnswer);
+      replacePendingAssistant(data.answer || '接口未返回可展示的回答。', false, normalizedCitations);
       latestResponseId = data.responseId || latestResponseId || '';
       if (latestResponseId) {
         window.sessionStorage.setItem(responseIdStorageKey, latestResponseId);
       }
-      renderCitations(data.citations || [], latestAnswer);
+      renderCitations(normalizedCitations, latestAnswer);
       saveSession();
       setStatus('已完成', 'idle');
       resetTurnstile();
@@ -1006,30 +1051,32 @@
     }
   }
 
-  function addAssistantMessage(text, isError, pending) {
+  function addAssistantMessage(text, isError, pending, citations) {
     messages.push({
       role: 'assistant',
       content: text,
       isError: Boolean(isError),
-      pending: Boolean(pending)
+      pending: Boolean(pending),
+      citations: citations || []
     });
     renderMessages();
   }
 
-  function replacePendingAssistant(text, isError) {
+  function replacePendingAssistant(text, isError, citations) {
     for (var i = messages.length - 1; i >= 0; i -= 1) {
       if (messages[i].role === 'assistant' && messages[i].pending) {
         messages[i] = {
           role: 'assistant',
           content: text,
-          isError: Boolean(isError)
+          isError: Boolean(isError),
+          citations: citations || []
         };
         latestAnswer = text;
         renderMessages();
         return;
       }
     }
-    addAssistantMessage(text, isError);
+    addAssistantMessage(text, isError, false, citations);
   }
 
   function clearSession() {
