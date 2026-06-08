@@ -159,13 +159,21 @@
     if (!value) {
       return '';
     }
-    try {
-      var parsed = new URL(value);
-      if (parsed.protocol === 'https:' || parsed.protocol === 'http:') {
-        return parsed.href;
+    var text = String(value).trim();
+    var candidates = [text];
+    if (text && !/^[a-z][a-z0-9+.-]*:/i.test(text) && /^[a-z0-9-]+(\.[a-z0-9-]+)+(\/|\?|#|$)/i.test(text)) {
+      candidates.push('https://' + text);
+    }
+
+    for (var i = 0; i < candidates.length; i += 1) {
+      try {
+        var parsed = new URL(candidates[i]);
+        if (parsed.protocol === 'https:' || parsed.protocol === 'http:') {
+          return parsed.href;
+        }
+      } catch (error) {
+        // Try the normalized candidate, if one exists.
       }
-    } catch (error) {
-      return '';
     }
     return '';
   }
@@ -262,7 +270,7 @@
       .replace(/^[-*]\s+/, '')
       .replace(/^\d+[.)]\s+/, '')
       .trim();
-    var markdownOnly = text.match(/^\[([^\]\n]{1,180})\]\((https?:\/\/[^\s)]+)\)$/i);
+    var markdownOnly = text.match(/^\[([^\]\n]{1,180})\]\(((?:https?:\/\/|www\.|[a-z0-9-]+(?:\.[a-z0-9-]+)+)[^\s)]*)\)$/i);
     var safeUrl;
 
     if (markdownOnly) {
@@ -320,8 +328,8 @@
     var source = String(text || '');
     var result = [];
     var seen = {};
-    var markdownLinkPattern = /\[([^\]\n]{1,160})\]\((https?:\/\/[^\s)]+)\)/gi;
-    var bareUrlPattern = /https?:\/\/[^\s<>()]+/gi;
+    var markdownLinkPattern = /\[([^\]\n]{1,160})\]\(((?:https?:\/\/|www\.|[a-z0-9-]+(?:\.[a-z0-9-]+)+)[^\s)]*)\)/gi;
+    var bareUrlPattern = /(?:https?:\/\/|www\.)[^\s<>()]+/gi;
     var withoutMarkdown = source;
     var match;
 
@@ -359,7 +367,7 @@
 
   function renderBareLinks(value) {
     var source = String(value || '');
-    var urlPattern = /https?:\/\/[^\s<>()]+/gi;
+    var urlPattern = /(?:https?:\/\/|www\.)[^\s<>()]+/gi;
     var result = '';
     var lastIndex = 0;
     var match;
@@ -384,7 +392,7 @@
 
   function renderInlineMarkdown(text) {
     var source = String(text || '');
-    var markdownLinkPattern = /\[([^\]\n]{1,160})\]\((https?:\/\/[^\s)]+)\)/gi;
+    var markdownLinkPattern = /\[([^\]\n]{1,160})\]\(((?:https?:\/\/|www\.|[a-z0-9-]+(?:\.[a-z0-9-]+)+)[^\s)]*)\)/gi;
     var result = '';
     var lastIndex = 0;
     var match;
@@ -624,26 +632,6 @@
     return html.join('');
   }
 
-  function renderMessageCitationLinks(citations) {
-    var safeCitations = (citations || []).slice(0, 4);
-    if (!safeCitations.length) {
-      return '';
-    }
-
-    return [
-      '<div class="ai-browser-message-sources" aria-label="参考来源">',
-      '<span>参考来源</span>',
-      safeCitations.map(function (citation) {
-        var safeUrl = getSafeHttpUrl(citation.url);
-        if (!safeUrl) {
-          return '';
-        }
-        return buildAnswerLink(safeUrl, citation.title || getDisplayDomain(safeUrl));
-      }).join(''),
-      '</div>'
-    ].join('');
-  }
-
   function renderMessages() {
     if (!messagesBox) {
       return;
@@ -678,7 +666,6 @@
         '<div class="ai-browser-message-content">',
         '<h2>' + title + '</h2>',
         '<div class="ai-browser-answer-body">' + textToHtml(message.content) + '</div>',
-        message.role === 'assistant' && !message.isError ? renderMessageCitationLinks(message.citations) : '',
         '</div>',
         '</article>'
       ].join('');
@@ -1031,7 +1018,7 @@
 
       latestAnswer = data.answer || '';
       var normalizedCitations = normalizeCitations(data.citations || [], latestAnswer);
-      replacePendingAssistant(data.answer || '接口未返回可展示的回答。', false, normalizedCitations);
+      replacePendingAssistant(data.answer || '接口未返回可展示的回答。', false);
       latestResponseId = data.responseId || latestResponseId || '';
       if (latestResponseId) {
         window.sessionStorage.setItem(responseIdStorageKey, latestResponseId);
@@ -1051,32 +1038,30 @@
     }
   }
 
-  function addAssistantMessage(text, isError, pending, citations) {
+  function addAssistantMessage(text, isError, pending) {
     messages.push({
       role: 'assistant',
       content: text,
       isError: Boolean(isError),
-      pending: Boolean(pending),
-      citations: citations || []
+      pending: Boolean(pending)
     });
     renderMessages();
   }
 
-  function replacePendingAssistant(text, isError, citations) {
+  function replacePendingAssistant(text, isError) {
     for (var i = messages.length - 1; i >= 0; i -= 1) {
       if (messages[i].role === 'assistant' && messages[i].pending) {
         messages[i] = {
           role: 'assistant',
           content: text,
-          isError: Boolean(isError),
-          citations: citations || []
+          isError: Boolean(isError)
         };
         latestAnswer = text;
         renderMessages();
         return;
       }
     }
-    addAssistantMessage(text, isError, false, citations);
+    addAssistantMessage(text, isError, false);
   }
 
   function clearSession() {
