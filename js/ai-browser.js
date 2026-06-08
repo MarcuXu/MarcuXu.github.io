@@ -68,12 +68,28 @@
     });
   }
 
+  function delay(ms) {
+    return new Promise(function (resolve) {
+      window.setTimeout(resolve, ms);
+    });
+  }
+
+  function isTransientFetchError(error) {
+    return Boolean(error) &&
+      error.name !== 'AbortError' &&
+      /failed to fetch|networkerror|load failed/i.test(error.message || '');
+  }
+
+  function isRetriableResponseStatus(status) {
+    return status === 502 || status === 503;
+  }
+
   function getNetworkErrorMessage(error) {
     if (error && error.name === 'AbortError') {
       return '本次分析用时较长，系统已自动中止。建议缩小问题范围，或将复杂问题拆分为几个连续追问。';
     }
-    if (error && /failed to fetch|networkerror/i.test(error.message || '')) {
-      return '网络请求未能完成。请刷新页面后重试；如果问题较复杂，建议降低推理深度或分阶段提问。';
+    if (error && /failed to fetch|networkerror|load failed/i.test(error.message || '')) {
+      return '网络链路短暂中断，系统自动重试后仍未成功。请稍后再试；如果连续出现，请新建会话后重新提交。';
     }
     return (error && error.message) || '请求失败。';
   }
@@ -670,7 +686,15 @@
 
   function saveSession() {
     var historyLimit = Math.max(2, Number(runtimeConfig.maxHistoryTurns || 8) * 2);
-    window.sessionStorage.setItem(sessionStorageKey, JSON.stringify(messages.slice(-historyLimit)));
+    var serializableMessages = messages.filter(function (message) {
+      return message && !message.pending && !message.isError;
+    }).map(function (message) {
+      return {
+        role: message.role,
+        content: message.content
+      };
+    });
+    window.sessionStorage.setItem(sessionStorageKey, JSON.stringify(serializableMessages.slice(-historyLimit)));
   }
 
   function getHistoryLimit() {
@@ -683,13 +707,17 @@
 
   function getOutgoingMessages() {
     var maxChars = getHistoryMessageChars();
-    return messages.slice(-getHistoryLimit()).map(function (message) {
+    return messages.slice(-getHistoryLimit()).filter(function (message) {
+      return message &&
+        (message.role === 'user' || message.role === 'assistant') &&
+        message.content &&
+        !message.pending &&
+        !message.isError;
+    }).map(function (message) {
       return {
         role: message.role,
         content: String(message.content || '').slice(0, maxChars)
       };
-    }).filter(function (message) {
-      return message.content && (message.role === 'user' || message.role === 'assistant');
     });
   }
 
@@ -857,6 +885,50 @@
     return payload;
   }
 
+  async function sendSearchRequest(payload, requestHeaders) {
+    var lastError = null;
+    var attempt;
+
+    for (attempt = 0; attempt < 2; attempt += 1) {
+      try {
+        var response = await fetchWithTimeout(endpoint, {
+          method: 'POST',
+          headers: requestHeaders,
+          body: JSON.stringify(payload),
+          cache: 'no-store',
+          mode: 'cors'
+        }, runtimeConfig.requestTimeoutMs);
+
+        var data = await response.json().catch(function () {
+          return {};
+        });
+
+        if (!response.ok) {
+          var responseError = new Error(data.error || ('请求失败，状态码：' + response.status));
+          responseError.status = response.status;
+          if (attempt === 0 && isRetriableResponseStatus(response.status)) {
+            lastError = responseError;
+          } else {
+            throw responseError;
+          }
+        } else {
+          return data;
+        }
+      } catch (error) {
+        if (attempt === 0 && isTransientFetchError(error)) {
+          lastError = error;
+        } else {
+          throw error;
+        }
+      }
+
+      setStatus('连接重试中', 'loading');
+      await delay(850);
+    }
+
+    throw lastError || new Error('请求失败。');
+  }
+
   async function submitQuery(event) {
     event.preventDefault();
 
@@ -911,21 +983,7 @@
         requestHeaders.Authorization = 'Bearer ' + token;
       }
 
-      var response = await fetchWithTimeout(endpoint, {
-        method: 'POST',
-        headers: requestHeaders,
-        body: JSON.stringify(payload),
-        cache: 'no-store',
-        mode: 'cors'
-      }, runtimeConfig.requestTimeoutMs);
-
-      var data = await response.json().catch(function () {
-        return {};
-      });
-
-      if (!response.ok) {
-        throw new Error(data.error || ('请求失败，状态码：' + response.status));
-      }
+      var data = await sendSearchRequest(payload, requestHeaders);
 
       replacePendingAssistant(data.answer || '接口未返回可展示的回答。');
       latestAnswer = data.answer || '';

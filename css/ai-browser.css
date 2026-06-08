@@ -631,6 +631,20 @@
 .ai-browser-answer-body ul,
 .ai-browser-answer-body ol {
   padding-left: 1.25rem;
+  list-style-position: outside;
+}
+
+.ai-browser-answer-body ul {
+  list-style-type: disc;
+}
+
+.ai-browser-answer-body ol {
+  list-style-type: decimal;
+}
+
+.ai-browser-answer-body li {
+  display: list-item;
+  padding-left: 0.08rem;
 }
 
 .ai-browser-answer-body li + li {
