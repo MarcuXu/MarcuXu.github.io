@@ -4,8 +4,8 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="Tiny AI stories, Mingjing Xu,MarcuXu,multi-objective optimization,trustworthy AI,multimodal learning,edge intelligence">
-    <meta name="description" content="Personal notes on early ChatGPT and AI-tool experiences, including learning advice, coding productivity, academic writing, debugging, and end-to-end ML assignment workflows.">
+    <meta name="keywords" content="Understanding TLV-CoRe: Collaborative Representation Learning for Tactile-Language-Vision Alignment, Mingjing Xu,MarcuXu,multi-objective optimization,trustworthy AI,multimodal learning,edge intelligence">
+    <meta name="description" content="A technical explanation of TLV-CoRe, covering tactile-language-vision alignment, sensor-agnostic tactile representation learning, Sensor-Aware Modulation, tactile-irrelevant decoupling, Unified Bridging Adapters, contrastive learning, RSS evaluation, and key empirical findings.">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -18,7 +18,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>Tiny AI stories | MarcuXu</title>
+    <title>Understanding TLV-CoRe: Collaborative Representation Learning for Tactile-Language-Vision Alignment | MarcuXu</title>
     <link rel="icon" type="image/png" href="/medias/Gemini_Generated_0.png">
     
 
@@ -337,12 +337,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/13.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/10.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Tiny AI stories</h1>
+                    <h1 class="description center-align post-title">Understanding TLV-CoRe: Collaborative Representation Learning for Tactile-Language-Vision Alignment</h1>
                 </div>
             </div>
         </div>
@@ -391,14 +391,14 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
-                    2022-12-09
+                    2026-06-16
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>Update Date:&nbsp;&nbsp;
-                    2026-06-04
+                    2026-06-17
                 </div>
                 
 
@@ -412,7 +412,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>Read Times:&nbsp;&nbsp;
-                    8 Min
+                    13 Min
                 </div>
                 
 
@@ -435,85 +435,224 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>这篇文章主要记录笔者作为一个AI菜鸟，在接触有趣或提升生产力的AI工具后的一些体验和感想。那么我们就从 <strong>ChatGPT</strong> 开始吧！</p>
-<h2 id="ChatGPT"><a href="#ChatGPT" class="headerlink" title="ChatGPT"></a>ChatGPT</h2><p>22年12月初火起来的<a target="_blank" rel="noopener" href="https://chat.openai.com/">ChatGPT</a>让我对NLP和AI重燃起了初识时的兴趣。因此，笔者按照CSDN上的一篇<a target="_blank" rel="noopener" href="https://www.cnblogs.com/chatgpt/p/how-to-register-chatgpt-in-china.html">攻略</a>注册成为了ChatGPT的体验用户（虽然花费了10￥，但比某宝上无良商家动辄收几十好多了<span class="github-emoji"><span>😏</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f60f.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>）。在多次测试后，我发现这个模型即使只是出世不久且限时免费，但它已经可以替代部分程序员的工作了。更可怕的是，不管是中文还是英文，只要问题叙述清晰得当，ChatGPT所给出的solution具备相当的可参考性，足以说明其训练数据之多与泛化能力之强。</p>
-<p>在完成注册后，我就迫不及待问了几个比较简单的问题，其中英文问题有：<em>How to study machine learning</em> 和 <em>How to study math in machine learning</em> ；中文问题则是：<em>如何与心爱的女生相处</em> 。不管是学术还是感情问题，ChatGPT给予的回答都可圈可点。在关于如何学习机器学习的回答中，它不仅鼓励人们学习ML，还给出了更详细的建议，如了解机器学习的基础概念，包括训练数据、特征、标签、模型、目标函数、损失函数、优化算法等；掌握常见的机器学习算法，如回归、分类、聚类、降维、推荐、强化学习等，并学会如何应用这些算法解决实际问题；熟悉常用的机器学习工具和框架，如 TensorFlow、PyTorch、scikit-learn 等，并能够使用这些工具完成基本的机器学习任务。在关于如何学习机器学习中的数学中，它认为了解机器学习中使用的数学模型，如线性回归、逻辑回归、神经网络、支持向量机、贝叶斯网络等，同时需要掌握机器学习中常用的数学方法，如梯度下降、牛顿法、拟牛顿法、随机梯度下降、概率密度估计等，还需要学习机器学习中常用的数学算法，如最小二乘法、最小角回归、主成分分析、聚类算法、卡方检验等。而关于情感问题，读者可以自行查阅，不过个人认为它的回答非常romantic <span class="github-emoji"><span>😘</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f618.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span></p>
-<h3 id="ChatGPT对于编程生产力的提升测试"><a href="#ChatGPT对于编程生产力的提升测试" class="headerlink" title="ChatGPT对于编程生产力的提升测试"></a>ChatGPT对于编程生产力的提升测试</h3><p>在测(tiao)试(xi)它几个问题后，我突然灵光一现，把之前写的一个很简单的python输入数组的小功能拿来测试一下，于是问：<em>python输入一维数组的程序</em> ，而它的回复相当简单有趣：</p>
-<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token comment"># 使用 while 循环来接收用户输入</span>
-<span class="token keyword">while</span> <span class="token boolean">True</span><span class="token punctuation">:</span>
-<span class="token comment">#     # 使用 input 函数来获取用户输入</span>
-    user_input <span class="token operator">=</span> <span class="token builtin">input</span><span class="token punctuation">(</span><span class="token string">"Enter a number (enter 'done' to quit): "</span><span class="token punctuation">)</span>
-<span class="token comment">#     # 如果用户输入了 "done"，则退出循环</span>
-    <span class="token keyword">if</span> user_input <span class="token operator">==</span> <span class="token string">"done"</span><span class="token punctuation">:</span>
-        <span class="token keyword">break</span>
-<span class="token comment">#     # 将用户输入的字符串转换为数字，并将其添加到数组中</span>
-    my_array<span class="token punctuation">.</span>append<span class="token punctuation">(</span><span class="token builtin">int</span><span class="token punctuation">(</span>user_input<span class="token punctuation">)</span><span class="token punctuation">)</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+                <h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>Tactile perception is an underrated part of robotic intelligence. Vision can tell a robot what an object looks like, and language can describe what humans expect from it, but touch gives information that is difficult to infer from pixels alone: roughness, hardness, texture, deformation, slipperiness, and fine-grained material cues.</p>
+<p>The paper <strong>Collaborative Representation Learning for Alignment of Tactile, Language, and Vision Modalities</strong> studies this problem from a multimodal representation-learning perspective. It proposes <strong>TLV-CoRe</strong>, a CLIP-based tactile-language-vision collaborative representation learning method.</p>
+<p>Paper links:</p>
+<ul>
+<li>Paper HTML: <a target="_blank" rel="noopener" href="https://ar5iv.labs.arxiv.org/html/2511.11512">ar5iv:2511.11512</a></li>
+<li>arXiv abstract: <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2511.11512">arXiv:2511.11512</a></li>
+<li>DOI: <a target="_blank" rel="noopener" href="https://doi.org/10.48550/arXiv.2511.11512">10.48550/arXiv.2511.11512</a></li>
+</ul>
+<p>According to arXiv, the paper was first submitted on <strong>November 14, 2025</strong> and the current listed version is <strong>v5, revised on February 1, 2026</strong>. The authors are Yiyun Zhou, Mingjing Xu, Jingwei Shi, Quanjiang Li, and Jingyuan Chen.</p>
+<p>The central problem is not simply “how do we add a tactile encoder to CLIP?” The harder question is:</p>
+<blockquote>
+<p>How can tactile, language, and vision learn a shared representation when tactile sensors themselves are heterogeneous and not fully standardized?</p>
+</blockquote>
+<p>TLV-CoRe answers this with three ideas:</p>
+<ol>
+<li><strong>Sensor-Aware Modulator (SAM)</strong>: adapt tactile features from different sensors into a more unified representation space.</li>
+<li><strong>Tactile-irrelevant decoupled learning</strong>: reduce sensor-specific noise and force the tactile encoder to focus on task-relevant information.</li>
+<li><strong>Unified Bridging Adapter (UBA)</strong>: let tactile, language, and vision communicate through a shared adapter space before final contrastive alignment.</li>
+</ol>
+<h2 id="Why-Tactile-Language-Vision-Alignment-Is-Hard"><a href="#Why-Tactile-Language-Vision-Alignment-Is-Hard" class="headerlink" title="Why Tactile-Language-Vision Alignment Is Hard"></a>Why Tactile-Language-Vision Alignment Is Hard</h2><p>Vision-language alignment has a relatively mature recipe. CLIP-style models learn from paired images and text by pulling matching pairs together and pushing mismatched pairs apart. Extending this idea to touch is tempting, but tactile data introduces several extra difficulties.</p>
+<p>First, tactile sensors are not standardized. GelSight-like and DIGIT-like sensors may capture the same physical object with different illumination, camera geometry, color response, elastomer properties, and contact artifacts. This means a tactile image can contain both useful object information and sensor-specific style.</p>
+<p>Second, tactile images can be misleading. Two different touched objects may produce visually similar tactile patterns if the sensor style dominates the image. Conversely, the same object may look different under different sensors or contact conditions.</p>
+<p>Third, existing tactile-language-vision methods often align modalities at the final embedding level but do not explicitly encourage intermediate communication among tactile, language, and vision branches. The paper argues that this limits deep tri-modal fusion.</p>
+<p>So the target is not only cross-modal alignment. The target is <strong>sensor-agnostic, collaborative, and stable</strong> representation learning.</p>
+<h2 id="Related-Work-Context"><a href="#Related-Work-Context" class="headerlink" title="Related Work Context"></a>Related Work Context</h2><p>The paper positions TLV-CoRe among several tactile representation learning directions.</p>
+<p><strong>CLIP-based tactile-language-vision learning</strong> includes methods such as TLV-Link, AnyTouch, UniTouch, and related approaches. Their strength is that they can reuse powerful vision-language priors. Their weakness is that tactile data has sensor-specific structure that ordinary CLIP-style alignment does not automatically remove.</p>
+<p><strong>Custom tactile representation models</strong> can be built specifically for tactile data, but they make fair comparison harder because the base model, training schedule, batch size, and evaluation protocol often differ.</p>
+<p><strong>General multimodal alignment methods</strong> such as ImageBind-style work show that many modalities can be projected into a shared embedding space. However, tactile sensing is still less explored than image, text, audio, video, or 3D point clouds.</p>
+<p>TLV-CoRe is best understood as a CLIP-based method that tries to keep the comparison setting controlled while adding tactile-specific and tri-modal-specific modules.</p>
+<h2 id="High-Level-Architecture"><a href="#High-Level-Architecture" class="headerlink" title="High-Level Architecture"></a>High-Level Architecture</h2><p>The model uses three modality branches:</p>
+<ul>
+<li><strong>Tactile path</strong>: tactile input -&gt; tactile encoder -&gt; SAM -&gt; UBA -&gt; tactile representation.</li>
+<li><strong>Vision path</strong>: image input -&gt; visual encoder -&gt; UBA -&gt; visual representation.</li>
+<li><strong>Language path</strong>: text input -&gt; language encoder -&gt; UBA -&gt; language representation.</li>
+<li><strong>Alignment head</strong>: tactile, vision, and language representations are trained with pairwise contrastive alignment in a shared embedding space.</li>
+</ul>
+<p>The tactile branch has extra work to do because sensor identity can become a shortcut. SAM handles sensor-aware feature adaptation, while decoupled learning discourages the encoder from preserving tactile-irrelevant sensor information.</p>
+<p>The UBA module is inserted into the modality encoders to make the three branches collaborate through a shared adapter space. This is the part that changes the system from only “aligning final embeddings” to “sharing intermediate representation structure.”</p>
+<h2 id="Sensor-Aware-Modulator"><a href="#Sensor-Aware-Modulator" class="headerlink" title="Sensor-Aware Modulator"></a>Sensor-Aware Modulator</h2><p>Let a tactile input be $x^T$, and let the tactile encoder produce a feature:</p>
+<div class="mathjax-display">
+$$
+h^T = E_T(x^T).
+$$
+</div>
 
-<p>此时我还相当得意，因为我直接用一句 <code>my_array = list(map(int, input().strip().split()))</code> 就完成了。但突然转念一想，我是不是没有把问题说清楚，所以我又输入了一遍：<em>使用python，输入以空格为间隔的一维数组</em> 。此时，它的答案就和我完成的非常接近了：</p>
-<p>它的第一种方法是使用 Python 内置的 input() 函数来获取用户输入，并使用 split() 方法将其转换为一个字符串列表，然后使用 map() 函数将字符串列表转换为数字列表：</p>
-<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token comment"># 获取用户输入</span>
-input_str <span class="token operator">=</span> <span class="token builtin">input</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<p>The Sensor-Aware Modulator estimates a sensor-related routing vector:</p>
+<div class="mathjax-display">
+$$
+r(h^T)=\operatorname{softmax}(W_r h^T).
+$$
+</div>
 
-<span class="token comment"># 将字符串转换为列表</span>
-input_list <span class="token operator">=</span> input_str<span class="token punctuation">.</span>split<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<p>For a sample from sensor $s$, the paper uses the corresponding routing component to modulate the tactile feature. A simplified way to read the update is:</p>
+<div class="mathjax-display">
+$$
+h^T_{\text{mod}}
+=
+h^T + [r(h^T)]_s h^T.
+$$
+</div>
 
-<span class="token comment"># 将列表中的字符串转换为数字</span>
-input_list <span class="token operator">=</span> <span class="token builtin">map</span><span class="token punctuation">(</span><span class="token builtin">int</span><span class="token punctuation">,</span> input_list<span class="token punctuation">)</span>
+<p>The intuition is that the tactile encoder should not treat all sensors as if they produced identical image distributions. SAM gives the model a way to adapt to sensor-specific statistics while still pushing the final representation toward a unified space.</p>
+<p>This is a practical compromise:</p>
+<ul>
+<li>ignoring sensor identity is too naive, because sensors really do produce different images;</li>
+<li>overfitting to sensor identity is also dangerous, because the model may learn sensor style instead of object properties;</li>
+<li>SAM gives the network an explicit mechanism to handle this variation.</li>
+</ul>
+<h2 id="Tactile-Irrelevant-Decoupled-Learning"><a href="#Tactile-Irrelevant-Decoupled-Learning" class="headerlink" title="Tactile-Irrelevant Decoupled Learning"></a>Tactile-Irrelevant Decoupled Learning</h2><p>SAM handles sensor-aware adaptation, but the model also needs to prevent the tactile encoder from encoding too much sensor-specific noise. TLV-CoRe uses a decoupled learning objective with sensor centroids.</p>
+<p>For sensor label $s$ and tactile representation $h^T$, define a sensor classifier over centroids $\lbrace c_s\rbrace$:</p>
+<div class="mathjax-display">
+$$
+p(s \mid h^T)
+=
+\frac{
+\exp(\langle h^T,c_s\rangle/\tau)
+}{
+\sum_{s'}
+\exp(\langle h^T,c_{s'}\rangle/\tau)
+}.
+$$
+</div>
 
-<span class="token comment"># 打印输入的数组</span>
-<span class="token keyword">print</span><span class="token punctuation">(</span>input_list<span class="token punctuation">)</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>The sensor classification loss is:</p>
+<div class="mathjax-display">
+$$
+\mathcal{L}_{DL}
+=
+-
+\mathbb{E}_{(x^T,s)}
+\left[
+\log p(s \mid h^T)
+\right].
+$$
+</div>
 
-<p>它的第二种方法是使用 numpy 库来更方便地处理数组。例如，您可以使用 numpy.array() 函数来将列表转换为数组，然后使用 numpy.split() 函数将数组分割为多个子数组：</p>
-<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> numpy <span class="token keyword">as</span> np
+<p>The important trick is the training direction. With gradient reversal, the sensor classifier learns to recognize sensor identity, while the tactile encoder is pushed to remove information that makes sensor identity too easy to predict. In plain language:</p>
+<blockquote>
+<p>The auxiliary classifier asks, “which sensor produced this tactile feature?”, while the encoder learns to make that question harder unless the information is useful for the task.</p>
+</blockquote>
+<p>This is why the paper calls it tactile-irrelevant decoupling. The goal is not to erase all sensor information, but to suppress the part that hurts cross-sensor generalization.</p>
+<h2 id="Unified-Bridging-Adapter"><a href="#Unified-Bridging-Adapter" class="headerlink" title="Unified Bridging Adapter"></a>Unified Bridging Adapter</h2><p>The Unified Bridging Adapter is the most important tri-modal collaboration module. For each modality $m \in \lbrace T,V,L\rbrace$, the encoder feature $h^m$ is projected down, passed through a shared adapter space, projected back, and added residually:</p>
+<div class="mathjax-display">
+$$
+z^m_{\text{shared}}
+=
+W_{\text{sh}}
+\left(
+W^m_{\text{down}} h^m
+\right),
+$$
+</div>
 
-<span class="token comment"># 获取用户输入</span>
-input_str <span class="token operator">=</span> <span class="token builtin">input</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<div class="mathjax-display">
+$$
+\Delta h^m
+=
+W^m_{\text{up}} z^m_{\text{shared}},
+\quad h^m_{\text{aligned}}
+=
+h^m + \Delta h^m.
+$$
+</div>
 
-<span class="token comment"># 将字符串转换为数字列表</span>
-input_list <span class="token operator">=</span> <span class="token builtin">map</span><span class="token punctuation">(</span><span class="token builtin">int</span><span class="token punctuation">,</span> input_str<span class="token punctuation">.</span>split<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<p>This structure has two useful properties.</p>
+<p>First, the down and up projections are modality-specific. Tactile, vision, and language do not have to enter the adapter in exactly the same way.</p>
+<p>Second, the middle mapping $W_{\text{sh}}$ is shared. That shared bottleneck gives the model a common route through which the three modalities can exchange alignment-friendly structure.</p>
+<p>This is different from only aligning the final embeddings. UBA encourages intermediate representations to become more compatible before the final contrastive objective is applied.</p>
+<h2 id="Cross-Modal-Contrastive-Objective"><a href="#Cross-Modal-Contrastive-Objective" class="headerlink" title="Cross-Modal Contrastive Objective"></a>Cross-Modal Contrastive Objective</h2><p>After the representations are aligned, TLV-CoRe applies pairwise symmetric contrastive learning across tactile, vision, and language.</p>
+<p>For a tactile-vision pair, a typical symmetric InfoNCE loss has the form:</p>
+<div class="mathjax-display">
+$$
+\mathcal{L}_{T,V}
+=
+-
+\frac{1}{N}
+\sum_{i=1}^{N}
+\left[
+\log
+\frac{\exp(\operatorname{sim}(t_i,v_i)/\tau)}
+{\sum_{j=1}^{N}\exp(\operatorname{sim}(t_i,v_j)/\tau)}
++
+\log
+\frac{\exp(\operatorname{sim}(v_i,t_i)/\tau)}
+{\sum_{j=1}^{N}\exp(\operatorname{sim}(v_i,t_j)/\tau)}
+\right].
+$$
+</div>
 
-<span class="token comment"># 将列表转换为数组</span>
-input_array <span class="token operator">=</span> np<span class="token punctuation">.</span>array<span class="token punctuation">(</span>input_list<span class="token punctuation">)</span>
+<p>The full supervised contrastive alignment loss combines the three modality pairs:</p>
+<div class="mathjax-display">
+$$
+\mathcal{L}_{SCL}
+=
+\mathcal{L}_{T,V}
++
+\mathcal{L}_{T,L}
++
+\mathcal{L}_{V,L}.
+$$
+</div>
 
-<span class="token comment"># 将数组分割为多个子数组</span>
-subarrays <span class="token operator">=</span> np<span class="token punctuation">.</span>split<span class="token punctuation">(</span>input_array<span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+<p>The total training objective is:</p>
+<div class="mathjax-display">
+$$
+\mathcal{L}_{total}
+=
+\mathcal{L}_{SCL}
++
+\lambda_{DL}
+\mathcal{L}_{DL}.
+$$
+</div>
 
-<span class="token comment"># 打印分割后的子数组</span>
-<span class="token keyword">print</span><span class="token punctuation">(</span>subarrays<span class="token punctuation">)</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p>果真，我的猜测没有错。原来不是它太菜了，而是我表述太模糊了 <span class="github-emoji"><span>😧</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f627.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span> 实际上，已经有相当多的开发者来开发调用ChatGPT API的插件和软件了，例如中文版的<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1s14y1K7fD/?spm_id_from=333.337.search-card.all.click&amp;vd_source=57cec20aa45aa135ba9fdbb99ed82151">VSCODE插件</a>已经有过万下载了。事实上，ChatGPT也可以用来辅助学术写作。例如，我们可以像这个<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1NM411U7GG/?spm_id_from=333.788.recommend_more_video.1&amp;vd_source=57cec20aa45aa135ba9fdbb99ed82151">视频</a>一样，先复制一段话，在结尾加上一句 <em>Help me to paraphrase this paragraph more academically</em> （关于使用ChatGPT来进行论文写作实在是争议多多，<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1144y1S7G1/?spm_id_from=333.788.recommend_more_video.-1&amp;vd_source=57cec20aa45aa135ba9fdbb99ed82151">someone</a>甚至可以取巧の问论文模板，再把模板填好内容问它）。最后，使用ChatGPT对于他自己的评价来结尾：<em>ChatGPT是由 OpenAI 开发的一种大型自然语言生成模型。它是在 GPT-3 模型的基础上进行改进，旨在更好地处理聊天对话场景中的语言生成任务。我认为 ChatGPT 是一个非常有意义的模型，它拥有更强大的语言理解能力，能够更加自然地与人类进行对话。它可以应用于聊天机器人、翻译系统、问答系统等领域，为人类提供更好的交流和服务。同时，我也认为 ChatGPT 需要进一步改进，例如在语言表达能力、情感理解能力和语境处理能力方面进行增强，使得它能更好地适应复杂的自然语言场景。</em></p>
-<h2 id="你若诚心发问，ChatGPT-will-fix-EVERYTHING"><a href="#你若诚心发问，ChatGPT-will-fix-EVERYTHING" class="headerlink" title="你若诚心发问，ChatGPT will fix EVERYTHING"></a>你若诚心发问，ChatGPT will fix EVERYTHING</h2><p>前几天在测试GPT的design&amp;degug时着实让我惊叹不已。起因是一个平平无奇的AI assignment，其中一题是老师要求使用四种模型，分别是RNN，LSTM，CNN和FNN，来处理一个EEG时序数据集。费了好几个小时终于从网上缝缝补补写了个过得去的LSTM后，突发奇想要是用ChatGPT来搞一个end2end的训练会是怎样。于是乎，直接使用OPENAI很早之前更新的<strong>Advanced Data Analysis</strong>，上传目标数据集（目前只试了直接上传数据集文件但未在大数据集上尝试过），然后加上相关叙述和一些常用的指令:</p>
-<p><em>As an AI model designer and ML master, you should use a deep neural network to do time series classification. The uploaded dataset is from <a target="_blank" rel="noopener" href="http://archive.ics.uci.edu/dataset/264/eeg+eye+state">http://archive.ics.uci.edu/dataset/264/eeg+eye+state</a>. Task: Please use Recurrent Neural Network (including standard RNN and LSTM ), Convolutional Neural Network, Feedforward Neural Network in pytorch to do classification and compare their performance.</em></p>
-<p>它的答案会先分析上传的文件，而后输入时你需要表明 <em>You should design well-structured Pytorch codes and show them to me. It’s okay that I can run it on my machine.</em> 这里需要提出两个点，一个是你需要使用Pytorch来设计模型，其次就是你可以在local machine跑代码，不然GPT4在生成代码时常常会因为Pytorch或TF库无法正常工作而报错。而后，他会逐步生成4个model和traning，testing modules。其中traning和testing modules如下：</p>
-<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token comment"># traning phase相当naive，缺失了很多tricks，比如Gradient clipping，Learning rate scheduling等，需自己补足</span>
-<span class="token keyword">def</span> <span class="token function">train_model</span><span class="token punctuation">(</span>model<span class="token punctuation">,</span> train_loader<span class="token punctuation">,</span> criterion<span class="token punctuation">,</span> optimizer<span class="token punctuation">,</span> num_epochs<span class="token operator">=</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-    model<span class="token punctuation">.</span>train<span class="token punctuation">(</span><span class="token punctuation">)</span>
-    <span class="token keyword">for</span> epoch <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span>num_epochs<span class="token punctuation">)</span><span class="token punctuation">:</span>
-        <span class="token keyword">for</span> i<span class="token punctuation">,</span> <span class="token punctuation">(</span>x_batch<span class="token punctuation">,</span> y_batch<span class="token punctuation">)</span> <span class="token keyword">in</span> <span class="token builtin">enumerate</span><span class="token punctuation">(</span>train_loader<span class="token punctuation">)</span><span class="token punctuation">:</span>
-            x_batch<span class="token punctuation">,</span> y_batch <span class="token operator">=</span> x_batch<span class="token punctuation">.</span>to<span class="token punctuation">(</span>device<span class="token punctuation">)</span><span class="token punctuation">,</span> y_batch<span class="token punctuation">.</span>to<span class="token punctuation">(</span>device<span class="token punctuation">)</span>
-            optimizer<span class="token punctuation">.</span>zero_grad<span class="token punctuation">(</span><span class="token punctuation">)</span>
-            outputs <span class="token operator">=</span> model<span class="token punctuation">(</span>x_batch<span class="token punctuation">)</span>
-            loss <span class="token operator">=</span> criterion<span class="token punctuation">(</span>outputs<span class="token punctuation">,</span> y_batch<span class="token punctuation">)</span>
-            loss<span class="token punctuation">.</span>backward<span class="token punctuation">(</span><span class="token punctuation">)</span>
-            optimizer<span class="token punctuation">.</span>step<span class="token punctuation">(</span><span class="token punctuation">)</span>
-
-<span class="token keyword">def</span> <span class="token function">evaluate_model</span><span class="token punctuation">(</span>model<span class="token punctuation">,</span> test_loader<span class="token punctuation">)</span><span class="token punctuation">:</span>
-    model<span class="token punctuation">.</span><span class="token builtin">eval</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-    correct <span class="token operator">=</span> <span class="token number">0</span>
-    total <span class="token operator">=</span> <span class="token number">0</span>
-    <span class="token keyword">with</span> torch<span class="token punctuation">.</span>no_grad<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-        <span class="token keyword">for</span> x_batch<span class="token punctuation">,</span> y_batch <span class="token keyword">in</span> test_loader<span class="token punctuation">:</span>
-            x_batch<span class="token punctuation">,</span> y_batch <span class="token operator">=</span> x_batch<span class="token punctuation">.</span>to<span class="token punctuation">(</span>device<span class="token punctuation">)</span><span class="token punctuation">,</span> y_batch<span class="token punctuation">.</span>to<span class="token punctuation">(</span>device<span class="token punctuation">)</span>
-            outputs <span class="token operator">=</span> model<span class="token punctuation">(</span>x_batch<span class="token punctuation">)</span>
-            _<span class="token punctuation">,</span> predicted <span class="token operator">=</span> torch<span class="token punctuation">.</span><span class="token builtin">max</span><span class="token punctuation">(</span>outputs<span class="token punctuation">.</span>data<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span>
-            total <span class="token operator">+=</span> y_batch<span class="token punctuation">.</span>size<span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span>
-            correct <span class="token operator">+=</span> <span class="token punctuation">(</span>predicted <span class="token operator">==</span> y_batch<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token builtin">sum</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>item<span class="token punctuation">(</span><span class="token punctuation">)</span>
-    <span class="token keyword">return</span> <span class="token number">100</span> <span class="token operator">*</span> correct <span class="token operator">/</span> total<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p>其他生成整合步骤暂且不提，还有一个惊艳的点就是使用它自己生成的代码来debug是可以准确定位问题，比debug时自己输出layer output简单多了。例如我在使用他提供的LSTM model时遇到了<code>RuntimeError: For unbatched 2-D input, hx should also be 2-D but got 3-D tensor" in "train_model(rnn_model, train_loader, test_loader, criterion, ptimizer)</code>和输入维度不匹配的问题。如果是平时的话肯定看每个layer来debug，但是如果直接输入bug后他可以非常快地定位问题。而当发生改了一次又出现之前的错误时，可以使用 <em>Now there is a previous error: “RuntimeError: For unbatched 2-D input, hx should also be 2-D but got 3-D tensor”. Please go deeper into the codes and help me fix them!</em> 我们可以要求GPT go deeper去解决问题。在解决完code的问题后，我们甚至可以要求它根据自己写的代码来写一篇brief academic thesis (<em>Can you write a brief academic report explaining the four models and why there is a big difference in processing the multivariate, sequential, and time-series dataset “EEG Eye State.arff”?</em>)。</p>
+<p>So the system has two coupled goals:</p>
+<ol>
+<li>bring matched tactile, vision, and language examples together;</li>
+<li>reduce sensor-specific tactile shortcuts that damage generalization.</li>
+</ol>
+<h2 id="RSS-Evaluation-Framework"><a href="#RSS-Evaluation-Framework" class="headerlink" title="RSS Evaluation Framework"></a>RSS Evaluation Framework</h2><p>One strong part of the paper is that it does not evaluate only one accuracy table. It proposes an RSS framework:</p>
+<ol>
+<li><strong>Robustness</strong>: does the tactile representation generalize across sensors and datasets?</li>
+<li><strong>Synergy</strong>: does alignment help the other modalities instead of weakening them?</li>
+<li><strong>Stability</strong>: does performance remain stable under different training batch sizes and contrastive-learning conditions?</li>
+</ol>
+<p>This is important because tactile multimodal papers can otherwise be difficult to compare. If one method uses a stronger base model, different batch size, or different downstream protocol, the method-level conclusion becomes unclear.</p>
+<p>RSS tries to make the comparison more controlled. The paper evaluates intra-sensor, cross-sensor, and multi-sensor generalization, then adds modal cross-evaluation tasks and batch-size studies.</p>
+<h2 id="Experimental-Takeaways"><a href="#Experimental-Takeaways" class="headerlink" title="Experimental Takeaways"></a>Experimental Takeaways</h2><p>The experiments use real-world tactile datasets including TAG, SSVTP, TVL, Octopi, and TacQuad, and downstream evaluation datasets such as ObjectFolder 1.0, ObjectFolder 2.0, and Feeling of Success.</p>
+<p>The main message is that TLV-CoRe improves tactile representation quality while using a small number of trainable parameters. In the reported main comparison, TLV-CoRe uses about <strong>0.30%</strong> trainable parameters, compared with larger percentages for several competing CLIP-based baselines.</p>
+<p>A few results are especially informative:</p>
+<ul>
+<li>On TAG-trained evaluation, TLV-CoRe reports strong material, roughness, and hardness performance, and also improves downstream generalization to ObjectFolder and Feeling of Success tasks.</li>
+<li>In modal cross-evaluation, TLV-CoRe gives strong improvements on image classification benchmarks such as CIFAR-10 and CIFAR-100 when the aligned representation is transferred through the visual side.</li>
+<li>In multi-sensor settings such as GelSight plus DIGIT, TLV-CoRe improves over baselines, suggesting that the sensor-aware and sensor-decoupling design is doing useful work.</li>
+<li>In batch-size experiments, TLV-CoRe is reported as smoother and more stable than methods that degrade or plateau under larger batch sizes.</li>
+</ul>
+<p>The ablation results also fit the architecture:</p>
+<ul>
+<li>removing SAM hurts robustness;</li>
+<li>removing tactile-irrelevant decoupled learning causes a larger drop because the encoder keeps more sensor-specific noise;</li>
+<li>removing UBA is most damaging to tri-modal collaboration because the shared intermediate adapter is the main cross-modal communication path.</li>
+</ul>
+<h2 id="Theoretical-Intuition"><a href="#Theoretical-Intuition" class="headerlink" title="Theoretical Intuition"></a>Theoretical Intuition</h2><p>The paper includes convergence, robustness, synergy, and stability analysis. The exact proofs are not the main focus of this post, but the intuition is useful.</p>
+<p><strong>Convergence.</strong> A shared adapter can improve the conditioning of the joint optimization problem. If the shared representation space is better aligned, gradient updates across modalities become less conflicting.</p>
+<p><strong>Robustness.</strong> Sensor-invariance decoupling reduces the amount of sensor-specific information in tactile features. This can reduce gradient variance and improve cross-sensor generalization.</p>
+<p><strong>Synergy.</strong> UBA gives each modality a route to absorb useful information from the others. In ideal cases, tactile, vision, and language features become complementary rather than merely coexisting in the same embedding space.</p>
+<p><strong>Stability.</strong> Contrastive learning is sensitive to batch size because the number and quality of negative samples change. By reducing sensor-specific shortcuts and using shared adapters, TLV-CoRe aims to keep performance less sensitive to this training choice.</p>
+<h2 id="Limitations-and-Open-Questions"><a href="#Limitations-and-Open-Questions" class="headerlink" title="Limitations and Open Questions"></a>Limitations and Open Questions</h2><p>The paper is not claiming that tactile-language-vision alignment is solved. Several questions remain open.</p>
+<p>First, tactile datasets are still much smaller and less standardized than image-text datasets. A method that works well on current datasets still needs broader validation on real robotic platforms and real-time manipulation tasks.</p>
+<p>Second, the RSS framework is useful, but no evaluation framework is complete. Robustness, synergy, and stability are important axes, but deployment also cares about latency, data collection cost, contact policy, sensor wear, and closed-loop control.</p>
+<p>Third, language supervision can be incomplete. Text can describe object properties, but it may not capture the full physics of contact, force, friction, and deformation.</p>
+<p>Finally, UBA introduces a useful shared communication path, but the best depth, placement, and capacity of the adapter may depend on the base encoder and the tactile sensor family.</p>
+<h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2><p>TLV-CoRe is best understood as a carefully designed bridge between tactile sensing and CLIP-style multimodal learning. Its key contribution is not just adding another modality to a contrastive framework. It recognizes that tactile data has sensor-specific nuisance structure, then combines sensor-aware modulation, adversarial decoupling, and shared tri-modal adapters to improve alignment.</p>
+<p>The paper’s main design lesson is clear:</p>
+<blockquote>
+<p>For tactile-language-vision learning, the model must align modalities while also preventing sensor identity from becoming the easiest shortcut.</p>
+</blockquote>
+<p>That makes TLV-CoRe a useful reference for future tactile representation learning work, especially if the goal is not only high in-domain accuracy but also cross-sensor robustness, cross-modal synergy, and stable training behavior.</p>
 
                 
             </div>
@@ -540,7 +679,7 @@ subarrays <span class="token operator">=</span> np<span class="token punctuation
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://marcuxu.com/2022/12/09/tiny-stories-of-ai/">https://marcuxu.com/2022/12/09/tiny-stories-of-ai/</a>
+                    <a href="https://marcuxu.com/2026/06/16/tlv-core-paper-explanation/">https://marcuxu.com/2026/06/16/tlv-core-paper-explanation/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -625,29 +764,30 @@ subarrays <span class="token operator">=</span> np<span class="token punctuation
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
+                <i class="far fa-dot-circle"></i>&nbsp;Current
+            </div>
             <div class="card">
-                <a href="/2023/03/01/dl-study/">
+                <a href="/2026/06/16/tlv-core-paper-explanation/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/7.jpg" class="responsive-img" alt="DL study" loading="lazy" decoding="async">
+                        <img src="/medias/featureimages/10.jpg" class="responsive-img" alt="Understanding TLV-CoRe: Collaborative Representation Learning for Tactile-Language-Vision Alignment" loading="lazy" decoding="async">
                         
-                        <span class="card-title">DL study</span>
+                        <span class="card-title">Understanding TLV-CoRe: Collaborative Representation Learning for Tactile-Language-Vision Alignment</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            Notes on revisiting machine learning and deep learning with Dive into Deep Learning, PyTorch and conda setup, GPU environments, and ART/WiFi adversarial robustness tooling.
+                            A technical explanation of TLV-CoRe, covering tactile-language-vision alignment, sensor-agnostic tactile representation learning, Sensor-Aware Modulation, tactile-irrelevant decoupling, Unified Bridging Adapters, contrastive learning, RSS evaluation, and key empirical findings.
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2023-03-01
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2026-06-16
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -660,6 +800,7 @@ subarrays <span class="token operator">=</span> np<span class="token punctuation
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -678,31 +819,31 @@ subarrays <span class="token operator">=</span> np<span class="token punctuation
                 Next&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2022/11/08/paper-tricks/">
+                <a href="/2026/06/04/psmgd-paper-explanation/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/23.jpg" class="responsive-img" alt="Personal thoughts of the academic" loading="lazy" decoding="async">
+                        <img src="/medias/featureimages/19.jpg" class="responsive-img" alt="Understanding PSMGD: Fast Multi-Objective Optimization with Periodic Gradient Weights" loading="lazy" decoding="async">
                         
-                        <span class="card-title">Personal thoughts of the academic</span>
+                        <span class="card-title">Understanding PSMGD: Fast Multi-Objective Optimization with Periodic Gradient Weights</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            Personal academic notes on reading papers efficiently, understanding paper structure, building research taste, using Zotero, writing with LaTeX, and preparing arXiv submissions.
+                            A technical explanation of PSMGD, covering multi-objective optimization, gradient conflict, periodic stochastic multi-gradient descent, convergence intuition, backpropagation complexity, and key empirical findings.
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-11-08
+                                <i class="far fa-clock fa-fw icon-date"></i>2026-06-04
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/Clutter/" class="post-category">
-                                    Clutter
+                            <a href="/categories/Tech/" class="post-category">
+                                    Tech
                                 </a>
                             
                             
@@ -712,8 +853,8 @@ subarrays <span class="token operator">=</span> np<span class="token punctuation
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Academic/">
-                        <span class="chip bg-color">Academic</span>
+                    <a href="/tags/AI-Tricks/">
+                        <span class="chip bg-color">AI_Tricks</span>
                     </a>
                     
                 </div>
@@ -838,6 +979,13 @@ subarrays <span class="token operator">=</span> np<span class="token punctuation
 </main>
 
 
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script>
+    MathJax.Hub.Config({
+        tex2jax: {inlineMath: [['$', '$'], ['\\(', '\\)']]}
+    });
+</script>
+
 
 
     <footer class="page-footer bg-color">
@@ -910,7 +1058,7 @@ subarrays <span class="token operator">=</span> np<span class="token punctuation
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;Total Words:&nbsp;<span
-                        class="white-color">19.2k</span>
+                        class="white-color">23.9k</span>
             
             
             

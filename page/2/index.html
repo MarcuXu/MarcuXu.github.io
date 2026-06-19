@@ -4,8 +4,8 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="智能信息分析系统,AI System,LZH,OpenAI,联网检索">
-    <meta name="description" content="面向全球公开信息研判与复杂问题分析的智能信息分析系统，内置多智能体协同提问、联网证据筛选、来源追踪与答案优化机制。">
+    <meta name="keywords" content="Mingjing Xu,MarcuXu,multi-objective optimization,trustworthy AI,multimodal learning,edge intelligence">
+    <meta name="description" content="Personal website of Mingjing Xu, a Swansea University CS PhD student working on efficient optimization, trustworthy AI, multimodal learning, and edge intelligence.">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -18,7 +18,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>智能信息分析系统 | LZH</title>
+    <title>MarcuXu</title>
     <link rel="icon" type="image/png" href="/medias/Gemini_Generated_0.png">
     
 
@@ -44,8 +44,6 @@
 
 
 
-
-    
 
 
 
@@ -333,184 +331,96 @@
 
 </header>
 
-    <link rel="stylesheet" href="/css/ai-browser.css?v=20260608f">
-
-<main id="ai-browser-page" class="ai-browser-page">
-    <section class="ai-browser-shell">
-        <header class="ai-browser-hero">
-            <div class="ai-browser-hero-copy">
-                <div class="ai-browser-kicker">
-                    <i class="fas fa-satellite-dish"></i>
-                    <span>AI System / Intelligent Analysis Console</span>
-                </div>
-                <h1>智能信息分析系统</h1>
-                <p class="ai-browser-subtitle">面向全球公开信息研判、跨区域线索梳理与复杂问题分析的智能控制台。系统内置多智能体协同提问、联网证据筛选、来源可信度追踪与答案优化机制，能够在海量信息中快速形成结构化、可追溯、可继续追问的综合研判结果。</p>
-                <div class="ai-browser-capability-row" aria-label="系统能力">
-                    <span><i class="fas fa-globe-asia"></i> 全球信息研判</span>
-                    <span><i class="fas fa-network-wired"></i> 多智能体优化</span>
-                    <span><i class="fas fa-comments"></i> 连续追问</span>
-                    <span><i class="fas fa-link"></i> 来源可查</span>
-                </div>
-                <div class="ai-browser-credit-row" aria-label="项目团队">
-                    <span class="ai-browser-credit-chip">
-                        <i class="fas fa-code"></i>
-                        <strong>开发者</strong>
-                        LZH
-                    </span>
-                    <span class="ai-browser-credit-chip">
-                        <i class="fas fa-user-tie"></i>
-                        <strong>项目负责人</strong>
-                        LZH
-                    </span>
-                    <span class="ai-browser-credit-chip">
-                        <i class="fas fa-drafting-compass"></i>
-                        <strong>设计负责人</strong>
-                        LZH
-                    </span>
-                </div>
+    
+    <div class="bg-cover pd-header about-cover">
+    <div class="container">
+    <div class="row">
+    <div class="col s10 offset-s1 m8 offset-m2 l8 offset-l2">
+        <div class="brand">
+            <div class="title center-align">
+                
+                This is but a single thread in the boundless tapestry woven by mortal hands
+                
             </div>
-            <div class="ai-browser-status-panel">
-                <div class="ai-browser-support-card ai-browser-visual-card" aria-label="智能信息分析系统视觉图">
-                    <div class="ai-browser-visual-frame">
-                        <img src="/medias/ai-system/ai-analysis-visual.png" alt="智能信息分析系统视觉图" decoding="async">
-                        <div class="ai-browser-visual-overlay" aria-hidden="true">
-                            <span><i class="fas fa-search-location"></i> 全域检索</span>
-                            <span><i class="fas fa-project-diagram"></i> 证据链路</span>
-                            <span><i class="fas fa-shield-alt"></i> 风险校验</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="ai-browser-status" data-status="idle">
-                    <span class="ai-browser-status-dot"></span>
-                    <span id="aiBrowserStatusText">就绪</span>
-                </div>
-                <div class="ai-browser-metric-grid">
-                    <div>
-                        <span id="aiBrowserTurnCount">0</span>
-                        <small>轮次</small>
-                    </div>
-                    <div>
-                        <span id="aiBrowserSourceCount">0</span>
-                        <small>来源</small>
-                    </div>
-                </div>
+
+            <div class="description center-align">
+                
+                <span id="subtitle"></span>
+                <script src="/libs/typed/typed.js"></script>
+                <script>
+                    var typed = new Typed("#subtitle", {
+                        strings: [ 
+                            
+                                "And in that lone filament hums the hush of eternity, where each passing heartbeat scatters sparks older than the dawn.",
+                            
+                        ],
+                        startDelay: 300,
+                        typeSpeed: 100,
+                        loop: true,
+                        backSpeed: 50,
+                        showCursor: true
+                    });
+                </script>
+                
             </div>
-        </header>
+        </div>
+    </div>
+</div>
 
-        <section class="ai-browser-app">
-            <aside class="ai-browser-panel ai-browser-control-panel">
-                <div class="ai-browser-section-title">
-                    <i class="fas fa-sliders-h"></i>
-                    <span>控制中心</span>
-                </div>
-
-                <div id="aiBrowserTokenField" class="ai-browser-field">
-                    <label for="aiBrowserToken">访问口令</label>
-                    <div class="ai-browser-token-row">
-                        <input id="aiBrowserToken" type="password" autocomplete="current-password" placeholder="请输入访问口令">
-                        <button id="aiBrowserSaveToken" class="ai-browser-icon-button" type="button" title="保存访问口令">
-                            <i class="fas fa-key"></i>
-                        </button>
-                    </div>
-                </div>
-
-                <div class="ai-browser-field">
-                    <label for="aiBrowserMode">分析模式</label>
-                    <select id="aiBrowserMode">
-                        <option value="search">快速检索</option>
-                        <option value="research" selected>研究综述</option>
-                        <option value="explain">概念解释</option>
-                    </select>
-                </div>
-
-                <div class="ai-browser-field">
-                    <label for="aiBrowserDepth">推理深度</label>
-                    <input id="aiBrowserDepth" type="range" min="1" max="3" value="2">
-                    <div class="ai-browser-range-labels">
-                        <span>简要</span>
-                        <span>均衡</span>
-                        <span>深入</span>
-                    </div>
-                </div>
-
-                <div id="aiBrowserProfileHint" class="ai-browser-profile-hint" aria-live="polite">
-                    <i class="fas fa-tachometer-alt"></i>
-                    <span>均衡研判配置，适合多数复杂问题。</span>
-                </div>
-
-                <div class="ai-browser-field">
-                    <label>回答选项</label>
-                    <label class="ai-browser-toggle">
-                        <input id="aiBrowserCitations" type="checkbox" checked>
-                        <span>显示来源链接</span>
-                    </label>
-                </div>
-
-                <div id="aiBrowserTurnstile" class="ai-browser-turnstile"></div>
-
-                <div class="ai-browser-control-actions">
-                    <button id="aiBrowserNewSession" class="ai-browser-secondary-button" type="button">
-                        <i class="fas fa-plus"></i>
-                        <span>新建会话</span>
-                    </button>
-                    <button id="aiBrowserClear" class="ai-browser-secondary-button" type="button">
-                        <i class="fas fa-eraser"></i>
-                        <span>清空</span>
-                    </button>
-                </div>
-            </aside>
-
-            <section class="ai-browser-panel ai-browser-workspace">
-                <div class="ai-browser-section-title">
-                    <i class="fas fa-comments"></i>
-                    <span>分析工作区</span>
-                </div>
-
-                <div id="aiBrowserMessages" class="ai-browser-messages" aria-live="polite">
-                    <article class="ai-browser-message ai-browser-message-system">
-                        <div class="ai-browser-message-icon"><i class="fas fa-compass"></i></div>
-                        <div>
-                            <h2>开始分析</h2>
-                            <p>输入需要研判的问题。后续追问将自动结合最近的会话上下文。</p>
-                        </div>
-                    </article>
-                </div>
-
-                <form id="aiBrowserForm" class="ai-browser-composer">
-                    <label for="aiBrowserQuery">问题</label>
-                    <textarea id="aiBrowserQuery" rows="4" placeholder="请输入问题，也可以在回答后继续追问..." required></textarea>
-                    <div class="ai-browser-actions">
-                        <button id="aiBrowserCopy" class="ai-browser-icon-button" type="button" title="复制最新回答">
-                            <i class="fas fa-copy"></i>
-                        </button>
-                        <button id="aiBrowserSubmit" class="ai-browser-primary-button" type="submit">
-                            <i class="fas fa-paper-plane"></i>
-                            <span>开始分析</span>
-                        </button>
-                    </div>
-                </form>
-            </section>
-
-            <aside class="ai-browser-panel ai-browser-source-panel">
-                <div class="ai-browser-section-title">
-                    <i class="fas fa-link"></i>
-                    <span>来源追踪</span>
-                </div>
-                <div id="aiBrowserCitationsList" class="ai-browser-citations">
-                    <p class="ai-browser-muted">回答生成后，来源链接将在这里显示。</p>
-                </div>
-            </aside>
-        </section>
-    </section>
-</main>
 
 <script>
-    window.AI_BROWSER_CONFIG = {
-        endpoint: 'https://marcuxu-ai-browser-api.2596785.workers.dev/search',
-        configEndpoint: 'https://marcuxu-ai-browser-api.2596785.workers.dev/config'
-    };
+    // 每天切换 banner 图.  Switch banner image every day.
+    var bannerUrl = "/medias/banner/" + new Date().getDay() + '.jpg';
+    $('.bg-cover').css('background-image', 'url(' + bannerUrl + ')');
 </script>
-<script src="/js/ai-browser.js?v=20260608f" defer></script>
+
+
+    </div>
+</div>
+
+
+<main class="content">
+
+    
+
+    
+
+    <!-- 所有文章卡片 -->
+    <article id="articles" class="container articles">
+        <div class="row article-row">
+            
+              <!-- 隐藏某个文章 -->
+            
+        </div>
+    </article>
+
+</main>
+
+
+<div class="container paging">
+    <div class="row">
+        <div class="col s6 m4 l4">
+            
+            <a href="/"
+               class="left btn-floating btn-large waves-effect waves-light bg-color">
+                <i class="fas fa-angle-left"></i>
+            </a>
+            
+        </div>
+        <div class="page-info col m4 l4 hide-on-small-only">
+            <div class="center-align b-text-gray">2 / 2</div>
+        </div>
+        <div class="col s6 m4 l4">
+            
+            <a class="right btn-floating btn-large disabled">
+                <i class="fas fa-angle-right"></i>
+            </a>
+            
+        </div>
+    </div>
+</div>
+
+
 
 
     <footer class="page-footer bg-color">

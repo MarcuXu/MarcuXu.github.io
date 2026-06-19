@@ -398,21 +398,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>Update Date:&nbsp;&nbsp;
-                    2026-06-04
+                    2026-06-16
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    2.6k
+                    3.1k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>Read Times:&nbsp;&nbsp;
-                    16 Min
+                    19 Min
                 </div>
                 
 
@@ -464,6 +464,13 @@ $$
 <li>Proceedings version: <a target="_blank" rel="noopener" href="https://ojs.aaai.org/index.php/AAAI/article/view/35482">AAAI 2025</a></li>
 <li>Code: <a target="_blank" rel="noopener" href="https://github.com/MarcuXu/PSMG">MarcuXu/PSMG</a></li>
 </ul>
+<p>Before going into the algorithm, it helps to separate three layers of the problem:</p>
+<ol>
+<li><strong>The learning setting</strong>: one model is trained against several losses, usually because the model must serve several tasks or satisfy several evaluation criteria.</li>
+<li><strong>The optimization target</strong>: there is usually no single point that minimizes every loss at the same time, so the goal becomes finding a good trade-off or a Pareto-stationary point.</li>
+<li><strong>The computational bottleneck</strong>: adaptive MOO methods often need multiple task-gradient computations and an extra weighting step, which is much more expensive than ordinary single-loss SGD.</li>
+</ol>
+<p>PSMGD mainly attacks the third layer. It does not claim that multi-objective learning can avoid trade-offs. Instead, it asks whether the expensive part of gradient-aware trade-off negotiation has to happen at every single iteration.</p>
 <h2 id="Why-Multi-Objective-Optimization-Is-Hard"><a href="#Why-Multi-Objective-Optimization-Is-Hard" class="headerlink" title="Why Multi-Objective Optimization Is Hard"></a>Why Multi-Objective Optimization Is Hard</h2><p>The most direct way to handle multiple losses is <strong>linear scalarization</strong>:</p>
 <div class="mathjax-display">
 $$
@@ -512,7 +519,7 @@ $$
 $$
 </div>
 
-<p>The update direction is then</p>
+<p>The gradient-combination vector is then</p>
 <div class="mathjax-display">
 $$
 \mathbf{d}
@@ -522,7 +529,7 @@ $$
 $$
 </div>
 
-<p>If $\mathbf{x}$ is not Pareto stationary, this type of direction can serve as a common descent direction. This is the main strength of gradient manipulation methods: they adapt weights according to the current gradient geometry rather than relying on static hand-tuned coefficients.</p>
+<p>The actual descent step moves along $-\mathbf{d}$. If $\mathbf{x}$ is not Pareto stationary, this type of combined gradient can induce a common descent direction. This is the main strength of gradient manipulation methods: they adapt weights according to the current gradient geometry rather than relying on static hand-tuned coefficients.</p>
 <p>The cost is the extra dynamic-weight computation. In many deep-learning systems, one must compute or approximate each task gradient, solve an additional optimization problem, combine the gradients, and then update the model. This can become expensive when:</p>
 <ul>
 <li>the number of objectives $S$ is large,</li>
@@ -531,6 +538,10 @@ $$
 <li>the training loop is already bottlenecked by backpropagation.</li>
 </ul>
 <p>This is the bottleneck PSMGD targets.</p>
+<h2 id="Related-Work-Context"><a href="#Related-Work-Context" class="headerlink" title="Related Work Context"></a>Related Work Context</h2><p>The simplest baseline for MOO is <strong>static scalarization</strong>, where the user fixes $\lambda_s$ before training. It is cheap and easy to implement, but it cannot react when tasks conflict or when one task learns much faster than another.</p>
+<p><strong>MGDA</strong> improves on this by choosing the convex combination of gradients with minimum norm. It is a natural first-order method for Pareto stationarity, but it needs the current gradients of all objectives whenever the weights are recomputed.</p>
+<p>Later multi-task and MOO methods modify this basic idea in different ways. <strong>PCGrad</strong> projects away pairwise conflicting gradient components. <strong>CAGrad</strong> seeks a direction that balances average training progress and conflict control. <strong>IMTL-G</strong>, <strong>NashMTL</strong>, <strong>FAMO</strong>, <strong>FairGrad</strong>, and related dynamic-weighting methods all try to improve the trade-off between task balance, stability, and final quality.</p>
+<p>PSMGD is best understood as complementary to this line of work. Its key question is not only “which dynamic weighting rule should we use?”, but also “how often do we need to pay for that rule?” The paper therefore focuses on periodic reuse: compute an adaptive weight vector occasionally, keep using it while it remains useful, and reduce the number of expensive all-task-gradient calculations.</p>
 <h2 id="The-Key-Observation-Behind-PSMGD"><a href="#The-Key-Observation-Behind-PSMGD" class="headerlink" title="The Key Observation Behind PSMGD"></a>The Key Observation Behind PSMGD</h2><p>The paper’s core observation is empirical and algorithmic:</p>
 <blockquote>
 <p>Dynamic weights often change slowly over short intervals.</p>
@@ -538,6 +549,8 @@ $$
 <p>In the pedagogical Fonseca example, MGDA’s dynamic weights converge quickly and then stay stable. In the paper’s multi-task learning studies, the same idea appears at both epoch and iteration scales: the average dynamic weights are stable and show low variability.</p>
 <p>This suggests that recomputing $\boldsymbol{\lambda}_t$ at every iteration may be wasteful. If the current dynamic weights are close to the previous dynamic weights, we can reuse the old weights for several iterations and spend the saved computation on actual model updates.</p>
 <p>This is the central design idea of <strong>Periodic Stochastic Multi-Gradient Descent (PSMGD)</strong>.</p>
+<p><img src="/2026/06/04/psmgd-paper-explanation/psmgd-mechanism.png" alt="PSMGD mechanism: periodic calculation steps compute task gradients and QP weights, while reuse steps use cached weights for a single weighted-loss backpropagation."></p>
+<p>The diagram highlights the practical asymmetry between the two step types. A calculation step pays for all task gradients and solves the dynamic-weight problem. A reuse step keeps the cached weights, forms the weighted loss, and can run a single ordinary backpropagation before the model update.</p>
 <h2 id="Algorithmic-Architecture"><a href="#Algorithmic-Architecture" class="headerlink" title="Algorithmic Architecture"></a>Algorithmic Architecture</h2><p>PSMGD has three moving parts:</p>
 <ol>
 <li><strong>Periodic weight calculation</strong>: every $R$ iterations, solve the dynamic-weight problem.</li>
@@ -548,7 +561,7 @@ $$
 <pre class="line-numbers language-text" data-language="text"><code class="language-text">Objective losses f_1, ..., f_S
         |
         v
-Compute task gradients when t % R == 0
+At t % R == 0: compute all task gradients
         |
         v
 Solve dynamic-weight QP for lambda_hat_t
@@ -560,7 +573,7 @@ Momentum smoothing: lambda_t = alpha_t lambda_{t-R} + (1 - alpha_t) lambda_hat_t
 Reuse lambda_t for intermediate iterations
         |
         v
-Weighted gradient direction d_t = sum_s lambda_{t,s} grad f_s
+Weighted loss or weighted gradient using cached lambda_t
         |
         v
 Parameter update x_{t+1} = x_t - eta_t d_t<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
@@ -595,6 +608,7 @@ $$
 $$
 </div>
 
+<p>At the first periodic calculation step, this can be implemented by setting $\alpha_t = 0$ or by initializing the previous weight vector to a valid simplex point such as uniform weights. The important point is that the first usable dynamic weight vector must be well-defined before reuse begins.</p>
 <p>When $t \bmod R \ne 0$, PSMGD simply reuses the previous weights:</p>
 <div class="mathjax-display">
 $$
@@ -624,9 +638,9 @@ $$
 $$
 </div>
 
-<p>This is a small change in code structure but a large change in computational behavior. Most iterations no longer need to solve the dynamic-weight problem.</p>
+<p>This is a small change in code structure but a large change in computational behavior. Most iterations no longer need to solve the dynamic-weight problem. More importantly for deep learning, reuse iterations can be implemented as an ordinary backward pass through the weighted loss $\sum_s \lambda_{t,s} f_s(\mathbf{x}_t,\xi_t)$, instead of computing and storing every per-objective gradient just to decide the weights again.</p>
 <h2 id="Pseudocode"><a href="#Pseudocode" class="headerlink" title="Pseudocode"></a>Pseudocode</h2><pre class="line-numbers language-text" data-language="text"><code class="language-text">Input: initial parameter x_0, learning rates eta_t, period R
-Initialize lambda_0
+Initialize lambda_0, or use alpha_t = 0 at the first calculation step
 
 for t = 0, 1, ..., T - 1:
     if t mod R == 0:
@@ -636,8 +650,9 @@ for t = 0, 1, ..., T - 1:
     else:
         lambda_t = lambda_{t-1}
 
+    form the weighted loss or weighted stochastic gradient using lambda_t
     d_t = sum_s lambda_{t,s} grad f_s(x_t, xi_t)
-    x_{t+1} = x_t - eta_t d_t<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+    x_{t+1} = x_t - eta_t d_t<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>The hyperparameter $R$ controls the trade-off:</p>
 <ul>
@@ -929,30 +944,29 @@ $$
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="far fa-dot-circle"></i>&nbsp;Current
-            </div>
+                <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
             <div class="card">
-                <a href="/2026/06/04/psmgd-paper-explanation/">
+                <a href="/2026/06/16/tlv-core-paper-explanation/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/19.jpg" class="responsive-img" alt="Understanding PSMGD: Fast Multi-Objective Optimization with Periodic Gradient Weights" loading="lazy" decoding="async">
+                        <img src="/medias/featureimages/10.jpg" class="responsive-img" alt="Understanding TLV-CoRe: Collaborative Representation Learning for Tactile-Language-Vision Alignment" loading="lazy" decoding="async">
                         
-                        <span class="card-title">Understanding PSMGD: Fast Multi-Objective Optimization with Periodic Gradient Weights</span>
+                        <span class="card-title">Understanding TLV-CoRe: Collaborative Representation Learning for Tactile-Language-Vision Alignment</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            A technical explanation of PSMGD, covering multi-objective optimization, gradient conflict, periodic stochastic multi-gradient descent, convergence intuition, backpropagation complexity, and key empirical findings.
+                            A technical explanation of TLV-CoRe, covering tactile-language-vision alignment, sensor-agnostic tactile representation learning, Sensor-Aware Modulation, tactile-irrelevant decoupling, Unified Bridging Adapters, contrastive learning, RSS evaluation, and key empirical findings.
                         
                     </div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2026-06-04
-                            </span>
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2026-06-16
+                        </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -965,7 +979,6 @@ $$
                         </span>
                     </div>
                 </div>
-
                 
                 <div class="card-action article-tags">
                     
@@ -988,15 +1001,15 @@ $$
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="Speaking the Language of Probability-From Classifier Evaluation to Generative Classifiers" loading="lazy" decoding="async">
+                        <img src="/medias/featureimages/9.jpg" class="responsive-img" alt="Speaking the Language of Probability: From Classifier Evaluation to Generative Classifiers" loading="lazy" decoding="async">
                         
-                        <span class="card-title">Speaking the Language of Probability-From Classifier Evaluation to Generative Classifiers</span>
+                        <span class="card-title">Speaking the Language of Probability: From Classifier Evaluation to Generative Classifiers</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            Study notes connecting classifier accuracy, confusion matrices, precision, recall, ROC/AUC, generative classifiers, Gaussian class-conditional models, sigmoid/softmax, LDA, and QDA.
+                            Study notes connecting classifier accuracy, confusion matrices, precision, recall, ROC/AUC, PR curves, calibration, cost-sensitive thresholds, generative classifiers, Gaussian class-conditional models, sigmoid/softmax, LDA, and QDA.
                         
                     </div>
                     <div class="publish-info">
@@ -1223,7 +1236,7 @@ $$
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;Total Words:&nbsp;<span
-                        class="white-color">19.2k</span>
+                        class="white-color">23.9k</span>
             
             
             

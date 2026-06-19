@@ -4,13 +4,14 @@
     --mx-accent: #2f80ed;
     --mx-accent-deep: #0f4c81;
     --mx-accent-cyan: #19a7ce;
+    --mx-accent-green: #2fbf71;
     --mx-ink: #24364b;
     --mx-muted: #53657d;
 }
 
 .bg-color,
 .progress-bar {
-    background-image: linear-gradient(120deg, #0f2027 0%, #1f4690 48%, #19a7ce 100%) !important;
+    background-image: linear-gradient(120deg, #123c43 0%, var(--mx-accent) 52%, var(--mx-accent-green) 100%) !important;
 }
 
 .text-color {
@@ -42,12 +43,12 @@ article a:hover,
 .other-skills .chip:hover {
     color: #fff !important;
     border-color: var(--mx-accent) !important;
-    background: linear-gradient(120deg, var(--mx-accent-deep) 0%, var(--mx-accent-cyan) 100%) !important;
+    background: linear-gradient(120deg, var(--mx-accent-deep) 0%, var(--mx-accent-green) 100%) !important;
 }
 
 .chip-container .chip-active {
     color: #fff !important;
-    background: linear-gradient(120deg, var(--mx-accent-deep) 0%, var(--mx-accent) 100%) !important;
+    background: linear-gradient(120deg, var(--mx-accent-deep) 0%, var(--mx-accent-green) 100%) !important;
 }
 
 .chip-default .tag-length {
@@ -55,7 +56,7 @@ article a:hover,
 }
 
 #cd-timeline::before {
-    background: linear-gradient(180deg, var(--mx-accent-deep) 0%, var(--mx-accent-cyan) 100%) !important;
+    background: linear-gradient(180deg, var(--mx-accent-deep) 0%, var(--mx-accent-green) 100%) !important;
 }
 
 .cd-timeline-img {
@@ -88,6 +89,17 @@ header nav .brand-logo .logo-span {
     padding-bottom: 2.2rem;
 }
 
+#artDetail > .card {
+    border: 1px solid rgba(36, 54, 75, 0.08);
+    border-radius: 8px;
+    box-shadow: 0 18px 45px rgba(15, 32, 39, 0.10), 0 5px 14px rgba(15, 32, 39, 0.06);
+}
+
+#artDetail .article-info {
+    border-radius: 8px 8px 0 0;
+    background: linear-gradient(180deg, rgba(47, 128, 237, 0.06), rgba(255, 255, 255, 0));
+}
+
 #artDetail .post-info {
     display: flex;
     flex-wrap: wrap;
@@ -102,6 +114,8 @@ header nav .brand-logo .logo-span {
 #articleContent {
     max-width: 860px;
     margin: 0 auto;
+    font-size: 1.02rem;
+    letter-spacing: 0;
 }
 
 #articleContent .mathjax-display,
@@ -115,7 +129,10 @@ header nav .brand-logo .logo-span {
 
 #articleContent .mathjax-display {
     margin: 1rem 0;
-    padding: 0.25rem 0 0.45rem;
+    padding: 0.65rem 0.75rem 0.8rem;
+    border: 1px solid rgba(47, 128, 237, 0.12);
+    border-radius: 8px;
+    background: rgba(47, 128, 237, 0.035);
 }
 
 #articleContent .MathJax_Display {
@@ -133,14 +150,52 @@ header nav .brand-logo .logo-span {
     color: #2f3a45;
 }
 
+#articleContent ul,
+#articleContent ol {
+    margin: 0.75rem 0 1.15rem 1.45rem;
+    color: #2f3a45;
+    line-height: 1.85;
+}
+
+#articleContent li {
+    margin: 0.25rem 0;
+}
+
+#articleContent strong {
+    color: var(--mx-ink);
+    font-weight: 700;
+}
+
 #articleContent h2 {
+    position: relative;
     margin-top: 2.6rem;
+    margin-bottom: 1.1rem;
     padding-bottom: 0.35rem;
     border-bottom: 1px solid rgba(47, 128, 237, 0.22);
+    color: var(--mx-ink);
+    font-weight: 700;
+}
+
+#articleContent h2::after {
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    width: 72px;
+    height: 2px;
+    content: "";
+    background: linear-gradient(90deg, var(--mx-accent-deep), var(--mx-accent-green));
 }
 
 #articleContent h3 {
     margin-top: 2rem;
+    color: var(--mx-ink);
+    font-weight: 650;
+}
+
+#articleContent h4 {
+    margin-top: 1.55rem;
+    color: var(--mx-muted);
+    font-weight: 650;
 }
 
 #articleContent img {
@@ -168,8 +223,31 @@ header nav .brand-logo .logo-span {
     overflow-x: auto;
 }
 
+#articleContent table {
+    display: block;
+    width: max-content;
+    margin: 1.25rem auto;
+    border: 1px solid rgba(36, 54, 75, 0.10);
+    border-radius: 8px;
+    border-collapse: separate;
+    box-shadow: 0 10px 24px rgba(15, 32, 39, 0.08);
+}
+
+#articleContent table th {
+    color: var(--mx-ink);
+    background: rgba(47, 128, 237, 0.08);
+}
+
+#articleContent table th,
+#articleContent table td {
+    padding: 0.65rem 0.8rem;
+    border-bottom: 1px solid rgba(36, 54, 75, 0.08);
+}
+
 #articleContent code {
     border-radius: 4px;
+    color: #0f4c81;
+    background: rgba(47, 128, 237, 0.09);
 }
 
 article .card {
@@ -238,7 +316,7 @@ article .card .card-title,
 
 #aboutme .social-link a {
     border-color: rgba(47, 128, 237, 0.55) !important;
-    background: radial-gradient(circle at 30% 20%, var(--mx-accent-cyan), var(--mx-accent-deep)) !important;
+    background: radial-gradient(circle at 30% 20%, var(--mx-accent-green), var(--mx-accent-deep)) !important;
 }
 
 .post-statis .statis .count a,
@@ -312,10 +390,26 @@ article .card .card-title,
     #articleContent {
         max-width: 100%;
         overflow-wrap: break-word;
+        font-size: 0.98rem;
     }
 
     #articleContent p {
         line-height: 1.8rem;
+    }
+
+    #articleContent ul,
+    #articleContent ol {
+        margin-left: 1.1rem;
+        line-height: 1.75;
+    }
+
+    #articleContent h2 {
+        margin-top: 2.15rem;
+        font-size: 1.55rem;
+    }
+
+    #articleContent h3 {
+        font-size: 1.28rem;
     }
 
     #articleContent .mathjax-display,

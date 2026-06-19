@@ -6,7 +6,7 @@
   <link href="https://marcuxu.com/atom.xml" rel="self"/>
   
   <link href="https://marcuxu.com/"/>
-  <updated>2026-06-04T02:39:17.292Z</updated>
+  <updated>2026-06-16T16:00:04.077Z</updated>
   <id>https://marcuxu.com/</id>
   
   <author>
@@ -17,11 +17,36 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>Understanding TLV-CoRe: Collaborative Representation Learning for Tactile-Language-Vision Alignment</title>
+    <link href="https://marcuxu.com/2026/06/16/tlv-core-paper-explanation/"/>
+    <id>https://marcuxu.com/2026/06/16/tlv-core-paper-explanation/</id>
+    <published>2026-06-16T15:30:00.000Z</published>
+    <updated>2026-06-16T16:00:04.077Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;Introduction&quot;&gt;&lt;a href=&quot;#Introduction&quot; class=&quot;headerlink&quot; title=&quot;Introduction&quot;&gt;&lt;/a&gt;Introduction&lt;/h2&gt;&lt;p&gt;Tactile perception is an</summary>
+        
+      
+    
+    
+    
+    <category term="Tech" scheme="https://marcuxu.com/categories/Tech/"/>
+    
+    
+    <category term="AI_Tricks" scheme="https://marcuxu.com/tags/AI-Tricks/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Understanding PSMGD: Fast Multi-Objective Optimization with Periodic Gradient Weights</title>
     <link href="https://marcuxu.com/2026/06/04/psmgd-paper-explanation/"/>
     <id>https://marcuxu.com/2026/06/04/psmgd-paper-explanation/</id>
     <published>2026-06-04T02:34:25.000Z</published>
-    <updated>2026-06-04T02:39:17.292Z</updated>
+    <updated>2026-06-16T15:16:36.496Z</updated>
     
     
       
@@ -42,11 +67,11 @@
   </entry>
   
   <entry>
-    <title>Speaking the Language of Probability-From Classifier Evaluation to Generative Classifiers</title>
+    <title>Speaking the Language of Probability: From Classifier Evaluation to Generative Classifiers</title>
     <link href="https://marcuxu.com/2025/10/30/dl-reading-1029/"/>
     <id>https://marcuxu.com/2025/10/30/dl-reading-1029/</id>
     <published>2025-10-30T05:01:20.000Z</published>
-    <updated>2026-06-04T01:44:47.175Z</updated>
+    <updated>2026-06-16T15:58:58.965Z</updated>
     
     
       
@@ -117,8 +142,8 @@
   
   <entry>
     <title>Tiny AI stories</title>
-    <link href="https://marcuxu.com/2022/12/09/tiny-stories-of-ai/"/>
-    <id>https://marcuxu.com/2022/12/09/tiny-stories-of-ai/</id>
+    <link href="https://marcuxu.com/2022/12/08/tiny-stories-of-ai/"/>
+    <id>https://marcuxu.com/2022/12/08/tiny-stories-of-ai/</id>
     <published>2022-12-08T23:06:33.000Z</published>
     <updated>2026-06-04T01:44:47.181Z</updated>
     
@@ -167,11 +192,11 @@
   </entry>
   
   <entry>
-    <title>Convolutional neural networks in DL</title>
+    <title>CNN in Deep Learning: From Pixels to Feature Maps</title>
     <link href="https://marcuxu.com/2022/10/06/cnn-in-dl/"/>
     <id>https://marcuxu.com/2022/10/06/cnn-in-dl/</id>
     <published>2022-10-06T14:20:52.000Z</published>
-    <updated>2026-06-04T01:44:47.174Z</updated>
+    <updated>2026-06-16T16:00:04.077Z</updated>
     
     
       
@@ -266,8 +291,8 @@
   
   <entry>
     <title>How to build your own website</title>
-    <link href="https://marcuxu.com/2022/09/19/building-blog/"/>
-    <id>https://marcuxu.com/2022/09/19/building-blog/</id>
+    <link href="https://marcuxu.com/2022/09/18/building-blog/"/>
+    <id>https://marcuxu.com/2022/09/18/building-blog/</id>
     <published>2022-09-18T16:21:52.000Z</published>
     <updated>2026-06-04T01:44:47.171Z</updated>
     
