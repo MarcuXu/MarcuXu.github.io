@@ -398,21 +398,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>Update Date:&nbsp;&nbsp;
-                    2026-06-04
+                    2026-06-24
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    1.1k
+                    1.6k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>Read Times:&nbsp;&nbsp;
-                    4 Min
+                    6 Min
                 </div>
                 
 
@@ -474,6 +474,13 @@
 <li>若是插入GIF可以参考<a target="_blank" rel="noopener" href="https://www.cnblogs.com/AhuntSun-blog/p/12028808.html">这里</a>，实际上可以将一些非敏感的图片上传到 <a target="_blank" rel="noopener" href="https://giphy.com/">https://giphy.com/</a> 后进行图床引用，格式类似 <code>![]()</code>。本网站之后主要使用<a target="_blank" rel="noopener" href="https://sm.ms/">线上图床</a>来附上图片（使用图床有多个优点，例如图片加载快，不需在本地和GitHub占用存储空间，所以非私密的图片完全可以upload）。</li>
 <li>注意upload到GitHub上的并非所有的文件，GitHub pages只需要 <strong>public</strong> 即可。其实这里可以稍微理解一下部署到github的原理。之前步骤中在Github上创建的那个特别的repo（MarcuXu.github.io）一个最大的特点就是其master中的html静态文件，可以通过<a target="_blank" rel="noopener" href="http://marcuxu.github.io/">http://MarcuXu.github.io</a>来直接访问。<code>Hexo -g</code>会生成一个静态网站（第一次会生成一个public目录），它就是我们点开网站看到的东西。而当我们将hexo生成的静态网站<code>git commit</code>后，我们就可以在线上看到我们网站的内容了。所以明白了原理，怎么做自然就清晰了。</li>
 <li>关于在md文件中公式的话，可以将论文中的latex公式直接复制后左右各加 <strong>$</strong> ，而更多的md文件中编辑公式可以看<a target="_blank" rel="noopener" href="https://blog.csdn.net/CaptainD_W/article/details/116570636">这里</a>。</li>
+<li>2026 update: 目前这个网站还是以 <code>Hexo 5.x + hexo-theme-matery</code> 为基础维护，所以不要看到新的教程就直接升级 Hexo、Node 或主题依赖。现在更稳的办法是先看 <code>_config.yml</code>、<code>themes/hexo-theme-matery/_config.yml</code> 和 <code>package.json</code>，确认已有配置能不能解决问题。</li>
+<li>当前主域名是 <code>https://marcuxu.com</code>，<code>source/CNAME</code> 里也是 <code>marcuxu.com</code>。如果以后改域名，至少要一起检查 <code>_config.yml</code> 的 <code>url</code>、<code>source/CNAME</code> 和 GitHub Pages 的 custom domain。</li>
+<li>主题外观的个性化修改尽量集中放在 <code>themes/hexo-theme-matery/source/css/my.css</code>。现在里面主要做了蓝绿主色、文章阅读宽度、card阴影、图片和表格样式、公式横向滚动、TOC宽度、移动端文章信息栏，以及首页cover长标题在手机上的字号和行距适配。</li>
+<li>手机端要特别注意首页第一屏。根目录 <code>_config.yml</code> 里的 <code>subtitle</code> 比较长，如果沿用 Matery 默认的 <code>4rem</code> 标题字号，手机上会容易和top bar、按钮、social link挤在一起。因此这类问题优先用 <code>my.css</code> 做小范围覆盖，不要直接改主题模板。</li>
+<li>写论文解读或技术文章时，如果文章需要公式，就在front matter里加 <code>mathjax: true</code>；如果文章需要配图，就优先用同名资源文件夹，例如 <code>source/_posts/TLV-CoRe-paper-explanation/tlv-core-mechanism.png</code>，正文里直接写 <code>![](tlv-core-mechanism.png)</code>。这样生成后的路径更清楚，也不需要到处找图床链接。</li>
+<li>现在内容侧已经有一些偏科研笔记的文章，例如 CNN/DL、PSMGD、TLV-CoRe 等。写这类文章时不要只贴结论，最好按“背景问题 -&gt; 方法直觉 -&gt; 关键公式 -&gt; 图示 -&gt; 实验takeaways -&gt; limitation”的顺序展开，读者会更容易跟上。</li>
+<li>站点功能方面已经有站内搜索、Atom feed、GitHub emoji、拼音permalink、字数统计和Matery的一些文章/分类/标签页面。维护时如果只是改内容或样式，通常先 <code>hexo clean &amp;&amp; hexo generate</code> 检查生成是否报错；只有确认要发布时再执行 <code>hexo deploy</code>。</li>
 </ol>
 <h3 id="Insert-images-as-HTML-does"><a href="#Insert-images-as-HTML-does" class="headerlink" title="Insert images as HTML does"></a>Insert images as HTML does</h3><pre class="line-numbers language-markdown" data-language="markdown"><code class="language-markdown"><span class="token comment">&lt;!--2 images are inserted in same line--&gt;</span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">align</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>center<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
@@ -870,7 +877,7 @@
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;Total Words:&nbsp;<span
-                        class="white-color">23.9k</span>
+                        class="white-color">24.9k</span>
             
             
             

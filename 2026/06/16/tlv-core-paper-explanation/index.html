@@ -398,21 +398,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>Update Date:&nbsp;&nbsp;
-                    2026-06-17
+                    2026-06-24
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    2.2k
+                    2.6k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>Read Times:&nbsp;&nbsp;
-                    13 Min
+                    16 Min
                 </div>
                 
 
@@ -454,13 +454,35 @@
 <li><strong>Tactile-irrelevant decoupled learning</strong>: reduce sensor-specific noise and force the tactile encoder to focus on task-relevant information.</li>
 <li><strong>Unified Bridging Adapter (UBA)</strong>: let tactile, language, and vision communicate through a shared adapter space before final contrastive alignment.</li>
 </ol>
+<h2 id="Problem-Setting-What-Is-Being-Aligned"><a href="#Problem-Setting-What-Is-Being-Aligned" class="headerlink" title="Problem Setting: What Is Being Aligned?"></a>Problem Setting: What Is Being Aligned?</h2><p>Before looking at the architecture, it helps to make the target problem more concrete. In a tactile-language-vision dataset, one training item can be understood as an aligned triplet:</p>
+<div class="mathjax-display">
+$$
+\left(x_i^T, x_i^V, x_i^L\right),
+$$
+</div>
+
+<p>where $x_i^T$ is a tactile observation, $x_i^V$ is a visual observation, and $x_i^L$ is a language description or label related to the same object, material, or property. The goal is to learn encoders that map the three inputs into embeddings:</p>
+<div class="mathjax-display">
+$$
+z_i^T=f_T(x_i^T),\quad
+z_i^V=f_V(x_i^V),\quad
+z_i^L=f_L(x_i^L).
+$$
+</div>
+
+<p>For a good representation, matched embeddings such as $(z_i^T,z_i^V)$ or $(z_i^T,z_i^L)$ should be close, while mismatched examples should be farther away. That sounds similar to vision-language contrastive learning, but tactile data makes the target more subtle.</p>
+<p>The tactile image is not only a picture of an object surface. It is also a record of a contact event. Contact force, pose, sensor elastomer, internal camera, lighting position, color response, and calibration can all change the image. Therefore, the representation must keep object-level information such as texture and hardness, while avoiding shortcuts that only identify the sensor or the recording style.</p>
+<p>It is also important not to overread the paper. TLV-CoRe is a <strong>representation-learning method</strong>, not a complete robot manipulation policy. It improves the feature space that later systems can use for recognition, retrieval, classification, or downstream robotic tasks.</p>
 <h2 id="Why-Tactile-Language-Vision-Alignment-Is-Hard"><a href="#Why-Tactile-Language-Vision-Alignment-Is-Hard" class="headerlink" title="Why Tactile-Language-Vision Alignment Is Hard"></a>Why Tactile-Language-Vision Alignment Is Hard</h2><p>Vision-language alignment has a relatively mature recipe. CLIP-style models learn from paired images and text by pulling matching pairs together and pushing mismatched pairs apart. Extending this idea to touch is tempting, but tactile data introduces several extra difficulties.</p>
 <p>First, tactile sensors are not standardized. GelSight-like and DIGIT-like sensors may capture the same physical object with different illumination, camera geometry, color response, elastomer properties, and contact artifacts. This means a tactile image can contain both useful object information and sensor-specific style.</p>
 <p>Second, tactile images can be misleading. Two different touched objects may produce visually similar tactile patterns if the sensor style dominates the image. Conversely, the same object may look different under different sensors or contact conditions.</p>
-<p>Third, existing tactile-language-vision methods often align modalities at the final embedding level but do not explicitly encourage intermediate communication among tactile, language, and vision branches. The paper argues that this limits deep tri-modal fusion.</p>
+<p>Third, tactile information is often property-oriented rather than category-oriented. A visual image may quickly reveal “cup”, “cloth”, or “bottle”, while touch may reveal “soft”, “rough”, “slippery”, or “deformable”. These are exactly the properties robots need during contact-rich interaction, but they are also harder to label and compare across datasets.</p>
+<p>Fourth, existing tactile-language-vision methods often align modalities at the final embedding level but do not explicitly encourage intermediate communication among tactile, language, and vision branches. The paper argues that this limits deep tri-modal fusion.</p>
 <p>So the target is not only cross-modal alignment. The target is <strong>sensor-agnostic, collaborative, and stable</strong> representation learning.</p>
 <h2 id="Related-Work-Context"><a href="#Related-Work-Context" class="headerlink" title="Related Work Context"></a>Related Work Context</h2><p>The paper positions TLV-CoRe among several tactile representation learning directions.</p>
 <p><strong>CLIP-based tactile-language-vision learning</strong> includes methods such as TLV-Link, AnyTouch, UniTouch, and related approaches. Their strength is that they can reuse powerful vision-language priors. Their weakness is that tactile data has sensor-specific structure that ordinary CLIP-style alignment does not automatically remove.</p>
+<p><strong>Sensor-transfer tactile learning</strong> focuses on the fact that a representation trained on one sensor may fail on another sensor. This is not a small implementation detail. If a method only performs well under one tactile camera, one lighting setup, or one contact protocol, it is difficult to reuse in a broader robotic system.</p>
+<p><strong>Intermediate multimodal adapters</strong> are useful when the base model is large and expensive to retrain. Adapter-style methods can add a small number of trainable parameters while preserving the pretrained encoder. TLV-CoRe follows this practical direction, but adds a shared bridge so that the three modalities are not isolated until the final loss.</p>
 <p><strong>Custom tactile representation models</strong> can be built specifically for tactile data, but they make fair comparison harder because the base model, training schedule, batch size, and evaluation protocol often differ.</p>
 <p><strong>General multimodal alignment methods</strong> such as ImageBind-style work show that many modalities can be projected into a shared embedding space. However, tactile sensing is still less explored than image, text, audio, video, or 3D point clouds.</p>
 <p>TLV-CoRe is best understood as a CLIP-based method that tries to keep the comparison setting controlled while adding tactile-specific and tri-modal-specific modules.</p>
@@ -473,6 +495,8 @@
 </ul>
 <p>The tactile branch has extra work to do because sensor identity can become a shortcut. SAM handles sensor-aware feature adaptation, while decoupled learning discourages the encoder from preserving tactile-irrelevant sensor information.</p>
 <p>The UBA module is inserted into the modality encoders to make the three branches collaborate through a shared adapter space. This is the part that changes the system from only “aligning final embeddings” to “sharing intermediate representation structure.”</p>
+<p><img src="/2026/06/16/tlv-core-paper-explanation/tlv-core-mechanism.png" alt="TLV-CoRe mechanism overview"></p>
+<p><em>Figure: a simplified mechanism view of TLV-CoRe. The tactile branch has two special components, SAM and sensor-shortcut decoupling, while all three modalities meet through the UBA shared bridge before contrastive alignment and RSS evaluation.</em></p>
 <h2 id="Sensor-Aware-Modulator"><a href="#Sensor-Aware-Modulator" class="headerlink" title="Sensor-Aware Modulator"></a>Sensor-Aware Modulator</h2><p>Let a tactile input be $x^T$, and let the tactile encoder produce a feature:</p>
 <div class="mathjax-display">
 $$
@@ -1058,7 +1082,7 @@ $$
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;Total Words:&nbsp;<span
-                        class="white-color">23.9k</span>
+                        class="white-color">24.9k</span>
             
             
             

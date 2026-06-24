@@ -346,6 +346,94 @@ article .card .card-title,
 }
 
 @media only screen and (max-width: 601px) {
+    .index-cover .container {
+        width: 100%;
+        box-sizing: border-box;
+        padding-right: 12px;
+        padding-left: 12px;
+    }
+
+    .bg-cover .brand {
+        width: 100%;
+    }
+
+    .bg-cover .brand .title {
+        width: min(78vw, 20rem);
+        max-width: 100%;
+        margin-right: auto;
+        margin-bottom: 12px;
+        margin-left: auto;
+        font-size: 1.82rem !important;
+        line-height: 1.22;
+        white-space: normal;
+        word-break: normal;
+        overflow-wrap: anywhere;
+    }
+
+    .bg-cover .brand .description {
+        max-width: 88vw;
+        margin-right: auto;
+        margin-left: auto;
+        font-size: 1rem !important;
+        line-height: 1.45;
+        overflow-wrap: break-word;
+    }
+
+    .bg-cover .post-title {
+        width: min(88vw, 22rem);
+        max-width: 100%;
+        margin-right: auto;
+        margin-left: auto;
+        font-size: 1.2rem !important;
+        line-height: 1.35;
+        white-space: normal;
+        word-break: normal;
+        overflow-wrap: anywhere;
+    }
+
+    .index-cover .cover-btns {
+        top: 5vh;
+    }
+
+    .index-cover .cover-btns .btn {
+        max-width: 90vw;
+        margin-bottom: 0.55rem;
+        padding-right: 1rem;
+        padding-left: 1rem;
+    }
+
+    .index-cover .cover-social-link {
+        top: 10vh;
+    }
+
+    .post-container {
+        width: 100%;
+        max-width: 100%;
+        overflow-x: hidden;
+    }
+
+    .post-container > .row {
+        margin-right: 0;
+        margin-left: 0;
+    }
+
+    .post-container #main-content.col {
+        padding-right: 0;
+        padding-left: 0;
+    }
+
+    .post-container #artDetail {
+        width: calc(100vw - 20px) !important;
+        max-width: calc(100vw - 20px) !important;
+        margin-right: auto;
+        margin-left: auto;
+    }
+
+    #artDetail > .card {
+        overflow: hidden;
+        box-sizing: border-box;
+    }
+
     #artDetail .article-info {
         padding: 12px 14px 4px;
     }
@@ -383,18 +471,29 @@ article .card .card-title,
     }
 
     #artDetail .article-card-content {
+        width: calc(100vw - 32px) !important;
+        max-width: calc(100vw - 32px) !important;
+        box-sizing: border-box;
+        margin-right: auto;
+        margin-left: auto;
         padding-right: 14px;
         padding-left: 14px;
     }
 
     #articleContent {
-        max-width: 100%;
+        width: 100% !important;
+        max-width: 100% !important;
+        box-sizing: border-box;
         overflow-wrap: break-word;
         font-size: 0.98rem;
     }
 
     #articleContent p {
+        max-width: 100%;
         line-height: 1.8rem;
+        white-space: normal;
+        word-break: normal;
+        overflow-wrap: break-word;
     }
 
     #articleContent ul,
@@ -430,5 +529,25 @@ article .card .card-title,
 
     .my-projects .info {
         min-height: auto;
+    }
+}
+
+@media only screen and (max-width: 380px), only screen and (max-height: 700px) and (max-width: 601px) {
+    .bg-cover .brand .title {
+        width: min(82vw, 18rem);
+        font-size: 1.52rem !important;
+        line-height: 1.2;
+    }
+
+    .bg-cover .brand .description {
+        font-size: 0.94rem !important;
+    }
+
+    .index-cover .cover-btns {
+        top: 3vh;
+    }
+
+    .index-cover .cover-social-link {
+        top: 7vh;
     }
 }
