@@ -6,7 +6,7 @@
   <link href="https://marcuxu.com/atom.xml" rel="self"/>
   
   <link href="https://marcuxu.com/"/>
-  <updated>2026-06-24T14:21:32.713Z</updated>
+  <updated>2026-06-24T21:03:45.595Z</updated>
   <id>https://marcuxu.com/</id>
   
   <author>
@@ -17,11 +17,36 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>Understanding InherNet: Neural Network Inheritance Beyond Student Distillation</title>
+    <link href="https://marcuxu.com/2026/06/24/inhernet-paper-explanation/"/>
+    <id>https://marcuxu.com/2026/06/24/inhernet-paper-explanation/</id>
+    <published>2026-06-24T14:15:00.000Z</published>
+    <updated>2026-06-24T21:03:45.595Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;Introduction&quot;&gt;&lt;a href=&quot;#Introduction&quot; class=&quot;headerlink&quot; title=&quot;Introduction&quot;&gt;&lt;/a&gt;Introduction&lt;/h2&gt;&lt;p&gt;Model compression is usually</summary>
+        
+      
+    
+    
+    
+    <category term="Tech" scheme="https://marcuxu.com/categories/Tech/"/>
+    
+    
+    <category term="AI_Tricks" scheme="https://marcuxu.com/tags/AI-Tricks/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Understanding TLV-CoRe: Collaborative Representation Learning for Tactile-Language-Vision Alignment</title>
     <link href="https://marcuxu.com/2026/06/16/tlv-core-paper-explanation/"/>
     <id>https://marcuxu.com/2026/06/16/tlv-core-paper-explanation/</id>
     <published>2026-06-16T15:30:00.000Z</published>
-    <updated>2026-06-24T14:21:32.713Z</updated>
+    <updated>2026-06-24T21:44:13.806Z</updated>
     
     
       
@@ -46,7 +71,7 @@
     <link href="https://marcuxu.com/2026/06/04/psmgd-paper-explanation/"/>
     <id>https://marcuxu.com/2026/06/04/psmgd-paper-explanation/</id>
     <published>2026-06-04T02:34:25.000Z</published>
-    <updated>2026-06-16T15:16:36.496Z</updated>
+    <updated>2026-06-24T21:01:52.819Z</updated>
     
     
       
@@ -294,7 +319,7 @@
     <link href="https://marcuxu.com/2022/09/18/building-blog/"/>
     <id>https://marcuxu.com/2022/09/18/building-blog/</id>
     <published>2022-09-18T16:21:52.000Z</published>
-    <updated>2026-06-24T14:22:12.958Z</updated>
+    <updated>2026-06-24T21:01:52.818Z</updated>
     
     
       

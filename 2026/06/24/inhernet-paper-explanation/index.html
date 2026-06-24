@@ -4,8 +4,8 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="How to build your own website, Mingjing Xu,MarcuXu,multi-objective optimization,trustworthy AI,multimodal learning,edge intelligence">
-    <meta name="description" content="A running note on building and maintaining this Hexo + GitHub Pages website, including setup links, common bugs, Hexo commands, deployment flow, image handling, Markdown, and LaTeX tips.">
+    <meta name="keywords" content="Understanding InherNet: Neural Network Inheritance Beyond Student Distillation, Mingjing Xu,MarcuXu,multi-objective optimization,trustworthy AI,multimodal learning,edge intelligence">
+    <meta name="description" content="A technical explanation of InherNet, covering neural network inheritance, model compression, SVD-based knowledge inheritance, asymmetric low-rank structure, gating fusion, and the main experimental takeaways.">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -18,7 +18,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>How to build your own website | MarcuXu</title>
+    <title>Understanding InherNet: Neural Network Inheritance Beyond Student Distillation | MarcuXu</title>
     <link rel="icon" type="image/png" href="/medias/Gemini_Generated_0.png">
     
 
@@ -337,12 +337,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/3.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/6.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">How to build your own website</h1>
+                    <h1 class="description center-align post-title">Understanding InherNet: Neural Network Inheritance Beyond Student Distillation</h1>
                 </div>
             </div>
         </div>
@@ -366,8 +366,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/SW-Tricks/">
-                                <span class="chip bg-color">SW_Tricks</span>
+                            <a href="/tags/AI-Tricks/">
+                                <span class="chip bg-color">AI_Tricks</span>
                             </a>
                         
                     </div>
@@ -391,7 +391,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
-                    2022-09-19
+                    2026-06-24
                 </div>
                 
 
@@ -405,14 +405,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    1.8k
+                    2k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>Read Times:&nbsp;&nbsp;
-                    7 Min
+                    12 Min
                 </div>
                 
 
@@ -435,63 +435,242 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="Useful-links"><a href="#Useful-links" class="headerlink" title="Useful links"></a>Useful links</h2><ol>
-<li>HEXO: 安装所需库可以看<a target="_blank" rel="noopener" href="https://reclusew.github.io/2021/08/12/blog-setup/#toc-heading-14">博客搭建过程采用hexo框架+部署到github</a> + <a target="_blank" rel="noopener" href="https://github.com/blinkfox/hexo-theme-matery/blob/develop/README_CN.md">blinkfox/hexo-theme-matery</a><br><a target="_blank" rel="noopener" href="https://wushishu.xyz/post/be8880ea.html">Hexo+github搭建个人博客</a> + <a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1NY4y1C7Ng/?spm_id_from=333.788.recommend_more_video.10&amp;vd_source=57cec20aa45aa135ba9fdbb99ed82151">video guide</a>。</li>
-<li><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Gz4y1f7Qj/?spm_id_from=333.788.recommend_more_video.11&amp;vd_source=57cec20aa45aa135ba9fdbb99ed82151">最简单的办法: HUGO NETLIFY</a>；如果需要添加更多的功能可以看<a target="_blank" rel="noopener" href="https://github.com/godweiyang/hexo-theme-sungod">这里</a>。</li>
-<li>如果想贴图片，可以参考这个<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/265077468">知乎回答</a>。由于不用Typora，因此使用的是第二个方法，即使用<code>![](image.jpg)</code>进行图片插入（缺点是会占用repo的存储且因为wall加载慢）。</li>
-<li>此个人网站的原网址为 <em>MarcuXu.github.io</em> ，但GitHub page也是可以绑定个人购买的域名。例如，新人在<a target="_blank" rel="noopener" href="https://cloud.tencent.com/">腾讯云</a>购买域名是比较划算的。购买域名后，新人可以直接按照腾讯云的guidelines安装SSL证书以便于解析。如果你使用的是基于HEXO的GitHub page，那么你可以参考<a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/2142661">GitHub Pages个性化域名配置</a>和<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/d92ea8542673">github pages 绑定阿里云域名</a>来进行后续的配置。</li>
-</ol>
-<h2 id="Bugs"><a href="#Bugs" class="headerlink" title="Bugs"></a>Bugs</h2><ol>
-<li><a target="_blank" rel="noopener" href="https://www.cnblogs.com/loong1314/p/16352878.html">IdealTree卡住</a><ul>
-<li>npm config set registry <a target="_blank" rel="noopener" href="https://registry.npmmirror.com/">https://registry.npmmirror.com/</a></li>
+                <h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>Model compression is usually described as a teacher-student problem. We first train or select a large teacher model, then train a smaller student model to imitate its predictions, intermediate features, or representation geometry. This strategy is useful, but it has a stubborn limitation: the student is usually a different, smaller network, so it may not have enough capacity to carry what the teacher knows.</p>
+<p>The paper <strong>Beyond Student: An Asymmetric Network for Neural Network Inheritance</strong> studies this limitation from a different angle. Instead of asking only “how can a small student imitate a large teacher?”, it asks:</p>
+<blockquote>
+<p>Can a compressed model directly inherit the teacher’s parameters and structure?</p>
+</blockquote>
+<p>This shift is important. If the compressed model is initialized from the teacher’s own weights, then compression is not only behavioral imitation. It becomes a form of <strong>neural network inheritance</strong>: keep the most informative directions in the teacher, restructure them into a smaller network, and then fine-tune from a much better starting point.</p>
+<p>Paper links:</p>
+<ul>
+<li>Paper HTML: <a target="_blank" rel="noopener" href="https://ar5iv.labs.arxiv.org/html/2602.09509">ar5iv:2602.09509</a></li>
+<li>arXiv abstract: <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2602.09509">arXiv:2602.09509</a></li>
+<li>arXiv DOI: <a target="_blank" rel="noopener" href="https://doi.org/10.48550/arXiv.2602.09509">10.48550/arXiv.2602.09509</a></li>
 </ul>
-</li>
-<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/dajian790626/article/details/78595684">用户名不一样导致的404</a></li>
-<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_43768946/article/details/90411154">Git使用出现git@github.com: Permission denied (publickey)</a>，得先设置好全局git config才可以用keygen<ul>
-<li>git config –global user.name “MXU”</li>
-<li><del>git config –global user.email “<a href="mailto:user@gmail.com">user@gmail.com</a>”</del></li>
-<li><del>ssh-keygen -t rsa -C “<a href="mailto:user@gmail.com">user@gmail.com</a>“</del></li>
-<li>ssh -T <a href="mailto:git@github.com">git@github.com</a></li>
-</ul>
-</li>
-<li>该网站使用的域名是在腾讯云上购买托管的，在申请SSL免费证书时会因为Github提供的CNAME记录值”username.github.io”中包含CAA记录，且改该域名CAA记录中不包含Sectigo根证书（TrustAsia签发的根证书）的授权，因此将导致腾讯云免费证书无法签发。具体解决措施可以参看<a target="_blank" rel="noopener" href="https://r2wind.cn/articles/20221006.html">这里</a></li>
+<p>According to arXiv, the paper was submitted on <strong>February 10, 2026</strong> and revised on <strong>February 11, 2026</strong>. The authors are Yiyun Zhou, Jingwei Shi, Mingjing Xu, Zhonghua Jiang, and Jingyuan Chen.</p>
+<h2 id="Background-Why-Compression-Is-Hard"><a href="#Background-Why-Compression-Is-Hard" class="headerlink" title="Background: Why Compression Is Hard"></a>Background: Why Compression Is Hard</h2><p>A large neural network has two kinds of useful information:</p>
+<ol>
+<li><strong>Function-level knowledge</strong>: what outputs it gives, how it ranks classes, and how it embeds samples.</li>
+<li><strong>Parameter-level structure</strong>: how its layers organize features, channels, and transformations.</li>
 </ol>
-<h2 id="Cmd"><a href="#Cmd" class="headerlink" title="Cmd"></a>Cmd</h2><ul>
-<li>hexo clean / hexo cl （清理掉上次生成的缓存和静态输出，每次重新生成时最好第一个执行）</li>
-<li>hexo generate / hexo g （在clean后，用来generate新的静态网站）</li>
-<li>hexo server / hexo s （在执行generate后，用来在local预览）</li>
-<li>hexo deploy / hexo d （将生成后的静态网站发布到部署repo中，不是把配置文件本身push上去）</li>
-<li>hexo new <em>file name</em></li>
-<li>npm run rebuild （等价于 <code>hexo clean &amp;&amp; hexo generate</code>，只生成不启动server）</li>
-<li>npm run preview （等价于 <code>hexo clean &amp;&amp; hexo generate &amp;&amp; hexo server</code>，用于本地预览）</li>
-<li>hexo clean &amp;&amp; hexo generate &amp;&amp; hexo server （一键生成新的静态网站后在local打开）</li>
-<li>hexo clean &amp;&amp; hexo generate &amp;&amp; hexo deploy （一键生成新的静态网站后发布到repo，若不成功请检查network/proxy/SSH connectivity）</li>
+<p>Knowledge distillation mainly transfers the first part. A common distillation objective is:</p>
+<div class="mathjax-display">
+$$
+\mathcal{L}
+=
+(1-\alpha)\mathcal{L}_{\mathrm{task}}
++
+\alpha T^2
+\operatorname{KL}
+\left(
+\sigma(\mathbf{z}_t/T)
+\;\|\;
+\sigma(\mathbf{z}_s/T)
+\right),
+$$
+</div>
+
+<p>where $\mathbf{z}_t$ and $\mathbf{z}_s$ are teacher and student logits, $T$ is the temperature, and $\alpha$ balances the task loss and the distillation loss.</p>
+<p>This is useful, but it does not remove the <strong>capacity gap</strong>. If the student is too small or architecturally different, the teacher can provide a better target, but the student may still be unable to represent the same function well.</p>
+<p>InherNet is motivated by this problem. Its view is:</p>
+<ul>
+<li>If the teacher already contains a good representation, do not throw its weights away.</li>
+<li>If the teacher is too large, compress the weights through low-rank structure.</li>
+<li>If a single low-rank branch is too narrow, add several lightweight expansion heads and use a gate to combine them.</li>
 </ul>
-<h2 id="Notes"><a href="#Notes" class="headerlink" title="Notes"></a>Notes</h2><ol>
-<li>md内的标题最好从”##”开始，才会有目录。</li>
-<li>如果使用vscode开发，可以直接在 <strong>终端</strong> 执行命令而不需要在文件夹下 <code>git bash</code>。但是在vscode中，注意关闭自动注释插件，否则会与主题style产生冲突。</li>
-<li>更改字体的颜色，格式等可以参考<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_43732429/article/details/108034518">这里</a>。</li>
-<li>已安装表情插件，md使用表情包请参考<a target="_blank" rel="noopener" href="https://gist.github.com/rxaviers/7360908">这里</a><span class="github-emoji"><span>😏</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f60f.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span></li>
-<li>在头部标明 <strong>categories: xxx</strong> 后 <em>categories</em> 才有作用。</li>
-<li>若是插入GIF可以参考<a target="_blank" rel="noopener" href="https://www.cnblogs.com/AhuntSun-blog/p/12028808.html">这里</a>，实际上可以将一些非敏感的图片上传到 <a target="_blank" rel="noopener" href="https://giphy.com/">https://giphy.com/</a> 后进行图床引用，格式类似 <code>![]()</code>。本网站之后主要使用<a target="_blank" rel="noopener" href="https://sm.ms/">线上图床</a>来附上图片（使用图床有多个优点，例如图片加载快，不需在本地和GitHub占用存储空间，所以非私密的图片完全可以upload）。</li>
-<li>注意upload到GitHub上的并非所有的文件，GitHub pages只需要 <strong>public</strong> 即可。其实这里可以稍微理解一下部署到github的原理。之前步骤中在Github上创建的那个特别的repo（MarcuXu.github.io）一个最大的特点就是其master中的html静态文件，可以通过<a target="_blank" rel="noopener" href="http://marcuxu.github.io/">http://MarcuXu.github.io</a>来直接访问。<code>Hexo -g</code>会生成一个静态网站（第一次会生成一个public目录），它就是我们点开网站看到的东西。而当我们将hexo生成的静态网站<code>git commit</code>后，我们就可以在线上看到我们网站的内容了。所以明白了原理，怎么做自然就清晰了。</li>
-<li>关于在md文件中公式的话，可以将论文中的latex公式直接复制后左右各加 <strong>$</strong> ，而更多的md文件中编辑公式可以看<a target="_blank" rel="noopener" href="https://blog.csdn.net/CaptainD_W/article/details/116570636">这里</a>。</li>
-<li>2026 update: 目前这个网站还是以 <code>Hexo 5.x + hexo-theme-matery</code> 为基础维护，所以不要看到新的教程就直接升级 Hexo、Node 或主题依赖。现在更稳的办法是先看 <code>_config.yml</code>、<code>themes/hexo-theme-matery/_config.yml</code> 和 <code>package.json</code>，确认已有配置能不能解决问题。</li>
-<li>当前主域名是 <code>https://marcuxu.com</code>，<code>source/CNAME</code> 里也是 <code>marcuxu.com</code>。如果以后改域名，至少要一起检查 <code>_config.yml</code> 的 <code>url</code>、<code>source/CNAME</code> 和 GitHub Pages 的 custom domain。</li>
-<li>主题外观的个性化修改尽量集中放在 <code>themes/hexo-theme-matery/source/css/my.css</code>。现在里面主要做了蓝绿主色、文章阅读宽度、card阴影、图片和表格样式、公式横向滚动、TOC宽度、移动端文章信息栏，以及首页cover长标题在手机上的字号和行距适配。</li>
-<li>手机端要特别注意首页第一屏。根目录 <code>_config.yml</code> 里的 <code>subtitle</code> 比较长，如果沿用 Matery 默认的 <code>4rem</code> 标题字号，手机上会容易和top bar、按钮、social link挤在一起。因此这类问题优先用 <code>my.css</code> 做小范围覆盖，不要直接改主题模板。</li>
-<li>写论文解读或技术文章时，如果文章需要公式，就在front matter里加 <code>mathjax: true</code>；如果文章需要配图，就优先用同名资源文件夹，例如 <code>source/_posts/TLV-CoRe-paper-explanation/tlv-core-mechanism.png</code>，正文里直接写 <code>![TLV-CoRe mechanism](tlv-core-mechanism.png)</code>。这样生成后的路径更清楚，也不需要到处找图床链接。</li>
-<li>现在内容侧已经有一些偏科研笔记的文章，例如 CNN/DL、PSMGD、TLV-CoRe 等。写这类文章时不要只贴结论，最好按“背景问题 -&gt; 方法直觉 -&gt; 关键公式 -&gt; 图示 -&gt; 实验takeaways -&gt; limitation”的顺序展开，读者会更容易跟上。</li>
-<li>站点功能方面已经有站内搜索、Atom feed、GitHub emoji、拼音permalink、字数统计和Matery的一些文章/分类/标签页面。维护时如果只是改内容或样式，通常先 <code>hexo clean &amp;&amp; hexo generate</code> 或 <code>npm run rebuild</code> 检查生成是否报错；需要看本地页面时用 <code>npm run preview</code>；只有确认要发布时再执行 <code>hexo deploy</code>。</li>
-<li>配置维护尽量小步进行。<code>package.json</code> 里只放已有Hexo工作流的脚本封装，不通过升级依赖来解决主题问题；空的临时配置文件可以清掉，但 <code>public/</code>、<code>db.json</code> 和 <code>.deploy_git/</code> 都属于生成/部署状态，不要把它们当作正文源文件手工维护。</li>
+<h2 id="Related-Work-Context"><a href="#Related-Work-Context" class="headerlink" title="Related Work Context"></a>Related Work Context</h2><p>It helps to separate InherNet from several nearby ideas.</p>
+<p><strong>Knowledge distillation</strong> transfers output behavior or features from teacher to student. It is flexible because the student can have a different architecture, but it may suffer when the student cannot express the teacher’s function.</p>
+<p><strong>Pruning and quantization</strong> reduce model size by removing weights or reducing numeric precision. These approaches can be very effective for deployment, but they usually work after or during training and may require careful hardware-aware tuning.</p>
+<p><strong>Low-rank decomposition</strong> factorizes a large matrix or convolution kernel into smaller pieces. This is close to InherNet, but classical low-rank compression often replaces one layer with a narrow chain of layers and can disturb the original architecture.</p>
+<p><strong>LoRA-style adaptation</strong> learns low-rank updates to a frozen base model:</p>
+<div class="mathjax-display">
+$$
+\mathbf{W}' = \mathbf{W} + \Delta \mathbf{W},
+\quad
+\Delta \mathbf{W} = \mathbf{B}\mathbf{A}.
+$$
+</div>
+
+<p>InherNet is different. It is not mainly learning a small update on top of the teacher. It decomposes the teacher’s own weight matrix and uses that decomposition as the inherited model’s initialization and structure.</p>
+<h2 id="Main-Idea"><a href="#Main-Idea" class="headerlink" title="Main Idea"></a>Main Idea</h2><p>InherNet combines two forms of inheritance.</p>
+<p><img src="/2026/06/24/inhernet-paper-explanation/inhernet-mechanism.png" alt="InherNet mechanism: SVD inheritance converts teacher weights into a shared low-rank down projection, multiple expert up heads, and gating fusion for a lightweight inherited network."></p>
+<p>The left side of the diagram is <strong>knowledge inheritance</strong>. The teacher layer weight is decomposed by SVD, and the dominant components are used to initialize a lower-rank representation.</p>
+<p>The right side is <strong>structure inheritance</strong>. A shared down projection compresses the feature dimension, several expert up heads expand it back, and a gating module fuses the heads. This creates an asymmetric structure: one shared bottleneck, multiple reconstruction paths.</p>
+<p>That asymmetry is the main architectural choice. A single low-rank branch may be too restrictive. Multiple heads give the compressed layer more expressive routes while still sharing the expensive reduction part.</p>
+<h2 id="SVD-as-Knowledge-Inheritance"><a href="#SVD-as-Knowledge-Inheritance" class="headerlink" title="SVD as Knowledge Inheritance"></a>SVD as Knowledge Inheritance</h2><p>For a linear layer with teacher weight</p>
+<div class="mathjax-display">
+$$
+\mathbf{W} \in \mathbb{R}^{d_{\mathrm{out}} \times d_{\mathrm{in}}},
+$$
+</div>
+
+<p>the singular value decomposition is:</p>
+<div class="mathjax-display">
+$$
+\mathbf{W}
+=
+\mathbf{U}\boldsymbol{\Sigma}\mathbf{V}^{\top}.
+$$
+</div>
+
+<p>The rank-$r$ approximation keeps the top singular values and their singular vectors:</p>
+<div class="mathjax-display">
+$$
+\mathbf{W}_r
+=
+\mathbf{U}_r
+\boldsymbol{\Sigma}_r
+\mathbf{V}_r^{\top}.
+$$
+</div>
+
+<p>This matters because SVD gives the best rank-$r$ approximation under the usual Frobenius-norm objective:</p>
+<div class="mathjax-display">
+$$
+\|\mathbf{W}-\mathbf{W}_r\|_F^2
+=
+\sum_{i=r+1}^{\min(d_{\mathrm{out}}, d_{\mathrm{in}})}
+\sigma_i^2.
+$$
+</div>
+
+<p>In practical terms, the largest singular directions are treated as the teacher’s most important linear transformations. Instead of initializing a student randomly and hoping distillation recovers them, InherNet starts from these inherited directions.</p>
+<p>The decomposed layer can be read as:</p>
+<div class="mathjax-display">
+$$
+\mathbf{h}
+=
+\mathbf{W}_{\mathrm{down}}\mathbf{x},
+\quad
+\mathbf{y}
+=
+\mathbf{W}_{\mathrm{up}}\mathbf{h},
+\quad
+\mathbf{W}_{\mathrm{up}}\mathbf{W}_{\mathrm{down}}
+\approx
+\mathbf{W}.
+$$
+</div>
+
+<p>For convolution layers, the same idea can be applied after reshaping the convolution kernel into a matrix. After decomposition, the factors are reshaped back into convolution-compatible weights. This is why the paper describes the method as architecture-agnostic for both linear and convolutional layers.</p>
+<h2 id="Structure-Inheritance-One-Down-Many-Ups"><a href="#Structure-Inheritance-One-Down-Many-Ups" class="headerlink" title="Structure Inheritance: One Down, Many Ups"></a>Structure Inheritance: One Down, Many Ups</h2><p>If InherNet only used a single low-rank factorization, the compressed layer might become too narrow. The paper therefore builds an asymmetric inherited layer:</p>
+<div class="mathjax-display">
+$$
+\mathbf{h}
+=
+\mathbf{W}_{d}\mathbf{x},
+$$
+</div>
+
+<p>then multiple expert heads reconstruct candidate outputs:</p>
+<div class="mathjax-display">
+$$
+\mathbf{y}_m
+=
+\mathbf{W}_{u}^{(m)}\mathbf{h},
+\quad m = 1,\ldots,M.
+$$
+</div>
+
+<p>A gating module combines them:</p>
+<div class="mathjax-display">
+$$
+\mathbf{y}
+=
+\sum_{m=1}^{M}
+g_m(\mathbf{x})
+\mathbf{y}_m,
+\quad
+\sum_{m=1}^{M} g_m(\mathbf{x}) = 1,
+\quad g_m(\mathbf{x}) \ge 0.
+$$
+</div>
+
+<p>The parameter-count intuition is simple. A dense layer has:</p>
+<div class="mathjax-display">
+$$
+P_{\mathrm{teacher}}
+=
+d_{\mathrm{out}}d_{\mathrm{in}}.
+$$
+</div>
+
+<p>The inherited asymmetric layer has roughly:</p>
+<div class="mathjax-display">
+$$
+P_{\mathrm{InherNet}}
+\approx r d_{\mathrm{in}}
++
+M r d_{\mathrm{out}}
++
+P_{\mathrm{gate}}.
+$$
+</div>
+
+<p>Compression is useful when:</p>
+<div class="mathjax-display">
+$$
+r d_{\mathrm{in}}
++
+M r d_{\mathrm{out}}
++
+P_{\mathrm{gate}}
+&lt;
+d_{\mathrm{out}}d_{\mathrm{in}}.
+$$
+</div>
+
+<p>So the rank $r$ controls how much spectral knowledge is preserved, while the number of heads $M$ controls how much reconstruction diversity the compressed layer has.</p>
+<h2 id="Why-the-Asymmetry-Helps"><a href="#Why-the-Asymmetry-Helps" class="headerlink" title="Why the Asymmetry Helps"></a>Why the Asymmetry Helps</h2><p>The one-down-many-ups structure is not just a cosmetic design.</p>
+<p>The shared down projection forces all heads to rely on a common compressed representation. This keeps the inherited model parameter-efficient. The multiple up heads then let the model recover different output patterns from that same bottleneck.</p>
+<p>This is similar in spirit to a lightweight mixture-of-experts layer, but the goal is not to build a huge sparse model. The goal is to give a compressed inherited model enough local flexibility to avoid the worst failure mode of low-rank compression: losing too much expressive diversity.</p>
+<p>The gate is also important. Without gating, the heads would be combined too rigidly. With gating, different inputs can emphasize different inherited reconstruction paths.</p>
+<h2 id="Convergence-Intuition"><a href="#Convergence-Intuition" class="headerlink" title="Convergence Intuition"></a>Convergence Intuition</h2><p>SVD initialization gives the inherited network a better starting point than random initialization. It places the model close to a low-rank approximation of the teacher, so early training does not need to rediscover the teacher’s dominant directions from scratch.</p>
+<p>This also explains why InherNet can converge faster in experiments. The optimization problem is still non-convex, but the initialization is more informative. The training process starts from:</p>
+<div class="mathjax-display">
+$$
+f_{\mathrm{InherNet}}(\mathbf{x}; \theta_0)
+\approx f_{\mathrm{teacher}}(\mathbf{x}; \theta_T)
+$$
+</div>
+
+<p>instead of starting from a randomly initialized student:</p>
+<div class="mathjax-display">
+$$
+f_{\mathrm{student}}(\mathbf{x}; \theta_0)
+\not\approx f_{\mathrm{teacher}}(\mathbf{x}; \theta_T).
+$$
+</div>
+
+<p>That does not mean SVD alone solves compression. Low-rank approximation can still discard important directions, especially if the teacher’s spectrum decays slowly. The practical contribution is the combination: SVD initialization preserves the dominant directions, while the asymmetric heads and gate restore some lost flexibility.</p>
+<h2 id="Experimental-Takeaways"><a href="#Experimental-Takeaways" class="headerlink" title="Experimental Takeaways"></a>Experimental Takeaways</h2><p>The paper evaluates InherNet on unimodal and multimodal tasks, including image classification, language understanding, and vision-language evaluation.</p>
+<p>A few results are worth highlighting.</p>
+<p>First, on CIFAR-100 teacher-student settings, InherNet variants are often stronger than the listed student baselines of similar size. For example, in one ResNet56-to-ResNet20 setting, the student is reported at <strong>69.06</strong>, the teacher at <strong>72.34</strong>, and InherNet Large at <strong>73.67</strong>. This is a useful sign: inheritance can sometimes recover or even exceed the teacher’s reported accuracy after compression and fine-tuning.</p>
+<p>Second, the multimodal experiments use CC3M for visual-language pretraining and ImageNet validation for zero-shot classification. The reported InherNet model improves several retrieval and classification metrics compared with the listed ResNet-101 teacher and CLIP-KD-style student baselines. This suggests that the method is not limited to a single CNN compression toy setting.</p>
+<p>Third, the ablation studies support the design:</p>
+<ul>
+<li>removing SVD initialization hurts strongly, which supports the knowledge-inheritance claim;</li>
+<li>removing the gate weakens adaptive routing;</li>
+<li>replacing the asymmetric structure with a more symmetric variant performs worse, which supports the one-down-many-ups design;</li>
+<li>increasing rank is usually more important than blindly adding heads, because rank directly controls how much teacher information is kept.</li>
+</ul>
+<p>The important practical lesson is that InherNet is not only “low rank plus fine-tuning.” Its performance comes from the interaction between rank, asymmetric structure, gate, and inherited initialization.</p>
+<h2 id="Limitations-and-Open-Questions"><a href="#Limitations-and-Open-Questions" class="headerlink" title="Limitations and Open Questions"></a>Limitations and Open Questions</h2><p>The method is promising, but several questions remain.</p>
+<p>First, rank selection is critical. If $r$ is too small, important teacher directions are lost. If $r$ is too large, compression becomes weak. A deployment-ready version needs a reliable way to choose rank under memory, latency, and accuracy constraints.</p>
+<p>Second, the gating and multiple heads add overhead. Parameter count may decrease, but real latency depends on kernel efficiency, hardware, batch size, and whether the decomposed layers are friendly to the inference backend.</p>
+<p>Third, teacher weights are not always strongly low-rank. SVD works best when the singular spectrum decays enough that the top components carry most of the information. Some layers may compress well, while others may need higher rank or a different compression strategy.</p>
+<p>Fourth, inheritance is complementary to other compression tools. In practice, InherNet may need to be compared or combined with pruning, quantization, sparsity, and hardware-aware distillation.</p>
+<p>Finally, there is a deeper question about what “knowledge” means inside a neural network. SVD captures parameter-space energy, but parameter-space importance and function-space importance are not always identical. The strong empirical results suggest that SVD is a useful proxy, but it is still a proxy.</p>
+<h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2><p>InherNet is best understood as a move from <strong>student imitation</strong> to <strong>network inheritance</strong>. Instead of building a small model from scratch and asking it to mimic a teacher, it decomposes the teacher’s own weights, keeps the dominant directions through SVD, and rebuilds them into a lightweight asymmetric network.</p>
+<p>The core mechanism is simple enough to remember:</p>
+<ol>
+<li>Decompose teacher weights with SVD.</li>
+<li>Keep a low-rank shared down projection.</li>
+<li>Add several expert up heads for expressive reconstruction.</li>
+<li>Use gating fusion to combine the heads.</li>
+<li>Fine-tune from this inherited initialization.</li>
 </ol>
-<h3 id="Insert-images-as-HTML-does"><a href="#Insert-images-as-HTML-does" class="headerlink" title="Insert images as HTML does"></a>Insert images as HTML does</h3><pre class="line-numbers language-markdown" data-language="markdown"><code class="language-markdown"><span class="token comment">&lt;!--2 images are inserted in same line--&gt;</span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">align</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>center<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>img</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>left-image.jpg<span class="token punctuation">"</span></span> <span class="token attr-name">alt</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>left example<span class="token punctuation">"</span></span> <span class="token attr-name">width</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>30%<span class="token punctuation">"</span></span> <span class="token attr-name">height</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>30%<span class="token punctuation">"</span></span> <span class="token attr-name">align</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>bottom<span class="token punctuation">"</span></span><span class="token punctuation">/&gt;</span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>img</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>right-image.jpg<span class="token punctuation">"</span></span> <span class="token attr-name">alt</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>right example<span class="token punctuation">"</span></span> <span class="token attr-name">width</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>30%<span class="token punctuation">"</span></span> <span class="token attr-name">height</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>30%<span class="token punctuation">"</span></span> <span class="token attr-name">align</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>bottom<span class="token punctuation">"</span></span><span class="token punctuation">/&gt;</span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>br</span><span class="token punctuation">&gt;</span></span> <span class="token comment">&lt;!--换行--&gt;</span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span><span class="token punctuation">&gt;</span></span>The left is our page, and the right is the example page.<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">&gt;</span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>For readers interested in model compression, the main takeaway is that architecture and initialization should be considered together. A compressed model is not only a smaller container for distilled behavior. It can also be a structured descendant of the original network.</p>
 
                 
             </div>
@@ -518,7 +697,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://marcuxu.com/2022/09/18/building-blog/">https://marcuxu.com/2022/09/18/building-blog/</a>
+                    <a href="https://marcuxu.com/2026/06/24/inhernet-paper-explanation/">https://marcuxu.com/2026/06/24/inhernet-paper-explanation/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -556,8 +735,8 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/SW-Tricks/">
-                                    <span class="chip bg-color">SW_Tricks</span>
+                                <a href="/tags/AI-Tricks/">
+                                    <span class="chip bg-color">AI_Tricks</span>
                                 </a>
                             
                         </div>
@@ -603,46 +782,48 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
+                <i class="far fa-dot-circle"></i>&nbsp;Current
+            </div>
             <div class="card">
-                <a href="/2022/09/19/curriculumvitae/">
+                <a href="/2026/06/24/inhernet-paper-explanation/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/13.jpg" class="responsive-img" alt="About Mingjing Xu" loading="lazy" decoding="async">
+                        <img src="/medias/featureimages/6.jpg" class="responsive-img" alt="Understanding InherNet: Neural Network Inheritance Beyond Student Distillation" loading="lazy" decoding="async">
                         
-                        <span class="card-title">About Mingjing Xu</span>
+                        <span class="card-title">Understanding InherNet: Neural Network Inheritance Beyond Student Distillation</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            An informal profile of Mingjing Xu: CS PhD student at Swansea University working on multi-objective optimization, multimodal learning, trustworthy AI, and edge intelligence.
+                            A technical explanation of InherNet, covering neural network inheritance, model compression, SVD-based knowledge inheritance, asymmetric low-rank structure, gating fusion, and the main experimental takeaways.
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2022-09-19
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2026-06-24
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/Clutter/" class="post-category">
-                                    Clutter
+                            <a href="/categories/Tech/" class="post-category">
+                                    Tech
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Academic/">
-                        <span class="chip bg-color">Academic</span>
+                    <a href="/tags/AI-Tricks/">
+                        <span class="chip bg-color">AI_Tricks</span>
                     </a>
                     
                 </div>
@@ -656,36 +837,44 @@
                 Next&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2022/09/18/hello-world/">
+                <a href="/2026/06/16/tlv-core-paper-explanation/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="Hello world" loading="lazy" decoding="async">
+                        <img src="/medias/featureimages/10.jpg" class="responsive-img" alt="Understanding TLV-CoRe: Collaborative Representation Learning for Tactile-Language-Vision Alignment" loading="lazy" decoding="async">
                         
-                        <span class="card-title">Hello world</span>
+                        <span class="card-title">Understanding TLV-CoRe: Collaborative Representation Learning for Tactile-Language-Vision Alignment</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            The default hidden Hexo starter post with quick examples for creating posts, running the local server, generating static files, and deploying a Hexo site.
+                            A technical explanation of TLV-CoRe, covering tactile-language-vision alignment, sensor-agnostic tactile representation learning, Sensor-Aware Modulation, tactile-irrelevant decoupling, Unified Bridging Adapters, contrastive learning, RSS evaluation, and key empirical findings.
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-09-18
+                                <i class="far fa-clock fa-fw icon-date"></i>2026-06-16
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/Clutter/" class="post-category">
-                                    Clutter
+                            <a href="/categories/Tech/" class="post-category">
+                                    Tech
                                 </a>
                             
                             
                         </span>
                     </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/AI-Tricks/">
+                        <span class="chip bg-color">AI_Tricks</span>
+                    </a>
+                    
                 </div>
                 
             </div>
@@ -807,6 +996,13 @@
 
 </main>
 
+
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script>
+    MathJax.Hub.Config({
+        tex2jax: {inlineMath: [['$', '$'], ['\\(', '\\)']]}
+    });
+</script>
 
 
 

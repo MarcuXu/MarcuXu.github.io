@@ -398,7 +398,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>Update Date:&nbsp;&nbsp;
-                    2026-06-16
+                    2026-06-25
                 </div>
                 
 
@@ -492,12 +492,13 @@ $$
 </div>
 
 <p>then moving in the direction that helps one objective may hurt the other. This is common in multi-task learning: improving one task’s loss can temporarily damage another task’s loss.</p>
-<p>The more principled target is not a single optimum for one scalar loss, but a <strong>Pareto stationary</strong> point. A point $\mathbf{x}$ is Pareto stationary if there is no direction $\mathbf{d}$ that decreases every objective at once:</p>
+<p>The more principled target is not a single optimum for one scalar loss, but a <strong>Pareto stationary</strong> point. A point $\mathbf{x}$ is Pareto stationary when the following common-descent condition is impossible:</p>
 <div class="mathjax-display">
 $$
+\nexists \mathbf{d}
+\quad \text{s.t.} \quad
 \nabla f_s(\mathbf{x})^\top \mathbf{d} &lt; 0,
-\quad
-\forall s \in [S].
+\quad \forall s \in [S].
 $$
 </div>
 
@@ -646,13 +647,14 @@ for t = 0, 1, ..., T - 1:
     if t mod R == 0:
         compute stochastic gradients grad f_s(x_t, xi_t) for all objectives
         solve the MGDA-style quadratic problem to obtain lambda_hat_t
+        if this is the first calculation step, set alpha_t = 0
         lambda_t = alpha_t lambda_{t-R} + (1 - alpha_t) lambda_hat_t
     else:
         lambda_t = lambda_{t-1}
 
     form the weighted loss or weighted stochastic gradient using lambda_t
     d_t = sum_s lambda_{t,s} grad f_s(x_t, xi_t)
-    x_{t+1} = x_t - eta_t d_t<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+    x_{t+1} = x_t - eta_t d_t<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>The hyperparameter $R$ controls the trade-off:</p>
 <ul>
@@ -1236,7 +1238,7 @@ $$
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;Total Words:&nbsp;<span
-                        class="white-color">24.9k</span>
+                        class="white-color">27k</span>
             
             
             
