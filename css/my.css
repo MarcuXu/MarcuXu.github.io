@@ -85,6 +85,51 @@ header nav .brand-logo .logo-span {
     letter-spacing: 0;
 }
 
+#mobile-nav.sidenav {
+    width: min(86vw, 280px);
+    min-width: 240px;
+    max-width: 100vw;
+    overflow-x: hidden;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+#mobile-nav .mobile-head {
+    box-sizing: border-box;
+}
+
+#mobile-nav .mobile-head .logo-name,
+#mobile-nav .mobile-head .logo-desc {
+    overflow-wrap: break-word;
+}
+
+#mobile-nav .menu-list a {
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+    width: 100%;
+    min-width: 0;
+}
+
+#mobile-nav .menu-list a .fa-fw,
+#mobile-nav .menu-list a .fab {
+    flex: 0 0 3.3rem;
+}
+
+#mobile-nav .mobile-nav-label {
+    display: block;
+    flex: 1 1 auto;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.drag-target {
+    display: none !important;
+    pointer-events: none !important;
+}
+
 #artDetail .article-card-content {
     padding-bottom: 2.2rem;
 }

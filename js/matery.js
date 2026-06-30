@@ -13,7 +13,31 @@ $(function () {
     articleCardHover();
 
     /*菜单切换*/
-    $('.sidenav').sidenav();
+    let unlockPageScroll = function () {
+        document.body.style.overflow = '';
+        document.documentElement.style.overflow = '';
+        if (!$('.sidenav').filter(function () {
+            let instance = M.Sidenav.getInstance(this);
+            return instance && instance.isOpen;
+        }).length) {
+            $('.sidenav-overlay').css({display: 'none', opacity: 0});
+        }
+    };
+    let resetMobileSidenav = function () {
+        $('.sidenav').each(function () {
+            let instance = M.Sidenav.getInstance(this);
+            if (instance && instance.isOpen) {
+                instance.close();
+            }
+        });
+        setTimeout(unlockPageScroll, 260);
+    };
+    $('.sidenav').sidenav({
+        draggable: false,
+        preventScrolling: false,
+        onCloseEnd: unlockPageScroll
+    });
+    $(window).on('pageshow orientationchange', resetMobileSidenav);
 
     /* 修复文章卡片 div 的宽度. */
     let fixPostCardWidth = function (srcId, targetId) {
@@ -116,7 +140,9 @@ $(function () {
     };
     articleInit();
 
-    $('.modal').modal();
+    $('.modal').modal({
+        onCloseEnd: unlockPageScroll
+    });
 
     /*回到顶部*/
     $('#backTop').click(function () {
