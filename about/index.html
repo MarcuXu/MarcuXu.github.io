@@ -33,7 +33,7 @@
 <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
 <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
 <link rel="stylesheet" type="text/css" href="/css/matery.css">
-<link rel="stylesheet" type="text/css" href="/css/my.css">
+<link rel="stylesheet" type="text/css" href="/css/my.css?v=20260706-mobile">
 <link rel="stylesheet" type="text/css" href="/css/dark.css" media="none" onload="if(media!='all')media='all'">
 
 
@@ -573,7 +573,7 @@
         },
         xAxis: {
             type: 'category',
-            data: ["2025-06","2025-07","2025-08","2025-09","2025-10","2025-11","2025-12","2026-01","2026-02","2026-03","2026-04","2026-05","2026-06"]
+            data: ["2025-07","2025-08","2025-09","2025-10","2025-11","2025-12","2026-01","2026-02","2026-03","2026-04","2026-05","2026-06","2026-07"]
         },
         yAxis: {
             type: 'value',
@@ -583,7 +583,7 @@
                 name: 'Number of posts',
                 type: 'line',
                 color: ['#6772e5'],
-                data: [0,0,0,0,1,0,0,0,0,0,0,0,3],
+                data: [0,0,0,1,0,0,0,0,0,0,0,3,0],
                 markPoint: {
                     symbolSize: 45,
                     color: ['#fa755a','#3ecf8e','#82d3f4'],
@@ -966,6 +966,20 @@
     }
 
     
+
+    @media only screen and (max-width: 601px), (hover: none) and (pointer: coarse) {
+        meting-js[fixed="true"],
+        .aplayer.aplayer-fixed {
+            display: none !important;
+            visibility: hidden !important;
+            pointer-events: none !important;
+        }
+
+        .aplayer.aplayer-fixed .aplayer-body,
+        .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
+            left: 0 !important;
+        }
+    }
 </style>
 <div class="">
     
@@ -1263,7 +1277,7 @@ $(function () {
     <script src="/libs/aos/aos.js"></script>
     <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
     <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
-    <script src="/js/matery.js"></script>
+    <script src="/js/matery.js?v=20260706-mobile"></script>
 
     
 

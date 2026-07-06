@@ -89,6 +89,10 @@ header nav .brand-logo .logo-span {
     width: min(86vw, 280px);
     min-width: 240px;
     max-width: 100vw;
+    height: 100vh;
+    max-height: 100vh;
+    height: 100dvh;
+    max-height: 100dvh;
     overflow-x: hidden;
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
@@ -126,6 +130,11 @@ header nav .brand-logo .logo-span {
 }
 
 .drag-target {
+    display: none !important;
+    pointer-events: none !important;
+}
+
+body.mobile-sidenav-open .drag-target {
     display: none !important;
     pointer-events: none !important;
 }
@@ -391,6 +400,55 @@ article .card .card-title,
 }
 
 @media only screen and (max-width: 601px) {
+    html,
+    body {
+        min-height: 100%;
+        overflow-x: hidden !important;
+        overflow-y: auto !important;
+        touch-action: pan-y;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .aplayer.aplayer-fixed {
+        display: none !important;
+        visibility: hidden !important;
+        pointer-events: none !important;
+    }
+
+    meting-js[fixed="true"] {
+        display: none !important;
+    }
+
+    .aplayer.aplayer-fixed .aplayer-body,
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
+        left: 0 !important;
+    }
+
+    body.mobile-sidenav-open,
+    body.mobile-modal-open {
+        overflow-y: auto !important;
+        position: static !important;
+    }
+
+    #mobile-nav .menu-list li {
+        width: 100%;
+        margin-left: 0;
+    }
+
+    #mobile-nav .m-nav-item ul li {
+        width: 100%;
+        text-align: left;
+    }
+
+    #mobile-nav .m-nav-item ul a {
+        margin-left: 0 !important;
+        padding-left: 4.4rem;
+    }
+
+    #mobile-nav .m-nav-item ul a i {
+        left: 2.1rem !important;
+    }
+
     .index-cover .container {
         width: 100%;
         box-sizing: border-box;
@@ -594,5 +652,24 @@ article .card .card-title,
 
     .index-cover .cover-social-link {
         top: 7vh;
+    }
+}
+
+@media (hover: none) and (pointer: coarse) {
+    html,
+    body {
+        overflow-x: hidden !important;
+        overflow-y: auto !important;
+        touch-action: pan-y;
+    }
+
+    .aplayer.aplayer-fixed {
+        display: none !important;
+        visibility: hidden !important;
+        pointer-events: none !important;
+    }
+
+    meting-js[fixed="true"] {
+        display: none !important;
     }
 }

@@ -13,14 +13,37 @@ $(function () {
     articleCardHover();
 
     /*菜单切换*/
-    let unlockPageScroll = function () {
-        document.body.style.overflow = '';
-        document.documentElement.style.overflow = '';
-        if (!$('.sidenav').filter(function () {
+    let isMobileViewport = function () {
+        return window.innerWidth <= 601;
+    };
+    let hasOpenSidenav = function () {
+        return $('.sidenav').filter(function () {
             let instance = M.Sidenav.getInstance(this);
             return instance && instance.isOpen;
-        }).length) {
+        }).length > 0;
+    };
+    let hasOpenModal = function () {
+        return $('.modal').filter(function () {
+            let instance = M.Modal.getInstance(this);
+            return (instance && instance.isOpen) || $(this).hasClass('open');
+        }).length > 0;
+    };
+    let unlockPageScroll = function () {
+        let sidenavOpen = hasOpenSidenav();
+        let modalOpen = hasOpenModal();
+
+        $('body').toggleClass('mobile-sidenav-open', sidenavOpen);
+        $('body').toggleClass('mobile-modal-open', modalOpen);
+
+        if (isMobileViewport() || (!sidenavOpen && !modalOpen)) {
+            document.body.style.overflow = '';
+            document.documentElement.style.overflow = '';
+        }
+        if (!sidenavOpen) {
             $('.sidenav-overlay').css({display: 'none', opacity: 0});
+        }
+        if (!modalOpen) {
+            $('.modal-overlay').css({display: 'none', opacity: 0});
         }
     };
     let resetMobileSidenav = function () {
@@ -35,9 +58,44 @@ $(function () {
     $('.sidenav').sidenav({
         draggable: false,
         preventScrolling: false,
+        onOpenStart: function () {
+            $('body').addClass('mobile-sidenav-open');
+        },
         onCloseEnd: unlockPageScroll
     });
+    let lastViewportWidth = window.innerWidth;
+    let lastMobileState = isMobileViewport();
+    let handleViewportChange = function () {
+        let currentWidth = window.innerWidth;
+        let currentMobileState = isMobileViewport();
+        let meaningfulWidthChange = Math.abs(currentWidth - lastViewportWidth) > 24 || currentMobileState !== lastMobileState;
+
+        lastViewportWidth = currentWidth;
+        lastMobileState = currentMobileState;
+
+        if (meaningfulWidthChange) {
+            resetMobileSidenav();
+        } else {
+            unlockPageScroll();
+        }
+    };
+    unlockPageScroll();
     $(window).on('pageshow orientationchange', resetMobileSidenav);
+    $(window).on('resize', handleViewportChange);
+    document.addEventListener('touchstart', function () {
+        if (window.innerWidth <= 601) {
+            unlockPageScroll();
+        }
+    }, {passive: true});
+    document.addEventListener('touchmove', function () {
+        if (window.innerWidth <= 601) {
+            unlockPageScroll();
+        }
+    }, {passive: true});
+    $(document).on('click', '#mobile-nav a.sidenav-close', function () {
+        setTimeout(unlockPageScroll, 80);
+        setTimeout(unlockPageScroll, 320);
+    });
 
     /* 修复文章卡片 div 的宽度. */
     let fixPostCardWidth = function (srcId, targetId) {
@@ -141,6 +199,10 @@ $(function () {
     articleInit();
 
     $('.modal').modal({
+        preventScrolling: false,
+        onOpenStart: function () {
+            $('body').addClass('mobile-modal-open');
+        },
         onCloseEnd: unlockPageScroll
     });
 
@@ -150,13 +212,13 @@ $(function () {
         return false;
     });
 
-    /*监听滚动条位置*/
+    /* Watch scroll position for header and back-to-top state. */
     let $nav = $('#headNav');
     let $backTop = $('.top-scroll');
-    // 当页面处于文章中部的时候刷新页面，因为此时无滚动，所以需要判断位置,给导航加上绿色。
+    // Refresh navbar state when a page opens in the middle of an article.
     showOrHideNavBg($(window).scrollTop());
     $(window).scroll(function () {
-        /* 回到顶部按钮根据滚动条的位置的显示和隐藏.*/
+        /* Toggle the back-to-top button according to scroll position. */
         let scroll = $(window).scrollTop();
         showOrHideNavBg(scroll);
     });
@@ -197,15 +259,19 @@ $(function () {
     $('.tooltipped').tooltip();
 });
 
-//黑夜模式提醒开启功能
+// Suggest dark mode on desktop at night.
 setTimeout(function () {
-    if ((new Date().getHours() >= 19 || new Date().getHours() < 7) && !$('body').hasClass('DarkMode')) {
-        let toastHTML = '<span style="color:#97b8b2;border-radius: 10px;>' + '<i class="fa fa-bellaria-hidden="true"></i>晚上使用深色模式阅读更好哦。(ﾟ▽ﾟ)</span>'
-        M.toast({ html: toastHTML })
+    if (
+        window.innerWidth > 601 &&
+        (new Date().getHours() >= 19 || new Date().getHours() < 7) &&
+        !$('body').hasClass('DarkMode')
+    ) {
+        let toastHTML = '<span style="color:#97b8b2;border-radius:10px;"><i class="fa fa-bell" aria-hidden="true"></i> Dark mode may be easier to read at night.</span>';
+        M.toast({html: toastHTML});
     }
 }, 2200);
 
-//黑夜模式判断
+// Apply saved dark-mode preference.
 if (localStorage.getItem('isDark') === '1') {
     document.body.classList.add('DarkMode');
     $('#sum-moon-icon').addClass("fa-sun").removeClass('fa-moon')
