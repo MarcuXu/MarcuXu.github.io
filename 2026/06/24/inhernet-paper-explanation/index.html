@@ -33,7 +33,7 @@
 <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
 <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
 <link rel="stylesheet" type="text/css" href="/css/matery.css">
-<link rel="stylesheet" type="text/css" href="/css/my.css?v=20260707-mobile-scroll">
+<link rel="stylesheet" type="text/css" href="/css/my.css?v=20260707-math-svg">
 <link rel="stylesheet" type="text/css" href="/css/dark.css" media="none" onload="if(media!='all')media='all'">
 
 
@@ -782,30 +782,29 @@ $$
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="far fa-dot-circle"></i>&nbsp;Current
-            </div>
+                <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
             <div class="card">
-                <a href="/2026/06/24/inhernet-paper-explanation/">
+                <a href="/2026/07/07/a3b2-paper-explanation/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/6.jpg" class="responsive-img" alt="Understanding InherNet: Neural Network Inheritance Beyond Student Distillation" loading="lazy" decoding="async">
+                        <img src="/medias/featureimages/3.jpg" class="responsive-img" alt="Understanding A3B2: Adaptive Asymmetric Adapters for Few-Shot Vision-Language Classification" loading="lazy" decoding="async">
                         
-                        <span class="card-title">Understanding InherNet: Neural Network Inheritance Beyond Student Distillation</span>
+                        <span class="card-title">Understanding A3B2: Adaptive Asymmetric Adapters for Few-Shot Vision-Language Classification</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            A technical explanation of InherNet, covering neural network inheritance, model compression, SVD-based knowledge inheritance, asymmetric low-rank structure, gating fusion, and the main experimental takeaways.
+                            A technical explanation of A3B2, covering few-shot CLIP adaptation, branch bias, asymmetric text-image adapters, uncertainty-aware adapter dampening, load-balanced mixture-of-experts adapters, evaluation protocols, and key empirical findings.
                         
                     </div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2026-06-24
-                            </span>
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2026-07-07
+                        </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -818,7 +817,6 @@ $$
                         </span>
                     </div>
                 </div>
-
                 
                 <div class="card-action article-tags">
                     
@@ -997,12 +995,29 @@ $$
 </main>
 
 
-<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-<script>
+<script type="text/x-mathjax-config">
     MathJax.Hub.Config({
-        tex2jax: {inlineMath: [['$', '$'], ['\\(', '\\)']]}
+        jax: ['input/TeX', 'output/SVG'],
+        extensions: ['tex2jax.js'],
+        TeX: {
+            extensions: ['AMSmath.js', 'AMSsymbols.js', 'noErrors.js', 'noUndefined.js']
+        },
+        tex2jax: {
+            inlineMath: [['$', '$'], ['\\(', '\\)']],
+            displayMath: [['$$', '$$'], ['\\[', '\\]']],
+            processEscapes: true,
+            processEnvironments: true,
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        },
+        SVG: {
+            font: 'TeX',
+            mtextFontInherit: true
+        },
+        showProcessingMessages: false,
+        messageStyle: 'none'
     });
 </script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js?config=TeX-AMS_SVG"></script>
 
 
 
@@ -1090,7 +1105,7 @@ $$
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;Total Words:&nbsp;<span
-                        class="white-color">27k</span>
+                        class="white-color">29.4k</span>
             
             
             

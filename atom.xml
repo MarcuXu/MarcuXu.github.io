@@ -6,7 +6,7 @@
   <link href="https://marcuxu.com/atom.xml" rel="self"/>
   
   <link href="https://marcuxu.com/"/>
-  <updated>2026-06-24T21:03:45.595Z</updated>
+  <updated>2026-07-07T10:18:44.218Z</updated>
   <id>https://marcuxu.com/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Understanding A3B2: Adaptive Asymmetric Adapters for Few-Shot Vision-Language Classification</title>
+    <link href="https://marcuxu.com/2026/07/07/a3b2-paper-explanation/"/>
+    <id>https://marcuxu.com/2026/07/07/a3b2-paper-explanation/</id>
+    <published>2026-07-07T02:20:00.000Z</published>
+    <updated>2026-07-07T10:18:44.218Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;Introduction&quot;&gt;&lt;a href=&quot;#Introduction&quot; class=&quot;headerlink&quot; title=&quot;Introduction&quot;&gt;&lt;/a&gt;Introduction&lt;/h2&gt;&lt;p&gt;Few-shot learning asks a</summary>
+        
+      
+    
+    
+    
+    <category term="Tech" scheme="https://marcuxu.com/categories/Tech/"/>
+    
+    
+    <category term="AI_Tricks" scheme="https://marcuxu.com/tags/AI-Tricks/"/>
+    
+  </entry>
   
   <entry>
     <title>Understanding InherNet: Neural Network Inheritance Beyond Student Distillation</title>
@@ -96,14 +121,14 @@
     <link href="https://marcuxu.com/2025/10/30/dl-reading-1029/"/>
     <id>https://marcuxu.com/2025/10/30/dl-reading-1029/</id>
     <published>2025-10-30T05:01:20.000Z</published>
-    <updated>2026-07-07T03:40:56.457Z</updated>
+    <updated>2026-07-07T10:22:52.084Z</updated>
     
     
       
       
         
         
-    <summary type="html">&lt;h2 id=&quot;Introduction&quot;&gt;&lt;a href=&quot;#Introduction&quot; class=&quot;headerlink&quot; title=&quot;Introduction&quot;&gt;&lt;/a&gt;Introduction&lt;/h2&gt;&lt;p&gt;Today’s talk is structured</summary>
+    <summary type="html">&lt;h2 id=&quot;Introduction&quot;&gt;&lt;a href=&quot;#Introduction&quot; class=&quot;headerlink&quot; title=&quot;Introduction&quot;&gt;&lt;/a&gt;Introduction&lt;/h2&gt;&lt;p&gt;Today鈥檚 talk is structured</summary>
         
       
     

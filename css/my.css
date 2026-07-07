@@ -212,6 +212,19 @@ body.mobile-sidenav-open .drag-target {
     min-width: max-content;
 }
 
+#articleContent .MathJax_SVG_Display {
+    max-width: 100%;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    -webkit-overflow-scrolling: touch;
+    color: inherit;
+    touch-action: pan-x pan-y;
+}
+
+#articleContent .MathJax_SVG {
+    color: inherit;
+}
+
 #articleContent p {
     margin: 0.8rem 0 1.05rem;
     line-height: 1.9rem;

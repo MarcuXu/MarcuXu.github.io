@@ -4,8 +4,8 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="Git &amp; GitHub, Mingjing Xu,MarcuXu,multi-objective optimization,trustworthy AI,multimodal learning,edge intelligence">
-    <meta name="description" content="A practical Git and GitHub command notebook covering clone, init, add, commit, log, checkout, reset, branch, merge, push, pull, and common remote-push troubleshooting.">
+    <meta name="keywords" content="Understanding A3B2: Adaptive Asymmetric Adapters for Few-Shot Vision-Language Classification, Mingjing Xu,MarcuXu,multi-objective optimization,trustworthy AI,multimodal learning,edge intelligence">
+    <meta name="description" content="A technical explanation of A3B2, covering few-shot CLIP adaptation, branch bias, asymmetric text-image adapters, uncertainty-aware adapter dampening, load-balanced mixture-of-experts adapters, evaluation protocols, and key empirical findings.">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -18,7 +18,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>Git &amp; GitHub | MarcuXu</title>
+    <title>Understanding A3B2: Adaptive Asymmetric Adapters for Few-Shot Vision-Language Classification | MarcuXu</title>
     <link rel="icon" type="image/png" href="/medias/Gemini_Generated_0.png">
     
 
@@ -337,12 +337,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/13.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/3.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Git &amp; GitHub</h1>
+                    <h1 class="description center-align post-title">Understanding A3B2: Adaptive Asymmetric Adapters for Few-Shot Vision-Language Classification</h1>
                 </div>
             </div>
         </div>
@@ -366,8 +366,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/SW-Tricks/">
-                                <span class="chip bg-color">SW_Tricks</span>
+                            <a href="/tags/AI-Tricks/">
+                                <span class="chip bg-color">AI_Tricks</span>
                             </a>
                         
                     </div>
@@ -391,28 +391,28 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
-                    2022-09-29
+                    2026-07-07
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>Update Date:&nbsp;&nbsp;
-                    2026-06-04
+                    2026-07-07
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    689
+                    2.1k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>Read Times:&nbsp;&nbsp;
-                    2 Min
+                    13 Min
                 </div>
                 
 
@@ -435,43 +435,257 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="Abstract"><a href="#Abstract" class="headerlink" title="Abstract"></a>Abstract</h2><p>这篇笔记主要记录如何在日常的轻量化开发中使用git和GitHub作为辅助工具提升工作效率。该笔记主要参考<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1db4y1d79C/?spm_id_from=333.999.0.0&amp;vd_source=57cec20aa45aa135ba9fdbb99ed82151">40 分钟学会 Git，日常开发全程大放送&amp;搭配Github</a>, <a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_43806049/article/details/124963415">Git上传文件代码到GitHub</a>和<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1s3411g7PS/?spm_id_from=333.999.0.0&amp;vd_source=57cec20aa45aa135ba9fdbb99ed82151">git、github 保姆级教程入门</a>来step by stepの操作，而如何安装Git可以看<a target="_blank" rel="noopener" href="https://blog.csdn.net/mukes/article/details/115693833">这里</a>。当然，我也根据做个笔记重新复习了一下git的基本操作，新建了一个存储 <em>OCT Related PyCodes</em> 的repo在<a target="_blank" rel="noopener" href="https://github.com/MacuXavier/OCT_Related_PyCodes">这里</a> <span class="github-emoji"><span>😄</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f604.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span></p>
-<h2 id="Git常用的命令"><a href="#Git常用的命令" class="headerlink" title="Git常用的命令"></a>Git常用的命令</h2><h3 id="克隆仓库"><a href="#克隆仓库" class="headerlink" title="克隆仓库"></a>克隆仓库</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> clone <span class="token string">'git地址'</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+                <h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>Few-shot learning asks a model to adapt to a new task with only a small number of labeled examples. In image classification, this often means that each class may have only 1, 2, 4, 8, or 16 training images. A model trained from scratch would overfit immediately, so modern methods usually start from a strong pretrained model and add a small number of trainable parameters.</p>
+<p>The paper <strong>A3B2: Adaptive Asymmetric Adapter for Alleviating Branch Bias in Vision-Language Image Classification with Few-Shot Learning</strong> studies this problem in the context of CLIP-style vision-language models. CLIP has two branches: an image encoder and a text encoder. Many few-shot adaptation methods tune prompts, adapters, or small modules attached to these branches.</p>
+<p>The central question is simple but important:</p>
+<blockquote>
+<p>In few-shot image classification, should we adapt the image branch, the text branch, or both?</p>
+</blockquote>
+<p>The paper argues that the answer depends on the task. Text-side adaptation is often useful, both-side adaptation helps when the train and test classes are close to the same distribution, but image-side adaptation can hurt robustness under out-of-distribution shifts. This phenomenon is called <strong>Branch Bias</strong>.</p>
+<p>Paper links:</p>
+<ul>
+<li>Paper HTML: <a target="_blank" rel="noopener" href="https://ar5iv.labs.arxiv.org/html/2605.13161">ar5iv:2605.13161</a></li>
+<li>arXiv abstract: <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2605.13161">arXiv:2605.13161</a></li>
+<li>arXiv DOI: <a target="_blank" rel="noopener" href="https://doi.org/10.48550/arXiv.2605.13161">10.48550/arXiv.2605.13161</a></li>
+<li>Code: <a target="_blank" rel="noopener" href="https://github.com/zyy-2001/A3B2">zyy-2001/A3B2</a></li>
+</ul>
+<p>At a high level, <strong>A3B2</strong> means <strong>Adaptive Asymmetric Adapter for alleviating Branch Bias</strong>. The method keeps text adaptation consistently active, but regulates image adaptation with prediction uncertainty. When the model is confident, the image adapter can contribute. When the model is uncertain, which may indicate OOD data, the image adapter is dampened so the system falls back toward robust pretrained CLIP features.</p>
+<h2 id="Background-Few-Shot-CLIP-Adaptation"><a href="#Background-Few-Shot-CLIP-Adaptation" class="headerlink" title="Background: Few-Shot CLIP Adaptation"></a>Background: Few-Shot CLIP Adaptation</h2><p>CLIP maps images and text into a shared embedding space. Let $\mathcal{V}$ be the image encoder and $\mathcal{T}$ be the text encoder. For an image $I$ and a class prompt such as “a photo of a [CLASS]”, we obtain:</p>
+<div class="mathjax-display">
+$$
+x = \mathcal{V}(I),
+\qquad
+w_c = \mathcal{T}(T_c),
+$$
+</div>
 
-<h3 id="初始化仓库"><a href="#初始化仓库" class="headerlink" title="初始化仓库"></a>初始化仓库</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> init<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>where $x$ is the image feature and $w_c$ is the text feature of class $c$. Classification is performed by comparing the image feature with all class text features:</p>
+<div class="mathjax-display">
+$$
+p(\hat{y}=c \mid x)
+=
+\frac{
+\exp(\operatorname{cos}(x,w_c)/\tau)
+}{
+\sum_{i=1}^{N_c}
+\exp(\operatorname{cos}(x,w_i)/\tau)
+}.
+$$
+</div>
 
-<h3 id="添加文件到暂存区"><a href="#添加文件到暂存区" class="headerlink" title="添加文件到暂存区"></a>添加文件到暂存区</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> <span class="token function">add</span> <span class="token parameter variable">-A</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<h3 id="把暂存区的文件提交到仓库"><a href="#把暂存区的文件提交到仓库" class="headerlink" title="把暂存区的文件提交到仓库"></a>把暂存区的文件提交到仓库</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> commit <span class="token parameter variable">-m</span> <span class="token string">'提交信息'</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<h3 id="查看提交的历史记录"><a href="#查看提交的历史记录" class="headerlink" title="查看提交的历史记录"></a>查看提交的历史记录</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> log <span class="token parameter variable">--stat</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<h3 id="工作区回滚"><a href="#工作区回滚" class="headerlink" title="工作区回滚"></a>工作区回滚</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> checkout <span class="token string">'filename'</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<h3 id="撤销最后一次提交"><a href="#撤销最后一次提交" class="headerlink" title="撤销最后一次提交"></a>撤销最后一次提交</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> reset HEAD^1<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<h3 id="以当前分支为基础新建分支"><a href="#以当前分支为基础新建分支" class="headerlink" title="以当前分支为基础新建分支"></a>以当前分支为基础新建分支</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> checkout <span class="token parameter variable">-b</span> <span class="token string">'branchname'</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<h3 id="列举所有的分支"><a href="#列举所有的分支" class="headerlink" title="列举所有的分支"></a>列举所有的分支</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> branch<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<h3 id="单纯地切换到某个分支"><a href="#单纯地切换到某个分支" class="headerlink" title="单纯地切换到某个分支"></a>单纯地切换到某个分支</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> checkout <span class="token string">'branchname'</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<h3 id="删掉特定的分支"><a href="#删掉特定的分支" class="headerlink" title="删掉特定的分支"></a>删掉特定的分支</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> branch <span class="token parameter variable">-D</span> <span class="token string">'branchname'</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<h3 id="合并分支"><a href="#合并分支" class="headerlink" title="合并分支"></a>合并分支</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> merge <span class="token string">'branchname'</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<h3 id="推送当前分支最新的提交到远程"><a href="#推送当前分支最新的提交到远程" class="headerlink" title="推送当前分支最新的提交到远程"></a>推送当前分支最新的提交到远程</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> push <span class="token punctuation">..</span>.<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<h3 id="拉取远程分支最新的提交到本地"><a href="#拉取远程分支最新的提交到本地" class="headerlink" title="拉取远程分支最新的提交到本地"></a>拉取远程分支最新的提交到本地</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> pull <span class="token punctuation">..</span>.<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<h2 id="Notes"><a href="#Notes" class="headerlink" title="Notes"></a>Notes</h2><ol>
-<li>本地新建代码仓库后链接到online repo：建立完代码文件夹后，在文件夹路径下使用<code>git init</code>，此时文件夹里会出现一个 <em>.git</em> 的文件夹。而后使用<code>git add .</code>和<code>git commit -m 'initial commit'</code>，将暂存区代码提交至本地仓库。在GitHub新建仓库后，使用<code>git remote add origin https://github.com/MarcuXu/Garbage-Classification-Device.git</code>将本地仓库链接到线上仓库。参考链接在<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_46535880/article/details/119155123">这</a>。</li>
-<li>为什么尽量使用switch而不是checkout看<a target="_blank" rel="noopener" href="https://blog.csdn.net/wpw2000/article/details/115895848?spm=1001.2101.3001.6661.1&amp;utm_medium=distribute.pc_relevant_t0.none-task-blog-2~default~CTRLIST~Rate-1-115895848-blog-121375881.pc_relevant_multi_platform_whitelistv3&amp;depth_1-utm_source=distribute.pc_relevant_t0.none-task-blog-2~default~CTRLIST~Rate-1-115895848-blog-121375881.pc_relevant_multi_platform_whitelistv3&amp;utm_relevant_index=1">这里</a>。</li>
-<li>由于网络不稳定（dddd），有时直接使用vscode的图像化操作push不上GitHub，这时候就得记住用 <code>git push</code>。</li>
-<li><em>first commit</em> 时可以现在GitHub创建新的repo，然后找一个文件夹<code>git clone ...</code>。再将想要upload的代码copy到新生成的文件夹下，按步进行 <em>add，commit，push</em> 操作即可。而创建新repo和git init前后顺序并不重要，因为之后都是通过<code>git push -u origin main</code>将代码push到GitHub上。</li>
-<li>在使用IDE时，可以学一下其自带的git简化工具，比如VSCODE或者IntelliJ，可以帮助我们更简单的进行开发和维护。</li>
-<li>使用VSCODE来远程提交代码时，会发生 <em>RPC failed; HTTP 408 curl 18 HTTP/2 stream 7 was reset</em> 的<a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/59282476/error-rpc-failed-curl-92-http-2-stream-0-was-not-closed-cleanly-protocol-erro">错误</a>。必须强制使用 HTTP 版本 1.1 来使用 git。在CMD输入以下指令即可<code>git config --global http.version HTTP/1.1</code>。注意出现这样的错误时，使用VSCODE自带的提交工具并不能解决，必须用<code>git push -u origin main</code>来提交。</li>
+<p>Here $\tau$ is CLIP’s temperature parameter and $N_c$ is the number of classes.</p>
+<p>The few-shot setting changes the problem. We do have a small support set, so we want to adapt to the target dataset. But the support set is tiny, so updating too much of the model can easily damage CLIP’s pretrained generalization.</p>
+<p>This is why parameter-efficient adaptation is popular. Instead of fine-tuning the entire CLIP model, methods add lightweight trainable components:</p>
+<ul>
+<li><strong>Prompt learning</strong> changes the text prompts or adds learnable prompt tokens.</li>
+<li><strong>Adapter learning</strong> inserts small neural modules into the image encoder, text encoder, or both.</li>
+<li><strong>Mixture-of-experts adapters</strong> route different samples through different small expert heads.</li>
+</ul>
+<p>The question A3B2 asks is not only “can adapters improve few-shot learning?” It asks:</p>
+<blockquote>
+<p>Which branch should the adapters trust, and when should visual adaptation be suppressed?</p>
+</blockquote>
+<h2 id="Branch-Bias-The-Target-Problem"><a href="#Branch-Bias-The-Target-Problem" class="headerlink" title="Branch Bias: The Target Problem"></a>Branch Bias: The Target Problem</h2><p>The paper first performs exploratory experiments on three tasks:</p>
+<ol>
+<li><strong>Base-to-novel generalization</strong>: train on base classes, test on both base and unseen novel classes within the same dataset.</li>
+<li><strong>Cross-dataset evaluation</strong>: train on ImageNet and evaluate on other datasets.</li>
+<li><strong>Domain generalization</strong>: train on ImageNet and test on ImageNet variants such as ImageNetV2, ImageNet-Sketch, ImageNet-A, and ImageNet-R.</li>
 </ol>
+<p>The experiments lead to three insights.</p>
+<p><strong>Insight I</strong>: adding trainable parameters to the image encoder often gives lower gains than adapting the text encoder.</p>
+<p><strong>Insight II</strong>: in in-distribution tasks such as base-to-novel generalization, using both branches can be best.</p>
+<p><strong>Insight III</strong>: in OOD tasks such as cross-dataset and domain generalization, adapting the image encoder can hurt transferability.</p>
+<p>This is Branch Bias. The two CLIP branches do not contribute equally across tasks. A fixed rule such as “always adapt the image branch” or “always adapt both branches” can be too rigid.</p>
+<p>A useful way to formalize the idea is to compare the branch contributions. Let $C_V(\mathcal{T})$ and $C_T(\mathcal{T})$ denote the visual and textual contribution strengths on a downstream task $\mathcal{T}$:</p>
+<div class="mathjax-display">
+$$
+C_V(\mathcal{T})
+=
+\mathbb{E}_{(x,y)\sim\mathcal{T}}
+\left[
+\left\|
+\nabla_{V(x)}
+\ell(f(V(x),T(y)),y)
+\right\|
+\right],
+$$
+</div>
+
+<div class="mathjax-display">
+$$
+C_T(\mathcal{T})
+=
+\mathbb{E}_{(x,y)\sim\mathcal{T}}
+\left[
+\left\|
+\nabla_{T(y)}
+\ell(f(V(x),T(y)),y)
+\right\|
+\right].
+$$
+</div>
+
+<p>If the two branches mattered equally, their normalized contribution vector would be close to $(0.5,0.5)$. Branch Bias measures how far the task-specific contribution distribution is from this uniform reference:</p>
+<div class="mathjax-display">
+$$
+P_{\mathcal{T}}
+=
+\left(
+\frac{C_V}{C_V+C_T},
+\frac{C_T}{C_V+C_T}
+\right),
+\qquad
+\operatorname{BranchBias}(\mathcal{T})
+=
+D(P_{\mathcal{T}},(0.5,0.5)).
+$$
+</div>
+
+<p>The exact divergence $D(\cdot,\cdot)$ can be read as a distance from balanced branch contribution. The important point is conceptual: if adapting the image branch and text branch produces different gains, the task is branch-biased.</p>
+<h2 id="Method-Overview"><a href="#Method-Overview" class="headerlink" title="Method Overview"></a>Method Overview</h2><p>A3B2 follows a conservative design:</p>
+<ul>
+<li>keep adapters in the <strong>text branch</strong> active, because text adaptation is usually reliable for class-level transfer;</li>
+<li>allow adapters in the <strong>image branch</strong>, but dampen them when prediction uncertainty is high;</li>
+<li>use a lightweight asymmetric adapter structure with one shared down-projection and multiple up-projection experts;</li>
+<li>regularize expert routing so the experts do not collapse into one dominant path.</li>
+</ul>
+<p><img src="/2026/07/07/a3b2-paper-explanation/a3b2-mechanism.png" alt="A3B2 mechanism overview"></p>
+<p>The diagram shows the main idea. The text adapter is always on. The image adapter is controlled by an uncertainty gate: confident samples can use visual adaptation, while uncertain samples are pushed toward smaller visual adapter outputs. This is the practical way A3B2 avoids hard manual decisions such as “freeze the image branch for OOD data.”</p>
+<h2 id="Asymmetric-Adapter-Structure"><a href="#Asymmetric-Adapter-Structure" class="headerlink" title="Asymmetric Adapter Structure"></a>Asymmetric Adapter Structure</h2><p>At each transformer layer, A3B2 inserts an adapter into the CLIP text encoder and image encoder. A simplified adapter has a shared down-projection followed by multiple up-projection experts.</p>
+<p>For a hidden feature $z$, the routing weights are:</p>
+<div class="mathjax-display">
+$$
+\mathfrak{w}_i
+=
+\operatorname{softmax}(W_i^g z),
+$$
+</div>
+
+<p>and the adapter output can be written as:</p>
+<div class="mathjax-display">
+$$
+\mathcal{A}_i(z)
+=
+\sum_{k=1}^{n}
+\mathfrak{w}_i^k
+W_{up,i}^{k}
+\left(
+\operatorname{ReLU}(W_{down,i}z)
+\right).
+$$
+</div>
+
+<p>The adapted transformer layer is then:</p>
+<div class="mathjax-display">
+$$
+h_i
+=
+\operatorname{Block}_i(h_{i-1})
++
+\alpha \mathcal{A}_i(h_{i-1}),
+$$
+</div>
+
+<p>where $\alpha$ controls the strength of the adapter contribution.</p>
+<p>The phrase <strong>asymmetric adapter</strong> has two meanings here.</p>
+<p>First, the two CLIP branches are treated differently. The text branch remains actively adapted, while the image branch is regulated by uncertainty.</p>
+<p>Second, the adapter itself uses a <strong>one-down-many-ups</strong> structure. There is one shared low-rank bottleneck $W_{down}$ and several expert up-projections ${W_{up}^k}_{k=1}^n$. This design forces the model to learn a compact shared representation before expert specialization. It is more stable than giving each expert a separate down-projection and then merging them too early.</p>
+<h2 id="Uncertainty-Aware-Adapter-Dampening"><a href="#Uncertainty-Aware-Adapter-Dampening" class="headerlink" title="Uncertainty-Aware Adapter Dampening"></a>Uncertainty-Aware Adapter Dampening</h2><p>The most important mechanism is <strong>Uncertainty-Aware Adapter Dampening (UAAD)</strong>.</p>
+<p>Let $\kappa_j$ be the confidence for sample $j$:</p>
+<div class="mathjax-display">
+$$
+\kappa_j
+=
+\max_c p(\hat{y}=c \mid x_j).
+$$
+</div>
+
+<p>Let $\Delta \mathbf{v}_{i,j}$ be the image-adapter modification at layer $i$ for sample $j$. A3B2 penalizes large image-adapter modifications when confidence is low:</p>
+<div class="mathjax-display">
+$$
+\mathcal{L}_{bias}
+=
+\frac{1}{B}
+\sum_{j=1}^{B}
+(1-\kappa_j)
+\sum_{i=1}^{L}
+\left\|
+\Delta \mathbf{v}_{i,j}
+\right\|_2.
+$$
+</div>
+
+<p>This formula is the heart of the method.</p>
+<p>If $\kappa_j$ is high, then $(1-\kappa_j)$ is small. The model is confident, so visual adaptation is allowed to contribute.</p>
+<p>If $\kappa_j$ is low, then $(1-\kappa_j)$ is large. The model is uncertain, so the image adapter is discouraged from making large changes. In effect, A3B2 leans back toward the original pretrained CLIP image features.</p>
+<p>This is a soft rule, not a hard switch. That matters because the method does not need to know in advance whether a sample is in-distribution or out-of-distribution.</p>
+<h2 id="Load-Balancing-for-Expert-Routing"><a href="#Load-Balancing-for-Expert-Routing" class="headerlink" title="Load Balancing for Expert Routing"></a>Load Balancing for Expert Routing</h2><p>Mixture-of-experts modules can suffer from expert collapse. If the router always chooses one expert, the other experts become unused and the model loses the benefit of specialization.</p>
+<p>A3B2 adds a load balancing regularizer. Let $\bar{\mathfrak{w}}_{l,j,k}$ be the routing probability of expert $k$ for sample $j$ at layer $l$. The loss encourages average expert usage to be close to uniform:</p>
+<div class="mathjax-display">
+$$
+\mathcal{L}_{bal}
+=
+n^2
+\cdot
+\frac{1}{L n}
+\sum_{l=1}^{L}
+\sum_{k=1}^{n}
+\left(
+\frac{1}{B}
+\sum_{j=1}^{B}
+\bar{\mathfrak{w}}_{l,j,k}
+-
+\frac{1}{n}
+\right)^2.
+$$
+</div>
+
+<p>The final objective combines ordinary classification with the two auxiliary terms:</p>
+<div class="mathjax-display">
+$$
+\mathcal{L}_{total}
+=
+\mathcal{L}_{CE}
++
+\lambda_{bias}\mathcal{L}_{bias}
++
+\lambda_{bal}\mathcal{L}_{bal}.
+$$
+</div>
+
+<p>This objective has a clear division of labor:</p>
+<ul>
+<li>$\mathcal{L}_{CE}$ learns the few-shot classification task;</li>
+<li>$\mathcal{L}_{bias}$ controls risky image adaptation under uncertainty;</li>
+<li>$\mathcal{L}_{bal}$ keeps the expert adapters diverse.</li>
+</ul>
+<h2 id="Experimental-Setting"><a href="#Experimental-Setting" class="headerlink" title="Experimental Setting"></a>Experimental Setting</h2><p>The paper evaluates A3B2 on three few-shot image classification settings.</p>
+<p><strong>Base-to-novel generalization</strong> trains on base classes and tests on both base and novel classes across 11 datasets: ImageNet, Caltech101, OxfordPets, StanfordCars, Flowers102, Food101, FGVCAircraft, SUN397, DTD, EuroSAT, and UCF101.</p>
+<p><strong>Cross-dataset evaluation</strong> trains on ImageNet with 16 shots per class and evaluates directly on 10 other datasets.</p>
+<p><strong>Domain generalization</strong> trains on ImageNet and tests on ImageNetV2, ImageNet-Sketch, ImageNet-A, and ImageNet-R.</p>
+<p>The main backbone is CLIP ViT-B/16. The paper compares against 11 prompt- and adapter-based baselines, including CLIP, CoOp, CoCoOp, KgCoOp, RPO, MaPLe, CLIP-Adapter, TCP, MMA, MMRL, and MMRL++.</p>
+<p>The default A3B2 setting uses:</p>
+<ul>
+<li>number of experts $n=3$;</li>
+<li>low rank $r=32$;</li>
+<li>adapter strength $\alpha=0.001$;</li>
+<li>UAAD coefficient $\lambda_{bias}=0.3$;</li>
+<li>load-balance coefficient $\lambda_{bal}=0.1$.</li>
+</ul>
+<h2 id="What-the-Results-Mean"><a href="#What-the-Results-Mean" class="headerlink" title="What the Results Mean"></a>What the Results Mean</h2><p>The reported results support the Branch Bias story.</p>
+<p>In base-to-novel generalization, A3B2 performs strongly because it can use both branches when the task remains relatively close to the training distribution. This matches Insight II.</p>
+<p>In cross-dataset and domain generalization, the uncertainty-aware image dampening becomes more important. Instead of letting the visual adapter over-specialize to ImageNet-style training examples, the method reduces image-branch modifications for uncertain samples. This matches Insight III.</p>
+<p>The ablation study is also important. Removing the bias loss or the load-balancing loss weakens the method, and applying the bias loss to the wrong branch hurts performance. This suggests that A3B2 is not simply winning because it adds more parameters. Its branch-aware training rule is part of the gain.</p>
+<p>The few-shot analysis shows another useful pattern: A3B2 remains competitive across different shot settings, and its advantage grows as more few-shot examples become available. This is reasonable because the adapter modules need some data to learn task-specific structure, but they still remain much smaller and safer than full fine-tuning.</p>
+<h2 id="Limitations-and-Practical-Reading"><a href="#Limitations-and-Practical-Reading" class="headerlink" title="Limitations and Practical Reading"></a>Limitations and Practical Reading</h2><p>A3B2 is best understood as a method for <strong>few-shot image classification with CLIP-like models</strong>, not as a universal solution for every vision-language task. The branch-bias observations are based on image classification protocols, and other tasks such as segmentation, retrieval, captioning, or reasoning may have different branch dynamics.</p>
+<p>The uncertainty score is also a proxy. Low confidence often indicates distribution shift or ambiguous input, but not always. A hard example from the same distribution can also be low-confidence. The strength of UAAD is that it uses confidence softly rather than turning the image branch completely off.</p>
+<p>Finally, the method introduces several hyperparameters. The paper provides sensitivity analysis, but in a new deployment one should still check whether $n$, $r$, $\alpha$, $\lambda_{bias}$, and $\lambda_{bal}$ remain appropriate.</p>
+<h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2><p>A3B2 gives a useful answer to a practical few-shot adaptation problem:</p>
+<blockquote>
+<p>Do not assume that the image and text branches of CLIP should always be adapted equally.</p>
+</blockquote>
+<p>The method first identifies Branch Bias, then turns that observation into an adaptive architecture. Text adaptation stays active. Image adaptation is allowed when confidence is high and dampened when confidence is low. A one-down-many-ups adapter structure provides compact expert specialization, and load balancing keeps the experts from collapsing.</p>
+<p>The result is a branch-aware few-shot adaptation method that is especially attractive when one wants the benefits of CLIP adaptation without sacrificing too much OOD robustness.</p>
 
                 
             </div>
@@ -498,7 +712,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://marcuxu.com/2022/09/29/git-github-notes/">https://marcuxu.com/2022/09/29/git-github-notes/</a>
+                    <a href="https://marcuxu.com/2026/07/07/a3b2-paper-explanation/">https://marcuxu.com/2026/07/07/a3b2-paper-explanation/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -536,8 +750,8 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/SW-Tricks/">
-                                    <span class="chip bg-color">SW_Tricks</span>
+                                <a href="/tags/AI-Tricks/">
+                                    <span class="chip bg-color">AI_Tricks</span>
                                 </a>
                             
                         </div>
@@ -583,29 +797,80 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
+                <i class="far fa-dot-circle"></i>&nbsp;Current
+            </div>
             <div class="card">
-                <a href="/2022/10/06/cnn-in-dl/">
+                <a href="/2026/07/07/a3b2-paper-explanation/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/7.jpg" class="responsive-img" alt="CNN in Deep Learning: From Pixels to Feature Maps" loading="lazy" decoding="async">
+                        <img src="/medias/featureimages/3.jpg" class="responsive-img" alt="Understanding A3B2: Adaptive Asymmetric Adapters for Few-Shot Vision-Language Classification" loading="lazy" decoding="async">
                         
-                        <span class="card-title">CNN in Deep Learning: From Pixels to Feature Maps</span>
+                        <span class="card-title">Understanding A3B2: Adaptive Asymmetric Adapters for Few-Shot Vision-Language Classification</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            A beginner-friendly study note on convolutional neural networks, covering image tensors, convolution filters, feature maps, receptive fields, pooling, softmax, cross-entropy, and why CNNs work in deep learning.
+                            A technical explanation of A3B2, covering few-shot CLIP adaptation, branch bias, asymmetric text-image adapters, uncertainty-aware adapter dampening, load-balanced mixture-of-experts adapters, evaluation protocols, and key empirical findings.
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2022-10-06
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2026-07-07
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/Tech/" class="post-category">
+                                    Tech
+                                </a>
+                            
+                            
                         </span>
+                    </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/AI-Tricks/">
+                        <span class="chip bg-color">AI_Tricks</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                Next&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2026/06/24/inhernet-paper-explanation/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/6.jpg" class="responsive-img" alt="Understanding InherNet: Neural Network Inheritance Beyond Student Distillation" loading="lazy" decoding="async">
+                        
+                        <span class="card-title">Understanding InherNet: Neural Network Inheritance Beyond Student Distillation</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            A technical explanation of InherNet, covering neural network inheritance, model compression, SVD-based knowledge inheritance, asymmetric low-rank structure, gating fusion, and the main experimental takeaways.
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2026-06-24
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -625,47 +890,6 @@
                         <span class="chip bg-color">AI_Tricks</span>
                     </a>
                     
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                Next&nbsp;<i class="fas fa-chevron-right"></i>
-            </div>
-            <div class="card">
-                <a href="/2022/09/19/memory-hk-cuhk/">
-                    <div class="card-image">
-                        
-                        
-                        <img src="/medias/featureimages/16.jpg" class="responsive-img" alt="Memory in HK &amp; CUHK" loading="lazy" decoding="async">
-                        
-                        <span class="card-title">Memory in HK &amp; CUHK</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            A photo diary of my 2021-2022 year at CUHK and in Hong Kong, covering arrival, coursework, friends, hikes, research pressure, campus life, and quiet leaving moments.
-                        
-                    </div>
-                    <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-09-19
-                            </span>
-                        <span class="publish-author">
-                            
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/Clutter/" class="post-category">
-                                    Clutter
-                                </a>
-                            
-                            
-                        </span>
-                    </div>
                 </div>
                 
             </div>
@@ -787,6 +1011,30 @@
 
 </main>
 
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        jax: ['input/TeX', 'output/SVG'],
+        extensions: ['tex2jax.js'],
+        TeX: {
+            extensions: ['AMSmath.js', 'AMSsymbols.js', 'noErrors.js', 'noUndefined.js']
+        },
+        tex2jax: {
+            inlineMath: [['$', '$'], ['\\(', '\\)']],
+            displayMath: [['$$', '$$'], ['\\[', '\\]']],
+            processEscapes: true,
+            processEnvironments: true,
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        },
+        SVG: {
+            font: 'TeX',
+            mtextFontInherit: true
+        },
+        showProcessingMessages: false,
+        messageStyle: 'none'
+    });
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js?config=TeX-AMS_SVG"></script>
 
 
 
