@@ -82,12 +82,7 @@ $(function () {
     unlockPageScroll();
     $(window).on('pageshow orientationchange', resetMobileSidenav);
     $(window).on('resize', handleViewportChange);
-    document.addEventListener('touchstart', function () {
-        if (window.innerWidth <= 601) {
-            unlockPageScroll();
-        }
-    }, {passive: true});
-    document.addEventListener('touchmove', function () {
+    document.addEventListener('touchend', function () {
         if (window.innerWidth <= 601) {
             unlockPageScroll();
         }
@@ -182,11 +177,29 @@ $(function () {
                 this.insertAdjacentElement('afterend', captionDiv)
             }
         });
-        $('#articleContent, #myGallery').lightGallery({
-            selector: '.img-item',
+        let galleryGesturesEnabled = !isMobileViewport();
+        let articleGalleryOptions = {
+            selector: 'this',
             // 启用字幕
-            subHtmlSelectorRelative: true
-        });
+            subHtmlSelectorRelative: true,
+            enableSwipe: galleryGesturesEnabled,
+            enableDrag: galleryGesturesEnabled
+        };
+        let $articleImages = $('#articleContent .img-item');
+        if ($articleImages.length > 0) {
+            $articleImages.lightGallery(articleGalleryOptions);
+        }
+
+        let $myGallery = $('#myGallery');
+        if ($myGallery.length > 0) {
+            $myGallery.lightGallery({
+                selector: '.img-item',
+                // 启用字幕
+                subHtmlSelectorRelative: true,
+                enableSwipe: galleryGesturesEnabled,
+                enableDrag: galleryGesturesEnabled
+            });
+        }
 
         // progress bar init
         const progressElement = window.document.querySelector('.progress-bar');

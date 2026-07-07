@@ -7,7 +7,7 @@
     <meta name="keywords" content="Speaking the Language of Probability: From Classifier Evaluation to Generative Classifiers, Mingjing Xu,MarcuXu,multi-objective optimization,trustworthy AI,multimodal learning,edge intelligence">
     <meta name="description" content="Study notes connecting classifier accuracy, confusion matrices, precision, recall, ROC/AUC, PR curves, calibration, cost-sensitive thresholds, generative classifiers, Gaussian class-conditional models, sigmoid/softmax, LDA, and QDA.">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="format-detection" content="telephone=no">
@@ -33,7 +33,7 @@
 <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
 <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
 <link rel="stylesheet" type="text/css" href="/css/matery.css">
-<link rel="stylesheet" type="text/css" href="/css/my.css?v=20260706-mobile">
+<link rel="stylesheet" type="text/css" href="/css/my.css?v=20260707-mobile-scroll">
 <link rel="stylesheet" type="text/css" href="/css/dark.css" media="none" onload="if(media!='all')media='all'">
 
 
@@ -398,7 +398,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>Update Date:&nbsp;&nbsp;
-                    2026-06-16
+                    2026-07-07
                 </div>
                 
 
@@ -459,12 +459,26 @@
 <li><strong>False Negative (FN)</strong>: The true label is positive, but the model predicts negative. This is a missed detection, also called a Type II error.</li>
 </ul>
 <p>In the book, these counts are denoted $N_{TP}, N_{FP}, N_{TN}, N_{FN}$.<br>The total number of samples in the dataset, $N$, is the sum of all four:</p>
-<p>$$<br>N = N_{TP} + N_{FP} + N_{TN} + N_{FN}.<br>\tag{5.28}<br>$$</p>
+<div class="mathjax-display">
+$$
+N = N_{TP} + N_{FP} + N_{TN} + N_{FN}.
+\tag{5.28}
+$$
+</div>
+
 <blockquote>
 <p>This 2×2 table of counts is called the <strong>confusion matrix</strong>. It is the raw material from which essentially all common classification performance metrics are defined.</p>
 </blockquote>
 <h3 id="1-2-The-definition-and-limitation-of-accuracy"><a href="#1-2-The-definition-and-limitation-of-accuracy" class="headerlink" title="1.2 The definition and limitation of accuracy"></a>1.2 The definition and limitation of accuracy</h3><p>The most obvious performance measure is <strong>accuracy</strong>, i.e. “the fraction of predictions that are correct”:</p>
-<p>$$<br>\text{Accuracy} =<br>\frac{N_{TP} + N_{TN}}<br>{N_{TP} + N_{FP} + N_{TN} + N_{FN}}.<br>\tag{5.29}<br>$$</p>
+<div class="mathjax-display">
+$$
+\text{Accuracy} =
+\frac{N_{TP} + N_{TN}}
+{N_{TP} + N_{FP} + N_{TN} + N_{FN}}.
+\tag{5.29}
+$$
+</div>
+
 <p>Accuracy looks perfectly sensible when (i) the two classes are roughly balanced and (ii) the costs of different kinds of mistakes are symmetric.</p>
 <p>But there’s a serious problem: <strong>on highly imbalanced datasets, accuracy can be very misleading.</strong></p>
 <p>For example, suppose in a population of 1,000 people only 1 person is actually ill (positive class) and 999 are healthy (negative class).<br>A “bad” classifier could just always predict “healthy” (always negative):</p>
@@ -476,13 +490,45 @@
 <p>Then the accuracy would be about 999/1000 = 99.9%.<br>But this system has <strong>zero diagnostic value</strong>: it fails to identify the only truly ill person.<br>This kind of scenario is common in medical screening, fraud detection, and security.</p>
 <p><strong>Conclusion:</strong> relying on accuracy alone is dangerous, especially when the positive class is rare, or when the costs of different errors are very asymmetric (for example, “missing a cancer case” is typically much worse than “unnecessarily flagging a healthy patient for follow-up”).</p>
 <h3 id="1-3-Other-key-metrics-Precision-Recall-FPR-and-FDR"><a href="#1-3-Other-key-metrics-Precision-Recall-FPR-and-FDR" class="headerlink" title="1.3 Other key metrics: Precision, Recall, FPR, and FDR"></a>1.3 Other key metrics: Precision, Recall, FPR, and FDR</h3><p>We now introduce four metrics that reflect real-world costs and benefits more faithfully.</p>
-<p><strong>(1) Precision</strong><br>$$<br>\text{Precision} =<br>\frac{N_{TP}}{N_{TP} + N_{FP}}.<br>\tag{5.30}<br>$$</p>
+<p><strong>(1) Precision</strong>  </p>
+<div class="mathjax-display">
+$$
+\text{Precision} =
+\frac{N_{TP}}{N_{TP} + N_{FP}}.
+\tag{5.30}
+$$
+</div>
+
 <p>Interpretation: “Among all the cases I predicted as positive, how many are actually positive?”<br>This is also known as <strong>positive predictive value</strong>: it answers, “When I tell you ‘you’re positive,’ how trustworthy is that statement?”</p>
-<p><strong>(2) Recall / Sensitivity / True Positive Rate (TPR)</strong><br>$$<br>\text{Recall} =<br>\frac{N_{TP}}{N_{TP} + N_{FN}}.<br>\tag{5.31}<br>$$</p>
+<p><strong>(2) Recall / Sensitivity / True Positive Rate (TPR)</strong>  </p>
+<div class="mathjax-display">
+$$
+\text{Recall} =
+\frac{N_{TP}}{N_{TP} + N_{FN}}.
+\tag{5.31}
+$$
+</div>
+
 <p>Interpretation: “Out of all truly positive individuals, how many did I successfully catch?”<br>This is also called the <strong>detection rate</strong> or <strong>sensitivity</strong>. In medical diagnosis, recall (a.k.a. TPR) measures how serious your <strong>missed diagnoses</strong> are: a low recall means you are failing to detect many truly sick patients.</p>
-<p><strong>(3) False Positive Rate (FPR)</strong><br>$$<br>\text{False positive rate} =<br>\frac{N_{FP}}{N_{FP} + N_{TN}}.<br>\tag{5.32}<br>$$</p>
+<p><strong>(3) False Positive Rate (FPR)</strong>  </p>
+<div class="mathjax-display">
+$$
+\text{False positive rate} =
+\frac{N_{FP}}{N_{FP} + N_{TN}}.
+\tag{5.32}
+$$
+</div>
+
 <p>Interpretation: “Out of all the truly negative individuals, how many did I incorrectly label as positive?”<br>This is sometimes called the <strong>false alarm rate</strong> or “$1 -$ specificity.” A low FPR means “don’t frighten healthy people / don’t accuse the innocent.”</p>
-<p><strong>(4) False Discovery Rate (FDR)</strong><br>$$<br>\text{False discovery rate} =<br>\frac{N_{FP}}{N_{FP} + N_{TP}}.<br>\tag{5.33}<br>$$</p>
+<p><strong>(4) False Discovery Rate (FDR)</strong>  </p>
+<div class="mathjax-display">
+$$
+\text{False discovery rate} =
+\frac{N_{FP}}{N_{FP} + N_{TP}}.
+\tag{5.33}
+$$
+</div>
+
 <p>Interpretation: “Among all the cases I called positive, what fraction are actually false alarms?”<br>In many screening and retrieval tasks, FDR measures “how much junk is mixed into my positive detections.”<br>You can view FDR as the complement of precision: if precision is ‘how clean are my positives,’ FDR is ‘how contaminated are my positives.’</p>
 <h3 id="1-4-How-the-decision-threshold-affects-these-metrics-Figure-5-10"><a href="#1-4-How-the-decision-threshold-affects-these-metrics-Figure-5-10" class="headerlink" title="1.4 How the decision threshold affects these metrics: Figure 5.10"></a>1.4 How the decision threshold affects these metrics: Figure 5.10</h3><p>To build direct intuition, the book uses a 1D example in Figure 5.10.</p>
 <p><strong>Structure of the figure:</strong></p>
@@ -498,7 +544,12 @@
 </li>
 </ul>
 <p>The notation $p(x, C_k)$ is important. It is not only the shape of class $C_k$ in feature space; it also includes how common that class is:</p>
-<p>$$<br>p(x, C_k) = p(x \mid C_k)p(C_k).<br>$$</p>
+<div class="mathjax-display">
+$$
+p(x, C_k) = p(x \mid C_k)p(C_k).
+$$
+</div>
+
 <p>So when a class is rare, its joint-density curve can be much lower even if its class-conditional shape $p(x \mid C_k)$ is clear.</p>
 <ul>
 <li>We draw a vertical line at $ \hat{x} $; this is our current <strong>decision threshold</strong>:<ul>
@@ -518,10 +569,34 @@
 <p><strong>Area = probability mass = expected count fraction:</strong></p>
 <p>The shaded area under a curve corresponds to the probability mass of “that kind of mistake.”<br>If the population has total size $N$, then (probability mass) × $N$ ≈ (expected count of that error type).  </p>
 <p>The book labels several subregions of area as $A, B, C, D, E,$ etc., and then writes:</p>
-<p>$$<br>\frac{N_{FP}}{N} = E,<br>\tag{5.34}<br>$$</p>
-<p>$$<br>\frac{N_{TP}}{N} = D + E,<br>\tag{5.35}<br>$$</p>
-<p>$$<br>\frac{N_{FN}}{N} = B + C,<br>\tag{5.36}<br>$$</p>
-<p>$$<br>\frac{N_{TN}}{N} = A + C.<br>\tag{5.37}<br>$$</p>
+<div class="mathjax-display">
+$$
+\frac{N_{FP}}{N} = E,
+\tag{5.34}
+$$
+</div>
+
+<div class="mathjax-display">
+$$
+\frac{N_{TP}}{N} = D + E,
+\tag{5.35}
+$$
+</div>
+
+<div class="mathjax-display">
+$$
+\frac{N_{FN}}{N} = B + C,
+\tag{5.36}
+$$
+</div>
+
+<div class="mathjax-display">
+$$
+\frac{N_{TN}}{N} = A + C.
+\tag{5.37}
+$$
+</div>
+
 <p>Here’s how to read these:</p>
 <ul>
 <li>$E$: the area in the “predict positive” region that actually comes from the negative class → FP frequency.  </li>
@@ -548,9 +623,25 @@
 </ul>
 <p>In other words, <strong>tuning the threshold implements an explicit trade-off between detection rate and false alarm rate.</strong><br>This is exactly what the ROC curve will visualize.</p>
 <h3 id="1-5-The-F-score-F1-score-balancing-Precision-and-Recall"><a href="#1-5-The-F-score-F1-score-balancing-Precision-and-Recall" class="headerlink" title="1.5 The F-score (F1 score): balancing Precision and Recall"></a>1.5 The F-score (F1 score): balancing Precision and Recall</h3><p>The book introduces the F-score (often $F_1$) to summarize the balance between Precision and Recall. It is given in equations (5.38)–(5.39):</p>
-<p>$$<br>F =<br>\frac{2 \times \text{Precision} \times \text{Recall}}<br>{\text{Precision} + \text{Recall}}.<br>\tag{5.38}<br>$$</p>
+<div class="mathjax-display">
+$$
+F =
+\frac{2 \times \text{Precision} \times \text{Recall}}
+{\text{Precision} + \text{Recall}}.
+\tag{5.38}
+$$
+</div>
+
 <p>By expanding Precision and Recall in terms of confusion matrix counts, we can write:</p>
-<p>$$<br>F =<br>\frac{2 N_{TP}}<br>{2N_{TP} + N_{FP} + N_{FN}}.<br>\tag{5.39}<br>$$</p>
+<div class="mathjax-display">
+$$
+F =
+\frac{2 N_{TP}}
+{2N_{TP} + N_{FP} + N_{FN}}.
+\tag{5.39}
+$$
+</div>
+
 <p>Key property: this is the <strong>harmonic mean</strong> of Precision and Recall, not their simple arithmetic mean.<br>If either Precision or Recall is poor, the F-score will drop sharply.<br>This forces us to care about both “don’t over-alert” (high Precision) and “don’t miss true positives” (high Recall), instead of optimizing just one.</p>
 <h2 id="Part-II-continuing-from-5-2-5-The-ROC-Curve"><a href="#Part-II-continuing-from-5-2-5-The-ROC-Curve" class="headerlink" title="Part II (continuing from 5.2.5): The ROC Curve"></a>Part II (continuing from 5.2.5): The ROC Curve</h2><p>(Receiver Operating Characteristic, Figure 5.11)</p>
 <h3 id="2-1-Axes-of-the-ROC-curve"><a href="#2-1-Axes-of-the-ROC-curve" class="headerlink" title="2.1 Axes of the ROC curve"></a>2.1 Axes of the ROC curve</h3><p>The ROC curve (Figure 5.11) is a global way to evaluate a binary classifier.</p>
@@ -598,10 +689,14 @@
 </ol>
 <h3 id="2-5-Cost-sensitive-thresholding"><a href="#2-5-Cost-sensitive-thresholding" class="headerlink" title="2.5 Cost-sensitive thresholding"></a>2.5 Cost-sensitive thresholding</h3><p>The default threshold $p(C_1 \mid \mathbf{x}) &gt; 0.5$ is only optimal when the two classes and the two error costs are symmetric. In many real tasks, false negatives and false positives have different costs.</p>
 <p>Suppose $C_{FP}$ is the cost of predicting positive when the sample is actually negative, and $C_{FN}$ is the cost of predicting negative when the sample is actually positive. For a binary classifier that estimates $p(C_1 \mid \mathbf{x})$ as the positive-class probability, a simple expected-cost rule predicts positive when:</p>
-<p>$$<br>p(C_1 \mid \mathbf{x})</p>
-<blockquote>
-</blockquote>
-<p>\frac{C_{FP}}{C_{FP}+C_{FN}}.<br>$$</p>
+<div class="mathjax-display">
+$$
+p(C_1 \mid \mathbf{x})
+\gt
+\frac{C_{FP}}{C_{FP}+C_{FN}}.
+$$
+</div>
+
 <p>If missing a positive case is much more expensive than raising a false alarm, then $C_{FN}$ is large and the threshold becomes smaller. This explains why medical screening tools often prefer high recall first, then use follow-up tests to recover precision.</p>
 <h2 id="Part-III-5-3-“Generative-classifiers”-—-The-Generative-Classifier-View"><a href="#Part-III-5-3-“Generative-classifiers”-—-The-Generative-Classifier-View" class="headerlink" title="Part III: 5.3 “Generative classifiers” — The Generative Classifier View"></a>Part III: 5.3 “Generative classifiers” — The Generative Classifier View</h2><p>Now we shift from <strong>evaluation</strong> to <strong>modeling</strong>.</p>
 <p>All the metrics above (Accuracy, Precision, Recall, ROC and AUC, etc.) assumed we already had a classifier that can output some score or probability.</p>
@@ -612,16 +707,61 @@
 <li>For each class $C_k$, we also specify a <strong>class-conditional density</strong> $p(\mathbf{x} \mid C_k)$, which says, “If a sample truly belongs to class $C_k$, how is the observed feature vector $\mathbf{x}$ generated?”  </li>
 <li>Then we apply Bayes’ rule to “invert” this generative story and obtain a posterior:</li>
 </ol>
-<p>$$<br>p(C_k \mid \mathbf{x})<br>=<br>\frac{p(\mathbf{x} \mid C_k), p(C_k)}<br>{\sum_j p(\mathbf{x} \mid C_j), p(C_j)}.<br>\tag{5.45 structure}<br>$$</p>
+<div class="mathjax-display">
+$$
+p(C_k \mid \mathbf{x})
+=
+\frac{p(\mathbf{x} \mid C_k)\, p(C_k)}
+{\sum_j p(\mathbf{x} \mid C_j)\, p(C_j)}.
+\tag{5.45 structure}
+$$
+</div>
+
 <p>This gives us not just a hard label, but an entire posterior probability distribution $\lbrace p(C_k \mid \mathbf{x})\rbrace_k$.</p>
 <p>It’s called “generative” because it explicitly models how the data arise in each class.<br>This contrasts with “discriminative” methods, which directly model $p(C_k \mid \mathbf{x})$ or directly learn a decision boundary, without necessarily modeling how each class generates data.</p>
 <h3 id="3-1-The-binary-case-the-emergence-of-the-sigmoid-Equations-5-40-–-5-44-Figure-5-12"><a href="#3-1-The-binary-case-the-emergence-of-the-sigmoid-Equations-5-40-–-5-44-Figure-5-12" class="headerlink" title="3.1 The binary case: the emergence of the sigmoid (Equations (5.40)–(5.44), Figure 5.12)"></a>3.1 The binary case: the emergence of the sigmoid (Equations (5.40)–(5.44), Figure 5.12)</h3><p>Consider two classes $C_1$ and $C_2$.<br>Bayes’ rule gives:</p>
-<p>$$<br>p(C_1 \mid \mathbf{x})<br>=<br>\frac{p(\mathbf{x} \mid C_1), p(C_1)}<br>     {p(\mathbf{x} \mid C_1), p(C_1)<br>     + p(\mathbf{x} \mid C_2), p(C_2)}.<br>\tag{5.40}<br>$$</p>
+<div class="mathjax-display">
+$$
+p(C_1 \mid \mathbf{x})
+=
+\frac{p(\mathbf{x} \mid C_1)\, p(C_1)}
+     {p(\mathbf{x} \mid C_1)\, p(C_1)
+     + p(\mathbf{x} \mid C_2)\, p(C_2)}.
+\tag{5.40}
+$$
+</div>
+
 <p>Define the <strong>log-odds</strong> (log-likelihood ratio including priors):</p>
-<p>$$<br>a<br>= \ln<br>\frac{p(\mathbf{x} \mid C_1), p(C_1)}<br>     {p(\mathbf{x} \mid C_2), p(C_2)}.<br>\tag{5.41}<br>$$</p>
+<div class="mathjax-display">
+$$
+a
+= \ln
+\frac{p(\mathbf{x} \mid C_1)\, p(C_1)}
+     {p(\mathbf{x} \mid C_2)\, p(C_2)}.
+\tag{5.41}
+$$
+</div>
+
 <p>Then we can rewrite the posterior as the classic <strong>logistic sigmoid</strong>:</p>
-<p>$$<br>p(C_1 \mid \mathbf{x})<br>=<br>\frac{1}{1+\exp(-a)}<br>=<br>\sigma(a),<br>\tag{5.42}<br>$$</p>
-<p>where<br>$$<br>\sigma(a) = \frac{1}{1+\exp(-a)}<br>$$<br>is the sigmoid function.</p>
+<div class="mathjax-display">
+$$
+p(C_1 \mid \mathbf{x})
+=
+\frac{1}{1+\exp(-a)}
+=
+\sigma(a),
+\tag{5.42}
+$$
+</div>
+
+<p>where</p>
+<div class="mathjax-display">
+$$
+\sigma(a) = \frac{1}{1+\exp(-a)}
+$$
+</div>
+is the sigmoid function.
+
 <p>Key properties of $\sigma(a)$:</p>
 <ul>
 <li>As $a \to +\infty$, $\sigma(a) \to 1$: overwhelming evidence for $C_1$.  </li>
@@ -630,9 +770,38 @@
 <li>$\sigma(a)$ is strictly increasing: stronger evidence for $C_1$ means higher posterior probability for $C_1$.</li>
 </ul>
 <p>The book then states two important identities:</p>
-<p><strong>Symmetry:</strong><br>$$<br>\sigma(-a) = 1 - \sigma(a).<br>\tag{5.43}<br>$$</p>
-<p>Therefore,<br>$$<br>p(C_2 \mid \mathbf{x})<br>= 1 - p(C_1 \mid \mathbf{x})<br>= \sigma(-a).<br>$$</p>
-<p><strong>Inverse (the logit):</strong><br>$$<br>a<br>=<br>\ln<br>\frac{\sigma(a)}{1-\sigma(a)}<br>=<br>\ln<br>\frac{p(C_1 \mid \mathbf{x})}<br>     {1 - p(C_1 \mid \mathbf{x})}.<br>\tag{5.44}<br>$$</p>
+<p><strong>Symmetry:</strong></p>
+<div class="mathjax-display">
+$$
+\sigma(-a) = 1 - \sigma(a).
+\tag{5.43}
+$$
+</div>
+
+<p>Therefore,</p>
+<div class="mathjax-display">
+$$
+p(C_2 \mid \mathbf{x})
+= 1 - p(C_1 \mid \mathbf{x})
+= \sigma(-a).
+$$
+</div>
+
+<p><strong>Inverse (the logit):</strong></p>
+<div class="mathjax-display">
+$$
+a
+=
+\ln
+\frac{\sigma(a)}{1-\sigma(a)}
+=
+\ln
+\frac{p(C_1 \mid \mathbf{x})}
+     {1 - p(C_1 \mid \mathbf{x})}.
+\tag{5.44}
+$$
+</div>
+
 <p>Figure 5.12 plots $\sigma(a)$ as a red S-shaped curve:  </p>
 <ul>
 <li>The horizontal axis is $a$ (the log-odds).  </li>
@@ -640,21 +809,69 @@
 </ul>
 <p>The figure also overlays a blue dashed curve based on a (scaled) Gaussian cumulative distribution function, often called the <strong>probit</strong> link.<br>The two curves lie very close to each other.<br>This shows that both logistic regression (with sigmoid) and probit regression (with the Gaussian CDF) are doing essentially the same conceptual job:<br>they take a real-valued “evidence score” and squash it into the $[0,1]$ interval to interpret it as a probability.</p>
 <h3 id="3-2-The-multiclass-case-the-softmax-function-Equations-5-45-–-5-46"><a href="#3-2-The-multiclass-case-the-softmax-function-Equations-5-45-–-5-46" class="headerlink" title="3.2 The multiclass case: the softmax function (Equations (5.45)–(5.46))"></a>3.2 The multiclass case: the softmax function (Equations (5.45)–(5.46))</h3><p>For $K$ classes $\lbrace C_1, \dots, C_K\rbrace$, the same reasoning yields:</p>
-<p>$$<br>p(C_k \mid \mathbf{x})<br>=<br>\frac{p(\mathbf{x} \mid C_k), p(C_k)}<br>{\sum_j p(\mathbf{x} \mid C_j), p(C_j)}.<br>\tag{5.45}<br>$$</p>
-<p>Define<br>$$<br>a_k<br>=<br>\ln\big(<br>p(\mathbf{x} \mid C_k), p(C_k)<br>\big),<br>\tag{5.46}<br>$$</p>
-<p>then we can write<br>$$<br>p(C_k \mid \mathbf{x})<br>=<br>\frac{\exp(a_k)}<br>{\sum_j \exp(a_j)}.<br>$$</p>
+<div class="mathjax-display">
+$$
+p(C_k \mid \mathbf{x})
+=
+\frac{p(\mathbf{x} \mid C_k)\, p(C_k)}
+{\sum_j p(\mathbf{x} \mid C_j)\, p(C_j)}.
+\tag{5.45}
+$$
+</div>
+
+<p>Define</p>
+<div class="mathjax-display">
+$$
+a_k
+=
+\ln\big(
+p(\mathbf{x} \mid C_k)\, p(C_k)
+\big),
+\tag{5.46}
+$$
+</div>
+
+<p>then we can write</p>
+<div class="mathjax-display">
+$$
+p(C_k \mid \mathbf{x})
+=
+\frac{\exp(a_k)}
+{\sum_j \exp(a_j)}.
+$$
+</div>
+
 <p>This normalized exponential form <strong>is the softmax function</strong>.<br>Softmax converts any arbitrary real-valued scores $\lbrace a_k\rbrace$ into a valid categorical probability distribution $\lbrace p(C_k \mid \mathbf{x})\rbrace$ that sums to 1 and has nonnegative entries.<br>This is exactly why deep neural networks often end with a linear layer followed by a softmax: it provides a probabilistic interpretation over classes.</p>
 <h2 id="Part-IV-5-3-1-“Continuous-inputs”-—-Continuous-Inputs-Gaussian-Class-Conditional-Models-and-Linear-vs-Quadratic-Decision-Boundaries"><a href="#Part-IV-5-3-1-“Continuous-inputs”-—-Continuous-Inputs-Gaussian-Class-Conditional-Models-and-Linear-vs-Quadratic-Decision-Boundaries" class="headerlink" title="Part IV: 5.3.1 “Continuous inputs” — Continuous Inputs, Gaussian Class-Conditional Models, and Linear vs. Quadratic Decision Boundaries"></a>Part IV: 5.3.1 “Continuous inputs” — Continuous Inputs, Gaussian Class-Conditional Models, and Linear vs. Quadratic Decision Boundaries</h2><p>Now we ground all of the above in a concrete and widely used modeling assumption:</p>
 <blockquote>
 <p><strong>Each class generates feature vectors $\mathbf{x} \in \mathbb{R}^D$ according to a multivariate Gaussian distribution.</strong></p>
 </blockquote>
 <h3 id="4-1-Gaussian-class-conditional-densities-Equation-5-47"><a href="#4-1-Gaussian-class-conditional-densities-Equation-5-47" class="headerlink" title="4.1 Gaussian class-conditional densities (Equation (5.47))"></a>4.1 Gaussian class-conditional densities (Equation (5.47))</h3><p>We assume that for each class $C_k$, the class-conditional density is a $D$-dimensional Gaussian:</p>
-<p>$$<br>p(\mathbf{x} \mid C_k)<br>=<br>\frac{1}{(2\pi)^{D/2} , |\boldsymbol{\Sigma}|^{1/2}}<br>\exp\left(<br>-\frac{1}{2}<br>(\mathbf{x} - \boldsymbol{\mu}_k)^T<br>\boldsymbol{\Sigma}^{-1}<br>(\mathbf{x} - \boldsymbol{\mu}_k)<br>\right),<br>\tag{5.47}<br>$$</p>
+<div class="mathjax-display">
+$$
+p(\mathbf{x} \mid C_k)
+=
+\frac{1}{(2\pi)^{D/2} \, |\boldsymbol{\Sigma}|^{1/2}}
+\exp\left(
+-\frac{1}{2}
+(\mathbf{x} - \boldsymbol{\mu}_k)^T
+\boldsymbol{\Sigma}^{-1}
+(\mathbf{x} - \boldsymbol{\mu}_k)
+\right),
+\tag{5.47}
+$$
+</div>
+
 <p>where $\boldsymbol{\mu}_k$ is the mean vector of class $C_k$, and $\boldsymbol{\Sigma}$ is the covariance matrix.</p>
 <p><strong>Crucial assumption:</strong><br>All classes share the <strong>same</strong> covariance matrix $\boldsymbol{\Sigma}$.<br>That is, the “shape” and “orientation” of the Gaussian ellipsoids are the same for every class, and only their centers $\boldsymbol{\mu}_k$ differ.</p>
 <p>In classical statistical learning, this is exactly the assumption behind <strong>Linear Discriminant Analysis (LDA)</strong>:<br>each class is modeled as a Gaussian with its own mean but a common covariance.<br>Visually (as in Figure 5.13’s left panel), each class looks like an elliptical “Gaussian hill” of the same shape/orientation, just shifted to a different center.</p>
 <h3 id="4-2-The-two-class-case-the-posterior-is-a-sigmoid-of-a-linear-function-Equations-5-48-–-5-50"><a href="#4-2-The-two-class-case-the-posterior-is-a-sigmoid-of-a-linear-function-Equations-5-48-–-5-50" class="headerlink" title="4.2 The two-class case: the posterior is a sigmoid of a linear function (Equations (5.48)–(5.50))"></a>4.2 The two-class case: the posterior is a sigmoid of a linear function (Equations (5.48)–(5.50))</h3><p>Let’s focus on two classes, $C_1$ and $C_2$.<br>We already know from (5.40)–(5.42) that</p>
-<p>$$<br>p(C_1 \mid \mathbf{x}) = \sigma(a(\mathbf{x})),<br>$$</p>
+<div class="mathjax-display">
+$$
+p(C_1 \mid \mathbf{x}) = \sigma(a(\mathbf{x})),
+$$
+</div>
+
 <p>where $a(\mathbf{x})$ is the log-odds in (5.41).</p>
 <p>If we substitute the Gaussian form (5.47) into (5.41), and crucially use the fact that both classes share the <em>same</em> $\boldsymbol{\Sigma}$, something beautiful happens:</p>
 <ul>
@@ -662,15 +879,59 @@
 <li>What remains is a <strong>linear function</strong> of $\mathbf{x}$.</li>
 </ul>
 <p>Concretely, the book shows:</p>
-<p>$$<br>p(C_1 \mid \mathbf{x})<br>=<br>\sigma(\mathbf{w}^T \mathbf{x} + w_0),<br>\tag{5.48}<br>$$</p>
-<p>with<br>$$<br>\mathbf{w}<br>=<br>\boldsymbol{\Sigma}^{-1}<br>(\boldsymbol{\mu}_1 - \boldsymbol{\mu}_2),<br>\tag{5.49}<br>$$</p>
-<p>and<br>$$<br>w_0<br>=<br>-\frac{1}{2}<br>\boldsymbol{\mu}_1^T<br>\boldsymbol{\Sigma}^{-1}<br>\boldsymbol{\mu}_1<br>+<br>\frac{1}{2}<br>\boldsymbol{\mu}_2^T<br>\boldsymbol{\Sigma}^{-1}<br>\boldsymbol{\mu}_2<br>+<br>\ln \frac{p(C_1)}{p(C_2)}.<br>\tag{5.50}<br>$$</p>
+<div class="mathjax-display">
+$$
+p(C_1 \mid \mathbf{x})
+=
+\sigma(\mathbf{w}^T \mathbf{x} + w_0),
+\tag{5.48}
+$$
+</div>
+
+<p>with</p>
+<div class="mathjax-display">
+$$
+\mathbf{w}
+=
+\boldsymbol{\Sigma}^{-1}
+(\boldsymbol{\mu}_1 - \boldsymbol{\mu}_2),
+\tag{5.49}
+$$
+</div>
+
+<p>and</p>
+<div class="mathjax-display">
+$$
+w_0
+=
+-\frac{1}{2}
+\boldsymbol{\mu}_1^T
+\boldsymbol{\Sigma}^{-1}
+\boldsymbol{\mu}_1
++
+\frac{1}{2}
+\boldsymbol{\mu}_2^T
+\boldsymbol{\Sigma}^{-1}
+\boldsymbol{\mu}_2
++
+\ln \frac{p(C_1)}{p(C_2)}.
+\tag{5.50}
+$$
+</div>
+
 <p>These formulas reveal several deep facts:</p>
 <ol>
 <li><p><strong>The posterior is sigmoid(linear score).</strong><br>Under the Gaussian + shared-covariance assumption, the posterior probability has exactly the same form as logistic regression: a linear score $\mathbf{w}^T \mathbf{x} + w_0$ pushed through a sigmoid.<br>In other words, the functional form that logistic regression <em>assumes</em> is here <em>derived</em> from a generative story.</p>
 </li>
-<li><p><strong>The decision boundary is a linear hyperplane.</strong><br>A common prediction rule is “predict $C_1$ if $p(C_1 \mid \mathbf{x}) &gt; 0.5$.”<br>Because $\sigma(z) &gt; 0.5 \iff z &gt; 0$, this is equivalent to:<br>$$<br>\mathbf{w}^T \mathbf{x} + w_0 &gt; 0.<br>$$<br>The set of points satisfying $\mathbf{w}^T \mathbf{x} + w_0 = 0$ is a straight line in 2D, a plane in 3D, and more generally a hyperplane in $D$ dimensions.<br>So the decision boundary is <strong>linear</strong>.<br>Geometrically, $\mathbf{w}$ is normal (perpendicular) to that boundary and points toward the region more strongly associated with class $C_1$.</p>
-</li>
+<li><p><strong>The decision boundary is a linear hyperplane.</strong><br>A common prediction rule is “predict $C_1$ if $p(C_1 \mid \mathbf{x}) &gt; 0.5$.”<br>Because $\sigma(z) &gt; 0.5 \iff z &gt; 0$, this is equivalent to:</p>
+<div class="mathjax-display">
+$$
+\mathbf{w}^T \mathbf{x} + w_0 &gt; 0.
+$$
+</div>
+The set of points satisfying $\mathbf{w}^T \mathbf{x} + w_0 = 0$ is a straight line in 2D, a plane in 3D, and more generally a hyperplane in $D$ dimensions.  
+So the decision boundary is **linear**.  
+Geometrically, $\mathbf{w}$ is normal (perpendicular) to that boundary and points toward the region more strongly associated with class $C_1$.</li>
 <li><p><strong>The prior affects the bias term $w_0$.</strong><br>The term $\ln \frac{p(C_1)}{p(C_2)}$ inside $w_0$ shifts the boundary.<br>Intuitively, if class $C_1$ is believed to be more common or more important, the boundary moves to favor predicting $C_1$ more often.<br>This ties directly back to the threshold trade-offs we discussed with ROC curves: changing the effective bias changes the balance between catching positives and avoiding false alarms.</p>
 </li>
 </ol>
@@ -1544,7 +1805,7 @@ $(function () {
     <script src="/libs/aos/aos.js"></script>
     <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
     <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
-    <script src="/js/matery.js?v=20260706-mobile"></script>
+    <script src="/js/matery.js?v=20260707-mobile-scroll"></script>
 
     
 

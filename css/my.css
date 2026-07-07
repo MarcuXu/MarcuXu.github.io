@@ -170,6 +170,18 @@ body.mobile-sidenav-open .drag-target {
     margin: 0 auto;
     font-size: 1.02rem;
     letter-spacing: 0;
+    text-rendering: optimizeLegibility;
+    touch-action: pan-y;
+}
+
+#artDetail,
+#artDetail .article-card-content {
+    touch-action: pan-y;
+}
+
+#articleContent .img-item,
+#articleContent img {
+    touch-action: manipulation;
 }
 
 #articleContent .mathjax-display,
@@ -178,6 +190,8 @@ body.mobile-sidenav-open .drag-target {
     overflow-x: auto;
     overflow-y: hidden;
     -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain;
+    touch-action: pan-x pan-y;
     box-sizing: border-box;
 }
 
@@ -275,6 +289,9 @@ body.mobile-sidenav-open .drag-target {
 #articleContent table {
     max-width: 100%;
     overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain;
+    touch-action: pan-x pan-y;
 }
 
 #articleContent table {
@@ -409,6 +426,14 @@ article .card .card-title,
         -webkit-overflow-scrolling: touch;
     }
 
+    body:not(.mobile-sidenav-open) .sidenav-overlay,
+    body:not(.mobile-modal-open) .modal-overlay,
+    body:not(.lg-on) .lg-backdrop,
+    body:not(.lg-on) .lg-outer {
+        display: none !important;
+        pointer-events: none !important;
+    }
+
     .aplayer.aplayer-fixed {
         display: none !important;
         visibility: hidden !important;
@@ -512,7 +537,8 @@ article .card .card-title,
     .post-container {
         width: 100%;
         max-width: 100%;
-        overflow-x: hidden;
+        overflow: visible;
+        touch-action: pan-y;
     }
 
     .post-container > .row {
@@ -526,14 +552,15 @@ article .card .card-title,
     }
 
     .post-container #artDetail {
-        width: calc(100vw - 20px) !important;
+        width: min(100%, calc(100vw - 20px)) !important;
         max-width: calc(100vw - 20px) !important;
         margin-right: auto;
         margin-left: auto;
+        touch-action: pan-y;
     }
 
     #artDetail > .card {
-        overflow: hidden;
+        overflow: visible;
         box-sizing: border-box;
     }
 
@@ -574,13 +601,14 @@ article .card .card-title,
     }
 
     #artDetail .article-card-content {
-        width: calc(100vw - 32px) !important;
-        max-width: calc(100vw - 32px) !important;
+        width: 100% !important;
+        max-width: 100% !important;
         box-sizing: border-box;
         margin-right: auto;
         margin-left: auto;
         padding-right: 14px;
         padding-left: 14px;
+        touch-action: pan-y;
     }
 
     #articleContent {
@@ -589,6 +617,7 @@ article .card .card-title,
         box-sizing: border-box;
         overflow-wrap: break-word;
         font-size: 0.98rem;
+        touch-action: pan-y;
     }
 
     #articleContent p {
@@ -597,6 +626,7 @@ article .card .card-title,
         white-space: normal;
         word-break: normal;
         overflow-wrap: break-word;
+        touch-action: pan-y;
     }
 
     #articleContent ul,
@@ -619,6 +649,13 @@ article .card .card-title,
         width: 100%;
         margin-right: 0 !important;
         margin-left: 0 !important;
+        overscroll-behavior: contain;
+        touch-action: pan-x pan-y;
+    }
+
+    #articleContent pre,
+    #articleContent table {
+        touch-action: pan-x pan-y;
     }
 
     .toc-widget {
