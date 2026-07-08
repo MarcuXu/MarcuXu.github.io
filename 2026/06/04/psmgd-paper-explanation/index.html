@@ -33,7 +33,7 @@
 <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
 <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
 <link rel="stylesheet" type="text/css" href="/css/matery.css">
-<link rel="stylesheet" type="text/css" href="/css/my.css?v=20260707-math-svg">
+<link rel="stylesheet" type="text/css" href="/css/my.css?v=20260708-responsive2">
 <link rel="stylesheet" type="text/css" href="/css/dark.css" media="none" onload="if(media!='all')media='all'">
 
 
@@ -398,21 +398,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>Update Date:&nbsp;&nbsp;
-                    2026-06-25
+                    2026-07-08
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    3.1k
+                    3.6k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>Read Times:&nbsp;&nbsp;
-                    19 Min
+                    22 Min
                 </div>
                 
 
@@ -471,6 +471,8 @@ $$
 <li><strong>The computational bottleneck</strong>: adaptive MOO methods often need multiple task-gradient computations and an extra weighting step, which is much more expensive than ordinary single-loss SGD.</li>
 </ol>
 <p>PSMGD mainly attacks the third layer. It does not claim that multi-objective learning can avoid trade-offs. Instead, it asks whether the expensive part of gradient-aware trade-off negotiation has to happen at every single iteration.</p>
+<p>This distinction is important because MOO papers often mix two different questions. The first question is <strong>preference modeling</strong>: which trade-off among objectives does the user actually want? The second question is <strong>training mechanics</strong>: given a trade-off rule, how expensive is it to produce a useful update direction? PSMGD mostly belongs to the second category. It assumes we still want a gradient-aware update, but it tries to make that update cheaper in the stochastic deep-learning loop.</p>
+<p>In modern multi-task learning, this cost difference can dominate the method choice. A single shared backbone may be followed by many task heads, and each task loss may require a separate backward pass if the method needs exact per-task gradients. For small academic examples this overhead is manageable. For large vision backbones, graph networks, or dense prediction systems, repeatedly materializing all task gradients can become the main training bottleneck.</p>
 <h2 id="Why-Multi-Objective-Optimization-Is-Hard"><a href="#Why-Multi-Objective-Optimization-Is-Hard" class="headerlink" title="Why Multi-Objective Optimization Is Hard"></a>Why Multi-Objective Optimization Is Hard</h2><p>The most direct way to handle multiple losses is <strong>linear scalarization</strong>:</p>
 <div class="mathjax-display">
 $$
@@ -540,8 +542,10 @@ $$
 </ul>
 <p>This is the bottleneck PSMGD targets.</p>
 <h2 id="Related-Work-Context"><a href="#Related-Work-Context" class="headerlink" title="Related Work Context"></a>Related Work Context</h2><p>The simplest baseline for MOO is <strong>static scalarization</strong>, where the user fixes $\lambda_s$ before training. It is cheap and easy to implement, but it cannot react when tasks conflict or when one task learns much faster than another.</p>
-<p><strong>MGDA</strong> improves on this by choosing the convex combination of gradients with minimum norm. It is a natural first-order method for Pareto stationarity, but it needs the current gradients of all objectives whenever the weights are recomputed.</p>
+<p><strong>Uncertainty weighting</strong>, <strong>GradNorm</strong>, and other loss-balancing methods try to make scalarization less brittle by adapting task weights from loss scale, training speed, or uncertainty. These methods are usually easier to run than full gradient manipulation, but their update rule may not directly reason about gradient conflict. They can balance magnitudes without necessarily finding a common descent direction.</p>
+<p><strong>MGDA</strong> improves on this by choosing the convex combination of gradients with minimum norm. It is a natural first-order method for Pareto stationarity, but it needs the current gradients of all objectives whenever the weights are recomputed. This makes MGDA a strong conceptual baseline and also a useful way to see the cost problem: the method is principled, but its per-iteration expense grows with the number of objectives.</p>
 <p>Later multi-task and MOO methods modify this basic idea in different ways. <strong>PCGrad</strong> projects away pairwise conflicting gradient components. <strong>CAGrad</strong> seeks a direction that balances average training progress and conflict control. <strong>IMTL-G</strong>, <strong>NashMTL</strong>, <strong>FAMO</strong>, <strong>FairGrad</strong>, and related dynamic-weighting methods all try to improve the trade-off between task balance, stability, and final quality.</p>
+<p>These methods can be grouped by what they consider expensive. Projection methods focus on modifying the gradient after conflicts are detected. Game-theoretic and fairness-driven methods focus on choosing a more balanced update rule. Online dynamic-weighting methods focus on making the weight estimate stable during stochastic training. PSMGD cuts across these groups because it can be paired with different dynamic-weight calculators; the main scheduling idea is to amortize the calculator over several ordinary update steps.</p>
 <p>PSMGD is best understood as complementary to this line of work. Its key question is not only “which dynamic weighting rule should we use?”, but also “how often do we need to pay for that rule?” The paper therefore focuses on periodic reuse: compute an adaptive weight vector occasionally, keep using it while it remains useful, and reduce the number of expensive all-task-gradient calculations.</p>
 <h2 id="The-Key-Observation-Behind-PSMGD"><a href="#The-Key-Observation-Behind-PSMGD" class="headerlink" title="The Key Observation Behind PSMGD"></a>The Key Observation Behind PSMGD</h2><p>The paper’s core observation is empirical and algorithmic:</p>
 <blockquote>
@@ -552,6 +556,7 @@ $$
 <p>This is the central design idea of <strong>Periodic Stochastic Multi-Gradient Descent (PSMGD)</strong>.</p>
 <p><img src="/2026/06/04/psmgd-paper-explanation/psmgd-mechanism.png" alt="PSMGD mechanism: periodic calculation steps compute task gradients and QP weights, while reuse steps use cached weights for a single weighted-loss backpropagation."></p>
 <p>The diagram highlights the practical asymmetry between the two step types. A calculation step pays for all task gradients and solves the dynamic-weight problem. A reuse step keeps the cached weights, forms the weighted loss, and can run a single ordinary backpropagation before the model update.</p>
+<p>The important mechanism is the cached weight vector $\boldsymbol{\lambda}$. It turns the training loop into alternating phases: a <strong>coordination phase</strong>, where objectives negotiate through all-task gradients, and a <strong>production phase</strong>, where the model uses the latest negotiated weights for cheaper stochastic updates. The period $R$ controls how long the production phase lasts before the next coordination phase.</p>
 <h2 id="Algorithmic-Architecture"><a href="#Algorithmic-Architecture" class="headerlink" title="Algorithmic Architecture"></a>Algorithmic Architecture</h2><p>PSMGD has three moving parts:</p>
 <ol>
 <li><strong>Periodic weight calculation</strong>: every $R$ iterations, solve the dynamic-weight problem.</li>
@@ -788,6 +793,7 @@ $$
 <li>CityScapes for dense prediction with two tasks.</li>
 </ul>
 <p>The experimental section compares PSMGD with linear scalarization and many MOO or multi-task learning baselines, including MGDA, PCGrad, CAGrad, IMTL-G, NashMTL, FAMO, FairGrad, and SDMGrad. The paper reports final task quality using two aggregate metrics:</p>
+<p>The benchmark mix matters because different datasets stress different failure modes. QM-9 and CelebA test what happens when the number of objectives is relatively large. Multi-MNIST and CityScapes test common two-task settings where conflict is easier to inspect. NYU-v2 is especially useful because dense prediction tasks share visual structure but optimize different output spaces, so it is a realistic place for gradient conflict and task imbalance to appear.</p>
 <div class="mathjax-display">
 $$
 \Delta m\%
@@ -818,6 +824,7 @@ $$
 <p>There is also a broader lesson for optimization algorithm design. A method can be theoretically elegant but practically slow if it optimizes the wrong unit of cost. PSMGD explicitly shifts attention from iteration count to backpropagation count, which is closer to the real cost in deep learning.</p>
 <h2 id="Limitations-and-Open-Questions"><a href="#Limitations-and-Open-Questions" class="headerlink" title="Limitations and Open Questions"></a>Limitations and Open Questions</h2><p>PSMGD introduces the period hyperparameter $R$, and this choice matters. If $R$ is too small, the method approaches ordinary dynamic gradient manipulation and saves less computation. If $R$ is too large, the reused weights may become stale and less aligned with the current gradients.</p>
 <p>The method also assumes that dynamic weights are sufficiently stable over short intervals. This is often reasonable in the studied settings, but it may be less reliable in highly non-stationary training regimes, rapidly changing curricula, reinforcement learning, or tasks whose losses change at very different speeds.</p>
+<p>Another practical issue is that the best period may change during training. Early iterations can have unstable gradients and rapidly changing task relationships, while later iterations may have smoother weight trajectories. A fixed $R$ is simple and analyzable, but an adaptive schedule could update more often during unstable phases and reuse weights more aggressively once the task geometry becomes steadier.</p>
 <p>Several natural extensions follow:</p>
 <ul>
 <li>Adaptive period selection: update weights when gradient conflict changes enough, not only every fixed $R$ steps.</li>
@@ -1269,7 +1276,7 @@ $$
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;Total Words:&nbsp;<span
-                        class="white-color">29.4k</span>
+                        class="white-color">30.3k</span>
             
             
             
@@ -1561,7 +1568,7 @@ $(function () {
 
     
     
-    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    <script async src="/libs/others/busuanzi.pure.mini.js?v=20260708-counter"></script>
     
 
     

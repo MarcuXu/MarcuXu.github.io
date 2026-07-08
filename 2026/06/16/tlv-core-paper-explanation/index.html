@@ -33,7 +33,7 @@
 <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
 <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
 <link rel="stylesheet" type="text/css" href="/css/matery.css">
-<link rel="stylesheet" type="text/css" href="/css/my.css?v=20260707-math-svg">
+<link rel="stylesheet" type="text/css" href="/css/my.css?v=20260708-responsive2">
 <link rel="stylesheet" type="text/css" href="/css/dark.css" media="none" onload="if(media!='all')media='all'">
 
 
@@ -398,21 +398,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>Update Date:&nbsp;&nbsp;
-                    2026-06-25
+                    2026-07-08
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    2.6k
+                    3k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>Read Times:&nbsp;&nbsp;
-                    16 Min
+                    18 Min
                 </div>
                 
 
@@ -444,6 +444,7 @@
 <li>arXiv DOI: <a target="_blank" rel="noopener" href="https://doi.org/10.48550/arXiv.2511.11512">10.48550/arXiv.2511.11512</a></li>
 <li>Proceedings version: <a target="_blank" rel="noopener" href="https://doi.org/10.1609/aaai.v40i22.38956">AAAI 2026</a></li>
 </ul>
+<p>CLIP-style alignment is a natural starting point because it gives a simple geometric target: paired samples should land close together in an embedding space. But tactile data is not just another image domain. A tactile frame is produced by a physical contact process, a sensor housing, a deformable surface, illumination, calibration, and sometimes force or motion history. The method therefore has to align semantic meaning while also filtering out sensor-dependent artifacts.</p>
 <p>The central problem is not simply “how do we add a tactile encoder to CLIP?” The harder question is:</p>
 <blockquote>
 <p>How can tactile, language, and vision learn a shared representation when tactile sensors themselves are heterogeneous and not fully standardized?</p>
@@ -473,6 +474,7 @@ $$
 <p>For a good representation, matched embeddings such as $(z_i^T,z_i^V)$ or $(z_i^T,z_i^L)$ should be close, while mismatched examples should be farther away. That sounds similar to vision-language contrastive learning, but tactile data makes the target more subtle.</p>
 <p>The tactile image is not only a picture of an object surface. It is also a record of a contact event. Contact force, pose, sensor elastomer, internal camera, lighting position, color response, and calibration can all change the image. Therefore, the representation must keep object-level information such as texture and hardness, while avoiding shortcuts that only identify the sensor or the recording style.</p>
 <p>It is also important not to overread the paper. TLV-CoRe is a <strong>representation-learning method</strong>, not a complete robot manipulation policy. It improves the feature space that later systems can use for recognition, retrieval, classification, or downstream robotic tasks.</p>
+<p>This means the target output is not a direct action such as “grasp here” or “push with this force.” Instead, the target is a reusable embedding that makes tactile observations comparable with visual evidence and language descriptions. A better embedding can then support many downstream behaviors, but the policy or controller still has to decide how to act.</p>
 <h2 id="Why-Tactile-Language-Vision-Alignment-Is-Hard"><a href="#Why-Tactile-Language-Vision-Alignment-Is-Hard" class="headerlink" title="Why Tactile-Language-Vision Alignment Is Hard"></a>Why Tactile-Language-Vision Alignment Is Hard</h2><p>Vision-language alignment has a relatively mature recipe. CLIP-style models learn from paired images and text by pulling matching pairs together and pushing mismatched pairs apart. Extending this idea to touch is tempting, but tactile data introduces several extra difficulties.</p>
 <p>First, tactile sensors are not standardized. GelSight-like and DIGIT-like sensors may capture the same physical object with different illumination, camera geometry, color response, elastomer properties, and contact artifacts. This means a tactile image can contain both useful object information and sensor-specific style.</p>
 <p>Second, tactile images can be misleading. Two different touched objects may produce visually similar tactile patterns if the sensor style dominates the image. Conversely, the same object may look different under different sensors or contact conditions.</p>
@@ -481,8 +483,11 @@ $$
 <p>So the target is not only cross-modal alignment. The target is <strong>sensor-agnostic, collaborative, and stable</strong> representation learning.</p>
 <h2 id="Related-Work-Context"><a href="#Related-Work-Context" class="headerlink" title="Related Work Context"></a>Related Work Context</h2><p>The paper positions TLV-CoRe among several tactile representation learning directions.</p>
 <p><strong>CLIP-based tactile-language-vision learning</strong> includes methods such as TLV-Link, AnyTouch, UniTouch, and related approaches. Their strength is that they can reuse powerful vision-language priors. Their weakness is that tactile data has sensor-specific structure that ordinary CLIP-style alignment does not automatically remove.</p>
+<p>This line of work is attractive because it avoids training a multimodal model from scratch. However, reusing CLIP also creates a mismatch: CLIP’s visual encoder was trained on natural images, not contact images produced by an elastomer and internal camera. TLV-CoRe keeps the benefit of pretrained alignment while adding tactile-specific modules where the mismatch is most damaging.</p>
 <p><strong>Sensor-transfer tactile learning</strong> focuses on the fact that a representation trained on one sensor may fail on another sensor. This is not a small implementation detail. If a method only performs well under one tactile camera, one lighting setup, or one contact protocol, it is difficult to reuse in a broader robotic system.</p>
+<p>This is closely related to domain generalization. The model should preserve material and shape cues that survive across sensors, while suppressing cues that merely reveal the sensor family. In tactile learning, that separation is difficult because the sensor is part of the measurement process rather than a harmless style filter.</p>
 <p><strong>Intermediate multimodal adapters</strong> are useful when the base model is large and expensive to retrain. Adapter-style methods can add a small number of trainable parameters while preserving the pretrained encoder. TLV-CoRe follows this practical direction, but adds a shared bridge so that the three modalities are not isolated until the final loss.</p>
+<p>The shared bridge is especially important for tri-modal learning. If tactile, language, and vision branches only meet at the final contrastive loss, each branch can learn mostly private transformations and only align at the end. A shared adapter gives the model an intermediate place to shape features toward a common representation before the final embedding.</p>
 <p><strong>Custom tactile representation models</strong> can be built specifically for tactile data, but they make fair comparison harder because the base model, training schedule, batch size, and evaluation protocol often differ.</p>
 <p><strong>General multimodal alignment methods</strong> such as ImageBind-style work show that many modalities can be projected into a shared embedding space. However, tactile sensing is still less explored than image, text, audio, video, or 3D point clouds.</p>
 <p>TLV-CoRe is best understood as a CLIP-based method that tries to keep the comparison setting controlled while adding tactile-specific and tri-modal-specific modules.</p>
@@ -497,6 +502,7 @@ $$
 <p>The UBA module is inserted into the modality encoders to make the three branches collaborate through a shared adapter space. This is the part that changes the system from only “aligning final embeddings” to “sharing intermediate representation structure.”</p>
 <p><img src="/2026/06/16/tlv-core-paper-explanation/tlv-core-mechanism.png" alt="TLV-CoRe mechanism overview"></p>
 <p><em>Figure: a simplified mechanism view of TLV-CoRe. The tactile branch has two special components, SAM and sensor-shortcut decoupling, while all three modalities meet through the UBA shared bridge before contrastive alignment and RSS evaluation.</em></p>
+<p>The diagram should be read from left to right. Tactile observations first pass through sensor-aware adaptation and a decoupling signal that discourages sensor shortcuts. Vision and language use their own encoders. All three streams then enter the shared UBA bridge, where modality-specific projections connect to a common adapter space before the contrastive losses pull matched examples together.</p>
 <h2 id="Sensor-Aware-Modulator"><a href="#Sensor-Aware-Modulator" class="headerlink" title="Sensor-Aware Modulator"></a>Sensor-Aware Modulator</h2><p>Let a tactile input be $x^T$, and let the tactile encoder produce a feature:</p>
 <div class="mathjax-display">
 $$
@@ -646,6 +652,7 @@ $$
 </ol>
 <p>This is important because tactile multimodal papers can otherwise be difficult to compare. If one method uses a stronger base model, different batch size, or different downstream protocol, the method-level conclusion becomes unclear.</p>
 <p>RSS tries to make the comparison more controlled. The paper evaluates intra-sensor, cross-sensor, and multi-sensor generalization, then adds modal cross-evaluation tasks and batch-size studies.</p>
+<p>The three axes also correspond to three deployment concerns. <strong>Robustness</strong> asks whether the representation survives a change in tactile hardware or dataset. <strong>Synergy</strong> asks whether adding touch actually helps multimodal understanding rather than becoming a weak auxiliary branch. <strong>Stability</strong> asks whether the method is usable under realistic contrastive-learning conditions, where batch size and negative samples can change the training dynamics.</p>
 <h2 id="Experimental-Takeaways"><a href="#Experimental-Takeaways" class="headerlink" title="Experimental Takeaways"></a>Experimental Takeaways</h2><p>The experiments use real-world tactile datasets including TAG, SSVTP, TVL, Octopi, and TacQuad, and downstream evaluation datasets such as ObjectFolder 1.0, ObjectFolder 2.0, and Feeling of Success.</p>
 <p>The main message is that TLV-CoRe improves tactile representation quality while using a small number of trainable parameters. In the reported main comparison, TLV-CoRe uses about <strong>0.30%</strong> trainable parameters, compared with larger percentages for several competing CLIP-based baselines.</p>
 <p>A few results are especially informative:</p>
@@ -1111,7 +1118,7 @@ $$
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;Total Words:&nbsp;<span
-                        class="white-color">29.4k</span>
+                        class="white-color">30.3k</span>
             
             
             
@@ -1403,7 +1410,7 @@ $(function () {
 
     
     
-    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    <script async src="/libs/others/busuanzi.pure.mini.js?v=20260708-counter"></script>
     
 
     
