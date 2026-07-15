@@ -13,9 +13,6 @@ $(function () {
     articleCardHover();
 
     /*菜单切换*/
-    let isMobileViewport = function () {
-        return window.innerWidth <= 601;
-    };
     let hasOpenSidenav = function () {
         return $('.sidenav').filter(function () {
             let instance = M.Sidenav.getInstance(this);
@@ -28,68 +25,49 @@ $(function () {
             return (instance && instance.isOpen) || $(this).hasClass('open');
         }).length > 0;
     };
-    let unlockPageScroll = function () {
+    let reconcilePageScroll = function () {
         let sidenavOpen = hasOpenSidenav();
         let modalOpen = hasOpenModal();
-
         $('body').toggleClass('mobile-sidenav-open', sidenavOpen);
         $('body').toggleClass('mobile-modal-open', modalOpen);
 
-        if (isMobileViewport() || (!sidenavOpen && !modalOpen)) {
-            document.body.style.overflow = '';
-            document.documentElement.style.overflow = '';
-        }
-        if (!sidenavOpen) {
-            $('.sidenav-overlay').css({display: 'none', opacity: 0});
-        }
-        if (!modalOpen) {
-            $('.modal-overlay').css({display: 'none', opacity: 0});
+        // LightGallery is locked by body.lg-on in CSS, so it cannot leave an
+        // inline overflow value behind when its own close lifecycle finishes.
+        if (sidenavOpen || modalOpen) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.removeProperty('overflow');
+            document.documentElement.style.removeProperty('overflow');
         }
     };
-    let resetMobileSidenav = function () {
+    let closeOpenComponents = function () {
         $('.sidenav').each(function () {
             let instance = M.Sidenav.getInstance(this);
             if (instance && instance.isOpen) {
                 instance.close();
             }
         });
-        setTimeout(unlockPageScroll, 260);
+        $('.modal').each(function () {
+            let instance = M.Modal.getInstance(this);
+            if (instance && instance.isOpen) {
+                instance.close();
+            }
+        });
+        setTimeout(reconcilePageScroll, 260);
     };
     $('.sidenav').sidenav({
-        draggable: false,
-        preventScrolling: false,
+        draggable: true,
+        preventScrolling: true,
         onOpenStart: function () {
             $('body').addClass('mobile-sidenav-open');
         },
-        onCloseEnd: unlockPageScroll
+        onCloseStart: reconcilePageScroll,
+        onCloseEnd: reconcilePageScroll
     });
-    let lastViewportWidth = window.innerWidth;
-    let lastMobileState = isMobileViewport();
-    let handleViewportChange = function () {
-        let currentWidth = window.innerWidth;
-        let currentMobileState = isMobileViewport();
-        let meaningfulWidthChange = Math.abs(currentWidth - lastViewportWidth) > 24 || currentMobileState !== lastMobileState;
-
-        lastViewportWidth = currentWidth;
-        lastMobileState = currentMobileState;
-
-        if (meaningfulWidthChange) {
-            resetMobileSidenav();
-        } else {
-            unlockPageScroll();
-        }
-    };
-    unlockPageScroll();
-    $(window).on('pageshow orientationchange', resetMobileSidenav);
-    $(window).on('resize', handleViewportChange);
-    document.addEventListener('touchend', function () {
-        if (window.innerWidth <= 601) {
-            unlockPageScroll();
-        }
-    }, {passive: true});
+    reconcilePageScroll();
+    $(window).on('pagehide pageshow orientationchange', closeOpenComponents);
     $(document).on('click', '#mobile-nav a.sidenav-close', function () {
-        setTimeout(unlockPageScroll, 80);
-        setTimeout(unlockPageScroll, 320);
+        closeOpenComponents();
     });
 
     /* 修复文章卡片 div 的宽度. */
@@ -177,13 +155,10 @@ $(function () {
                 this.insertAdjacentElement('afterend', captionDiv)
             }
         });
-        let galleryGesturesEnabled = !isMobileViewport();
         let articleGalleryOptions = {
             selector: 'this',
             // 启用字幕
-            subHtmlSelectorRelative: true,
-            enableSwipe: galleryGesturesEnabled,
-            enableDrag: galleryGesturesEnabled
+            subHtmlSelectorRelative: true
         };
         let $articleImages = $('#articleContent .img-item');
         if ($articleImages.length > 0) {
@@ -195,9 +170,7 @@ $(function () {
             $myGallery.lightGallery({
                 selector: '.img-item',
                 // 启用字幕
-                subHtmlSelectorRelative: true,
-                enableSwipe: galleryGesturesEnabled,
-                enableDrag: galleryGesturesEnabled
+                subHtmlSelectorRelative: true
             });
         }
 
@@ -212,12 +185,14 @@ $(function () {
     articleInit();
 
     $('.modal').modal({
-        preventScrolling: false,
+        preventScrolling: true,
         onOpenStart: function () {
             $('body').addClass('mobile-modal-open');
         },
-        onCloseEnd: unlockPageScroll
+        onCloseStart: reconcilePageScroll,
+        onCloseEnd: reconcilePageScroll
     });
+    reconcilePageScroll();
 
     /*回到顶部*/
     $('#backTop').click(function () {

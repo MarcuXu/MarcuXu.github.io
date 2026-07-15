@@ -129,14 +129,10 @@ header nav .brand-logo .logo-span {
     white-space: nowrap;
 }
 
-.drag-target {
-    display: none !important;
-    pointer-events: none !important;
-}
-
-body.mobile-sidenav-open .drag-target {
-    display: none !important;
-    pointer-events: none !important;
+body.mobile-sidenav-open,
+body.mobile-modal-open,
+body.lg-on {
+    overflow: hidden !important;
 }
 
 #artDetail .article-card-content {
@@ -456,15 +452,6 @@ footer.page-footer .copy-right #busuanzi_container_site_uv,
 }
 
 @media only screen and (max-width: 601px) {
-    html,
-    body {
-        min-height: 100%;
-        overflow-x: hidden !important;
-        overflow-y: auto !important;
-        touch-action: pan-y;
-        -webkit-overflow-scrolling: touch;
-    }
-
     body:not(.mobile-sidenav-open) .sidenav-overlay,
     body:not(.mobile-modal-open) .modal-overlay,
     body:not(.lg-on) .lg-backdrop,
@@ -486,12 +473,6 @@ footer.page-footer .copy-right #busuanzi_container_site_uv,
     .aplayer.aplayer-fixed .aplayer-body,
     .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
         left: 0 !important;
-    }
-
-    body.mobile-sidenav-open,
-    body.mobile-modal-open {
-        overflow-y: auto !important;
-        position: static !important;
     }
 
     #mobile-nav .menu-list li {
@@ -794,13 +775,6 @@ footer.page-footer .copy-right #busuanzi_container_site_uv,
 }
 
 @media (hover: none) and (pointer: coarse) {
-    html,
-    body {
-        overflow-x: hidden !important;
-        overflow-y: auto !important;
-        touch-action: pan-y;
-    }
-
     .aplayer.aplayer-fixed {
         display: none !important;
         visibility: hidden !important;
