@@ -386,7 +386,8 @@ article .card .card-title,
     background: linear-gradient(180deg, rgba(20, 28, 36, 0.58), rgba(20, 28, 36, 0.72));
 }
 
-.toc-widget {
+/* post.css loads later and fixes the width at 345px, so this needs the extra id to apply. */
+#toc-aside .toc-widget {
     width: min(345px, 24vw);
     padding-left: 12px;
 }
@@ -679,6 +680,8 @@ footer.page-footer .copy-right #busuanzi_container_site_uv,
         width: 100vw !important;
         max-width: 100vw !important;
         overflow-x: hidden !important;
+        /* clip (unlike hidden) leaves overflow-y visible, so the card's -60px top margin is not cut off */
+        overflow-x: clip !important;
     }
 
     .post-container.content > .row,
@@ -784,4 +787,245 @@ footer.page-footer .copy-right #busuanzi_container_site_uv,
     meting-js[fixed="true"] {
         display: none !important;
     }
+}
+
+/* ---------------------------------------------------------------------------
+ * Typography and layout refresh (2026-10).
+ * Inter is self-hosted in /libs/fonts/inter/ (latin subsets only), so CJK
+ * text falls through to the platform's own Chinese UI font.
+ * ------------------------------------------------------------------------- */
+
+:root {
+    --mx-font-sans: "Inter Variable", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial,
+        "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans CJK SC", "Noto Sans SC", sans-serif;
+    --mx-font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+}
+
+html,
+body,
+button,
+input,
+select,
+textarea {
+    font-family: var(--mx-font-sans);
+}
+
+body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+}
+
+code,
+kbd,
+samp,
+#articleContent pre,
+#articleContent code,
+#articleContent pre[class*="language-"],
+#articleContent code[class*="language-"],
+.code_lang {
+    font-family: var(--mx-font-mono);
+}
+
+#articleContent pre[class*="language-"],
+#articleContent pre[class*="language-"] code {
+    font-size: 0.88rem;
+}
+
+/* The inline-code colours above were leaking into Prism blocks (dark blue on dark grey). */
+#articleContent pre code {
+    color: #ccc;
+    background: transparent;
+}
+
+/* Navigation */
+header nav .brand-logo .logo-span {
+    font-weight: 600;
+    letter-spacing: -0.01em;
+}
+
+header nav ul a {
+    font-weight: 500;
+}
+
+/* Cover headlines */
+.bg-cover .title,
+.bg-cover .post-title {
+    font-weight: 650;
+    letter-spacing: -0.02em;
+    text-wrap: balance;
+}
+
+.bg-cover .post-title {
+    max-width: 960px;
+    line-height: 1.25;
+}
+
+/* Keep the article card above the post cover it overlaps (it was hidden on phones). */
+#artDetail {
+    position: relative;
+    z-index: 2;
+}
+
+/* Long-form reading */
+#articleContent {
+    font-size: 1.1rem;
+    line-height: 1.8;
+}
+
+#articleContent p {
+    line-height: 1.8;
+}
+
+#articleContent h2,
+#articleContent h3,
+#articleContent h4 {
+    letter-spacing: -0.01em;
+    line-height: 1.35;
+    text-wrap: balance;
+}
+
+/* Post list cards: readable title over any image, clean 3-line summary. */
+article .card .card-image .card-title {
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: -webkit-box;
+    box-sizing: border-box;
+    width: 100%;
+    padding: 2.4rem 1.1rem 0.95rem;
+    overflow: hidden;
+    font-size: 1.28rem;
+    font-weight: 600;
+    line-height: 1.35;
+    letter-spacing: -0.01em;
+    background: linear-gradient(180deg, rgba(10, 16, 24, 0) 0%, rgba(10, 16, 24, 0.62) 55%, rgba(10, 16, 24, 0.78) 100%);
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+}
+
+article .article-content .summary.block-with-text {
+    display: -webkit-box;
+    max-height: none;
+    margin-right: 0;
+    padding-right: 0;
+    overflow: hidden;
+    text-align: left;
+    word-break: normal;
+    overflow-wrap: break-word;
+    line-height: 1.6;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+}
+
+article .article-content .summary.block-with-text::before,
+article .article-content .summary.block-with-text::after {
+    content: none;
+}
+
+.recommend .post-card .post-title {
+    font-weight: 650;
+    letter-spacing: -0.01em;
+}
+
+.recommend .post-card .post-description {
+    display: -webkit-box;
+    height: auto;
+    max-height: none;
+    overflow: hidden;
+    line-height: 1.6;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+}
+
+/* 993-1100px: the full menu is wider than the space next to the brand. */
+@media only screen and (min-width: 993px) and (max-width: 1100px) {
+    header nav ul a {
+        padding: 0 9px;
+    }
+}
+
+/* Friends page: the Markdown list lost its bullets and spacing under Materialize. */
+.friends-container .card-content ul {
+    margin: 0.4rem 0;
+    padding-left: 1.3rem;
+}
+
+.friends-container .card-content ul li {
+    margin: 0.6rem 0;
+    line-height: 1.7;
+    list-style-type: disc;
+}
+
+/* Dark mode: the light-theme colours above outrank dark.css, so restate them here. */
+#articleContent a strong {
+    color: inherit;
+}
+
+body.DarkMode #articleContent p,
+body.DarkMode #articleContent ul,
+body.DarkMode #articleContent ol,
+body.DarkMode #articleContent li,
+body.DarkMode #articleContent td,
+body.DarkMode #articleContent img + em {
+    color: rgba(255, 255, 255, 0.72);
+}
+
+body.DarkMode #articleContent h2,
+body.DarkMode #articleContent h3,
+body.DarkMode #articleContent strong,
+body.DarkMode #articleContent table th {
+    color: rgba(255, 255, 255, 0.9);
+}
+
+body.DarkMode #articleContent h4 {
+    color: rgba(255, 255, 255, 0.76);
+}
+
+body.DarkMode #articleContent :not(pre) > code {
+    color: #9ecbff;
+    background: rgba(110, 118, 129, 0.3);
+}
+
+body.DarkMode #articleContent .mathjax-display {
+    border-color: rgba(255, 255, 255, 0.08);
+    background: rgba(255, 255, 255, 0.03);
+}
+
+body.DarkMode #artDetail .article-info {
+    background: none;
+}
+
+body.DarkMode #aboutme .profile .author .title {
+    color: rgba(255, 255, 255, 0.9);
+}
+
+body.DarkMode #aboutme .introduction,
+body.DarkMode #aboutme .profile .author .career,
+body.DarkMode .my-projects .info .info-desc {
+    color: rgba(255, 255, 255, 0.64);
+}
+
+@media only screen and (max-width: 601px) {
+    #articleContent {
+        font-size: 1.143rem;
+    }
+
+    #articleContent p {
+        line-height: 1.75;
+    }
+
+    article .card .card-image .card-title {
+        font-size: 1.2rem;
+    }
+
+    .recommend .post-card .post-description {
+        -webkit-line-clamp: 4;
+    }
+}
+
+/* dark.css points at /medias_webp/sunset.webp, which does not exist; use a plain dark page. */
+html body.DarkMode {
+    background-color: #16191d;
+    background-image: none;
 }

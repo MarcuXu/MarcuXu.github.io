@@ -6,6 +6,25 @@
     <meta charset="utf-8">
     <meta name="keywords" content="Personal thoughts of the academic, Mingjing Xu,MarcuXu,multi-objective optimization,trustworthy AI,multimodal learning,edge intelligence">
     <meta name="description" content="Personal academic notes on reading papers efficiently, understanding paper structure, building research taste, using Zotero, writing with LaTeX, and preparing arXiv submissions.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Personal thoughts of the academic">
+<meta property="og:url" content="https://marcuxu.com/2022/11/08/paper-tricks/">
+<meta property="og:site_name" content="MarcuXu">
+<meta property="og:description" content="Personal academic notes on reading papers efficiently, understanding paper structure, building research taste, using Zotero, writing with LaTeX, and preparing arXiv submissions.">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://github.githubassets.com/images/icons/emoji/unicode/1f64f.png?v8">
+<meta property="og:image" content="https://github.githubassets.com/images/icons/emoji/unicode/1f47d.png?v8">
+<meta property="og:image" content="https://s2.loli.net/2022/11/08/GndsRmzEoNVx51K.png">
+<meta property="og:image" content="https://s2.loli.net/2022/11/08/pVvzcfXWkM5DPtb.png">
+<meta property="og:image" content="https://s2.loli.net/2022/11/08/iSFujsOLyZdrJmX.png">
+<meta property="og:image" content="https://s2.loli.net/2022/11/08/yCKaJF4DiS9bYP1.png">
+<meta property="article:published_time" content="2022-11-08T13:39:57.000Z">
+<meta property="article:modified_time" content="2022-11-08T13:39:57.000Z">
+<meta property="article:author" content="Mingjing Xu">
+<meta property="article:tag" content="Academic">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://github.githubassets.com/images/icons/emoji/unicode/1f64f.png?v8">
+    <meta name="theme-color" content="#0f2027">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -18,6 +37,7 @@
 
 
     <title>Personal thoughts of the academic | MarcuXu</title>
+    <link rel="preload" href="/libs/fonts/inter/inter-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="icon" type="image/png" href="/medias/Gemini_Generated_0.png">
     
 
@@ -26,13 +46,14 @@
 
 
 
+<link rel="stylesheet" type="text/css" href="/libs/fonts/inter/inter.css">
 <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
 <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
 <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
 <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
 <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
 <link rel="stylesheet" type="text/css" href="/css/matery.css">
-<link rel="stylesheet" type="text/css" href="/css/my.css?v=20260715-mobile-scroll">
+<link rel="stylesheet" type="text/css" href="/css/my.css?v=20261012-typography">
 <link rel="stylesheet" type="text/css" href="/css/dark.css" media="none" onload="if(media!='all')media='all'">
 
 
@@ -50,7 +71,7 @@
 
     <script src="/libs/jquery/jquery-3.6.0.min.js"></script>
 
-<meta name="generator" content="Hexo 5.4.2">
+<meta name="generator" content="Hexo 8.1.2">
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
 <link rel="alternate" href="/atom.xml" title="MarcuXu" type="application/atom+xml">
 </head>
@@ -421,15 +442,12 @@
         <hr class="clearfix">
 
         
-        <!-- 是否加载使用自带的 prismjs. -->
-        <link rel="stylesheet" href="/libs/prism/prism.min.css">
-        
 
         
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>作为一个工作过的老油条，我认为参照别人的轮子来创造自己的轮子通常比空手造轮子会顺利很多。因此，在坚定进入学术生涯的目标后，我开始寻找一些前人的经验来提升自己。当然，在向别人学习的过程中，我也会加入自己的思考。事实上，在Prof. Ren的实验室中，本人用7个月的时间跟着师兄师姐走过一段完整的科研过程，也体会到了把idea转化为实验再输出为paper的曲折而充实的感受。因此，笔者在这里记录一下在CUHK学习时所用到的一些关于学术能力培养的资料，以及本人对于学术的一些拙见。如果以下的内容可以对入门科研的新手起到一些帮助作用，那是再好不过了<span class="github-emoji"><span>🙏</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f64f.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span></p>
+                <p>作为一个工作过的老油条，我认为参照别人的轮子来创造自己的轮子通常比空手造轮子会顺利很多。因此，在坚定进入学术生涯的目标后，我开始寻找一些前人的经验来提升自己。当然，在向别人学习的过程中，我也会加入自己的思考。事实上，在Prof. Ren的实验室中，本人用7个月的时间跟着师兄师姐走过一段完整的科研过程，也体会到了把idea转化为实验再输出为paper的曲折而充实的感受。因此，笔者在这里记录一下在CUHK学习时所用到的一些关于学术能力培养的资料，以及本人对于学术的一些拙见。如果以下的内容可以对入门科研的新手起到一些帮助作用，那是再好不过了<span class="github-emoji"><span>🙏</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f64f.png?v8" aria-hidden="true" onerror="this.parentElement.classList.add('github-emoji-fallback')"></span></p>
 <h2 id="How-to-read-paper-in-a-fast-speed"><a href="#How-to-read-paper-in-a-fast-speed" class="headerlink" title="How to read paper in a fast speed"></a>How to read paper in a fast speed</h2><h3 id="Before-reading-论文分类"><a href="#Before-reading-论文分类" class="headerlink" title="Before reading: 论文分类"></a>Before reading: 论文分类</h3><p>根据以下三点将论文分成四类：</p>
 <ul>
 <li>可以与同门讨论看看该论文是否值得阅读。</li>
@@ -443,7 +461,7 @@
 <li>需要精读的论文 <strong>（有启发性和突破性，写作良好，实验结果不错）</strong> 和需要复现的经典论文。不仅需要知道方法和细节，也需要尝试复现，只有自己做出来才是完全的理解。</li>
 </ol>
 <h3 id="学术论文的结构"><a href="#学术论文的结构" class="headerlink" title="学术论文的结构"></a>学术论文的结构</h3><ul>
-<li>Abstract：<strong>背景+问题+方法+结论和结果</strong> 例如(整活唔介意<span class="github-emoji"><span>👽</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f47d.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>)：背景：<em>当今用深度学习来水论文的方法已经成为应届毕业生的热门毕业方向之一，如何用深度学习来实现用深度学习来水论文更是研究热点之一。</em> 问题：<em>很多人依旧不知道如何以深度学习为主题来水论文。</em> 方法：<em>我们分析了以深度学习为主题来水论文的范式，并以此构建transformer的深度学习网络，用于自动生成以以深度学习为主题的水文，并可以泛化应用于多个领域。</em> 结果：<em>我们基于transformer的DNN生成了含括理工科，人文社科等各领域的基于深度学习的水文，使得毕业生只需输入他的研究方向就可以自动生成一篇高质量的水毕业论文。</em><br><img src="https://s2.loli.net/2022/11/08/GndsRmzEoNVx51K.png" alt="摘要结构"><br><img src="https://s2.loli.net/2022/11/08/pVvzcfXWkM5DPtb.png" alt="Abstract的简单举例"></li>
+<li>Abstract：<strong>背景+问题+方法+结论和结果</strong> 例如(整活唔介意<span class="github-emoji"><span>👽</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f47d.png?v8" aria-hidden="true" onerror="this.parentElement.classList.add('github-emoji-fallback')"></span>)：背景：<em>当今用深度学习来水论文的方法已经成为应届毕业生的热门毕业方向之一，如何用深度学习来实现用深度学习来水论文更是研究热点之一。</em> 问题：<em>很多人依旧不知道如何以深度学习为主题来水论文。</em> 方法：<em>我们分析了以深度学习为主题来水论文的范式，并以此构建transformer的深度学习网络，用于自动生成以以深度学习为主题的水文，并可以泛化应用于多个领域。</em> 结果：<em>我们基于transformer的DNN生成了含括理工科，人文社科等各领域的基于深度学习的水文，使得毕业生只需输入他的研究方向就可以自动生成一篇高质量的水毕业论文。</em><br><img src="https://s2.loli.net/2022/11/08/GndsRmzEoNVx51K.png" alt="摘要结构"><br><img src="https://s2.loli.net/2022/11/08/pVvzcfXWkM5DPtb.png" alt="Abstract的简单举例"></li>
 <li>Introduction：介绍问题的背景，本文提出的方法和创新点，大致的实验结果。</li>
 <li>Related work：介绍相关的工作。看别人摘要来写别人做了啥：时间+某人+做了啥尝试解决什么问题+结果+不足。需要5-10篇做相关工作。</li>
 <li>Approach：本文提出的详细方法，和如何实现。</li>
@@ -571,7 +589,7 @@
 <div id="article-share">
 
     
-    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <div class="social-share" data-sites="twitter,linkedin,facebook,wechat,weibo,qq,qzone,douban" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
     <script src="/libs/share/js/social-share.min.js"></script>
     
 
@@ -713,9 +731,6 @@
 <script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
 
 
-  <!-- 是否加载使用自带的 prismjs. -->
-  <script type="text/javascript" src="/libs/prism/prism.min.js"></script>
-
 
 <!-- 代码语言 -->
 
@@ -823,74 +838,6 @@
 
     <footer class="page-footer bg-color">
     
-        <link rel="stylesheet" href="/libs/aplayer/APlayer.min.css">
-<style>
-    .aplayer .aplayer-lrc p {
-        
-        display: none;
-        
-        font-size: 12px;
-        font-weight: 700;
-        line-height: 16px !important;
-    }
-
-    .aplayer .aplayer-lrc p.aplayer-lrc-current {
-        
-        display: none;
-        
-        font-size: 15px;
-        color: #2f80ed;
-    }
-
-    
-    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
-        left: -66px !important;
-    }
-
-    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
-        left: 0px !important;
-    }
-
-    
-
-    @media only screen and (max-width: 601px), (hover: none) and (pointer: coarse) {
-        meting-js[fixed="true"],
-        .aplayer.aplayer-fixed {
-            display: none !important;
-            visibility: hidden !important;
-            pointer-events: none !important;
-        }
-
-        .aplayer.aplayer-fixed .aplayer-body,
-        .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
-            left: 0 !important;
-        }
-    }
-</style>
-<div class="">
-    
-    <div class="row">
-        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
-                   server="netease"
-                   type="playlist"
-                   id="503838841"
-                   fixed='true'
-                   autoplay='false'
-                   theme='#2f80ed'
-                   loop='all'
-                   order='random'
-                   preload='metadata'
-                   volume='0.5'
-                   list-folded='true'
-        >
-        </meting-js>
-    </div>
-</div>
-
-<script src="/libs/aplayer/APlayer.min.js"></script>
-<script src="/libs/aplayer/Meting.min.js"></script>
-
-    
 
     <div class="container row center-align"
          style="margin-bottom: 15px !important;">
@@ -905,7 +852,7 @@
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;Total Words:&nbsp;<span
-                        class="white-color">30.3k</span>
+                        class="white-color">30.1k</span>
             
             
             
@@ -1168,20 +1115,6 @@ $(function () {
     <!-- Baidu Analytics -->
 
     <!-- Baidu Push -->
-
-<script>
-    (function () {
-        var bp = document.createElement('script');
-        var curProtocol = window.location.protocol.split(':')[0];
-        if (curProtocol === 'https') {
-            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
-        } else {
-            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
-        }
-        var s = document.getElementsByTagName("script")[0];
-        s.parentNode.insertBefore(bp, s);
-    })();
-</script>
 
     
     

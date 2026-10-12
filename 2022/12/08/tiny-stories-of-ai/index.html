@@ -6,6 +6,22 @@
     <meta charset="utf-8">
     <meta name="keywords" content="Tiny AI stories, Mingjing Xu,MarcuXu,multi-objective optimization,trustworthy AI,multimodal learning,edge intelligence">
     <meta name="description" content="Personal notes on early ChatGPT and AI-tool experiences, including learning advice, coding productivity, academic writing, debugging, and end-to-end ML assignment workflows.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Tiny AI stories">
+<meta property="og:url" content="https://marcuxu.com/2022/12/08/tiny-stories-of-ai/">
+<meta property="og:site_name" content="MarcuXu">
+<meta property="og:description" content="Personal notes on early ChatGPT and AI-tool experiences, including learning advice, coding productivity, academic writing, debugging, and end-to-end ML assignment workflows.">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://github.githubassets.com/images/icons/emoji/unicode/1f60f.png?v8">
+<meta property="og:image" content="https://github.githubassets.com/images/icons/emoji/unicode/1f618.png?v8">
+<meta property="og:image" content="https://github.githubassets.com/images/icons/emoji/unicode/1f627.png?v8">
+<meta property="article:published_time" content="2022-12-08T23:06:33.000Z">
+<meta property="article:modified_time" content="2022-12-08T23:06:33.000Z">
+<meta property="article:author" content="Mingjing Xu">
+<meta property="article:tag" content="AI_Tricks">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://github.githubassets.com/images/icons/emoji/unicode/1f60f.png?v8">
+    <meta name="theme-color" content="#0f2027">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -18,6 +34,7 @@
 
 
     <title>Tiny AI stories | MarcuXu</title>
+    <link rel="preload" href="/libs/fonts/inter/inter-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="icon" type="image/png" href="/medias/Gemini_Generated_0.png">
     
 
@@ -26,13 +43,14 @@
 
 
 
+<link rel="stylesheet" type="text/css" href="/libs/fonts/inter/inter.css">
 <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
 <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
 <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
 <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
 <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
 <link rel="stylesheet" type="text/css" href="/css/matery.css">
-<link rel="stylesheet" type="text/css" href="/css/my.css?v=20260715-mobile-scroll">
+<link rel="stylesheet" type="text/css" href="/css/my.css?v=20261012-typography">
 <link rel="stylesheet" type="text/css" href="/css/dark.css" media="none" onload="if(media!='all')media='all'">
 
 
@@ -50,7 +68,7 @@
 
     <script src="/libs/jquery/jquery-3.6.0.min.js"></script>
 
-<meta name="generator" content="Hexo 5.4.2">
+<meta name="generator" content="Hexo 8.1.2">
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
 <link rel="alternate" href="/atom.xml" title="MarcuXu" type="application/atom+xml">
 </head>
@@ -421,17 +439,14 @@
         <hr class="clearfix">
 
         
-        <!-- 是否加载使用自带的 prismjs. -->
-        <link rel="stylesheet" href="/libs/prism/prism.min.css">
-        
 
         
 
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <p>这篇文章主要记录笔者作为一个AI菜鸟，在接触有趣或提升生产力的AI工具后的一些体验和感想。那么我们就从 <strong>ChatGPT</strong> 开始吧！</p>
-<h2 id="ChatGPT"><a href="#ChatGPT" class="headerlink" title="ChatGPT"></a>ChatGPT</h2><p>22年12月初火起来的<a target="_blank" rel="noopener" href="https://chat.openai.com/">ChatGPT</a>让我对NLP和AI重燃起了初识时的兴趣。因此，笔者按照CSDN上的一篇<a target="_blank" rel="noopener" href="https://www.cnblogs.com/chatgpt/p/how-to-register-chatgpt-in-china.html">攻略</a>注册成为了ChatGPT的体验用户（虽然花费了10￥，但比某宝上无良商家动辄收几十好多了<span class="github-emoji"><span>😏</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f60f.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>）。在多次测试后，我发现这个模型即使只是出世不久且限时免费，但它已经可以替代部分程序员的工作了。更可怕的是，不管是中文还是英文，只要问题叙述清晰得当，ChatGPT所给出的solution具备相当的可参考性，足以说明其训练数据之多与泛化能力之强。</p>
-<p>在完成注册后，我就迫不及待问了几个比较简单的问题，其中英文问题有：<em>How to study machine learning</em> 和 <em>How to study math in machine learning</em> ；中文问题则是：<em>如何与心爱的女生相处</em> 。不管是学术还是感情问题，ChatGPT给予的回答都可圈可点。在关于如何学习机器学习的回答中，它不仅鼓励人们学习ML，还给出了更详细的建议，如了解机器学习的基础概念，包括训练数据、特征、标签、模型、目标函数、损失函数、优化算法等；掌握常见的机器学习算法，如回归、分类、聚类、降维、推荐、强化学习等，并学会如何应用这些算法解决实际问题；熟悉常用的机器学习工具和框架，如 TensorFlow、PyTorch、scikit-learn 等，并能够使用这些工具完成基本的机器学习任务。在关于如何学习机器学习中的数学中，它认为了解机器学习中使用的数学模型，如线性回归、逻辑回归、神经网络、支持向量机、贝叶斯网络等，同时需要掌握机器学习中常用的数学方法，如梯度下降、牛顿法、拟牛顿法、随机梯度下降、概率密度估计等，还需要学习机器学习中常用的数学算法，如最小二乘法、最小角回归、主成分分析、聚类算法、卡方检验等。而关于情感问题，读者可以自行查阅，不过个人认为它的回答非常romantic <span class="github-emoji"><span>😘</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f618.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span></p>
+<h2 id="ChatGPT"><a href="#ChatGPT" class="headerlink" title="ChatGPT"></a>ChatGPT</h2><p>22年12月初火起来的<a target="_blank" rel="noopener" href="https://chat.openai.com/">ChatGPT</a>让我对NLP和AI重燃起了初识时的兴趣。因此，笔者按照CSDN上的一篇<a target="_blank" rel="noopener" href="https://www.cnblogs.com/chatgpt/p/how-to-register-chatgpt-in-china.html">攻略</a>注册成为了ChatGPT的体验用户（虽然花费了10￥，但比某宝上无良商家动辄收几十好多了<span class="github-emoji"><span>😏</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f60f.png?v8" aria-hidden="true" onerror="this.parentElement.classList.add('github-emoji-fallback')"></span>）。在多次测试后，我发现这个模型即使只是出世不久且限时免费，但它已经可以替代部分程序员的工作了。更可怕的是，不管是中文还是英文，只要问题叙述清晰得当，ChatGPT所给出的solution具备相当的可参考性，足以说明其训练数据之多与泛化能力之强。</p>
+<p>在完成注册后，我就迫不及待问了几个比较简单的问题，其中英文问题有：<em>How to study machine learning</em> 和 <em>How to study math in machine learning</em> ；中文问题则是：<em>如何与心爱的女生相处</em> 。不管是学术还是感情问题，ChatGPT给予的回答都可圈可点。在关于如何学习机器学习的回答中，它不仅鼓励人们学习ML，还给出了更详细的建议，如了解机器学习的基础概念，包括训练数据、特征、标签、模型、目标函数、损失函数、优化算法等；掌握常见的机器学习算法，如回归、分类、聚类、降维、推荐、强化学习等，并学会如何应用这些算法解决实际问题；熟悉常用的机器学习工具和框架，如 TensorFlow、PyTorch、scikit-learn 等，并能够使用这些工具完成基本的机器学习任务。在关于如何学习机器学习中的数学中，它认为了解机器学习中使用的数学模型，如线性回归、逻辑回归、神经网络、支持向量机、贝叶斯网络等，同时需要掌握机器学习中常用的数学方法，如梯度下降、牛顿法、拟牛顿法、随机梯度下降、概率密度估计等，还需要学习机器学习中常用的数学算法，如最小二乘法、最小角回归、主成分分析、聚类算法、卡方检验等。而关于情感问题，读者可以自行查阅，不过个人认为它的回答非常romantic <span class="github-emoji"><span>😘</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f618.png?v8" aria-hidden="true" onerror="this.parentElement.classList.add('github-emoji-fallback')"></span></p>
 <h3 id="ChatGPT对于编程生产力的提升测试"><a href="#ChatGPT对于编程生产力的提升测试" class="headerlink" title="ChatGPT对于编程生产力的提升测试"></a>ChatGPT对于编程生产力的提升测试</h3><p>在测(tiao)试(xi)它几个问题后，我突然灵光一现，把之前写的一个很简单的python输入数组的小功能拿来测试一下，于是问：<em>python输入一维数组的程序</em> ，而它的回复相当简单有趣：</p>
 <pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token comment"># 使用 while 循环来接收用户输入</span>
 <span class="token keyword">while</span> <span class="token boolean">True</span><span class="token punctuation">:</span>
@@ -478,7 +493,7 @@ subarrays <span class="token operator">=</span> np<span class="token punctuation
 <span class="token keyword">print</span><span class="token punctuation">(</span>subarrays<span class="token punctuation">)</span>
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<p>果真，我的猜测没有错。原来不是它太菜了，而是我表述太模糊了 <span class="github-emoji"><span>😧</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f627.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span> 实际上，已经有相当多的开发者来开发调用ChatGPT API的插件和软件了，例如中文版的<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1s14y1K7fD/?spm_id_from=333.337.search-card.all.click&amp;vd_source=57cec20aa45aa135ba9fdbb99ed82151">VSCODE插件</a>已经有过万下载了。事实上，ChatGPT也可以用来辅助学术写作。例如，我们可以像这个<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1NM411U7GG/?spm_id_from=333.788.recommend_more_video.1&amp;vd_source=57cec20aa45aa135ba9fdbb99ed82151">视频</a>一样，先复制一段话，在结尾加上一句 <em>Help me to paraphrase this paragraph more academically</em> （关于使用ChatGPT来进行论文写作实在是争议多多，<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1144y1S7G1/?spm_id_from=333.788.recommend_more_video.-1&amp;vd_source=57cec20aa45aa135ba9fdbb99ed82151">someone</a>甚至可以取巧の问论文模板，再把模板填好内容问它）。最后，使用ChatGPT对于他自己的评价来结尾：<em>ChatGPT是由 OpenAI 开发的一种大型自然语言生成模型。它是在 GPT-3 模型的基础上进行改进，旨在更好地处理聊天对话场景中的语言生成任务。我认为 ChatGPT 是一个非常有意义的模型，它拥有更强大的语言理解能力，能够更加自然地与人类进行对话。它可以应用于聊天机器人、翻译系统、问答系统等领域，为人类提供更好的交流和服务。同时，我也认为 ChatGPT 需要进一步改进，例如在语言表达能力、情感理解能力和语境处理能力方面进行增强，使得它能更好地适应复杂的自然语言场景。</em></p>
+<p>果真，我的猜测没有错。原来不是它太菜了，而是我表述太模糊了 <span class="github-emoji"><span>😧</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f627.png?v8" aria-hidden="true" onerror="this.parentElement.classList.add('github-emoji-fallback')"></span> 实际上，已经有相当多的开发者来开发调用ChatGPT API的插件和软件了，例如中文版的<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1s14y1K7fD/?spm_id_from=333.337.search-card.all.click&amp;vd_source=57cec20aa45aa135ba9fdbb99ed82151">VSCODE插件</a>已经有过万下载了。事实上，ChatGPT也可以用来辅助学术写作。例如，我们可以像这个<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1NM411U7GG/?spm_id_from=333.788.recommend_more_video.1&amp;vd_source=57cec20aa45aa135ba9fdbb99ed82151">视频</a>一样，先复制一段话，在结尾加上一句 <em>Help me to paraphrase this paragraph more academically</em> （关于使用ChatGPT来进行论文写作实在是争议多多，<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1144y1S7G1/?spm_id_from=333.788.recommend_more_video.-1&amp;vd_source=57cec20aa45aa135ba9fdbb99ed82151">someone</a>甚至可以取巧の问论文模板，再把模板填好内容问它）。最后，使用ChatGPT对于他自己的评价来结尾：<em>ChatGPT是由 OpenAI 开发的一种大型自然语言生成模型。它是在 GPT-3 模型的基础上进行改进，旨在更好地处理聊天对话场景中的语言生成任务。我认为 ChatGPT 是一个非常有意义的模型，它拥有更强大的语言理解能力，能够更加自然地与人类进行对话。它可以应用于聊天机器人、翻译系统、问答系统等领域，为人类提供更好的交流和服务。同时，我也认为 ChatGPT 需要进一步改进，例如在语言表达能力、情感理解能力和语境处理能力方面进行增强，使得它能更好地适应复杂的自然语言场景。</em></p>
 <h2 id="你若诚心发问，ChatGPT-will-fix-EVERYTHING"><a href="#你若诚心发问，ChatGPT-will-fix-EVERYTHING" class="headerlink" title="你若诚心发问，ChatGPT will fix EVERYTHING"></a>你若诚心发问，ChatGPT will fix EVERYTHING</h2><p>前几天在测试GPT的design&amp;degug时着实让我惊叹不已。起因是一个平平无奇的AI assignment，其中一题是老师要求使用四种模型，分别是RNN，LSTM，CNN和FNN，来处理一个EEG时序数据集。费了好几个小时终于从网上缝缝补补写了个过得去的LSTM后，突发奇想要是用ChatGPT来搞一个end2end的训练会是怎样。于是乎，直接使用OPENAI很早之前更新的<strong>Advanced Data Analysis</strong>，上传目标数据集（目前只试了直接上传数据集文件但未在大数据集上尝试过），然后加上相关叙述和一些常用的指令:</p>
 <p><em>As an AI model designer and ML master, you should use a deep neural network to do time series classification. The uploaded dataset is from <a target="_blank" rel="noopener" href="http://archive.ics.uci.edu/dataset/264/eeg+eye+state">http://archive.ics.uci.edu/dataset/264/eeg+eye+state</a>. Task: Please use Recurrent Neural Network (including standard RNN and LSTM ), Convolutional Neural Network, Feedforward Neural Network in pytorch to do classification and compare their performance.</em></p>
 <p>它的答案会先分析上传的文件，而后输入时你需要表明 <em>You should design well-structured Pytorch codes and show them to me. It’s okay that I can run it on my machine.</em> 这里需要提出两个点，一个是你需要使用Pytorch来设计模型，其次就是你可以在local machine跑代码，不然GPT4在生成代码时常常会因为Pytorch或TF库无法正常工作而报错。而后，他会逐步生成4个model和traning，testing modules。其中traning和testing modules如下：</p>
@@ -584,7 +599,7 @@ subarrays <span class="token operator">=</span> np<span class="token punctuation
 <div id="article-share">
 
     
-    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <div class="social-share" data-sites="twitter,linkedin,facebook,wechat,weibo,qq,qzone,douban" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
     <script src="/libs/share/js/social-share.min.js"></script>
     
 
@@ -726,9 +741,6 @@ subarrays <span class="token operator">=</span> np<span class="token punctuation
 <script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
 
 
-  <!-- 是否加载使用自带的 prismjs. -->
-  <script type="text/javascript" src="/libs/prism/prism.min.js"></script>
-
 
 <!-- 代码语言 -->
 
@@ -836,74 +848,6 @@ subarrays <span class="token operator">=</span> np<span class="token punctuation
 
     <footer class="page-footer bg-color">
     
-        <link rel="stylesheet" href="/libs/aplayer/APlayer.min.css">
-<style>
-    .aplayer .aplayer-lrc p {
-        
-        display: none;
-        
-        font-size: 12px;
-        font-weight: 700;
-        line-height: 16px !important;
-    }
-
-    .aplayer .aplayer-lrc p.aplayer-lrc-current {
-        
-        display: none;
-        
-        font-size: 15px;
-        color: #2f80ed;
-    }
-
-    
-    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
-        left: -66px !important;
-    }
-
-    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
-        left: 0px !important;
-    }
-
-    
-
-    @media only screen and (max-width: 601px), (hover: none) and (pointer: coarse) {
-        meting-js[fixed="true"],
-        .aplayer.aplayer-fixed {
-            display: none !important;
-            visibility: hidden !important;
-            pointer-events: none !important;
-        }
-
-        .aplayer.aplayer-fixed .aplayer-body,
-        .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
-            left: 0 !important;
-        }
-    }
-</style>
-<div class="">
-    
-    <div class="row">
-        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
-                   server="netease"
-                   type="playlist"
-                   id="503838841"
-                   fixed='true'
-                   autoplay='false'
-                   theme='#2f80ed'
-                   loop='all'
-                   order='random'
-                   preload='metadata'
-                   volume='0.5'
-                   list-folded='true'
-        >
-        </meting-js>
-    </div>
-</div>
-
-<script src="/libs/aplayer/APlayer.min.js"></script>
-<script src="/libs/aplayer/Meting.min.js"></script>
-
-    
 
     <div class="container row center-align"
          style="margin-bottom: 15px !important;">
@@ -918,7 +862,7 @@ subarrays <span class="token operator">=</span> np<span class="token punctuation
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;Total Words:&nbsp;<span
-                        class="white-color">30.3k</span>
+                        class="white-color">30.1k</span>
             
             
             
@@ -1181,20 +1125,6 @@ $(function () {
     <!-- Baidu Analytics -->
 
     <!-- Baidu Push -->
-
-<script>
-    (function () {
-        var bp = document.createElement('script');
-        var curProtocol = window.location.protocol.split(':')[0];
-        if (curProtocol === 'https') {
-            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
-        } else {
-            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
-        }
-        var s = document.getElementsByTagName("script")[0];
-        s.parentNode.insertBefore(bp, s);
-    })();
-</script>
 
     
     

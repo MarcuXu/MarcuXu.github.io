@@ -6,6 +6,20 @@
     <meta charset="utf-8">
     <meta name="keywords" content="How to build your own website, Mingjing Xu,MarcuXu,multi-objective optimization,trustworthy AI,multimodal learning,edge intelligence">
     <meta name="description" content="A running note on building and maintaining this Hexo + GitHub Pages website, including setup links, common bugs, Hexo commands, deployment flow, image handling, Markdown, and LaTeX tips.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="How to build your own website">
+<meta property="og:url" content="https://marcuxu.com/2022/09/18/building-blog/">
+<meta property="og:site_name" content="MarcuXu">
+<meta property="og:description" content="A running note on building and maintaining this Hexo + GitHub Pages website, including setup links, common bugs, Hexo commands, deployment flow, image handling, Markdown, and LaTeX tips.">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://github.githubassets.com/images/icons/emoji/unicode/1f60f.png?v8">
+<meta property="article:published_time" content="2022-09-18T16:21:52.000Z">
+<meta property="article:modified_time" content="2022-09-18T16:21:52.000Z">
+<meta property="article:author" content="Mingjing Xu">
+<meta property="article:tag" content="SW_Tricks">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://github.githubassets.com/images/icons/emoji/unicode/1f60f.png?v8">
+    <meta name="theme-color" content="#0f2027">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -18,6 +32,7 @@
 
 
     <title>How to build your own website | MarcuXu</title>
+    <link rel="preload" href="/libs/fonts/inter/inter-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="icon" type="image/png" href="/medias/Gemini_Generated_0.png">
     
 
@@ -26,13 +41,14 @@
 
 
 
+<link rel="stylesheet" type="text/css" href="/libs/fonts/inter/inter.css">
 <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
 <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
 <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
 <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
 <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
 <link rel="stylesheet" type="text/css" href="/css/matery.css">
-<link rel="stylesheet" type="text/css" href="/css/my.css?v=20260715-mobile-scroll">
+<link rel="stylesheet" type="text/css" href="/css/my.css?v=20261012-typography">
 <link rel="stylesheet" type="text/css" href="/css/dark.css" media="none" onload="if(media!='all')media='all'">
 
 
@@ -50,7 +66,7 @@
 
     <script src="/libs/jquery/jquery-3.6.0.min.js"></script>
 
-<meta name="generator" content="Hexo 5.4.2">
+<meta name="generator" content="Hexo 8.1.2">
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
 <link rel="alternate" href="/atom.xml" title="MarcuXu" type="application/atom+xml">
 </head>
@@ -421,9 +437,6 @@
         <hr class="clearfix">
 
         
-        <!-- 是否加载使用自带的 prismjs. -->
-        <link rel="stylesheet" href="/libs/prism/prism.min.css">
-        
 
         
 
@@ -465,7 +478,7 @@
 <li>md内的标题最好从”##”开始，才会有目录。</li>
 <li>如果使用vscode开发，可以直接在 <strong>终端</strong> 执行命令而不需要在文件夹下 <code>git bash</code>。但是在vscode中，注意关闭自动注释插件，否则会与主题style产生冲突。</li>
 <li>更改字体的颜色，格式等可以参考<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_43732429/article/details/108034518">这里</a>。</li>
-<li>已安装表情插件，md使用表情包请参考<a target="_blank" rel="noopener" href="https://gist.github.com/rxaviers/7360908">这里</a><span class="github-emoji"><span>😏</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f60f.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span></li>
+<li>已安装表情插件，md使用表情包请参考<a target="_blank" rel="noopener" href="https://gist.github.com/rxaviers/7360908">这里</a><span class="github-emoji"><span>😏</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f60f.png?v8" aria-hidden="true" onerror="this.parentElement.classList.add('github-emoji-fallback')"></span></li>
 <li>在头部标明 <strong>categories: xxx</strong> 后 <em>categories</em> 才有作用。</li>
 <li>若是插入GIF可以参考<a target="_blank" rel="noopener" href="https://www.cnblogs.com/AhuntSun-blog/p/12028808.html">这里</a>，实际上可以将一些非敏感的图片上传到 <a target="_blank" rel="noopener" href="https://giphy.com/">https://giphy.com/</a> 后进行图床引用，格式类似 <code>![]()</code>。本网站之后主要使用<a target="_blank" rel="noopener" href="https://sm.ms/">线上图床</a>来附上图片（使用图床有多个优点，例如图片加载快，不需在本地和GitHub占用存储空间，所以非私密的图片完全可以upload）。</li>
 <li>注意upload到GitHub上的并非所有的文件，GitHub pages只需要 <strong>public</strong> 即可。其实这里可以稍微理解一下部署到github的原理。之前步骤中在Github上创建的那个特别的repo（MarcuXu.github.io）一个最大的特点就是其master中的html静态文件，可以通过<a target="_blank" rel="noopener" href="http://marcuxu.github.io/">http://MarcuXu.github.io</a>来直接访问。<code>Hexo -g</code>会生成一个静态网站（第一次会生成一个public目录），它就是我们点开网站看到的东西。而当我们将hexo生成的静态网站<code>git commit</code>后，我们就可以在线上看到我们网站的内容了。所以明白了原理，怎么做自然就清晰了。</li>
@@ -562,7 +575,7 @@
 <div id="article-share">
 
     
-    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <div class="social-share" data-sites="twitter,linkedin,facebook,wechat,weibo,qq,qzone,douban" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
     <script src="/libs/share/js/social-share.min.js"></script>
     
 
@@ -696,9 +709,6 @@
 <script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
 
 
-  <!-- 是否加载使用自带的 prismjs. -->
-  <script type="text/javascript" src="/libs/prism/prism.min.js"></script>
-
 
 <!-- 代码语言 -->
 
@@ -806,74 +816,6 @@
 
     <footer class="page-footer bg-color">
     
-        <link rel="stylesheet" href="/libs/aplayer/APlayer.min.css">
-<style>
-    .aplayer .aplayer-lrc p {
-        
-        display: none;
-        
-        font-size: 12px;
-        font-weight: 700;
-        line-height: 16px !important;
-    }
-
-    .aplayer .aplayer-lrc p.aplayer-lrc-current {
-        
-        display: none;
-        
-        font-size: 15px;
-        color: #2f80ed;
-    }
-
-    
-    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
-        left: -66px !important;
-    }
-
-    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
-        left: 0px !important;
-    }
-
-    
-
-    @media only screen and (max-width: 601px), (hover: none) and (pointer: coarse) {
-        meting-js[fixed="true"],
-        .aplayer.aplayer-fixed {
-            display: none !important;
-            visibility: hidden !important;
-            pointer-events: none !important;
-        }
-
-        .aplayer.aplayer-fixed .aplayer-body,
-        .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
-            left: 0 !important;
-        }
-    }
-</style>
-<div class="">
-    
-    <div class="row">
-        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
-                   server="netease"
-                   type="playlist"
-                   id="503838841"
-                   fixed='true'
-                   autoplay='false'
-                   theme='#2f80ed'
-                   loop='all'
-                   order='random'
-                   preload='metadata'
-                   volume='0.5'
-                   list-folded='true'
-        >
-        </meting-js>
-    </div>
-</div>
-
-<script src="/libs/aplayer/APlayer.min.js"></script>
-<script src="/libs/aplayer/Meting.min.js"></script>
-
-    
 
     <div class="container row center-align"
          style="margin-bottom: 15px !important;">
@@ -888,7 +830,7 @@
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;Total Words:&nbsp;<span
-                        class="white-color">30.3k</span>
+                        class="white-color">30.1k</span>
             
             
             
@@ -1151,20 +1093,6 @@ $(function () {
     <!-- Baidu Analytics -->
 
     <!-- Baidu Push -->
-
-<script>
-    (function () {
-        var bp = document.createElement('script');
-        var curProtocol = window.location.protocol.split(':')[0];
-        if (curProtocol === 'https') {
-            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
-        } else {
-            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
-        }
-        var s = document.getElementsByTagName("script")[0];
-        s.parentNode.insertBefore(bp, s);
-    })();
-</script>
 
     
     

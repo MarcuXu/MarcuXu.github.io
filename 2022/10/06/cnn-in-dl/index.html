@@ -5,7 +5,23 @@
 <head>
     <meta charset="utf-8">
     <meta name="keywords" content="CNN in Deep Learning: From Pixels to Feature Maps, Mingjing Xu,MarcuXu,multi-objective optimization,trustworthy AI,multimodal learning,edge intelligence">
-    <meta name="description" content="A beginner-friendly study note on convolutional neural networks, covering image tensors, convolution filters, feature maps, receptive fields, pooling, softmax, cross-entropy, and why CNNs work in deep learning.">
+    <meta name="description" content="A beginner-friendly study note on convolutional neural networks, covering image tensors, convolution filters, feature maps, receptive fields, pooling, softmax, cross-entropy, and why CNNs work in deep">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CNN in Deep Learning: From Pixels to Feature Maps">
+<meta property="og:url" content="https://marcuxu.com/2022/10/06/cnn-in-dl/">
+<meta property="og:site_name" content="MarcuXu">
+<meta property="og:description" content="A beginner-friendly study note on convolutional neural networks, covering image tensors, convolution filters, feature maps, receptive fields, pooling, softmax, cross-entropy, and why CNNs work in deep">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://marcuxu.com/2022/10/06/cnn-in-dl/Proposed-adopted-Convolutional-Neural-Network-CNN-model.png">
+<meta property="og:image" content="https://media.giphy.com/media/i4NjAwytgIRDW/giphy.gif">
+<meta property="og:image" content="https://marcuxu.com/2022/10/06/cnn-in-dl/Pixel2image.png">
+<meta property="article:published_time" content="2022-10-06T14:20:52.000Z">
+<meta property="article:modified_time" content="2022-10-06T14:20:52.000Z">
+<meta property="article:author" content="Mingjing Xu">
+<meta property="article:tag" content="AI_Tricks">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://marcuxu.com/2022/10/06/cnn-in-dl/Proposed-adopted-Convolutional-Neural-Network-CNN-model.png">
+    <meta name="theme-color" content="#0f2027">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -18,6 +34,7 @@
 
 
     <title>CNN in Deep Learning: From Pixels to Feature Maps | MarcuXu</title>
+    <link rel="preload" href="/libs/fonts/inter/inter-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="icon" type="image/png" href="/medias/Gemini_Generated_0.png">
     
 
@@ -26,13 +43,14 @@
 
 
 
+<link rel="stylesheet" type="text/css" href="/libs/fonts/inter/inter.css">
 <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
 <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
 <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
 <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
 <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
 <link rel="stylesheet" type="text/css" href="/css/matery.css">
-<link rel="stylesheet" type="text/css" href="/css/my.css?v=20260715-mobile-scroll">
+<link rel="stylesheet" type="text/css" href="/css/my.css?v=20261012-typography">
 <link rel="stylesheet" type="text/css" href="/css/dark.css" media="none" onload="if(media!='all')media='all'">
 
 
@@ -50,7 +68,7 @@
 
     <script src="/libs/jquery/jquery-3.6.0.min.js"></script>
 
-<meta name="generator" content="Hexo 5.4.2">
+<meta name="generator" content="Hexo 8.1.2">
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
 <link rel="alternate" href="/atom.xml" title="MarcuXu" type="application/atom+xml">
 </head>
@@ -421,16 +439,13 @@
         <hr class="clearfix">
 
         
-        <!-- 是否加载使用自带的 prismjs. -->
-        <link rel="stylesheet" href="/libs/prism/prism.min.css">
-        
 
         
 
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <h2 id="Preface-by-the-author"><a href="#Preface-by-the-author" class="headerlink" title="Preface by the author"></a>Preface by the author</h2><p>最近在复习 ML 的时候又翻到了很久以前读过的一篇 CNN <a target="_blank" rel="noopener" href="https://adeshpande3.github.io/A-Beginner's-Guide-To-Understanding-Convolutional-Neural-Networks/">入门文章</a>。这类文章的好处是不会一上来就把人扔进大量公式里，而是先用图像、filter、feature map 这些直观概念把问题讲清楚。所以这篇笔记还是沿用原来那种比较散的学习笔记风格：先从我个人理解的角度解释 CNN 是什么，再补上一些必要的公式和 DL 里的训练逻辑。</p>
-<p>我之前在 CUHK 选过 Prof. Hongsheng Li 的 _ML for SP Applications_，那门课对我后来的 research thesis 也很有帮助。不过我的背景更偏 IoT 和 embedded systems，数学功底不算特别扎实，所以这篇文章的目标不是写成教科书，而是把 CNN 里最容易卡住新人的地方尽量讲顺。</p>
+<p>我之前在 CUHK 选过 Prof. Hongsheng Li 的 <em>ML for SP Applications</em>，那门课对我后来的 research thesis 也很有帮助。不过我的背景更偏 IoT 和 embedded systems，数学功底不算特别扎实，所以这篇文章的目标不是写成教科书，而是把 CNN 里最容易卡住新人的地方尽量讲顺。</p>
 <h2 id="Disclaimer"><a href="#Disclaimer" class="headerlink" title="Disclaimer"></a>Disclaimer</h2><p>这篇文章主要是个人学习总结，行文风格会比较松散。为了保证可读性，我不会把每个推导都写到最严格的形式，但会尽量保证核心概念不出错。如果你发现理解有偏差，欢迎通过 GitHub issue 交流。</p>
 <h2 id="Abstract"><a href="#Abstract" class="headerlink" title="Abstract"></a>Abstract</h2><p><em>Convolutional Neural Network</em> 听起来像一个很重的术语，但它的核心思想其实很朴素：图像里的有用信息通常不是孤立的单个像素，而是局部区域里反复出现的结构，比如边缘、角点、纹理、部件，最后再组合成物体类别。</p>
 <p>CNN 的思想确实受到视觉神经科学的启发，例如 Hubel 和 Wiesel 关于感受野的研究；工程上可以追溯到 Fukushima 的 Neocognitron、LeCun 等人的 LeNet。真正让 CNN 在大众视野里爆发的是 AlexNet 在 2012 年 ImageNet 比赛中的表现。之后，VGG、Inception、ResNet 等结构不断改进网络深度、连接方式、非线性层和训练策略，使 CNN 成为深度学习中最经典的一类模型。</p>
@@ -720,7 +735,7 @@ $$
 <div id="article-share">
 
     
-    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <div class="social-share" data-sites="twitter,linkedin,facebook,wechat,weibo,qq,qzone,douban" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
     <script src="/libs/share/js/social-share.min.js"></script>
     
 
@@ -862,9 +877,6 @@ $$
 <script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
 
 
-  <!-- 是否加载使用自带的 prismjs. -->
-  <script type="text/javascript" src="/libs/prism/prism.min.js"></script>
-
 
 <!-- 代码语言 -->
 
@@ -996,74 +1008,6 @@ $$
 
     <footer class="page-footer bg-color">
     
-        <link rel="stylesheet" href="/libs/aplayer/APlayer.min.css">
-<style>
-    .aplayer .aplayer-lrc p {
-        
-        display: none;
-        
-        font-size: 12px;
-        font-weight: 700;
-        line-height: 16px !important;
-    }
-
-    .aplayer .aplayer-lrc p.aplayer-lrc-current {
-        
-        display: none;
-        
-        font-size: 15px;
-        color: #2f80ed;
-    }
-
-    
-    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
-        left: -66px !important;
-    }
-
-    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
-        left: 0px !important;
-    }
-
-    
-
-    @media only screen and (max-width: 601px), (hover: none) and (pointer: coarse) {
-        meting-js[fixed="true"],
-        .aplayer.aplayer-fixed {
-            display: none !important;
-            visibility: hidden !important;
-            pointer-events: none !important;
-        }
-
-        .aplayer.aplayer-fixed .aplayer-body,
-        .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
-            left: 0 !important;
-        }
-    }
-</style>
-<div class="">
-    
-    <div class="row">
-        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
-                   server="netease"
-                   type="playlist"
-                   id="503838841"
-                   fixed='true'
-                   autoplay='false'
-                   theme='#2f80ed'
-                   loop='all'
-                   order='random'
-                   preload='metadata'
-                   volume='0.5'
-                   list-folded='true'
-        >
-        </meting-js>
-    </div>
-</div>
-
-<script src="/libs/aplayer/APlayer.min.js"></script>
-<script src="/libs/aplayer/Meting.min.js"></script>
-
-    
 
     <div class="container row center-align"
          style="margin-bottom: 15px !important;">
@@ -1078,7 +1022,7 @@ $$
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;Total Words:&nbsp;<span
-                        class="white-color">30.3k</span>
+                        class="white-color">30.1k</span>
             
             
             
@@ -1341,20 +1285,6 @@ $(function () {
     <!-- Baidu Analytics -->
 
     <!-- Baidu Push -->
-
-<script>
-    (function () {
-        var bp = document.createElement('script');
-        var curProtocol = window.location.protocol.split(':')[0];
-        if (curProtocol === 'https') {
-            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
-        } else {
-            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
-        }
-        var s = document.getElementsByTagName("script")[0];
-        s.parentNode.insertBefore(bp, s);
-    })();
-</script>
 
     
     

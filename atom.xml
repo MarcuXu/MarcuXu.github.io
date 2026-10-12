@@ -1,391 +1,243 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <title>MarcuXu</title>
-  
-  <subtitle>This is but a single thread in the boundless tapestry woven by mortal hands</subtitle>
-  <link href="https://marcuxu.com/atom.xml" rel="self"/>
-  
-  <link href="https://marcuxu.com/"/>
-  <updated>2026-07-07T02:20:00.000Z</updated>
-  <id>https://marcuxu.com/</id>
-  
   <author>
     <name>Mingjing Xu</name>
-    
   </author>
-  
   <generator uri="https://hexo.io/">Hexo</generator>
-  
+  <id>https://marcuxu.com/</id>
+  <link href="https://marcuxu.com/" rel="alternate"/>
+  <link href="https://marcuxu.com/atom.xml" rel="self"/>
+  <rights>All rights reserved 2026, Mingjing Xu</rights>
+  <subtitle>This is but a single thread in the boundless tapestry woven by mortal hands</subtitle>
+  <title>MarcuXu</title>
+  <updated>2026-07-07T02:20:00.000Z</updated>
   <entry>
-    <title>Understanding A3B2: Adaptive Asymmetric Adapters for Few-Shot Vision-Language Classification</title>
-    <link href="https://marcuxu.com/2026/07/07/a3b2-paper-explanation/"/>
+    <author>
+      <name>Mingjing Xu</name>
+    </author>
+    <category term="Tech" scheme="https://marcuxu.com/categories/Tech/"/>
+    <category term="AI_Tricks" scheme="https://marcuxu.com/tags/AI-Tricks/"/>
     <id>https://marcuxu.com/2026/07/07/a3b2-paper-explanation/</id>
+    <link href="https://marcuxu.com/2026/07/07/a3b2-paper-explanation/"/>
     <published>2026-07-07T02:20:00.000Z</published>
+    <summary>
+      <![CDATA[<h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>Few-shot learning asks a]]>
+    </summary>
+    <title>Understanding A3B2: Adaptive Asymmetric Adapters for Few-Shot Vision-Language Classification</title>
     <updated>2026-07-07T02:20:00.000Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h2 id=&quot;Introduction&quot;&gt;&lt;a href=&quot;#Introduction&quot; class=&quot;headerlink&quot; title=&quot;Introduction&quot;&gt;&lt;/a&gt;Introduction&lt;/h2&gt;&lt;p&gt;Few-shot learning asks a</summary>
-        
-      
-    
-    
-    
-    <category term="Tech" scheme="https://marcuxu.com/categories/Tech/"/>
-    
-    
-    <category term="AI_Tricks" scheme="https://marcuxu.com/tags/AI-Tricks/"/>
-    
   </entry>
-  
   <entry>
-    <title>Understanding InherNet: Neural Network Inheritance Beyond Student Distillation</title>
-    <link href="https://marcuxu.com/2026/06/24/inhernet-paper-explanation/"/>
+    <author>
+      <name>Mingjing Xu</name>
+    </author>
+    <category term="Tech" scheme="https://marcuxu.com/categories/Tech/"/>
+    <category term="AI_Tricks" scheme="https://marcuxu.com/tags/AI-Tricks/"/>
     <id>https://marcuxu.com/2026/06/24/inhernet-paper-explanation/</id>
+    <link href="https://marcuxu.com/2026/06/24/inhernet-paper-explanation/"/>
     <published>2026-06-24T14:15:00.000Z</published>
+    <summary>
+      <![CDATA[<h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>Model compression is usually]]>
+    </summary>
+    <title>Understanding InherNet: Neural Network Inheritance Beyond Student Distillation</title>
     <updated>2026-06-24T14:15:00.000Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h2 id=&quot;Introduction&quot;&gt;&lt;a href=&quot;#Introduction&quot; class=&quot;headerlink&quot; title=&quot;Introduction&quot;&gt;&lt;/a&gt;Introduction&lt;/h2&gt;&lt;p&gt;Model compression is usually</summary>
-        
-      
-    
-    
-    
-    <category term="Tech" scheme="https://marcuxu.com/categories/Tech/"/>
-    
-    
-    <category term="AI_Tricks" scheme="https://marcuxu.com/tags/AI-Tricks/"/>
-    
   </entry>
-  
   <entry>
-    <title>Understanding TLV-CoRe: Collaborative Representation Learning for Tactile-Language-Vision Alignment</title>
-    <link href="https://marcuxu.com/2026/06/16/tlv-core-paper-explanation/"/>
+    <author>
+      <name>Mingjing Xu</name>
+    </author>
+    <category term="Tech" scheme="https://marcuxu.com/categories/Tech/"/>
+    <category term="AI_Tricks" scheme="https://marcuxu.com/tags/AI-Tricks/"/>
     <id>https://marcuxu.com/2026/06/16/tlv-core-paper-explanation/</id>
+    <link href="https://marcuxu.com/2026/06/16/tlv-core-paper-explanation/"/>
     <published>2026-06-16T15:30:00.000Z</published>
+    <summary>
+      <![CDATA[<h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>Tactile perception is an]]>
+    </summary>
+    <title>Understanding TLV-CoRe: Collaborative Representation Learning for Tactile-Language-Vision Alignment</title>
     <updated>2026-06-16T15:30:00.000Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h2 id=&quot;Introduction&quot;&gt;&lt;a href=&quot;#Introduction&quot; class=&quot;headerlink&quot; title=&quot;Introduction&quot;&gt;&lt;/a&gt;Introduction&lt;/h2&gt;&lt;p&gt;Tactile perception is an</summary>
-        
-      
-    
-    
-    
-    <category term="Tech" scheme="https://marcuxu.com/categories/Tech/"/>
-    
-    
-    <category term="AI_Tricks" scheme="https://marcuxu.com/tags/AI-Tricks/"/>
-    
   </entry>
-  
   <entry>
-    <title>Understanding PSMGD: Fast Multi-Objective Optimization with Periodic Gradient Weights</title>
-    <link href="https://marcuxu.com/2026/06/04/psmgd-paper-explanation/"/>
+    <author>
+      <name>Mingjing Xu</name>
+    </author>
+    <category term="Tech" scheme="https://marcuxu.com/categories/Tech/"/>
+    <category term="AI_Tricks" scheme="https://marcuxu.com/tags/AI-Tricks/"/>
     <id>https://marcuxu.com/2026/06/04/psmgd-paper-explanation/</id>
+    <link href="https://marcuxu.com/2026/06/04/psmgd-paper-explanation/"/>
     <published>2026-06-04T02:34:25.000Z</published>
+    <summary>
+      <![CDATA[<h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>Modern machine learning]]>
+    </summary>
+    <title>Understanding PSMGD: Fast Multi-Objective Optimization with Periodic Gradient Weights</title>
     <updated>2026-06-04T02:34:25.000Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h2 id=&quot;Introduction&quot;&gt;&lt;a href=&quot;#Introduction&quot; class=&quot;headerlink&quot; title=&quot;Introduction&quot;&gt;&lt;/a&gt;Introduction&lt;/h2&gt;&lt;p&gt;Modern machine learning</summary>
-        
-      
-    
-    
-    
-    <category term="Tech" scheme="https://marcuxu.com/categories/Tech/"/>
-    
-    
-    <category term="AI_Tricks" scheme="https://marcuxu.com/tags/AI-Tricks/"/>
-    
   </entry>
-  
   <entry>
-    <title>Speaking the Language of Probability: From Classifier Evaluation to Generative Classifiers</title>
-    <link href="https://marcuxu.com/2025/10/30/dl-reading-1029/"/>
+    <author>
+      <name>Mingjing Xu</name>
+    </author>
+    <category term="Tech" scheme="https://marcuxu.com/categories/Tech/"/>
+    <category term="AI_Tricks" scheme="https://marcuxu.com/tags/AI-Tricks/"/>
     <id>https://marcuxu.com/2025/10/30/dl-reading-1029/</id>
+    <link href="https://marcuxu.com/2025/10/30/dl-reading-1029/"/>
     <published>2025-10-30T05:01:20.000Z</published>
+    <summary>
+      <![CDATA[<h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>Today’s talk is structured]]>
+    </summary>
+    <title>Speaking the Language of Probability: From Classifier Evaluation to Generative Classifiers</title>
     <updated>2025-10-30T05:01:20.000Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h2 id=&quot;Introduction&quot;&gt;&lt;a href=&quot;#Introduction&quot; class=&quot;headerlink&quot; title=&quot;Introduction&quot;&gt;&lt;/a&gt;Introduction&lt;/h2&gt;&lt;p&gt;Today鈥檚 talk is structured</summary>
-        
-      
-    
-    
-    
-    <category term="Tech" scheme="https://marcuxu.com/categories/Tech/"/>
-    
-    
-    <category term="AI_Tricks" scheme="https://marcuxu.com/tags/AI-Tricks/"/>
-    
   </entry>
-  
   <entry>
-    <title>Non-academic notes from my PhD journey far from home</title>
-    <link href="https://marcuxu.com/2024/01/26/cisc-896-01/"/>
+    <author>
+      <name>Mingjing Xu</name>
+    </author>
+    <category term="Clutter" scheme="https://marcuxu.com/categories/Clutter/"/>
     <id>https://marcuxu.com/2024/01/26/cisc-896-01/</id>
+    <link href="https://marcuxu.com/2024/01/26/cisc-896-01/"/>
     <published>2024-01-26T12:18:18.000Z</published>
+    <summary>
+      <![CDATA[<p>January 2025, 2025: I’ve withdrawn from Rochester Institute of Technology (RIT). My car and most of my belongings are still in the U.S.]]>
+    </summary>
+    <title>Non-academic notes from my PhD journey far from home</title>
     <updated>2024-01-26T12:18:18.000Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;January 2025, 2025: I’ve withdrawn from Rochester Institute of Technology (RIT). My car and most of my belongings are still in the U.S.</summary>
-        
-      
-    
-    
-    
-    <category term="Clutter" scheme="https://marcuxu.com/categories/Clutter/"/>
-    
-    
   </entry>
-  
   <entry>
-    <title>DL study</title>
-    <link href="https://marcuxu.com/2023/03/01/dl-study/"/>
+    <author>
+      <name>Mingjing Xu</name>
+    </author>
+    <category term="Tech" scheme="https://marcuxu.com/categories/Tech/"/>
+    <category term="AI_Tricks" scheme="https://marcuxu.com/tags/AI-Tricks/"/>
     <id>https://marcuxu.com/2023/03/01/dl-study/</id>
+    <link href="https://marcuxu.com/2023/03/01/dl-study/"/>
     <published>2023-03-01T01:48:37.000Z</published>
+    <summary>
+      <![CDATA[<p>最近因为刚入学，所以有较多时间可以自主学习，就想着把ML&amp;DL重新过一遍，希望自己在学习理论的时候顺便温习一下代码。</p>
+<h2 id="d2l"><a href="#d2l" class="headerlink"]]>
+    </summary>
+    <title>DL study</title>
     <updated>2023-03-01T01:48:37.000Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;最近因为刚入学，所以有较多时间可以自主学习，就想着把ML&amp;amp;DL重新过一遍，希望自己在学习理论的时候顺便温习一下代码。&lt;/p&gt;
-&lt;h2 id=&quot;d2l&quot;&gt;&lt;a href=&quot;#d2l&quot; class=&quot;headerlink&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="Tech" scheme="https://marcuxu.com/categories/Tech/"/>
-    
-    
-    <category term="AI_Tricks" scheme="https://marcuxu.com/tags/AI-Tricks/"/>
-    
   </entry>
-  
   <entry>
-    <title>Tiny AI stories</title>
-    <link href="https://marcuxu.com/2022/12/08/tiny-stories-of-ai/"/>
+    <author>
+      <name>Mingjing Xu</name>
+    </author>
+    <category term="Tech" scheme="https://marcuxu.com/categories/Tech/"/>
+    <category term="AI_Tricks" scheme="https://marcuxu.com/tags/AI-Tricks/"/>
     <id>https://marcuxu.com/2022/12/08/tiny-stories-of-ai/</id>
+    <link href="https://marcuxu.com/2022/12/08/tiny-stories-of-ai/"/>
     <published>2022-12-08T23:06:33.000Z</published>
+    <summary>
+      <![CDATA[<p>这篇文章主要记录笔者作为一个AI菜鸟，在接触有趣或提升生产力的AI工具后的一些体验和感想。那么我们就从 <strong>ChatGPT</strong> 开始吧！</p>
+<h2 id="ChatGPT"><a href="#ChatGPT"]]>
+    </summary>
+    <title>Tiny AI stories</title>
     <updated>2022-12-08T23:06:33.000Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;这篇文章主要记录笔者作为一个AI菜鸟，在接触有趣或提升生产力的AI工具后的一些体验和感想。那么我们就从 &lt;strong&gt;ChatGPT&lt;/strong&gt; 开始吧！&lt;/p&gt;
-&lt;h2 id=&quot;ChatGPT&quot;&gt;&lt;a href=&quot;#ChatGPT&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="Tech" scheme="https://marcuxu.com/categories/Tech/"/>
-    
-    
-    <category term="AI_Tricks" scheme="https://marcuxu.com/tags/AI-Tricks/"/>
-    
   </entry>
-  
   <entry>
-    <title>Personal thoughts of the academic</title>
-    <link href="https://marcuxu.com/2022/11/08/paper-tricks/"/>
+    <author>
+      <name>Mingjing Xu</name>
+    </author>
+    <category term="Clutter" scheme="https://marcuxu.com/categories/Clutter/"/>
+    <category term="Academic" scheme="https://marcuxu.com/tags/Academic/"/>
     <id>https://marcuxu.com/2022/11/08/paper-tricks/</id>
+    <link href="https://marcuxu.com/2022/11/08/paper-tricks/"/>
     <published>2022-11-08T13:39:57.000Z</published>
+    <summary>
+      <![CDATA[<p>作为一个工作过的老油条，我认为参照别人的轮子来创造自己的轮子通常比空手造轮子会顺利很多。因此，在坚定进入学术生涯的目标后，我开始寻找一些前人的经验来提升自己。当然，在向别人学习的过程中，我也会加入自己的思考。事实上，在Prof.]]>
+    </summary>
+    <title>Personal thoughts of the academic</title>
     <updated>2022-11-08T13:39:57.000Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;作为一个工作过的老油条，我认为参照别人的轮子来创造自己的轮子通常比空手造轮子会顺利很多。因此，在坚定进入学术生涯的目标后，我开始寻找一些前人的经验来提升自己。当然，在向别人学习的过程中，我也会加入自己的思考。事实上，在Prof.</summary>
-        
-      
-    
-    
-    
-    <category term="Clutter" scheme="https://marcuxu.com/categories/Clutter/"/>
-    
-    
-    <category term="Academic" scheme="https://marcuxu.com/tags/Academic/"/>
-    
   </entry>
-  
   <entry>
-    <title>CNN in Deep Learning: From Pixels to Feature Maps</title>
-    <link href="https://marcuxu.com/2022/10/06/cnn-in-dl/"/>
-    <id>https://marcuxu.com/2022/10/06/cnn-in-dl/</id>
-    <published>2022-10-06T14:20:52.000Z</published>
-    <updated>2022-10-06T14:20:52.000Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h2 id=&quot;Preface-by-the-author&quot;&gt;&lt;a href=&quot;#Preface-by-the-author&quot; class=&quot;headerlink&quot; title=&quot;Preface by the author&quot;&gt;&lt;/a&gt;Preface by the</summary>
-        
-      
-    
-    
-    
+    <author>
+      <name>Mingjing Xu</name>
+    </author>
     <category term="Tech" scheme="https://marcuxu.com/categories/Tech/"/>
-    
-    
     <category term="AI_Tricks" scheme="https://marcuxu.com/tags/AI-Tricks/"/>
-    
+    <id>https://marcuxu.com/2022/10/06/cnn-in-dl/</id>
+    <link href="https://marcuxu.com/2022/10/06/cnn-in-dl/"/>
+    <published>2022-10-06T14:20:52.000Z</published>
+    <summary>
+      <![CDATA[<h2 id="Preface-by-the-author"><a href="#Preface-by-the-author" class="headerlink" title="Preface by the author"></a>Preface by the]]>
+    </summary>
+    <title>CNN in Deep Learning: From Pixels to Feature Maps</title>
+    <updated>2022-10-06T14:20:52.000Z</updated>
   </entry>
-  
   <entry>
-    <title>Git &amp; GitHub</title>
-    <link href="https://marcuxu.com/2022/09/29/git-github-notes/"/>
+    <author>
+      <name>Mingjing Xu</name>
+    </author>
+    <category term="Tech" scheme="https://marcuxu.com/categories/Tech/"/>
+    <category term="SW_Tricks" scheme="https://marcuxu.com/tags/SW-Tricks/"/>
     <id>https://marcuxu.com/2022/09/29/git-github-notes/</id>
+    <link href="https://marcuxu.com/2022/09/29/git-github-notes/"/>
     <published>2022-09-29T14:45:46.000Z</published>
+    <summary>
+      <![CDATA[<h2 id="Abstract"><a href="#Abstract" class="headerlink"]]>
+    </summary>
+    <title>
+      <![CDATA[Git & GitHub]]>
+    </title>
     <updated>2022-09-29T14:45:46.000Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h2 id=&quot;Abstract&quot;&gt;&lt;a href=&quot;#Abstract&quot; class=&quot;headerlink&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="Tech" scheme="https://marcuxu.com/categories/Tech/"/>
-    
-    
-    <category term="SW_Tricks" scheme="https://marcuxu.com/tags/SW-Tricks/"/>
-    
   </entry>
-  
   <entry>
-    <title>Memory in HK &amp; CUHK</title>
-    <link href="https://marcuxu.com/2022/09/19/memory-hk-cuhk/"/>
+    <author>
+      <name>Mingjing Xu</name>
+    </author>
+    <category term="Clutter" scheme="https://marcuxu.com/categories/Clutter/"/>
     <id>https://marcuxu.com/2022/09/19/memory-hk-cuhk/</id>
+    <link href="https://marcuxu.com/2022/09/19/memory-hk-cuhk/"/>
     <published>2022-09-19T12:08:34.000Z</published>
+    <summary>
+      <![CDATA[<h2 id="08-2021-08-2022"><a href="#08-2021-08-2022" class="headerlink"]]>
+    </summary>
+    <title>
+      <![CDATA[Memory in HK & CUHK]]>
+    </title>
     <updated>2022-09-19T12:08:34.000Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h2 id=&quot;08-2021-08-2022&quot;&gt;&lt;a href=&quot;#08-2021-08-2022&quot; class=&quot;headerlink&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="Clutter" scheme="https://marcuxu.com/categories/Clutter/"/>
-    
-    
   </entry>
-  
   <entry>
-    <title>About Mingjing Xu</title>
-    <link href="https://marcuxu.com/2022/09/19/curriculumvitae/"/>
-    <id>https://marcuxu.com/2022/09/19/curriculumvitae/</id>
-    <published>2022-09-19T01:56:15.000Z</published>
-    <updated>2022-09-19T01:56:15.000Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h2 id=&quot;Snapshot&quot;&gt;&lt;a href=&quot;#Snapshot&quot; class=&quot;headerlink&quot; title=&quot;Snapshot&quot;&gt;&lt;/a&gt;Snapshot&lt;/h2&gt;&lt;p&gt;I am &lt;strong&gt;Mingjing Xu&lt;/strong&gt;, a Computer</summary>
-        
-      
-    
-    
-    
+    <author>
+      <name>Mingjing Xu</name>
+    </author>
     <category term="Clutter" scheme="https://marcuxu.com/categories/Clutter/"/>
-    
-    
     <category term="Academic" scheme="https://marcuxu.com/tags/Academic/"/>
-    
+    <id>https://marcuxu.com/2022/09/19/curriculumvitae/</id>
+    <link href="https://marcuxu.com/2022/09/19/curriculumvitae/"/>
+    <published>2022-09-19T01:56:15.000Z</published>
+    <summary>
+      <![CDATA[<h2 id="Snapshot"><a href="#Snapshot" class="headerlink" title="Snapshot"></a>Snapshot</h2><p>I am <strong>Mingjing Xu</strong>, a Computer]]>
+    </summary>
+    <title>About Mingjing Xu</title>
+    <updated>2022-09-19T01:56:15.000Z</updated>
   </entry>
-  
   <entry>
-    <title>How to build your own website</title>
-    <link href="https://marcuxu.com/2022/09/18/building-blog/"/>
-    <id>https://marcuxu.com/2022/09/18/building-blog/</id>
-    <published>2022-09-18T16:21:52.000Z</published>
-    <updated>2022-09-18T16:21:52.000Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h2 id=&quot;Useful-links&quot;&gt;&lt;a href=&quot;#Useful-links&quot; class=&quot;headerlink&quot; title=&quot;Useful links&quot;&gt;&lt;/a&gt;Useful links&lt;/h2&gt;&lt;ol&gt;
-&lt;li&gt;HEXO: 安装所需库可以看&lt;a</summary>
-        
-      
-    
-    
-    
+    <author>
+      <name>Mingjing Xu</name>
+    </author>
     <category term="Tech" scheme="https://marcuxu.com/categories/Tech/"/>
-    
-    
     <category term="SW_Tricks" scheme="https://marcuxu.com/tags/SW-Tricks/"/>
-    
+    <id>https://marcuxu.com/2022/09/18/building-blog/</id>
+    <link href="https://marcuxu.com/2022/09/18/building-blog/"/>
+    <published>2022-09-18T16:21:52.000Z</published>
+    <summary>
+      <![CDATA[<h2 id="Useful-links"><a href="#Useful-links" class="headerlink" title="Useful links"></a>Useful links</h2><ol>
+<li>HEXO: 安装所需库可以看<a]]>
+    </summary>
+    <title>How to build your own website</title>
+    <updated>2022-09-18T16:21:52.000Z</updated>
   </entry>
-  
   <entry>
-    <title>Hello world</title>
-    <link href="https://marcuxu.com/2022/09/18/hello-world/"/>
-    <id>https://marcuxu.com/2022/09/18/hello-world/</id>
-    <published>2022-09-18T14:47:31.271Z</published>
-    <updated>2022-09-18T14:47:31.271Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.io/docs/&quot;&gt;documentation&lt;/a&gt;</summary>
-        
-      
-    
-    
-    
+    <author>
+      <name>Mingjing Xu</name>
+    </author>
     <category term="Clutter" scheme="https://marcuxu.com/categories/Clutter/"/>
-    
-    
+    <id>https://marcuxu.com/2022/09/18/hello-world/</id>
+    <link href="https://marcuxu.com/2022/09/18/hello-world/"/>
+    <published>2022-09-18T14:47:31.000Z</published>
+    <summary>
+      <![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a>]]>
+    </summary>
+    <title>Hello world</title>
+    <updated>2022-09-18T14:47:31.000Z</updated>
   </entry>
-  
 </feed>
