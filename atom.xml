@@ -23,7 +23,7 @@
     <summary>
       <![CDATA[<h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>Few-shot learning asks a]]>
     </summary>
-    <title>Understanding A3B2: Adaptive Asymmetric Adapters for Few-Shot Vision-Language Classification</title>
+    <title>Understanding A3B2: Adaptive Asymmetric Adapter for Few-Shot Vision-Language Classification</title>
     <updated>2026-07-07T02:20:00.000Z</updated>
   </entry>
   <entry>
@@ -54,7 +54,7 @@
       <![CDATA[<h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>Tactile perception is an]]>
     </summary>
     <title>Understanding TLV-CoRe: Collaborative Representation Learning for Tactile-Language-Vision Alignment</title>
-    <updated>2026-06-16T15:30:00.000Z</updated>
+    <updated>2026-07-08T11:16:30.000Z</updated>
   </entry>
   <entry>
     <author>
@@ -69,7 +69,7 @@
       <![CDATA[<h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>Modern machine learning]]>
     </summary>
     <title>Understanding PSMGD: Fast Multi-Objective Optimization with Periodic Gradient Weights</title>
-    <updated>2026-06-04T02:34:25.000Z</updated>
+    <updated>2026-07-08T11:16:30.000Z</updated>
   </entry>
   <entry>
     <author>
@@ -84,7 +84,7 @@
       <![CDATA[<h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>Today’s talk is structured]]>
     </summary>
     <title>Speaking the Language of Probability: From Classifier Evaluation to Generative Classifiers</title>
-    <updated>2025-10-30T05:01:20.000Z</updated>
+    <updated>2026-07-07T10:24:45.000Z</updated>
   </entry>
   <entry>
     <author>
@@ -95,10 +95,10 @@
     <link href="https://marcuxu.com/2024/01/26/cisc-896-01/"/>
     <published>2024-01-26T12:18:18.000Z</published>
     <summary>
-      <![CDATA[<p>January 2025, 2025: I’ve withdrawn from Rochester Institute of Technology (RIT). My car and most of my belongings are still in the U.S.]]>
+      <![CDATA[<p>January 2025: I’ve withdrawn from Rochester Institute of Technology (RIT). My car and most of my belongings are still in the U.S. Not]]>
     </summary>
     <title>Non-academic notes from my PhD journey far from home</title>
-    <updated>2024-01-26T12:18:18.000Z</updated>
+    <updated>2025-08-24T13:11:35.000Z</updated>
   </entry>
   <entry>
     <author>
@@ -114,7 +114,7 @@
 <h2 id="d2l"><a href="#d2l" class="headerlink"]]>
     </summary>
     <title>DL study</title>
-    <updated>2023-03-01T01:48:37.000Z</updated>
+    <updated>2023-12-06T21:57:42.000Z</updated>
   </entry>
   <entry>
     <author>
@@ -130,7 +130,7 @@
 <h2 id="ChatGPT"><a href="#ChatGPT"]]>
     </summary>
     <title>Tiny AI stories</title>
-    <updated>2022-12-08T23:06:33.000Z</updated>
+    <updated>2023-10-26T20:47:15.000Z</updated>
   </entry>
   <entry>
     <author>
@@ -145,7 +145,7 @@
       <![CDATA[<p>作为一个工作过的老油条，我认为参照别人的轮子来创造自己的轮子通常比空手造轮子会顺利很多。因此，在坚定进入学术生涯的目标后，我开始寻找一些前人的经验来提升自己。当然，在向别人学习的过程中，我也会加入自己的思考。事实上，在Prof.]]>
     </summary>
     <title>Personal thoughts of the academic</title>
-    <updated>2022-11-08T13:39:57.000Z</updated>
+    <updated>2023-10-02T15:52:02.000Z</updated>
   </entry>
   <entry>
     <author>
@@ -160,7 +160,7 @@
       <![CDATA[<h2 id="Preface-by-the-author"><a href="#Preface-by-the-author" class="headerlink" title="Preface by the author"></a>Preface by the]]>
     </summary>
     <title>CNN in Deep Learning: From Pixels to Feature Maps</title>
-    <updated>2022-10-06T14:20:52.000Z</updated>
+    <updated>2026-06-19T18:21:48.000Z</updated>
   </entry>
   <entry>
     <author>
@@ -177,7 +177,7 @@
     <title>
       <![CDATA[Git & GitHub]]>
     </title>
-    <updated>2022-09-29T14:45:46.000Z</updated>
+    <updated>2023-08-01T22:15:31.000Z</updated>
   </entry>
   <entry>
     <author>
@@ -193,7 +193,7 @@
     <title>
       <![CDATA[Memory in HK & CUHK]]>
     </title>
-    <updated>2022-09-19T12:08:34.000Z</updated>
+    <updated>2023-01-14T12:39:21.000Z</updated>
   </entry>
   <entry>
     <author>
@@ -208,7 +208,7 @@
       <![CDATA[<h2 id="Snapshot"><a href="#Snapshot" class="headerlink" title="Snapshot"></a>Snapshot</h2><p>I am <strong>Mingjing Xu</strong>, a Computer]]>
     </summary>
     <title>About Mingjing Xu</title>
-    <updated>2022-09-19T01:56:15.000Z</updated>
+    <updated>2026-10-13T00:47:19.000Z</updated>
   </entry>
   <entry>
     <author>
@@ -224,20 +224,6 @@
 <li>HEXO: 安装所需库可以看<a]]>
     </summary>
     <title>How to build your own website</title>
-    <updated>2022-09-18T16:21:52.000Z</updated>
-  </entry>
-  <entry>
-    <author>
-      <name>Mingjing Xu</name>
-    </author>
-    <category term="Clutter" scheme="https://marcuxu.com/categories/Clutter/"/>
-    <id>https://marcuxu.com/2022/09/18/hello-world/</id>
-    <link href="https://marcuxu.com/2022/09/18/hello-world/"/>
-    <published>2022-09-18T14:47:31.000Z</published>
-    <summary>
-      <![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a>]]>
-    </summary>
-    <title>Hello world</title>
-    <updated>2022-09-18T14:47:31.000Z</updated>
+    <updated>2026-06-24T21:45:16.000Z</updated>
   </entry>
 </feed>

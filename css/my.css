@@ -1029,3 +1029,100 @@ html body.DarkMode {
     background-color: #16191d;
     background-image: none;
 }
+
+/* ---------------------------------------------------------------------------
+ * Visual polish (2026-10-13): calmer palette and motion.
+ * ------------------------------------------------------------------------- */
+
+body {
+    background-color: #f2f4f7;
+}
+
+::selection {
+    color: inherit;
+    background: rgba(47, 128, 237, 0.2);
+}
+
+:focus-visible {
+    outline: 2px solid var(--mx-accent);
+    outline-offset: 2px;
+}
+
+/* The flower logo is black; on the dark/transparent header it needs to be white. */
+header .brand-logo .logo-img,
+#mobile-nav .mobile-head .logo-img {
+    filter: brightness(0) invert(1);
+}
+
+/* Buttons in the site palette instead of the theme's red/pink/yellow gradients. */
+.top-scroll .btn-floating {
+    background: linear-gradient(135deg, var(--mx-accent-deep) 0%, var(--mx-accent) 100%);
+    box-shadow: 0 6px 18px rgba(15, 76, 129, 0.3);
+}
+
+.recommend .post-card .read-more {
+    border: 1px solid rgba(255, 255, 255, 0.7);
+    background: rgba(255, 255, 255, 0.12) !important;
+    box-shadow: none;
+    -webkit-backdrop-filter: blur(4px);
+    backdrop-filter: blur(4px);
+    font-weight: 500;
+    letter-spacing: 0.02em;
+}
+
+.recommend .post-card .read-more:hover {
+    background: rgba(255, 255, 255, 0.24) !important;
+}
+
+/* Subtler scroll-in animations than AOS's defaults (100px slide, 60% zoom). */
+[data-aos="fade-up"] {
+    transform: translate3d(0, 24px, 0);
+}
+
+[data-aos="zoom-in"],
+[data-aos="zoom-in-up"] {
+    transform: translate3d(0, 18px, 0) scale(0.97);
+}
+
+/* 404 page */
+.not-found-home {
+    color: #fff;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+
+    [data-aos] {
+        opacity: 1 !important;
+        transform: none !important;
+    }
+}
+
+/* Skill percentages were drawn under the bar (e.g. "92%" showed as "2%"); give them a pill on top. */
+.skillbar .skill-bar-percent {
+    z-index: 1;
+    top: 4px;
+    right: 4px;
+    height: 22px;
+    padding: 0 7px;
+    border-radius: 11px;
+    color: var(--mx-ink);
+    background: rgba(255, 255, 255, 0.92);
+    font-weight: 600;
+    line-height: 22px;
+}
+
+/* The AI System page has a light hero instead of a dark cover, so its header must not be transparent. */
+body:has(#ai-browser-page) header nav.nav-transparent {
+    background-color: rgba(15, 32, 39, 0.94) !important;
+    box-shadow: 0 10px 30px rgba(15, 32, 39, 0.18) !important;
+}

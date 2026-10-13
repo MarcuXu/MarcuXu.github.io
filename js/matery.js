@@ -118,9 +118,13 @@ $(function () {
     });
 
     AOS.init({
-        easing: 'ease-in-out-sine',
-        duration: 700,
-        delay: 100
+        easing: 'ease-out-cubic',
+        duration: 550,
+        offset: 40,
+        once: true,
+        disable: function () {
+            return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        }
     });
 
     /*文章内容详情的一些初始化特性*/
@@ -247,20 +251,9 @@ $(function () {
     $('.tooltipped').tooltip();
 });
 
-// Suggest dark mode on desktop at night.
-setTimeout(function () {
-    if (
-        window.innerWidth > 601 &&
-        (new Date().getHours() >= 19 || new Date().getHours() < 7) &&
-        !$('body').hasClass('DarkMode')
-    ) {
-        let toastHTML = '<span style="color:#97b8b2;border-radius:10px;"><i class="fa fa-bell" aria-hidden="true"></i> Dark mode may be easier to read at night.</span>';
-        M.toast({html: toastHTML});
-    }
-}, 2200);
-
-// Apply saved dark-mode preference.
-if (localStorage.getItem('isDark') === '1') {
+// Dark mode: an explicit choice (moon/sun button, saved as isDark) wins; otherwise follow the OS setting.
+var savedDark = localStorage.getItem('isDark');
+if (savedDark === '1' || (savedDark === null && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
     document.body.classList.add('DarkMode');
     $('#sum-moon-icon').addClass("fa-sun").removeClass('fa-moon')
 } else {

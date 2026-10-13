@@ -827,11 +827,11 @@
         },
         'error-callback': function () {
           turnstileToken = '';
-          setStatus('已跳过验证', 'idle');
+          setStatus('人机验证加载失败', 'error');
         }
       });
     } catch (error) {
-      setStatus('已跳过验证', 'idle');
+      setStatus('人机验证加载失败', 'error');
     }
   }
 

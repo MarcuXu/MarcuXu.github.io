@@ -16,7 +16,7 @@
 <meta property="og:image" content="https://media.giphy.com/media/i4NjAwytgIRDW/giphy.gif">
 <meta property="og:image" content="https://marcuxu.com/2022/10/06/cnn-in-dl/Pixel2image.png">
 <meta property="article:published_time" content="2022-10-06T14:20:52.000Z">
-<meta property="article:modified_time" content="2022-10-06T14:20:52.000Z">
+<meta property="article:modified_time" content="2026-06-19T18:21:48.000Z">
 <meta property="article:author" content="Mingjing Xu">
 <meta property="article:tag" content="AI_Tricks">
 <meta name="twitter:card" content="summary_large_image">
@@ -35,7 +35,9 @@
 
     <title>CNN in Deep Learning: From Pixels to Feature Maps | MarcuXu</title>
     <link rel="preload" href="/libs/fonts/inter/inter-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="icon" type="image/png" href="/medias/Gemini_Generated_0.png">
+    <link rel="icon" sizes="48x48" type="image/png" href="/favicon.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
     
 
 
@@ -50,7 +52,7 @@
 <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
 <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
 <link rel="stylesheet" type="text/css" href="/css/matery.css">
-<link rel="stylesheet" type="text/css" href="/css/my.css?v=20261012-typography">
+<link rel="stylesheet" type="text/css" href="/css/my.css?v=20261013">
 <link rel="stylesheet" type="text/css" href="/css/dark.css" media="none" onload="if(media!='all')media='all'">
 
 
@@ -81,7 +83,7 @@
             <div class="brand-logo">
                 <a href="/" class="waves-effect waves-light">
                     
-                    <img src="/medias/flower.png" class="logo-img" alt="LOGO">
+                    <img src="/medias/flower.png" class="logo-img" alt="">
                     
                     <span class="logo-span">MarcuXu</span>
                 </a>
@@ -185,7 +187,7 @@
 
     <div class="mobile-head bg-color">
         
-        <img src="/medias/flower.png" class="logo-img circle responsive-img">
+        <img src="/medias/flower.png" class="logo-img circle responsive-img" alt="">
         
         <div class="logo-name">MarcuXu</div>
         <div class="logo-desc">
@@ -275,75 +277,11 @@
         </li>
         
         
-        <li><div class="divider"></div></li>
-        <li>
-            <a href="https://github.com/MarcuXu/MarcuXu.github.io" class="waves-effect waves-light sidenav-close" target="_blank">
-                <i class="fab fa-github-square fa-fw"></i><span class="mobile-nav-label">GitHub</span>
-            </a>
-        </li>
-        
     </ul>
 </div>
 
 
         </div>
-
-        
-            <style>
-    .nav-transparent .github-corner {
-        display: none !important;
-    }
-
-    .github-corner {
-        position: absolute;
-        z-index: 10;
-        top: 0;
-        right: 0;
-        border: 0;
-        transform: scale(1.1);
-    }
-
-    .github-corner svg {
-        color: #0f4c81;
-        fill: #fff;
-        height: 64px;
-        width: 64px;
-    }
-
-    .github-corner:hover .octo-arm {
-        animation: a 0.56s ease-in-out;
-    }
-
-    .github-corner .octo-arm {
-        animation: none;
-    }
-
-    @keyframes a {
-        0%,
-        to {
-            transform: rotate(0);
-        }
-        20%,
-        60% {
-            transform: rotate(-25deg);
-        }
-        40%,
-        80% {
-            transform: rotate(10deg);
-        }
-    }
-</style>
-
-<a href="https://github.com/MarcuXu/MarcuXu.github.io" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
-   data-tooltip="GitHub" data-position="left" data-delay="50">
-    <svg viewBox="0 0 250 250" aria-hidden="true">
-        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
-        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
-              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
-        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
-              fill="currentColor" class="octo-body"></path>
-    </svg>
-</a>
 
         
     </nav>
@@ -413,9 +351,10 @@
                 
 
                 
+                
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>Update Date:&nbsp;&nbsp;
-                    2022-10-06
+                    2026-06-20
                 </div>
                 
 
@@ -470,7 +409,7 @@ $$
 </div>
 
 <p>当然，不同框架对 channel 的位置有不同习惯。例如 TensorFlow 常见的是 <code>NHWC</code>，PyTorch 常见的是 <code>NCHW</code>。但本质上都是在说：图像是一组有空间结构的多通道数值。</p>
-<p>这也是 CNN 和普通 fully connected network 的关键差别。假如直接把 $256 \times 256 \times 3$ 的图像 flatten 成一个长向量，模型会丢掉很多空间邻近关系；而 CNN 会保留“附近像素更可能共同构成局部结构”这个 inductive bias。</p>
+<p>这也是 CNN 和普通 fully connected network 的关键差别。假如直接把 $256 \times 256 \times 3$ 的图像 flatten 成一个长向量，模型就无法直接利用空间邻近关系；而 CNN 会保留“附近像素更可能共同构成局部结构”这个 inductive bias。</p>
 <h2 id="2-What-Makes-CNN-Work"><a href="#2-What-Makes-CNN-Work" class="headerlink" title="2. What Makes CNN Work"></a>2. What Makes CNN Work</h2><p>我觉得理解 CNN 时，最重要的是先抓住三个词：<strong>locality, parameter sharing, translation equivariance</strong>。</p>
 <p><strong>Locality</strong> 指的是卷积层只看局部窗口。比如一个 $3 \times 3$ filter 每次只处理当前位置附近的小区域。图像里的边缘、纹理、角点往往就是局部结构，所以这很自然。</p>
 <p><strong>Parameter sharing</strong> 指的是同一个 filter 会在整张图上滑动。也就是说，如果某个 filter 学会检测“竖直边缘”，它不需要在左上角、右下角分别学习一套参数。这样既减少了参数量，也让模型更容易泛化。</p>
@@ -510,12 +449,12 @@ $$
 </div>
 
 <p>其中 $P$ 是 padding，$S$ 是 stride。Padding 可以让边缘像素也被充分利用，也可以控制输出尺寸；stride 越大，下采样越明显。</p>
-<p><img src="/2022/10/06/cnn-in-dl/Proposed-adopted-Convolutional-Neural-Network-CNN-model.png" alt="一个经典的 CNN 结构"></p>
+<p><img src="/2022/10/06/cnn-in-dl/Proposed-adopted-Convolutional-Neural-Network-CNN-model.png" alt="一个 CNN 结构示例" loading="lazy"></p>
 <p>在下面这个例子里，input 是一个 $5 \times 5$ 的二维矩阵，我们使用一个 $3 \times 3$ filter 在上面滑动。每次滑动时，窗口内的数值和 filter 对应元素相乘再求和，得到 feature map 中的一个值。</p>
-<p><img src="https://media.giphy.com/media/i4NjAwytgIRDW/giphy.gif" alt="Conv layer 的计算示例"></p>
+<p><img src="https://media.giphy.com/media/i4NjAwytgIRDW/giphy.gif" alt="Conv layer 的计算示例" loading="lazy"></p>
 <p>我一开始理解 CNN 时，只是把卷积层看成线性代数里的矩阵运算。这个角度没有错，但还不够直观。更直观的理解是：一个 filter 就像一个小型 pattern detector。如果某个局部图像块和这个 filter 想检测的 pattern 很像，输出就大；如果不像，输出就小。</p>
 <p>比如下面这个简化示例中，一个 $7 \times 7$ filter 可以被看成一条曲线。当它扫过一张图时，越像这条曲线的局部区域，响应越强。</p>
-<p><img src="/2022/10/06/cnn-in-dl/Pixel2image.png" alt="可视化一个简单的 kernel"></p>
+<p><img src="/2022/10/06/cnn-in-dl/Pixel2image.png" alt="可视化一个简单的 kernel" loading="lazy"></p>
 <p>这就是 feature extraction 的基本逻辑。早期层的 filters 可能学到边缘、颜色对比和简单纹理；更深层的 filters 会在前面 feature maps 的基础上检测更复杂的形状、部件甚至语义模式。</p>
 <h2 id="4-Nonlinearity-Why-ReLU-Is-Needed"><a href="#4-Nonlinearity-Why-ReLU-Is-Needed" class="headerlink" title="4. Nonlinearity: Why ReLU Is Needed"></a>4. Nonlinearity: Why ReLU Is Needed</h2><p>如果 CNN 只有卷积层，那么每一层本质上仍然是线性变换。很多线性层堆在一起，最后仍然等价于一个线性变换，表达能力会很有限。所以在卷积之后，我们通常会接一个 nonlinear activation。</p>
 <p>最常见的是 ReLU：</p>
@@ -558,7 +497,7 @@ $$
 
 <p>在很多现代网络里，最后也会用 global average pooling，把每个 channel 的整张 feature map 平均成一个数，从而避免巨大的 flatten 向量。</p>
 <h2 id="6-Receptive-Field"><a href="#6-Receptive-Field" class="headerlink" title="6. Receptive Field"></a>6. Receptive Field</h2><p>CNN 里还有一个很重要但容易被忽略的概念：<strong>receptive field</strong>。它指的是某一层某个神经元在原始输入图像中能“看到”的区域。</p>
-<p>第一层的 $3 \times 3$ conv 只能看到 $3 \times 3$ 的像素块；第二层的一个神经元虽然仍然可能是 $3 \times 3$ conv，但它看到的是第一层 feature map 上的 $3 \times 3$ 区域，而第一层每个点又对应原图的一小片区域。所以网络越深，后面的神经元通常拥有越大的 effective receptive field。</p>
+<p>第一层的 $3 \times 3$ conv 只能看到 $3 \times 3$ 的像素块；第二层的一个神经元虽然仍然可能是 $3 \times 3$ conv，但它看到的是第一层 feature map 上的 $3 \times 3$ 区域，而第一层每个点又对应原图的一小片区域。所以网络越深，后面的神经元通常拥有越大的 receptive field。</p>
 <p>这也解释了为什么 CNN 能从 low-level feature 逐步走向 high-level feature：</p>
 <ol>
 <li>浅层：边缘、角点、颜色对比。</li>
@@ -601,7 +540,7 @@ $$
 </div>
 
 <p>也就是说，模型给正确类别的概率越高，loss 越小。训练时，反向传播会根据 loss 对所有参数求梯度，包括卷积核、bias、BatchNorm 参数和 classifier head 中的权重。</p>
-<p>举个例子，假设 CIFAR-10 有 10 个类别，softmax 输出为：</p>
+<p>举个例子，以 CIFAR-10 的 10 个类别为例，softmax 输出为：</p>
 <div class="mathjax-display">
 $$
 [0.00, 0.10, 0.10, 0.75, 0.00, 0.00, 0.00, 0.00, 0.00, 0.05].
@@ -1268,7 +1207,7 @@ $(function () {
     <script src="/libs/aos/aos.js"></script>
     <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
     <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
-    <script src="/js/matery.js?v=20260715-mobile-scroll"></script>
+    <script src="/js/matery.js?v=20261013"></script>
 
     
 

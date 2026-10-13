@@ -5,12 +5,12 @@
 <head>
     <meta charset="utf-8">
     <meta name="keywords" content="智能信息分析系统,AI System,LZH,OpenAI,联网检索">
-    <meta name="description" content="面向全球公开信息研判与复杂问题分析的智能信息分析系统，内置多智能体协同提问、联网证据筛选、来源追踪与答案优化机制。">
+    <meta name="description" content="面向全球公开信息研判与复杂问题分析的智能信息分析系统，内置分步式提问、联网证据筛选、来源链接追踪与答案整合机制。">
 <meta property="og:type" content="website">
 <meta property="og:title" content="智能信息分析系统">
 <meta property="og:url" content="https://marcuxu.com/ai-browser/">
 <meta property="og:site_name" content="MarcuXu">
-<meta property="og:description" content="面向全球公开信息研判与复杂问题分析的智能信息分析系统，内置多智能体协同提问、联网证据筛选、来源追踪与答案优化机制。">
+<meta property="og:description" content="面向全球公开信息研判与复杂问题分析的智能信息分析系统，内置分步式提问、联网证据筛选、来源链接追踪与答案整合机制。">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://marcuxu.com/medias/Mj_Xu.jpg">
 <meta property="article:published_time" content="2026-06-04T16:00:00.000Z">
@@ -38,7 +38,9 @@
 
     <title>智能信息分析系统 | LZH</title>
     <link rel="preload" href="/libs/fonts/inter/inter-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="icon" type="image/png" href="/medias/Gemini_Generated_0.png">
+    <link rel="icon" sizes="48x48" type="image/png" href="/favicon.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
     
 
 
@@ -53,7 +55,7 @@
 <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
 <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
 <link rel="stylesheet" type="text/css" href="/css/matery.css">
-<link rel="stylesheet" type="text/css" href="/css/my.css?v=20261012-typography">
+<link rel="stylesheet" type="text/css" href="/css/my.css?v=20261013">
 <link rel="stylesheet" type="text/css" href="/css/dark.css" media="none" onload="if(media!='all')media='all'">
 
 
@@ -84,7 +86,7 @@
             <div class="brand-logo">
                 <a href="/" class="waves-effect waves-light">
                     
-                    <img src="/medias/flower.png" class="logo-img" alt="LOGO">
+                    <img src="/medias/flower.png" class="logo-img" alt="">
                     
                     <span class="logo-span">MarcuXu</span>
                 </a>
@@ -188,7 +190,7 @@
 
     <div class="mobile-head bg-color">
         
-        <img src="/medias/flower.png" class="logo-img circle responsive-img">
+        <img src="/medias/flower.png" class="logo-img circle responsive-img" alt="">
         
         <div class="logo-name">MarcuXu</div>
         <div class="logo-desc">
@@ -278,13 +280,6 @@
         </li>
         
         
-        <li><div class="divider"></div></li>
-        <li>
-            <a href="https://github.com/MarcuXu/MarcuXu.github.io" class="waves-effect waves-light sidenav-close" target="_blank">
-                <i class="fab fa-github-square fa-fw"></i><span class="mobile-nav-label">GitHub</span>
-            </a>
-        </li>
-        
     </ul>
 </div>
 
@@ -292,82 +287,25 @@
         </div>
 
         
-            <style>
-    .nav-transparent .github-corner {
-        display: none !important;
-    }
-
-    .github-corner {
-        position: absolute;
-        z-index: 10;
-        top: 0;
-        right: 0;
-        border: 0;
-        transform: scale(1.1);
-    }
-
-    .github-corner svg {
-        color: #0f4c81;
-        fill: #fff;
-        height: 64px;
-        width: 64px;
-    }
-
-    .github-corner:hover .octo-arm {
-        animation: a 0.56s ease-in-out;
-    }
-
-    .github-corner .octo-arm {
-        animation: none;
-    }
-
-    @keyframes a {
-        0%,
-        to {
-            transform: rotate(0);
-        }
-        20%,
-        60% {
-            transform: rotate(-25deg);
-        }
-        40%,
-        80% {
-            transform: rotate(10deg);
-        }
-    }
-</style>
-
-<a href="https://github.com/MarcuXu/MarcuXu.github.io" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
-   data-tooltip="GitHub" data-position="left" data-delay="50">
-    <svg viewBox="0 0 250 250" aria-hidden="true">
-        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
-        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
-              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
-        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
-              fill="currentColor" class="octo-body"></path>
-    </svg>
-</a>
-
-        
     </nav>
 
 </header>
 
-    <link rel="stylesheet" href="/css/ai-browser.css?v=20260608f">
+    <link rel="stylesheet" href="/css/ai-browser.css?v=20261013">
 
 <main id="ai-browser-page" class="ai-browser-page">
     <section class="ai-browser-shell">
         <header class="ai-browser-hero">
             <div class="ai-browser-hero-copy">
                 <div class="ai-browser-kicker">
-                    <i class="fas fa-satellite-dish"></i>
+                    <i class="fas fa-search"></i>
                     <span>AI System / Intelligent Analysis Console</span>
                 </div>
                 <h1>智能信息分析系统</h1>
-                <p class="ai-browser-subtitle">面向全球公开信息研判、跨区域线索梳理与复杂问题分析的智能控制台。系统内置多智能体协同提问、联网证据筛选、来源可信度追踪与答案优化机制，能够在海量信息中快速形成结构化、可追溯、可继续追问的综合研判结果。</p>
+                <p class="ai-browser-subtitle">面向公开信息研判与复杂问题分析的智能控制台。系统内置分步式提问、联网证据筛选、来源链接追踪与答案整合机制，能够在海量信息中快速形成结构化、可追溯、可继续追问的综合研判结果。</p>
                 <div class="ai-browser-capability-row" aria-label="系统能力">
                     <span><i class="fas fa-globe-asia"></i> 全球信息研判</span>
-                    <span><i class="fas fa-network-wired"></i> 多智能体优化</span>
+                    <span><i class="fas fa-network-wired"></i> 分步分析</span>
                     <span><i class="fas fa-comments"></i> 连续追问</span>
                     <span><i class="fas fa-link"></i> 来源可查</span>
                 </div>
@@ -394,9 +332,9 @@
                     <div class="ai-browser-visual-frame">
                         <img src="/medias/ai-system/ai-analysis-visual.png" alt="智能信息分析系统视觉图" decoding="async">
                         <div class="ai-browser-visual-overlay" aria-hidden="true">
-                            <span><i class="fas fa-search-location"></i> 全域检索</span>
+                            <span><i class="fas fa-search-location"></i> 联网检索</span>
                             <span><i class="fas fa-project-diagram"></i> 证据链路</span>
-                            <span><i class="fas fa-shield-alt"></i> 风险校验</span>
+                            <span><i class="fas fa-shield-alt"></i> 来源链接</span>
                         </div>
                     </div>
                 </div>
@@ -508,6 +446,7 @@
                             <span>开始分析</span>
                         </button>
                     </div>
+                    <p class="ai-browser-muted ai-browser-disclaimer">回答由 AI 自动生成，可能有误，请以原始来源为准；提交的问题会发送至第三方模型服务处理。</p>
                 </form>
             </section>
 
@@ -530,7 +469,7 @@
         configEndpoint: 'https://marcuxu-ai-browser-api.2596785.workers.dev/config'
     };
 </script>
-<script src="/js/ai-browser.js?v=20260608f" defer></script>
+<script src="/js/ai-browser.js?v=20261013" defer></script>
 
 
     <footer class="page-footer bg-color">
@@ -795,7 +734,7 @@ $(function () {
     <script src="/libs/aos/aos.js"></script>
     <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
     <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
-    <script src="/js/matery.js?v=20260715-mobile-scroll"></script>
+    <script src="/js/matery.js?v=20261013"></script>
 
     
 
