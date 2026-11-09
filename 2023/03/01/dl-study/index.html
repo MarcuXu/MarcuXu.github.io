@@ -37,8 +37,6 @@
     <link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png">
     <link rel="apple-touch-icon" href="/apple-touch-icon.png">
     
-
-
     <!-- bg-cover style     -->
 
 
@@ -50,7 +48,7 @@
 <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
 <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
 <link rel="stylesheet" type="text/css" href="/css/matery.css">
-<link rel="stylesheet" type="text/css" href="/css/my.css?v=20261013">
+<link rel="stylesheet" type="text/css" href="/css/my.css?v=20261109">
 <link rel="stylesheet" type="text/css" href="/css/dark.css" media="none" onload="if(media!='all')media='all'">
 
 
@@ -60,9 +58,6 @@
     <link rel="stylesheet" href="/css/post.css">
 
 
-
-
-    
 
 
 
@@ -109,17 +104,6 @@
       <i class="fas fa-tags" style="zoom: 0.6;"></i>
       
       <span>Tags</span>
-    </a>
-    
-  </li>
-  
-  <li class="hide-on-med-and-down nav-item">
-    
-    <a href="/categories" class="waves-effect waves-light">
-      
-      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
-      
-      <span>Categories</span>
     </a>
     
   </li>
@@ -221,17 +205,6 @@
         
         <li class="m-nav-item">
 	  
-		<a href="/categories" class="waves-effect waves-light sidenav-close">
-			
-			    <i class="fa-fw fas fa-bookmark"></i>
-			
-			<span class="mobile-nav-label">Categories</span>
-		</a>
-          
-        </li>
-        
-        <li class="m-nav-item">
-	  
 		<a href="/archives" class="waves-effect waves-light sidenav-close">
 			
 			    <i class="fa-fw fas fa-archive"></i>
@@ -274,21 +247,16 @@
           
         </li>
         
-        
     </ul>
 </div>
 
 
         </div>
-
-        
     </nav>
 
 </header>
 
     
-
-
 
 <div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/7.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
@@ -315,24 +283,12 @@
     <div class="card">
         <div class="card-content article-info">
             <div class="row tag-cate">
-                <div class="col s7">
+                <div class="col s12">
                     
                     <div class="article-tag">
                         
                             <a href="/tags/AI-Tricks/">
                                 <span class="chip bg-color">AI_Tricks</span>
-                            </a>
-                        
-                    </div>
-                    
-                </div>
-                <div class="col s5 right-align">
-                    
-                    <div class="post-cate">
-                        <i class="fas fa-bookmark fa-fw icon-category"></i>
-                        
-                            <a href="/categories/Tech/" class="post-category">
-                                Tech
                             </a>
                         
                     </div>
@@ -370,11 +326,13 @@
                 </div>
                 
 
-                
             </div>
         </div>
         <hr class="clearfix">
 
+        
+        <!-- Prism theme; the tokens are generated at build time (prismjs.preprocess). -->
+        <link rel="stylesheet" href="/libs/prism/prism.min.css">
         
 
         
@@ -386,7 +344,6 @@
 <p>如果是使用自己的PC来跑代码的话会更简单。先在<a target="_blank" rel="noopener" href="https://repo.anaconda.com/archive/">官网</a>上查找自己需要的版本，然后下载<code>wget https://repo.anaconda.com/archive/Anaconda3-2023.09-0-Linux-x86_64.sh</code>。下载完成后，要先赋权再执行安装程序<code>chmod +x Anaconda3-2023.09-0-Linux-x86_64.sh</code>。在一直按ENTER时要注意，最后一个选项是设置环境变量，最好输入YES。如果输错了也没事，参考<a target="_blank" rel="noopener" href="https://blog.csdn.net/wyf2017/article/details/118676765">这里</a>在 <em>.bashrc</em> 中更改路径即可。注意如果需要使用GPU来运行程序的话，安装好conda后使用<code>conda search cudatoolkit</code>来<a target="_blank" rel="noopener" href="https://blog.csdn.net/LIWEI940638093/article/details/113811563">查找</a>适用的toolkit。例如我的PC上是创建 <em>py3.9</em> 后使用<code>conda install pytorch==1.12.1 torchvision==0.13.1 torchaudio==0.12.1 cudatoolkit=11.6 -c pytorch -c conda-forge</code>来安装相应的库和依赖，当然使用相应的conda安装指令需要参考PyTorch<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_39450145/article/details/130629569">历史版本</a>。然后跟着李沐老师的教程走installation就行（安装好d2l其实也就安装好了大部分DL所需要的库了）。</p>
 <h2 id="WIFI-ART"><a href="#WIFI-ART" class="headerlink" title="WIFI ART"></a>WIFI ART</h2><p>在设置<a target="_blank" rel="noopener" href="https://github.com/Trusted-AI/adversarial-robustness-toolbox">ART</a>工作环境时，一定得注意可运行的库环境，不然总会有乱七八糟的问题，例如tensorflow的<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_33682559/article/details/120310206">版本问题</a>，numpy的<a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/74947992/how-to-remove-the-error-systemerror-initialization-of-internal-failed-without">initialization of _internal failed without raising an exception</a>。而因为长时间没有复习Keras了，导致在debug的时候发现连最基本的<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_43190189/article/details/114090368">step</a>的<a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/54547681/why-is-step-argument-necessary-when-predicting-using-data-tensors-what-does-t">设置</a>都忘记了。看来复习ML是迫在眉睫了 <span class="github-emoji"><span>😱</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f631.png?v8" aria-hidden="true" onerror="this.parentElement.classList.add('github-emoji-fallback')"></span></p>
 
-                
             </div>
             <hr/>
 
@@ -465,31 +422,12 @@
     <script src="/libs/share/js/social-share.min.js"></script>
     
 
-    
-
 </div>
 
                 </div>
             </div>
-            
         </div>
     </div>
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
 
     
 
@@ -519,17 +457,15 @@
                         <span class="publish-date">
                             <i class="far fa-clock fa-fw icon-date"></i>2024-01-26
                         </span>
-                        <span class="publish-author">
-                            
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/Clutter/" class="post-category">
-                                    Clutter
-                                </a>
-                            
-                            
-                        </span>
                     </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Life/">
+                        <span class="chip bg-color">Life</span>
+                    </a>
+                    
                 </div>
                 
             </div>
@@ -560,16 +496,6 @@
                             <span class="publish-date">
                                 <i class="far fa-clock fa-fw icon-date"></i>2022-12-09
                             </span>
-                        <span class="publish-author">
-                            
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/Tech/" class="post-category">
-                                    Tech
-                                </a>
-                            
-                            
-                        </span>
                     </div>
                 </div>
                 
@@ -589,12 +515,8 @@
 
 </div>
 
-
-
 <!-- 代码块功能依赖 -->
 <script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
-
-
 
 <!-- 代码语言 -->
 
@@ -701,8 +623,6 @@
 
 
     <footer class="page-footer bg-color">
-    
-
     <div class="container row center-align"
          style="margin-bottom: 15px !important;">
         <div class="col s12 m8 l8 copy-right">
@@ -717,10 +637,6 @@
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;Total Words:&nbsp;<span
                         class="white-color">30.1k</span>
-            
-            
-            
-            
             
             <br>
 
@@ -781,9 +697,8 @@
                 </script>
             
             <br>
-            
         </div>
-        <div class="col s12 m4 l4 social-link ">
+        <div class="col s12 m4 l4 social-link">
     <a href="https://github.com/MarcuXu" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
         <i class="fab fa-github"></i>
     </a>
@@ -956,6 +871,9 @@ $(function () {
     </a>
 </div>
 
+    
+
+
 
     <script src="/libs/materialize/materialize.min.js"></script>
     <script src="/libs/masonry/masonry.pkgd.min.js"></script>
@@ -963,37 +881,6 @@ $(function () {
     <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
     <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
     <script src="/js/matery.js?v=20261013"></script>
-
-    
-
-    
-
-    <!-- 雪花特效 -->
-    
-
-    <!-- 鼠标星星特效 -->
-    
-
-    
-
-    <!-- Baidu Analytics -->
-
-    <!-- Baidu Push -->
-
-    
-    
-
-    
-
-    
-
-    <!--腾讯兔小巢-->
-    
-    
-
-    
-
-    
 
     
     <script src="/libs/instantpage/instantpage.js" type="module"></script>

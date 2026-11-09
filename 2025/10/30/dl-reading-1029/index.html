@@ -35,8 +35,6 @@
     <link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png">
     <link rel="apple-touch-icon" href="/apple-touch-icon.png">
     
-
-
     <!-- bg-cover style     -->
 
 
@@ -48,7 +46,7 @@
 <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
 <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
 <link rel="stylesheet" type="text/css" href="/css/matery.css">
-<link rel="stylesheet" type="text/css" href="/css/my.css?v=20261013">
+<link rel="stylesheet" type="text/css" href="/css/my.css?v=20261109">
 <link rel="stylesheet" type="text/css" href="/css/dark.css" media="none" onload="if(media!='all')media='all'">
 
 
@@ -58,9 +56,6 @@
     <link rel="stylesheet" href="/css/post.css">
 
 
-
-
-    
 
 
 
@@ -107,17 +102,6 @@
       <i class="fas fa-tags" style="zoom: 0.6;"></i>
       
       <span>Tags</span>
-    </a>
-    
-  </li>
-  
-  <li class="hide-on-med-and-down nav-item">
-    
-    <a href="/categories" class="waves-effect waves-light">
-      
-      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
-      
-      <span>Categories</span>
     </a>
     
   </li>
@@ -219,17 +203,6 @@
         
         <li class="m-nav-item">
 	  
-		<a href="/categories" class="waves-effect waves-light sidenav-close">
-			
-			    <i class="fa-fw fas fa-bookmark"></i>
-			
-			<span class="mobile-nav-label">Categories</span>
-		</a>
-          
-        </li>
-        
-        <li class="m-nav-item">
-	  
 		<a href="/archives" class="waves-effect waves-light sidenav-close">
 			
 			    <i class="fa-fw fas fa-archive"></i>
@@ -272,21 +245,16 @@
           
         </li>
         
-        
     </ul>
 </div>
 
 
         </div>
-
-        
     </nav>
 
 </header>
 
     
-
-
 
 <div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/9.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
@@ -313,24 +281,12 @@
     <div class="card">
         <div class="card-content article-info">
             <div class="row tag-cate">
-                <div class="col s7">
+                <div class="col s12">
                     
                     <div class="article-tag">
                         
                             <a href="/tags/AI-Tricks/">
                                 <span class="chip bg-color">AI_Tricks</span>
-                            </a>
-                        
-                    </div>
-                    
-                </div>
-                <div class="col s5 right-align">
-                    
-                    <div class="post-cate">
-                        <i class="fas fa-bookmark fa-fw icon-category"></i>
-                        
-                            <a href="/categories/Tech/" class="post-category">
-                                Tech
                             </a>
                         
                     </div>
@@ -368,11 +324,13 @@
                 </div>
                 
 
-                
             </div>
         </div>
         <hr class="clearfix">
 
+        
+        <!-- Prism theme; the tokens are generated at build time (prismjs.preprocess). -->
+        <link rel="stylesheet" href="/libs/prism/prism.min.css">
         
 
         
@@ -1083,7 +1041,6 @@ $$
 </ul>
 <p>This chain connects “how we measure mistakes,” “how we interpret probabilities,” and “what the classifier looks like in the geometry of feature space.”<br>It also provides the conceptual bridge between classical statistical pattern recognition and modern deep learning classifiers, which often end with a linear layer plus a sigmoid or softmax.</p>
 
-                
             </div>
             <hr/>
 
@@ -1162,31 +1119,12 @@ $$
     <script src="/libs/share/js/social-share.min.js"></script>
     
 
-    
-
 </div>
 
                 </div>
             </div>
-            
         </div>
     </div>
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
 
     
 
@@ -1215,16 +1153,6 @@ $$
                     <div class="publish-info">
                         <span class="publish-date">
                             <i class="far fa-clock fa-fw icon-date"></i>2026-06-04
-                        </span>
-                        <span class="publish-author">
-                            
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/Tech/" class="post-category">
-                                    Tech
-                                </a>
-                            
-                            
                         </span>
                     </div>
                 </div>
@@ -1265,17 +1193,15 @@ $$
                             <span class="publish-date">
                                 <i class="far fa-clock fa-fw icon-date"></i>2024-01-26
                             </span>
-                        <span class="publish-author">
-                            
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/Clutter/" class="post-category">
-                                    Clutter
-                                </a>
-                            
-                            
-                        </span>
                     </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Life/">
+                        <span class="chip bg-color">Life</span>
+                    </a>
+                    
                 </div>
                 
             </div>
@@ -1286,12 +1212,8 @@ $$
 
 </div>
 
-
-
 <!-- 代码块功能依赖 -->
 <script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
-
-
 
 <!-- 代码语言 -->
 
@@ -1395,35 +1317,33 @@ $$
 </main>
 
 
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        jax: ['input/TeX', 'output/SVG'],
-        extensions: ['tex2jax.js'],
-        TeX: {
-            extensions: ['AMSmath.js', 'AMSsymbols.js', 'noErrors.js', 'noUndefined.js']
+<script>
+    // MathJax 3 with every TeX extension, served from this site. Extras that a reader switches on in the
+    // MathJax menu (for example the accessibility explorer) are fetched from the CDN.
+    window.MathJax = {
+        loader: {
+            paths: {mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5'}
         },
-        tex2jax: {
+        tex: {
             inlineMath: [['$', '$'], ['\\(', '\\)']],
             displayMath: [['$$', '$$'], ['\\[', '\\]']],
             processEscapes: true,
-            processEnvironments: true,
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+            processEnvironments: true
         },
-        SVG: {
-            font: 'TeX',
-            mtextFontInherit: true
+        options: {
+            skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
         },
-        showProcessingMessages: false,
-        messageStyle: 'none'
-    });
+        svg: {
+            fontCache: 'global',
+            mtextInheritFont: true
+        }
+    };
 </script>
-<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js?config=TeX-AMS_SVG"></script>
+<script async src="/libs/mathjax/tex-svg-full.js"></script>
 
 
 
     <footer class="page-footer bg-color">
-    
-
     <div class="container row center-align"
          style="margin-bottom: 15px !important;">
         <div class="col s12 m8 l8 copy-right">
@@ -1438,10 +1358,6 @@ $$
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;Total Words:&nbsp;<span
                         class="white-color">30.1k</span>
-            
-            
-            
-            
             
             <br>
 
@@ -1502,9 +1418,8 @@ $$
                 </script>
             
             <br>
-            
         </div>
-        <div class="col s12 m4 l4 social-link ">
+        <div class="col s12 m4 l4 social-link">
     <a href="https://github.com/MarcuXu" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
         <i class="fab fa-github"></i>
     </a>
@@ -1677,6 +1592,9 @@ $(function () {
     </a>
 </div>
 
+    
+
+
 
     <script src="/libs/materialize/materialize.min.js"></script>
     <script src="/libs/masonry/masonry.pkgd.min.js"></script>
@@ -1684,37 +1602,6 @@ $(function () {
     <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
     <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
     <script src="/js/matery.js?v=20261013"></script>
-
-    
-
-    
-
-    <!-- 雪花特效 -->
-    
-
-    <!-- 鼠标星星特效 -->
-    
-
-    
-
-    <!-- Baidu Analytics -->
-
-    <!-- Baidu Push -->
-
-    
-    
-
-    
-
-    
-
-    <!--腾讯兔小巢-->
-    
-    
-
-    
-
-    
 
     
     <script src="/libs/instantpage/instantpage.js" type="module"></script>

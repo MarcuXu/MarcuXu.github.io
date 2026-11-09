@@ -39,8 +39,6 @@
     <link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png">
     <link rel="apple-touch-icon" href="/apple-touch-icon.png">
     
-
-
     <!-- bg-cover style     -->
 
 
@@ -52,7 +50,7 @@
 <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
 <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
 <link rel="stylesheet" type="text/css" href="/css/matery.css">
-<link rel="stylesheet" type="text/css" href="/css/my.css?v=20261013">
+<link rel="stylesheet" type="text/css" href="/css/my.css?v=20261109">
 <link rel="stylesheet" type="text/css" href="/css/dark.css" media="none" onload="if(media!='all')media='all'">
 
 
@@ -62,9 +60,6 @@
     <link rel="stylesheet" href="/css/post.css">
 
 
-
-
-    
 
 
 
@@ -111,17 +106,6 @@
       <i class="fas fa-tags" style="zoom: 0.6;"></i>
       
       <span>Tags</span>
-    </a>
-    
-  </li>
-  
-  <li class="hide-on-med-and-down nav-item">
-    
-    <a href="/categories" class="waves-effect waves-light">
-      
-      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
-      
-      <span>Categories</span>
     </a>
     
   </li>
@@ -223,17 +207,6 @@
         
         <li class="m-nav-item">
 	  
-		<a href="/categories" class="waves-effect waves-light sidenav-close">
-			
-			    <i class="fa-fw fas fa-bookmark"></i>
-			
-			<span class="mobile-nav-label">Categories</span>
-		</a>
-          
-        </li>
-        
-        <li class="m-nav-item">
-	  
 		<a href="/archives" class="waves-effect waves-light sidenav-close">
 			
 			    <i class="fa-fw fas fa-archive"></i>
@@ -276,21 +249,16 @@
           
         </li>
         
-        
     </ul>
 </div>
 
 
         </div>
-
-        
     </nav>
 
 </header>
 
     
-
-
 
 <div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/13.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
@@ -317,24 +285,12 @@
     <div class="card">
         <div class="card-content article-info">
             <div class="row tag-cate">
-                <div class="col s7">
+                <div class="col s12">
                     
                     <div class="article-tag">
                         
                             <a href="/tags/AI-Tricks/">
                                 <span class="chip bg-color">AI_Tricks</span>
-                            </a>
-                        
-                    </div>
-                    
-                </div>
-                <div class="col s5 right-align">
-                    
-                    <div class="post-cate">
-                        <i class="fas fa-bookmark fa-fw icon-category"></i>
-                        
-                            <a href="/categories/Tech/" class="post-category">
-                                Tech
                             </a>
                         
                     </div>
@@ -372,11 +328,13 @@
                 </div>
                 
 
-                
             </div>
         </div>
         <hr class="clearfix">
 
+        
+        <!-- Prism theme; the tokens are generated at build time (prismjs.preprocess). -->
+        <link rel="stylesheet" href="/libs/prism/prism.min.css">
         
 
         
@@ -463,7 +421,6 @@ subarrays <span class="token operator">=</span> np<span class="token punctuation
 
 <p>其他生成整合步骤暂且不提，还有一个惊艳的点就是使用它自己生成的代码来debug是可以准确定位问题，比debug时自己输出layer output简单多了。例如我在使用他提供的LSTM model时遇到了<code>RuntimeError: For unbatched 2-D input, hx should also be 2-D but got 3-D tensor" in "train_model(rnn_model, train_loader, test_loader, criterion, optimizer)</code>和输入维度不匹配的问题。如果是平时的话肯定看每个layer来debug，但是如果直接输入bug后他可以非常快地定位问题。而当发生改了一次又出现之前的错误时，可以使用 <em>Now there is a previous error: “RuntimeError: For unbatched 2-D input, hx should also be 2-D but got 3-D tensor”. Please go deeper into the codes and help me fix them!</em> 我们可以要求GPT go deeper去解决问题。在解决完code的问题后，我们甚至可以要求它根据自己写的代码来写一篇brief academic thesis (<em>Can you write a brief academic report explaining the four models and why there is a big difference in processing the multivariate, sequential, and time-series dataset “EEG Eye State.arff”?</em>)。</p>
 
-                
             </div>
             <hr/>
 
@@ -542,31 +499,12 @@ subarrays <span class="token operator">=</span> np<span class="token punctuation
     <script src="/libs/share/js/social-share.min.js"></script>
     
 
-    
-
 </div>
 
                 </div>
             </div>
-            
         </div>
     </div>
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
 
     
 
@@ -595,16 +533,6 @@ subarrays <span class="token operator">=</span> np<span class="token punctuation
                     <div class="publish-info">
                         <span class="publish-date">
                             <i class="far fa-clock fa-fw icon-date"></i>2023-03-01
-                        </span>
-                        <span class="publish-author">
-                            
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/Tech/" class="post-category">
-                                    Tech
-                                </a>
-                            
-                            
                         </span>
                     </div>
                 </div>
@@ -645,16 +573,6 @@ subarrays <span class="token operator">=</span> np<span class="token punctuation
                             <span class="publish-date">
                                 <i class="far fa-clock fa-fw icon-date"></i>2022-11-08
                             </span>
-                        <span class="publish-author">
-                            
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/Clutter/" class="post-category">
-                                    Clutter
-                                </a>
-                            
-                            
-                        </span>
                     </div>
                 </div>
                 
@@ -674,12 +592,8 @@ subarrays <span class="token operator">=</span> np<span class="token punctuation
 
 </div>
 
-
-
 <!-- 代码块功能依赖 -->
 <script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
-
-
 
 <!-- 代码语言 -->
 
@@ -786,8 +700,6 @@ subarrays <span class="token operator">=</span> np<span class="token punctuation
 
 
     <footer class="page-footer bg-color">
-    
-
     <div class="container row center-align"
          style="margin-bottom: 15px !important;">
         <div class="col s12 m8 l8 copy-right">
@@ -802,10 +714,6 @@ subarrays <span class="token operator">=</span> np<span class="token punctuation
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;Total Words:&nbsp;<span
                         class="white-color">30.1k</span>
-            
-            
-            
-            
             
             <br>
 
@@ -866,9 +774,8 @@ subarrays <span class="token operator">=</span> np<span class="token punctuation
                 </script>
             
             <br>
-            
         </div>
-        <div class="col s12 m4 l4 social-link ">
+        <div class="col s12 m4 l4 social-link">
     <a href="https://github.com/MarcuXu" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
         <i class="fab fa-github"></i>
     </a>
@@ -1041,6 +948,9 @@ $(function () {
     </a>
 </div>
 
+    
+
+
 
     <script src="/libs/materialize/materialize.min.js"></script>
     <script src="/libs/masonry/masonry.pkgd.min.js"></script>
@@ -1048,37 +958,6 @@ $(function () {
     <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
     <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
     <script src="/js/matery.js?v=20261013"></script>
-
-    
-
-    
-
-    <!-- 雪花特效 -->
-    
-
-    <!-- 鼠标星星特效 -->
-    
-
-    
-
-    <!-- Baidu Analytics -->
-
-    <!-- Baidu Push -->
-
-    
-    
-
-    
-
-    
-
-    <!--腾讯兔小巢-->
-    
-    
-
-    
-
-    
 
     
     <script src="/libs/instantpage/instantpage.js" type="module"></script>

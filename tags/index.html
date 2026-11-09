@@ -42,8 +42,6 @@
     <link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png">
     <link rel="apple-touch-icon" href="/apple-touch-icon.png">
     
-
-
     <!-- bg-cover style     -->
 
 
@@ -55,7 +53,7 @@
 <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
 <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
 <link rel="stylesheet" type="text/css" href="/css/matery.css">
-<link rel="stylesheet" type="text/css" href="/css/my.css?v=20261013">
+<link rel="stylesheet" type="text/css" href="/css/my.css?v=20261109">
 <link rel="stylesheet" type="text/css" href="/css/dark.css" media="none" onload="if(media!='all')media='all'">
 
 
@@ -65,9 +63,6 @@
     <link rel="stylesheet" href="/css/post.css">
 
 
-
-
-    
 
 
 
@@ -114,17 +109,6 @@
       <i class="fas fa-tags" style="zoom: 0.6;"></i>
       
       <span>Tags</span>
-    </a>
-    
-  </li>
-  
-  <li class="hide-on-med-and-down nav-item">
-    
-    <a href="/categories" class="waves-effect waves-light">
-      
-      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
-      
-      <span>Categories</span>
     </a>
     
   </li>
@@ -226,17 +210,6 @@
         
         <li class="m-nav-item">
 	  
-		<a href="/categories" class="waves-effect waves-light sidenav-close">
-			
-			    <i class="fa-fw fas fa-bookmark"></i>
-			
-			<span class="mobile-nav-label">Categories</span>
-		</a>
-          
-        </li>
-        
-        <li class="m-nav-item">
-	  
 		<a href="/archives" class="waves-effect waves-light sidenav-close">
 			
 			    <i class="fa-fw fas fa-archive"></i>
@@ -279,14 +252,11 @@
           
         </li>
         
-        
     </ul>
 </div>
 
 
         </div>
-
-        
     </nav>
 
 </header>
@@ -350,20 +320,29 @@
             <div class="tag-chips">
                 
                 
-                <a href="/tags/SW-Tricks/" title="SW_Tricks: 2">
+                <a href="/tags/AI-Tricks/" title="AI_Tricks: 8">
                     <span class="chip center-align waves-effect waves-light
                              chip-default "
-                            data-tagname="SW_Tricks" style="background-color: #F9EBEA;">SW_Tricks
+                            data-tagname="AI_Tricks" style="background-color: #F9EBEA;">AI_Tricks
+                        <span class="tag-length">8</span>
+                    </span>
+                </a>
+                
+                
+                <a href="/tags/Life/" title="Life: 2">
+                    <span class="chip center-align waves-effect waves-light
+                             chip-default "
+                            data-tagname="Life" style="background-color: #F5EEF8;">Life
                         <span class="tag-length">2</span>
                     </span>
                 </a>
                 
                 
-                <a href="/tags/AI-Tricks/" title="AI_Tricks: 8">
+                <a href="/tags/SW-Tricks/" title="SW_Tricks: 2">
                     <span class="chip center-align waves-effect waves-light
                              chip-default "
-                            data-tagname="AI_Tricks" style="background-color: #F5EEF8;">AI_Tricks
-                        <span class="tag-length">8</span>
+                            data-tagname="SW_Tricks" style="background-color: #D5F5E3;">SW_Tricks
+                        <span class="tag-length">2</span>
                     </span>
                 </a>
                 
@@ -371,7 +350,7 @@
                 <a href="/tags/Academic/" title="Academic: 2">
                     <span class="chip center-align waves-effect waves-light
                              chip-default "
-                            data-tagname="Academic" style="background-color: #D5F5E3;">Academic
+                            data-tagname="Academic" style="background-color: #E8F8F5;">Academic
                         <span class="tag-length">2</span>
                     </span>
                 </a>
@@ -382,28 +361,44 @@
 </div>
 
     
-    <link rel="stylesheet" type="text/css" href="/libs/jqcloud/jqcloud.css">
-<style type="text/css">
-    #tag-wordcloud {
-        width: 100%;
-        height: 300px;
-    }
-</style>
-
-<div class="container" data-aos="fade-up">
+    
+<div id="tag-stats" class="container" data-aos="fade-up">
     <div class="card">
-        <div id="tag-wordcloud" class="card-content"></div>
+        <div class="card-content">
+            <div class="tag-stats-title center-align">
+                <i class="fas fa-chart-bar"></i>&nbsp;&nbsp;Posts by Tag
+            </div>
+            <p class="tag-stats-summary center-align">14 posts &middot; 4 tags</p>
+            <ul class="tag-stats-list">
+                
+                <li>
+                    <a class="tag-stats-name" href="/tags/AI-Tricks/">AI_Tricks</a>
+                    <span class="tag-stats-track"><span class="tag-stats-bar" style="width: 100%"></span></span>
+                    <span class="tag-stats-count">8</span>
+                </li>
+                
+                <li>
+                    <a class="tag-stats-name" href="/tags/Academic/">Academic</a>
+                    <span class="tag-stats-track"><span class="tag-stats-bar" style="width: 25%"></span></span>
+                    <span class="tag-stats-count">2</span>
+                </li>
+                
+                <li>
+                    <a class="tag-stats-name" href="/tags/Life/">Life</a>
+                    <span class="tag-stats-track"><span class="tag-stats-bar" style="width: 25%"></span></span>
+                    <span class="tag-stats-count">2</span>
+                </li>
+                
+                <li>
+                    <a class="tag-stats-name" href="/tags/SW-Tricks/">SW_Tricks</a>
+                    <span class="tag-stats-track"><span class="tag-stats-bar" style="width: 25%"></span></span>
+                    <span class="tag-stats-count">2</span>
+                </li>
+                
+            </ul>
+        </div>
     </div>
 </div>
-
-<script type="text/javascript" src="/libs/jqcloud/jqcloud-1.0.4.min.js"></script>
-<script type="text/javascript">
-    
-
-    $('#tag-wordcloud').jQCloud([{"text":"SW_Tricks","weight":2,"link":"/tags/SW-Tricks/"},{"text":"AI_Tricks","weight":8,"link":"/tags/AI-Tricks/"},{"text":"Academic","weight":2,"link":"/tags/Academic/"}], {
-        autoResize: true
-    });
-</script>
 
     
 
@@ -411,8 +406,6 @@
 
 
     <footer class="page-footer bg-color">
-    
-
     <div class="container row center-align"
          style="margin-bottom: 15px !important;">
         <div class="col s12 m8 l8 copy-right">
@@ -427,10 +420,6 @@
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;Total Words:&nbsp;<span
                         class="white-color">30.1k</span>
-            
-            
-            
-            
             
             <br>
 
@@ -491,9 +480,8 @@
                 </script>
             
             <br>
-            
         </div>
-        <div class="col s12 m4 l4 social-link ">
+        <div class="col s12 m4 l4 social-link">
     <a href="https://github.com/MarcuXu" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
         <i class="fab fa-github"></i>
     </a>
@@ -666,6 +654,9 @@ $(function () {
     </a>
 </div>
 
+    
+
+
 
     <script src="/libs/materialize/materialize.min.js"></script>
     <script src="/libs/masonry/masonry.pkgd.min.js"></script>
@@ -673,37 +664,6 @@ $(function () {
     <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
     <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
     <script src="/js/matery.js?v=20261013"></script>
-
-    
-
-    
-
-    <!-- 雪花特效 -->
-    
-
-    <!-- 鼠标星星特效 -->
-    
-
-    
-
-    <!-- Baidu Analytics -->
-
-    <!-- Baidu Push -->
-
-    
-    
-
-    
-
-    
-
-    <!--腾讯兔小巢-->
-    
-    
-
-    
-
-    
 
     
     <script src="/libs/instantpage/instantpage.js" type="module"></script>

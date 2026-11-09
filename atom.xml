@@ -15,7 +15,6 @@
     <author>
       <name>Mingjing Xu</name>
     </author>
-    <category term="Tech" scheme="https://marcuxu.com/categories/Tech/"/>
     <category term="AI_Tricks" scheme="https://marcuxu.com/tags/AI-Tricks/"/>
     <id>https://marcuxu.com/2026/07/07/a3b2-paper-explanation/</id>
     <link href="https://marcuxu.com/2026/07/07/a3b2-paper-explanation/"/>
@@ -30,7 +29,6 @@
     <author>
       <name>Mingjing Xu</name>
     </author>
-    <category term="Tech" scheme="https://marcuxu.com/categories/Tech/"/>
     <category term="AI_Tricks" scheme="https://marcuxu.com/tags/AI-Tricks/"/>
     <id>https://marcuxu.com/2026/06/24/inhernet-paper-explanation/</id>
     <link href="https://marcuxu.com/2026/06/24/inhernet-paper-explanation/"/>
@@ -45,7 +43,6 @@
     <author>
       <name>Mingjing Xu</name>
     </author>
-    <category term="Tech" scheme="https://marcuxu.com/categories/Tech/"/>
     <category term="AI_Tricks" scheme="https://marcuxu.com/tags/AI-Tricks/"/>
     <id>https://marcuxu.com/2026/06/16/tlv-core-paper-explanation/</id>
     <link href="https://marcuxu.com/2026/06/16/tlv-core-paper-explanation/"/>
@@ -60,7 +57,6 @@
     <author>
       <name>Mingjing Xu</name>
     </author>
-    <category term="Tech" scheme="https://marcuxu.com/categories/Tech/"/>
     <category term="AI_Tricks" scheme="https://marcuxu.com/tags/AI-Tricks/"/>
     <id>https://marcuxu.com/2026/06/04/psmgd-paper-explanation/</id>
     <link href="https://marcuxu.com/2026/06/04/psmgd-paper-explanation/"/>
@@ -75,7 +71,6 @@
     <author>
       <name>Mingjing Xu</name>
     </author>
-    <category term="Tech" scheme="https://marcuxu.com/categories/Tech/"/>
     <category term="AI_Tricks" scheme="https://marcuxu.com/tags/AI-Tricks/"/>
     <id>https://marcuxu.com/2025/10/30/dl-reading-1029/</id>
     <link href="https://marcuxu.com/2025/10/30/dl-reading-1029/"/>
@@ -90,7 +85,7 @@
     <author>
       <name>Mingjing Xu</name>
     </author>
-    <category term="Clutter" scheme="https://marcuxu.com/categories/Clutter/"/>
+    <category term="Life" scheme="https://marcuxu.com/tags/Life/"/>
     <id>https://marcuxu.com/2024/01/26/cisc-896-01/</id>
     <link href="https://marcuxu.com/2024/01/26/cisc-896-01/"/>
     <published>2024-01-26T12:18:18.000Z</published>
@@ -104,7 +99,6 @@
     <author>
       <name>Mingjing Xu</name>
     </author>
-    <category term="Tech" scheme="https://marcuxu.com/categories/Tech/"/>
     <category term="AI_Tricks" scheme="https://marcuxu.com/tags/AI-Tricks/"/>
     <id>https://marcuxu.com/2023/03/01/dl-study/</id>
     <link href="https://marcuxu.com/2023/03/01/dl-study/"/>
@@ -120,7 +114,6 @@
     <author>
       <name>Mingjing Xu</name>
     </author>
-    <category term="Tech" scheme="https://marcuxu.com/categories/Tech/"/>
     <category term="AI_Tricks" scheme="https://marcuxu.com/tags/AI-Tricks/"/>
     <id>https://marcuxu.com/2022/12/08/tiny-stories-of-ai/</id>
     <link href="https://marcuxu.com/2022/12/08/tiny-stories-of-ai/"/>
@@ -136,7 +129,6 @@
     <author>
       <name>Mingjing Xu</name>
     </author>
-    <category term="Clutter" scheme="https://marcuxu.com/categories/Clutter/"/>
     <category term="Academic" scheme="https://marcuxu.com/tags/Academic/"/>
     <id>https://marcuxu.com/2022/11/08/paper-tricks/</id>
     <link href="https://marcuxu.com/2022/11/08/paper-tricks/"/>
@@ -151,7 +143,6 @@
     <author>
       <name>Mingjing Xu</name>
     </author>
-    <category term="Tech" scheme="https://marcuxu.com/categories/Tech/"/>
     <category term="AI_Tricks" scheme="https://marcuxu.com/tags/AI-Tricks/"/>
     <id>https://marcuxu.com/2022/10/06/cnn-in-dl/</id>
     <link href="https://marcuxu.com/2022/10/06/cnn-in-dl/"/>
@@ -166,7 +157,6 @@
     <author>
       <name>Mingjing Xu</name>
     </author>
-    <category term="Tech" scheme="https://marcuxu.com/categories/Tech/"/>
     <category term="SW_Tricks" scheme="https://marcuxu.com/tags/SW-Tricks/"/>
     <id>https://marcuxu.com/2022/09/29/git-github-notes/</id>
     <link href="https://marcuxu.com/2022/09/29/git-github-notes/"/>
@@ -183,7 +173,7 @@
     <author>
       <name>Mingjing Xu</name>
     </author>
-    <category term="Clutter" scheme="https://marcuxu.com/categories/Clutter/"/>
+    <category term="Life" scheme="https://marcuxu.com/tags/Life/"/>
     <id>https://marcuxu.com/2022/09/19/memory-hk-cuhk/</id>
     <link href="https://marcuxu.com/2022/09/19/memory-hk-cuhk/"/>
     <published>2022-09-19T12:08:34.000Z</published>
@@ -199,7 +189,6 @@
     <author>
       <name>Mingjing Xu</name>
     </author>
-    <category term="Clutter" scheme="https://marcuxu.com/categories/Clutter/"/>
     <category term="Academic" scheme="https://marcuxu.com/tags/Academic/"/>
     <id>https://marcuxu.com/2022/09/19/curriculumvitae/</id>
     <link href="https://marcuxu.com/2022/09/19/curriculumvitae/"/>
@@ -208,13 +197,12 @@
       <![CDATA[<h2 id="Snapshot"><a href="#Snapshot" class="headerlink" title="Snapshot"></a>Snapshot</h2><p>I am <strong>Mingjing Xu</strong>, a Computer]]>
     </summary>
     <title>About Mingjing Xu</title>
-    <updated>2026-10-13T01:21:02.000Z</updated>
+    <updated>2026-11-09T20:52:04.000Z</updated>
   </entry>
   <entry>
     <author>
       <name>Mingjing Xu</name>
     </author>
-    <category term="Tech" scheme="https://marcuxu.com/categories/Tech/"/>
     <category term="SW_Tricks" scheme="https://marcuxu.com/tags/SW-Tricks/"/>
     <id>https://marcuxu.com/2022/09/18/building-blog/</id>
     <link href="https://marcuxu.com/2022/09/18/building-blog/"/>

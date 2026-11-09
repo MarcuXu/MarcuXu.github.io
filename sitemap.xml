@@ -4,14 +4,14 @@
   <url>
     <loc>https://marcuxu.com/2022/09/19/curriculumvitae/</loc>
     
-    <lastmod>2026-10-13</lastmod>
+    <lastmod>2026-11-09</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://marcuxu.com/2026/06/04/psmgd-paper-explanation/</loc>
+    <loc>https://marcuxu.com/2026/06/16/tlv-core-paper-explanation/</loc>
     
     <lastmod>2026-07-08</lastmod>
     
@@ -20,7 +20,7 @@
   </url>
   
   <url>
-    <loc>https://marcuxu.com/2026/06/16/tlv-core-paper-explanation/</loc>
+    <loc>https://marcuxu.com/2026/06/04/psmgd-paper-explanation/</loc>
     
     <lastmod>2026-07-08</lastmod>
     
@@ -137,15 +137,6 @@
   </url>
   
   <url>
-    <loc>https://marcuxu.com/categories/index.html</loc>
-    
-    <lastmod>2022-10-03</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://marcuxu.com/friends/index.html</loc>
     
     <lastmod>2018-12-12</lastmod>
@@ -175,47 +166,40 @@
 
   <url>
     <loc>https://marcuxu.com/</loc>
-    <lastmod>2026-10-13</lastmod>
+    <lastmod>2026-11-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
 
   
   <url>
-    <loc>https://marcuxu.com/tags/SW-Tricks/</loc>
-    <lastmod>2026-10-13</lastmod>
+    <loc>https://marcuxu.com/tags/AI-Tricks/</loc>
+    <lastmod>2026-11-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://marcuxu.com/tags/AI-Tricks/</loc>
-    <lastmod>2026-10-13</lastmod>
+    <loc>https://marcuxu.com/tags/Life/</loc>
+    <lastmod>2026-11-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://marcuxu.com/tags/SW-Tricks/</loc>
+    <lastmod>2026-11-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://marcuxu.com/tags/Academic/</loc>
-    <lastmod>2026-10-13</lastmod>
+    <lastmod>2026-11-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
 
-  
-  <url>
-    <loc>https://marcuxu.com/categories/Clutter/</loc>
-    <lastmod>2026-10-13</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://marcuxu.com/categories/Tech/</loc>
-    <lastmod>2026-10-13</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
   
 </urlset>
