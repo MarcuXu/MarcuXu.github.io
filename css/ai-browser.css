@@ -929,3 +929,8 @@
   font-size: 0.78rem;
   line-height: 1.5;
 }
+
+/* This page is light-only (matery.js never applies dark mode here), so the theme switch is hidden. */
+body:has(#ai-browser-page) .theme-toggle-item {
+  display: none;
+}

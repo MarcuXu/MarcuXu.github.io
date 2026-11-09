@@ -159,7 +159,7 @@
       <i id="searchIcon" class="fas fa-search" title="Search" style="zoom: 0.85;"></i>
     </a>
   </li>
-  <li>
+  <li class="theme-toggle-item">
     <a href="javascript:;" class="waves-effect waves-light" onclick="switchNightMode()" title="深色/浅色模式" >
       <i id="sum-moon-icon" class="fas fa-sun" style="zoom: 0.85;"></i>
     </a>
@@ -926,6 +926,8 @@ $(function () {
 
 <script>
     function switchNightMode() {
+        // Light-only page (AI System): see matery.js.
+        if (document.getElementById('ai-browser-page')) { return; }
         $('<div class="Cuteen_DarkSky"><div class="Cuteen_DarkPlanet"></div></div>').appendTo($('body')),
         setTimeout(function () {
             $('body').hasClass('DarkMode') 
@@ -950,6 +952,57 @@ $(function () {
 
     
 
+<div id="visitor-map" class="visitor-map visitor-map--globe">
+    <div id="visitor-map-panel" class="visitor-map-panel" aria-hidden="true">
+        <div id="visitor-map-slot" class="visitor-map-slot"></div>
+        <p class="visitor-map-note">Approximate visitor locations, derived from IP addresses by
+            <a href="https://mapmyvisitors.com/b/policy" target="_blank" rel="noopener">MapMyVisitors</a>.</p>
+    </div>
+    <button type="button" id="visitor-map-toggle" class="visitor-map-toggle btn-floating"
+            aria-expanded="false" aria-controls="visitor-map-panel" title="Visitor map" aria-label="Visitor map">
+        <i class="fas fa-globe-americas"></i>
+    </button>
+</div>
+<script>
+    (function () {
+        var box = document.getElementById('visitor-map');
+        var panel = document.getElementById('visitor-map-panel');
+        var toggle = document.getElementById('visitor-map-toggle');
+        var setOpen = function (open) {
+            box.classList.toggle('is-open', open);
+            toggle.setAttribute('aria-expanded', String(open));
+            panel.setAttribute('aria-hidden', String(!open));
+        };
+        var saved = null;
+        try { saved = localStorage.getItem('visitorMapOpen'); } catch (e) {}
+        setOpen(saved === '1');
+        toggle.addEventListener('click', function () {
+            var open = !box.classList.contains('is-open');
+            setOpen(open);
+            try { localStorage.setItem('visitorMapOpen', open ? '1' : '0'); } catch (e) {}
+        });
+        // The widget script finds itself by id and draws the map right after its own tag, so it
+        // is added inside the panel. It must start before the window "load" event: the globe
+        // only starts spinning from its own load handler. A script added this way does not
+        // block the rest of the page.
+        (function () {
+            var s = document.createElement('script');
+            s.id = "mmvst_globe";
+            s.async = true;
+            s.src = 'https://mapmyvisitors.com/' + "globe.js"
+                + '?d=' + encodeURIComponent("utwr7bbVYqI-Vph-Oyse3eIDYd4YwWEEcP8yzRiHoB8")
+                + "&w=180";
+            var slot = document.getElementById('visitor-map-slot');
+            s.onerror = function () {
+                // Blocked or unreachable (ad blockers, some networks): say so instead of an empty box.
+                slot.classList.add('is-unavailable');
+                slot.textContent = 'The map could not be loaded.';
+            };
+            slot.appendChild(s);
+        })();
+    })();
+</script>
+
 
 
     <script src="/libs/materialize/materialize.min.js"></script>
@@ -957,7 +1010,7 @@ $(function () {
     <script src="/libs/aos/aos.js"></script>
     <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
     <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
-    <script src="/js/matery.js?v=20261013"></script>
+    <script src="/js/matery.js?v=20261109"></script>
 
     
     <script src="/libs/instantpage/instantpage.js" type="module"></script>

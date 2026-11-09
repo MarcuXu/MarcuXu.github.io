@@ -24,7 +24,34 @@
   var messages = [];
   var latestAnswer = '';
   var latestCitations = [];
-  var latestResponseId = window.sessionStorage.getItem(responseIdStorageKey) || '';
+  var requestSequence = 0;
+
+  // sessionStorage can be blocked (privacy settings, some embedded browsers); never let that stop the page.
+  var storage = {
+    get: function (key) {
+      try {
+        return window.sessionStorage.getItem(key);
+      } catch (error) {
+        return null;
+      }
+    },
+    set: function (key, value) {
+      try {
+        window.sessionStorage.setItem(key, value);
+      } catch (error) {
+        // Keep working without persistence.
+      }
+    },
+    remove: function (key) {
+      try {
+        window.sessionStorage.removeItem(key);
+      } catch (error) {
+        // Nothing to remove.
+      }
+    }
+  };
+
+  var latestResponseId = storage.get(responseIdStorageKey) || '';
   var turnstileWidgetId = null;
   var turnstileToken = '';
 
@@ -80,8 +107,33 @@
       /failed to fetch|networkerror|load failed/i.test(error.message || '');
   }
 
-  function isRetriableResponseStatus(status) {
-    return status === 502 || status === 503;
+  function getResponseErrorMessage(status, data) {
+    var serverMessage = data && typeof data.error === 'string' ? data.error : '';
+    if (/[\u4e00-\u9fff]/.test(serverMessage)) {
+      return serverMessage;
+    }
+    if (status === 401) {
+      return '访问口令不正确，请检查后重试。';
+    }
+    if (status === 403) {
+      return runtimeConfig.requireTurnstile
+        ? '人机验证未通过或已过期，请重新验证后再试。'
+        : '当前页面来源无权访问分析接口。';
+    }
+    if (status === 413) {
+      return '会话内容过长，请新建会话后重试。';
+    }
+    if (status === 429) {
+      var seconds = Number(data && data.retryAfterSeconds);
+      return seconds > 0 ? '请求过于频繁，请在 ' + seconds + ' 秒后重试。' : '请求过于频繁，请稍后再试。';
+    }
+    if (status === 400 || status === 415) {
+      return '请求内容无效或过长，请调整后重试。';
+    }
+    if (status === 504) {
+      return '本次分析用时较长，系统已自动中止。建议缩小问题范围，或将复杂问题拆分为几个连续追问。';
+    }
+    return '分析服务暂时无法完成本次请求，请稍后重试。（状态码：' + status + '）';
   }
 
   function getNetworkErrorMessage(error) {
@@ -265,12 +317,16 @@
     });
   }
 
+  function isListItemLine(line) {
+    return /^(?:[-*+]|\d+[.)])\s+/.test(String(line || '').trim());
+  }
+
   function getStandaloneSourceKey(line) {
     var text = String(line || '').trim()
-      .replace(/^[-*]\s+/, '')
+      .replace(/^[-*+]\s+/, '')
       .replace(/^\d+[.)]\s+/, '')
       .trim();
-    var markdownOnly = text.match(/^\[([^\]\n]{1,180})\]\(((?:https?:\/\/|www\.|[a-z0-9-]+(?:\.[a-z0-9-]+)+)[^\s)]*)\)$/i);
+    var markdownOnly = text.match(/^\[([^\]\n]{1,180})\]\(((?:https?:\/\/|www\.|[a-z0-9-]+(?:\.[a-z0-9-]+)+)(?:[^\s()]|\([^\s()]*\))*)\)$/i);
     var safeUrl;
 
     if (markdownOnly) {
@@ -309,7 +365,9 @@
         return;
       }
 
-      if (sourceKey) {
+      // A line that is only a link or a domain is a leftover source line. Inside a list it is
+      // real content (a list of sites, "Node.js", "3.14") unless it follows a "Sources:" heading.
+      if (sourceKey && (inSourceBlock || !isListItemLine(trimmed))) {
         return;
       }
 
@@ -328,7 +386,7 @@
     var source = String(text || '');
     var result = [];
     var seen = {};
-    var markdownLinkPattern = /\[([^\]\n]{1,160})\]\(((?:https?:\/\/|www\.|[a-z0-9-]+(?:\.[a-z0-9-]+)+)[^\s)]*)\)/gi;
+    var markdownLinkPattern = /\[([^\]\n]{1,160})\]\(((?:https?:\/\/|www\.|[a-z0-9-]+(?:\.[a-z0-9-]+)+)(?:[^\s()]|\([^\s()]*\))*)\)/gi;
     var bareUrlPattern = /(?:https?:\/\/|www\.)[^\s<>()]+/gi;
     var withoutMarkdown = source;
     var match;
@@ -392,7 +450,7 @@
 
   function renderInlineMarkdown(text) {
     var source = String(text || '');
-    var markdownLinkPattern = /\[([^\]\n]{1,160})\]\(((?:https?:\/\/|www\.|[a-z0-9-]+(?:\.[a-z0-9-]+)+)[^\s)]*)\)/gi;
+    var markdownLinkPattern = /\[([^\]\n]{1,160})\]\(((?:https?:\/\/|www\.|[a-z0-9-]+(?:\.[a-z0-9-]+)+)(?:[^\s()]|\([^\s()]*\))*)\)/gi;
     var result = '';
     var lastIndex = 0;
     var match;
@@ -725,7 +783,7 @@
         content: message.content
       };
     });
-    window.sessionStorage.setItem(sessionStorageKey, JSON.stringify(serializableMessages.slice(-historyLimit)));
+    storage.set(sessionStorageKey, JSON.stringify(serializableMessages.slice(-historyLimit)));
   }
 
   function getHistoryLimit() {
@@ -754,7 +812,7 @@
 
   function loadSession() {
     try {
-      var saved = JSON.parse(window.sessionStorage.getItem(sessionStorageKey) || '[]');
+      var saved = JSON.parse(storage.get(sessionStorageKey) || '[]');
       if (Array.isArray(saved)) {
         messages = saved.filter(function (message) {
           return message && (message.role === 'user' || message.role === 'assistant') && typeof message.content === 'string';
@@ -763,7 +821,13 @@
     } catch (error) {
       messages = [];
     }
-    latestAnswer = messages.length ? messages[messages.length - 1].content : '';
+    latestAnswer = '';
+    for (var i = messages.length - 1; i >= 0; i -= 1) {
+      if (messages[i].role === 'assistant') {
+        latestAnswer = messages[i].content;
+        break;
+      }
+    }
     renderMessages();
     updateCopyState();
   }
@@ -887,16 +951,16 @@
   }
 
   function getToken() {
-    return (tokenInput && tokenInput.value.trim()) || window.sessionStorage.getItem(tokenStorageKey) || '';
+    return (tokenInput && tokenInput.value.trim()) || storage.get(tokenStorageKey) || '';
   }
 
   function saveToken() {
     var token = tokenInput ? tokenInput.value.trim() : '';
     if (token) {
-      window.sessionStorage.setItem(tokenStorageKey, token);
+      storage.set(tokenStorageKey, token);
       setStatus('口令已保存', 'idle');
     } else {
-      window.sessionStorage.removeItem(tokenStorageKey);
+      storage.remove(tokenStorageKey);
       setStatus('口令已清除', 'idle');
     }
   }
@@ -935,18 +999,15 @@
         });
 
         if (!response.ok) {
-          var responseError = new Error(data.error || ('请求失败，状态码：' + response.status));
+          // Not retried: the Worker already retries upstream 502/503 itself, and a second
+          // submission would reuse a one-time verification token.
+          var responseError = new Error(getResponseErrorMessage(response.status, data));
           responseError.status = response.status;
-          if (attempt === 0 && isRetriableResponseStatus(response.status)) {
-            lastError = responseError;
-          } else {
-            throw responseError;
-          }
-        } else {
-          return data;
+          throw responseError;
         }
+        return data;
       } catch (error) {
-        if (attempt === 0 && isTransientFetchError(error)) {
+        if (attempt === 0 && !error.status && isTransientFetchError(error)) {
           lastError = error;
         } else {
           throw error;
@@ -996,6 +1057,8 @@
       return;
     }
 
+    var requestId = requestSequence += 1;
+
     messages.push({ role: 'user', content: payload.query });
     renderMessages();
     saveSession();
@@ -1015,26 +1078,34 @@
       }
 
       var data = await sendSearchRequest(payload, requestHeaders);
+      if (requestId !== requestSequence) {
+        return;
+      }
 
       latestAnswer = data.answer || '';
       var normalizedCitations = normalizeCitations(data.citations || [], latestAnswer);
       replacePendingAssistant(data.answer || '接口未返回可展示的回答。', false);
       latestResponseId = data.responseId || latestResponseId || '';
       if (latestResponseId) {
-        window.sessionStorage.setItem(responseIdStorageKey, latestResponseId);
+        storage.set(responseIdStorageKey, latestResponseId);
       }
       renderCitations(normalizedCitations, latestAnswer);
       saveSession();
       setStatus('已完成', 'idle');
       resetTurnstile();
     } catch (error) {
+      if (requestId !== requestSequence) {
+        return;
+      }
       replacePendingAssistant(getNetworkErrorMessage(error), true);
       renderCitations([], '');
       saveSession();
       setStatus('出错', 'error');
       resetTurnstile();
     } finally {
-      submitButton.disabled = false;
+      if (requestId === requestSequence) {
+        submitButton.disabled = false;
+      }
     }
   }
 
@@ -1056,8 +1127,11 @@
           content: text,
           isError: Boolean(isError)
         };
-        latestAnswer = text;
+        if (!isError) {
+          latestAnswer = text;
+        }
         renderMessages();
+        updateCopyState();
         return;
       }
     }
@@ -1065,12 +1139,17 @@
   }
 
   function clearSession() {
+    requestSequence += 1;
+    if (submitButton) {
+      submitButton.disabled = false;
+    }
+    resetTurnstile();
     messages = [];
     latestAnswer = '';
     latestCitations = [];
     latestResponseId = '';
-    window.sessionStorage.removeItem(sessionStorageKey);
-    window.sessionStorage.removeItem(responseIdStorageKey);
+    storage.remove(sessionStorageKey);
+    storage.remove(responseIdStorageKey);
     if (queryInput) {
       queryInput.value = '';
     }
@@ -1082,7 +1161,7 @@
 
   function clearAll() {
     clearSession();
-    window.sessionStorage.removeItem(tokenStorageKey);
+    storage.remove(tokenStorageKey);
     if (tokenInput) {
       tokenInput.value = '';
     }
@@ -1096,11 +1175,13 @@
     }
     window.navigator.clipboard.writeText(text).then(function () {
       setStatus('已复制', 'idle');
+    }).catch(function () {
+      setStatus('复制失败，请手动选择文本复制', 'error');
     });
   }
 
   if (tokenInput) {
-    tokenInput.value = window.sessionStorage.getItem(tokenStorageKey) || '';
+    tokenInput.value = storage.get(tokenStorageKey) || '';
   }
   if (saveTokenButton) {
     saveTokenButton.addEventListener('click', saveToken);

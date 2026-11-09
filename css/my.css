@@ -1283,6 +1283,17 @@ html body.DarkMode #tag-stats .tag-stats-track {
     border-radius: 8px;
 }
 
+/* Globe: 180px wide (the w= value in visitor-map.ejs), centred in a narrower panel. */
+.visitor-map--globe .visitor-map-panel {
+    width: 204px;
+}
+
+.visitor-map--globe .visitor-map-slot {
+    min-height: 196px;
+    padding: 2px;
+    overflow: visible;
+}
+
 .visitor-map .visitor-map-note {
     margin: 8px 2px 0;
     color: var(--mx-muted);
@@ -1293,6 +1304,29 @@ html body.DarkMode #tag-stats .tag-stats-track {
 html body.DarkMode .visitor-map .visitor-map-panel {
     background: #22272e;
     box-shadow: 0 12px 34px rgba(0, 0, 0, 0.5);
+}
+
+/* The globe is drawn for a light page: keep a light tile behind it in dark mode. */
+html body.DarkMode .visitor-map--globe .visitor-map-slot {
+    border-radius: 10px;
+    background: #e9eff6;
+}
+
+.visitor-map .visitor-map-slot.is-unavailable,
+html body.DarkMode .visitor-map .visitor-map-slot.is-unavailable {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 72px;
+    padding: 8px;
+    background: transparent;
+    color: #6b7785;
+    font-size: 0.8rem;
+    text-align: center;
+}
+
+html body.DarkMode .visitor-map .visitor-map-slot.is-unavailable {
+    color: #aab4c0;
 }
 
 html body.DarkMode .visitor-map .visitor-map-note {

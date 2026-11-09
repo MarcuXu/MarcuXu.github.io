@@ -252,8 +252,10 @@ $(function () {
 });
 
 // Dark mode: an explicit choice (moon/sun button, saved as isDark) wins; otherwise follow the OS setting.
+// The AI System page has a light-only design (dark.css would turn its text white on white cards).
 var savedDark = localStorage.getItem('isDark');
-if (savedDark === '1' || (savedDark === null && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+var lightOnlyPage = Boolean(document.getElementById('ai-browser-page'));
+if (!lightOnlyPage && (savedDark === '1' || (savedDark === null && window.matchMedia('(prefers-color-scheme: dark)').matches))) {
     document.body.classList.add('DarkMode');
     $('#sum-moon-icon').addClass("fa-sun").removeClass('fa-moon')
 } else {

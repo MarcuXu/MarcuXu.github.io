@@ -162,7 +162,7 @@
       <i id="searchIcon" class="fas fa-search" title="Search" style="zoom: 0.85;"></i>
     </a>
   </li>
-  <li>
+  <li class="theme-toggle-item">
     <a href="javascript:;" class="waves-effect waves-light" onclick="switchNightMode()" title="深色/浅色模式" >
       <i id="sum-moon-icon" class="fas fa-sun" style="zoom: 0.85;"></i>
     </a>
@@ -261,7 +261,7 @@
 
 </header>
 
-    <link rel="stylesheet" href="/css/ai-browser.css?v=20261013">
+    <link rel="stylesheet" href="/css/ai-browser.css?v=20261109">
 
 <main id="ai-browser-page" class="ai-browser-page">
     <section class="ai-browser-shell">
@@ -308,7 +308,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="ai-browser-status" data-status="idle">
+                <div class="ai-browser-status" data-status="idle" role="status" aria-live="polite">
                     <span class="ai-browser-status-dot"></span>
                     <span id="aiBrowserStatusText">就绪</span>
                 </div>
@@ -336,7 +336,7 @@
                     <label for="aiBrowserToken">访问口令</label>
                     <div class="ai-browser-token-row">
                         <input id="aiBrowserToken" type="password" autocomplete="current-password" placeholder="请输入访问口令">
-                        <button id="aiBrowserSaveToken" class="ai-browser-icon-button" type="button" title="保存访问口令">
+                        <button id="aiBrowserSaveToken" class="ai-browser-icon-button" type="button" title="保存访问口令" aria-label="保存访问口令">
                             <i class="fas fa-key"></i>
                         </button>
                     </div>
@@ -394,7 +394,7 @@
                     <span>分析工作区</span>
                 </div>
 
-                <div id="aiBrowserMessages" class="ai-browser-messages" aria-live="polite">
+                <div id="aiBrowserMessages" class="ai-browser-messages">
                     <article class="ai-browser-message ai-browser-message-system">
                         <div class="ai-browser-message-icon"><i class="fas fa-compass"></i></div>
                         <div>
@@ -408,7 +408,7 @@
                     <label for="aiBrowserQuery">问题</label>
                     <textarea id="aiBrowserQuery" rows="4" placeholder="请输入问题，也可以在回答后继续追问..." required></textarea>
                     <div class="ai-browser-actions">
-                        <button id="aiBrowserCopy" class="ai-browser-icon-button" type="button" title="复制最新回答">
+                        <button id="aiBrowserCopy" class="ai-browser-icon-button" type="button" title="复制最新回答" aria-label="复制最新回答">
                             <i class="fas fa-copy"></i>
                         </button>
                         <button id="aiBrowserSubmit" class="ai-browser-primary-button" type="submit">
@@ -439,7 +439,7 @@
         configEndpoint: 'https://marcuxu-ai-browser-api.2596785.workers.dev/config'
     };
 </script>
-<script src="/js/ai-browser.js?v=20261013" defer></script>
+<script src="/js/ai-browser.js?v=20261109" defer></script>
 
 
     <footer class="page-footer bg-color">
@@ -669,6 +669,8 @@ $(function () {
 
 <script>
     function switchNightMode() {
+        // Light-only page (AI System): see matery.js.
+        if (document.getElementById('ai-browser-page')) { return; }
         $('<div class="Cuteen_DarkSky"><div class="Cuteen_DarkPlanet"></div></div>').appendTo($('body')),
         setTimeout(function () {
             $('body').hasClass('DarkMode') 
@@ -700,7 +702,7 @@ $(function () {
     <script src="/libs/aos/aos.js"></script>
     <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
     <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
-    <script src="/js/matery.js?v=20261013"></script>
+    <script src="/js/matery.js?v=20261109"></script>
 
     
     <script src="/libs/instantpage/instantpage.js" type="module"></script>
