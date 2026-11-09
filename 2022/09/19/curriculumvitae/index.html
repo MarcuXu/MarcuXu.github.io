@@ -65,9 +65,9 @@
 
     <script src="/libs/jquery/jquery-3.6.0.min.js"></script>
 
-<meta name="generator" content="Hexo 8.1.2">
+<meta name="generator" content="Hexo 8.1.2"><link rel="alternate" href="/atom.xml" title="MarcuXu" type="application/atom+xml">
+
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
-<link rel="alternate" href="/atom.xml" title="MarcuXu" type="application/atom+xml">
 </head>
 
 
@@ -944,7 +944,7 @@ $(function () {
 
     
 
-<div id="visitor-map" class="visitor-map visitor-map--globe">
+<div id="visitor-map" class="visitor-map">
     <div id="visitor-map-panel" class="visitor-map-panel" aria-hidden="true">
         <div id="visitor-map-slot" class="visitor-map-slot"></div>
         <p class="visitor-map-note">Approximate visitor locations, derived from IP addresses by
@@ -979,11 +979,11 @@ $(function () {
         // block the rest of the page.
         (function () {
             var s = document.createElement('script');
-            s.id = "mmvst_globe";
+            s.id = "mapmyvisitors";
             s.async = true;
-            s.src = 'https://mapmyvisitors.com/' + "globe.js"
-                + '?d=' + encodeURIComponent("utwr7bbVYqI-Vph-Oyse3eIDYd4YwWEEcP8yzRiHoB8")
-                + "&w=180";
+            s.src = 'https://mapmyvisitors.com/' + "map.js"
+                + '?d=' + encodeURIComponent("2zvdicQyYcdUVyTZSbtRMJ8HPnt2k7jyw01TL2GQmHM")
+                + "&cl=ffffff&w=a";
             var slot = document.getElementById('visitor-map-slot');
             s.onerror = function () {
                 // Blocked or unreachable (ad blockers, some networks): say so instead of an empty box.
